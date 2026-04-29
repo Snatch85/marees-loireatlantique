@@ -4,6 +4,7 @@
  * Design refait avec cards modernes et données corrigées
  */
 define('SITE_NAME', 'MaréesLive');
+define('WORLDTIDES_KEY', '1843bfee-0b42-463c-8841-7c94a23bb98a');
 $JOURS = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
 $MOIS = ['jan','fév','mar','avr','mai','juin','juil','août','sep','oct','nov','déc'];
 
@@ -26,7 +27,111 @@ function esc($s) { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
 
 $today_ts = mktime(0,0,0);
 
-// Calcul des marées - affichage des 6 prochaines marées hautes et basses
+// Création du dossier cache s'il n'existe pas
+if (!file_exists(__DIR__ . '/cache')) {
+    mkdir(__DIR__ . '/cache', 0755, true);
+}
+
+/**
+ * Récupère les données de marées depuis l'API WorldTides
+ * @param float $lat Latitude du port
+ * @param float $lon Longitude du port
+ * @param string $portKey Clé du port pour le nom du fichier cache
+ * @return array Données de marées ou tableau avec erreur
+ */
+function getTides($lat, $lon, $portKey) {
+    // Nom du fichier de cache basé sur la clé du port (ex: cache/le-croisic.json)
+    $cache_file = __DIR__ . '/cache/' . $portKey . '.json';
+    
+    // Vérifier si le cache existe et est valide (12h = 43200 secondes)
+    if (file_exists($cache_file)) {
+        $cache_age = time() - filemtime($cache_file);
+        if ($cache_age < 43200) {
+            $cached_data = json_decode(file_get_contents($cache_file), true);
+            if ($cached_data && isset($cached_data['extremes'])) {
+                return $cached_data;
+            }
+        }
+    }
+    
+    // Appel à l'API WorldTides
+    $url = "https://www.worldtides.info/api/v3?extremes&heights&date=today&days=2&lat={$lat}&lon={$lon}&key=" . WORLDTIDES_KEY;
+    
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+    
+    $response = curl_exec($ch);
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $curl_error = curl_error($ch);
+    curl_close($ch);
+    
+    // Gestion des erreurs
+    if ($response === false || $curl_error) {
+        return ['error' => 'Erreur de connexion à l\'API WorldTides: ' . $curl_error];
+    }
+    
+    $data = json_decode($response, true);
+    
+    if ($http_code === 401 || (isset($data['error']) && stripos($data['error'], 'invalid key') !== false)) {
+        return ['error' => 'Clé API WorldTides invalide'];
+    }
+    
+    if ($http_code !== 200 || !isset($data['extremes'])) {
+        $error_msg = $data['error'] ?? 'Données de marées non disponibles';
+        return ['error' => 'Erreur API WorldTides: ' . $error_msg . ' (HTTP ' . $http_code . ')'];
+    }
+    
+    // Sauvegarder dans le cache
+    file_put_contents($cache_file, json_encode($data, JSON_PRETTY_PRINT));
+    
+    return $data;
+}
+
+// Récupération des marées réelles depuis l'API
+$tides_data = getTides($port['lat'], $port['lon'], $port_key);
+$tides_error = null;
+$next_tides = [];
+
+if (isset($tides_data['error'])) {
+    $tides_error = $tides_data['error'];
+    // Fallback sur les données simulées en cas d'erreur
+    $next_tides = getNextTides(time(), $port, 6);
+} else {
+    // Conversion des données API en format utilisable
+    foreach ($tides_data['extremes'] as $extreme) {
+        $type = ($extreme['type'] === 'high') ? 'high' : 'low';
+        $direction = ($type === 'high') ? '🔺' : '🔻';
+        
+        // Conversion du timestamp en heure locale française
+        $ts = $extreme['time'];
+        $time_fr = date('H:i', $ts);
+        
+        $next_tides[] = [
+            'ts' => $ts,
+            'time' => $time_fr,
+            'height' => round($extreme['height'], 2),
+            'type' => $type,
+            'direction' => $direction
+        ];
+    }
+    
+    // Trier par timestamp et prendre les 6 prochaines
+    usort($next_tides, function($a, $b) {
+        return $a['ts'] - $b['ts'];
+    });
+    
+    // Filtrer pour ne garder que les marées futures et les 6 prochaines
+    $now = time();
+    $future_tides = array_filter($next_tides, function($tide) use ($now) {
+        return $tide['ts'] >= $now - 3600; // Inclure marées jusqu'à 1h dans le passé
+    });
+    $next_tides = array_slice(array_values($future_tides), 0, 6);
+}
+
+// Calcul des marées - affichage des 6 prochaines marées hautes et basses (fallback)
 function getNextTides($start_ts, $p, $count = 6) {
     $tides = [];
     $T = 44700; // période en secondes (~12h25)
@@ -426,6 +531,12 @@ body{
     <!-- Section Marées -->
     <div class="card">
         <h2 class="card-title">🌊 Prochaines Marées</h2>
+        <?php if ($tides_error): ?>
+        <div style="background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+            <p style="color: #fca5a5; font-weight: 500;">⚠️ <?= esc($tides_error) ?></p>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 8px;">Affichage des données estimées.</p>
+        </div>
+        <?php endif; ?>
         <div class="tides-grid">
             <?php foreach($next_tides as $tide):?>
             <div class="tide-card <?=$tide['type']?>">
