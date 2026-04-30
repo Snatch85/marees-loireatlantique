@@ -1,0 +1,45 @@
+===============================================================
+  MAREES LOIRE-ATLANTIQUE - GUIDE APK ANDROID
+  (une seule chose à faire : installer Android Studio)
+===============================================================
+
+ETAPE 1 - Telecharger Android Studio
+--------------------------------------
+Allez sur : https://developer.android.com/studio
+Cliquez "Download Android Studio" (environ 1 Go)
+Installez-le en acceptant tout (options par defaut)
+
+ETAPE 2 - Lancer Android Studio une premiere fois
+---------------------------------------------------
+Au premier lancement, Android Studio telecharge le SDK Android.
+Attendez que tout soit installe (5-10 minutes).
+Vous pouvez fermer Android Studio apres.
+
+ETAPE 3 - Construire l'APK (automatique)
+-----------------------------------------
+Double-cliquez sur le fichier :
+   BUILD_APK.bat
+
+L'APK sera cree dans :
+   android\app\build\outputs\apk\debug\app-debug.apk
+
+ETAPE 4 - Installer sur votre telephone
+-----------------------------------------
+Methode 1 (cable USB) :
+  - Copiez l'APK sur votre telephone
+  - Ouvrez le fichier sur le telephone
+  - Activez "Sources inconnues" si demande
+
+Methode 2 (partage) :
+  - Envoyez-vous l'APK par email ou WhatsApp
+  - Ouvrez-le sur votre telephone
+
+===============================================================
+  L'application s'appellera "Marees Loire-Atlantique"
+  avec l'icone bleue vague
+===============================================================
+
+NOTA : L'APK debug fonctionne parfaitement pour usage personnel.
+Pour publier sur Google Play Store, il faudrait signer l'APK
+avec une cle release (je peux vous aider si besoin).
+

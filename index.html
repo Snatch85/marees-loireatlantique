@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Marées Loire-Atlantique – Horaires, Coefficients & Hauteurs 2026</title>
+<meta name="description" content="Horaires des marées en Loire-Atlantique 2026 : Saint-Nazaire, Le Croisic, Pornic, Piriac, La Turballe, Saint-Brevin, Paimboeuf, La Baule. Coefficients, hauteurs et graphique 24h. Gratuit."/>
+<meta name="keywords" content="marées loire atlantique, horaires marées saint-nazaire, coefficient marée, le croisic, pornic, la turballe, piriac, saint-brevin, paimboeuf, la baule, batz, préfailles, saint-gildas, marée aujourd'hui, pêche à pied loire atlantique"/>
+
+<link rel="canonical" href="https://marees-loireatlantique.fr/"/>
+<meta name="robots" content="index, follow"/>
+<meta name="author" content="Berry Yann — marees-loireatlantique.fr"/>
+<meta name="geo.region" content="FR-44"/>
+<meta name="geo.placename" content="Loire-Atlantique, France"/>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Marées Loire-Atlantique – Horaires & Coefficients 2026"/>
+<meta property="og:description" content="Horaires des marées pour tous les ports de Loire-Atlantique. Coefficients, hauteurs, graphique 24h. Gratuit."/>
+<meta property="og:url" content="https://marees-loireatlantique.fr/"/>
+<meta property="og:image" content="https://marees-loireatlantique.fr/icons/og-image.jpg"/>
+<meta property="og:locale" content="fr_FR"/>
+<meta property="og:site_name" content="Marées Loire-Atlantique"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Marées Loire-Atlantique – Horaires & Coefficients 2026"/>
+<meta name="twitter:description" content="Coefficients, horaires et hauteurs pour tous les ports du 44."/>
+
+<!-- PWA -->
+<link rel="manifest" href="/manifest.json"/>
+<meta name="theme-color" content="#0077B6"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="apple-mobile-web-app-title" content="Marées 44"/>
+<link rel="apple-touch-icon" href="/icons/icon-192.png"/>
+<link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152.png"/>
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png"/>
+
+<!-- Schema.org — WebApplication + Dataset marées -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Marées Loire-Atlantique",
+      "url": "https://marees-loireatlantique.fr",
+      "description": "Calculateur harmonique des marées pour les ports de Loire-Atlantique et de France. Coefficients SHOM, hauteurs d'eau, graphique 24h.",
+      "applicationCategory": "WeatherApplication",
+      "operatingSystem": "Web, Android, iOS",
+      "inLanguage": "fr-FR",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "Loire-Atlantique",
+        "containedInPlace": { "@type": "Country", "name": "France" }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Marées Loire-Atlantique", "item": "https://marees-loireatlantique.fr/" }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+<!-- Feuille de style principale -->
+<link rel="stylesheet" href="/assets/site.css"/>
+
+<!-- Google AdSense — Auto-ads (activation après validation du compte) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1465276904717454" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<a href="#main" class="skip-link">Aller au contenu principal</a>
+
+<!-- ═══════════════════════════════════════
+     HEADER
+════════════════════════════════════════ -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-wave" aria-hidden="true">🌊</span>
+      <div class="logo-text">
+        <h1>Marées Loire-Atlantique &amp; France</h1>
+        <p>Horaires · Coefficients · Hauteurs d'eau</p>
+      </div>
+    </div>
+    <nav class="header-nav" aria-label="Navigation rapide">
+      <a href="#today">Aujourd'hui</a>
+      <a href="#semaine">7 jours</a>
+      <a href="#infos">Infos</a>
+      <a href="/peche-a-pied/" style="background:rgba(42,157,143,.32);border-color:rgba(42,157,143,.6)">🦪 Pêche à pied</a>
+      <a href="/reglementation/" style="background:rgba(231,111,81,.28);border-color:rgba(231,111,81,.55)">📋 Réglementation</a>
+    </nav>
+  </div>
+
+  <!-- Vagues SVG animées — 3 calques pour un effet naturel -->
+  <div class="wave-wrap" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- vague 1 : fond plein, rapide -->
+      <path class="wv1" d="M0,28 C120,52 240,4 360,28 C480,52 600,4 720,28 C840,52 960,4 1080,28 C1200,52 1320,4 1440,28 C1560,52 1680,4 1800,28 C1920,52 2040,4 2160,28 C2280,52 2400,4 2520,28 C2640,52 2760,4 2880,28 L2880,60 L0,60 Z"/>
+      <!-- vague 2 : semi-transparente, lente, sens inverse -->
+      <path class="wv2" d="M0,38 C180,14 360,54 540,38 C720,22 900,54 1080,38 C1260,22 1440,54 1620,38 C1800,22 1980,54 2160,38 C2340,22 2520,54 2700,38 C2880,22 2880,22 2880,38 L2880,60 L0,60 Z"/>
+      <!-- vague 3 : légère, décalée -->
+      <path class="wv3" d="M0,34 C90,46 200,20 320,34 C440,48 560,18 680,34 C800,50 920,16 1040,34 C1160,52 1280,14 1440,34 C1600,54 1720,12 1840,34 C1960,56 2080,10 2200,34 C2320,58 2440,8 2560,34 C2680,60 2800,6 2880,34 L2880,60 L0,60 Z"/>
+    </svg>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION PRINCIPALE (sticky)
+════════════════════════════════════════ -->
+<nav class="site-nav" aria-label="Navigation principale">
+  <div class="site-nav-inner">
+
+    <div class="site-nav-item">
+      <a href="/" class="has-drop">🌊 Marées</a>
+      <div class="site-nav-drop">
+        <span class="drop-section">Par port — Loire-Atlantique</span>
+        <a href="/marees-saint-nazaire/">Saint-Nazaire</a>
+        <a href="/marees-la-baule/">La Baule</a>
+        <a href="/marees-le-croisic/">Le Croisic</a>
+        <a href="/marees-le-pouliguen/">Le Pouliguen</a>
+        <a href="/marees-batz-sur-mer/">Batz-sur-Mer</a>
+        <a href="/marees-la-turballe/">La Turballe</a>
+        <a href="/marees-piriac-sur-mer/">Piriac-sur-Mer</a>
+        <a href="/marees-pornic/">Pornic</a>
+        <a href="/marees-saint-brevin/">Saint-Brevin</a>
+        <a href="/marees-prefailles/">Préfailles</a>
+        <a href="/marees-paimboeuf/">Paimbœuf</a>
+        <a href="/marees-saint-gildas/">Saint-Gildas</a>
+      </div>
+    </div>
+
+    <div class="site-nav-item">
+      <a href="/peche-a-pied/">🦪 Pêche à pied</a>
+    </div>
+
+    <div class="site-nav-item">
+      <a href="/reglementation/">📋 Réglementation</a>
+    </div>
+
+    <div class="site-nav-item">
+      <a href="/guides/" class="has-drop">📖 Guides</a>
+      <div class="site-nav-drop">
+        <span class="drop-section">Comprendre les marées</span>
+        <a href="/guides/quest-ce-que-la-maree/">Qu'est-ce que la marée ?</a>
+        <a href="/guides/coefficient-maree/">Le coefficient de marée</a>
+        <a href="/guides/lire-horaire-maree/">Lire un horaire de marée</a>
+        <a href="/guides/grandes-marees-mortes-eaux/">Grandes marées et mortes-eaux</a>
+        <a href="/guides/calendrier-grandes-marees/">Calendrier grandes marées 2026</a>
+        <span class="drop-section">Pratique</span>
+        <a href="/guides/marees-activites-nautiques/">Marée et activités nautiques</a>
+        <a href="/guides/marees-securite/">Sécurité en bord de mer</a>
+        <a href="/guides/marees-meteo/">Marées et météo</a>
+        <a href="/guides/glossaire-marees/">Glossaire des marées</a>
+      </div>
+    </div>
+
+    <div class="site-nav-item">
+      <a href="/guides/marees-securite/" class="has-drop">⛑️ Sécurité</a>
+      <div class="site-nav-drop">
+        <span class="drop-section">Urgences</span>
+        <a href="/guides/marees-securite/">Sécurité en bord de mer</a>
+        <span class="drop-section">À savoir</span>
+        <a href="/guides/marees-meteo/">Marées et météo</a>
+        <a href="/guides/marees-activites-nautiques/">Marée et activités</a>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     BANNIÈRE PUBLICITAIRE HAUTE
+════════════════════════════════════════ -->
+<div class="ad-top">
+  <div class="ad-wrap">
+    <span class="ad-label">Publicité</span>
+    <!-- AdSense — bannière responsive (728x90 desktop / 320x50 mobile) -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-1465276904717454"
+         data-ad-slot="AUTO"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     CONTENU PRINCIPAL
+════════════════════════════════════════ -->
+<div class="container" id="main">
+  <div class="main-col">
+
+    <!-- Sélection port + date -->
+    <div class="port-bar">
+      <label for="portSelect">Port :</label>
+      <select class="port-select" id="portSelect" aria-label="Choisir un port">
+        <optgroup label="── Loire-Atlantique (44) ──">
+          <option value="SAINT-NAZAIRE">Saint-Nazaire</option>
+          <option value="LE-CROISIC">Le Croisic</option>
+          <option value="LA-BAULE">La Baule-Escoublac</option>
+          <option value="BATZ">Batz-sur-Mer</option>
+          <option value="LE-POULIGUEN">Le Pouliguen</option>
+          <option value="LA-TURBALLE">La Turballe</option>
+          <option value="PIRIAC">Piriac-sur-Mer</option>
+          <option value="PORNIC">Pornic</option>
+          <option value="PREFAILLES">Préfailles</option>
+          <option value="SAINT-BREVIN">Saint-Brevin-les-Pins</option>
+          <option value="PAIMBOEUF">Paimboeuf (Estuaire)</option>
+          <option value="SAINT-GILDAS">Saint-Gildas (Pointe)</option>
+        </optgroup>
+        <optgroup label="── Bretagne ──">
+          <option value="SAINT-MALO">Saint-Malo</option>
+          <option value="BREST">Brest</option>
+          <option value="LORIENT">Lorient</option>
+          <option value="CONCARNEAU">Concarneau</option>
+          <option value="QUIBERON">Quiberon</option>
+          <option value="VANNES">Vannes (Golfe du Morbihan)</option>
+        </optgroup>
+        <optgroup label="── Normandie ──">
+          <option value="CHERBOURG">Cherbourg</option>
+          <option value="LE-HAVRE">Le Havre</option>
+          <option value="CAEN">Caen-Ouistreham</option>
+          <option value="GRANVILLE">Granville</option>
+        </optgroup>
+        <optgroup label="── Nord ──">
+          <option value="CALAIS">Calais</option>
+          <option value="DUNKERQUE">Dunkerque</option>
+        </optgroup>
+        <optgroup label="── Atlantique Sud ──">
+          <option value="LA-ROCHELLE">La Rochelle</option>
+          <option value="ROYAN">Royan</option>
+          <option value="BORDEAUX">Bordeaux (Pauillac)</option>
+          <option value="ARCACHON">Arcachon</option>
+        </optgroup>
+        <optgroup label="── Méditerranée ──">
+          <option value="MARSEILLE">Marseille</option>
+          <option value="NICE">Nice</option>
+        </optgroup>
+      </select>
+
+      <input type="date" class="date-input" id="dateInput" aria-label="Choisir une date"/>
+      <button class="refresh-btn" onclick="loadTides()">🔄 Actualiser</button>
+      <button id="alertBtn" class="refresh-btn alert-btn" onclick="activerAlertes()">🔔 Alertes marées</button>
+    </div>
+
+    <!-- Marées du jour -->
+    <section class="today-card" id="today" aria-labelledby="todayTitle">
+      <div class="today-header">
+        <div>
+          <div class="today-title" id="todayTitle">Marées du jour</div>
+          <div class="today-date" id="todayDate">Chargement…</div>
+        </div>
+        <div class="coeff-badge" id="coeffBadge" aria-live="polite">Coeff. —</div>
+      </div>
+      <div class="today-tides" id="todayTides">
+        <div style="grid-column:1/-1;padding:2rem;text-align:center;color:var(--text-l)">Chargement…</div>
+      </div>
+    </section>
+
+    <!-- Graphique 24h -->
+    <div class="chart-card">
+      <div class="chart-title">
+        <span class="chart-title-dot"></span>
+        Courbe de marée — 24h
+      </div>
+      <canvas id="tideChart" aria-label="Courbe de hauteur d'eau sur 24h" role="img"></canvas>
+      <div class="chart-legend" aria-hidden="true">
+        <div class="leg-item"><div class="leg-dot" style="background:var(--o700)"></div>Pleine mer</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--teal)"></div>Basse mer</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#E67E22"></div>Niveau actuel</div>
+      </div>
+    </div>
+
+    <!-- Espace publicitaire intermédiaire -->
+    <div class="ad-wrap">
+      <span class="ad-label">Publicité</span>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1465276904717454"
+           data-ad-slot="AUTO"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- Tableau 7 jours -->
+    <section class="week-card" id="semaine" aria-labelledby="weekTitle">
+      <div class="week-header">
+        <h2 id="weekTitle">📅 Marées sur 7 jours</h2>
+      </div>
+      <div id="weekTable">
+        <div style="padding:2rem;text-align:center;color:var(--text-l)">Chargement…</div>
+      </div>
+    </section>
+
+  </div><!-- /.main-col -->
+
+  <!-- Colonne latérale -->
+  <aside class="side-col" aria-label="Informations complémentaires">
+
+    <!-- Pub sidebar -->
+    <div class="ad-wrap">
+      <span class="ad-label">Publicité</span>
+      <ins class="adsbygoogle ad-square"
+           style="display:block"
+           data-ad-client="ca-pub-1465276904717454"
+           data-ad-slot="AUTO"
+           data-ad-format="rectangle"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- Infos port sélectionné -->
+    <div class="port-info-card">
+      <h3>📍 Port sélectionné</h3>
+      <div id="portInfoRows"></div>
+    </div>
+
+    <!-- Échelle des coefficients -->
+    <div class="coeff-card">
+      <h3>🔢 Échelle des coefficients</h3>
+      <div class="coeff-scale">
+        <div class="cs-row">
+          <span class="cs-label">Très forte</span>
+          <div class="cs-bar" style="background:linear-gradient(90deg,var(--o900),var(--o700));width:100%"></div>
+          <span class="cs-range">100–120</span>
+        </div>
+        <div class="cs-row">
+          <span class="cs-label">Vive-eau</span>
+          <div class="cs-bar" style="background:linear-gradient(90deg,var(--o700),var(--o500));width:80%"></div>
+          <span class="cs-range">70–99</span>
+        </div>
+        <div class="cs-row">
+          <span class="cs-label">Moyenne</span>
+          <div class="cs-bar" style="background:linear-gradient(90deg,var(--o500),var(--o300));width:58%"></div>
+          <span class="cs-range">45–69</span>
+        </div>
+        <div class="cs-row">
+          <span class="cs-label">Morte-eau</span>
+          <div class="cs-bar" style="background:linear-gradient(90deg,var(--teal),var(--teal-l));width:35%"></div>
+          <span class="cs-range">20–44</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- À savoir -->
+    <div class="info-card" id="infos">
+      <h3>ℹ️ À savoir</h3>
+      <p>Horaires en <strong>heure locale française</strong> (heure d'été/hiver automatique).</p>
+      <p>Le <strong>coefficient</strong> varie de 20 (morte-eau) à 120 (vive-eau exceptionnelle). Coefficients &ge; 95 : grandes marées.</p>
+      <p>Calcul par <strong>méthode harmonique</strong> avec arguments astronomiques complets (Lune &amp; Soleil, J2000.0). Coefficient basé sur Brest (port de référence SHOM).</p>
+      <p>Hauteurs en mètres au-dessus du <strong>zéro hydrographique</strong>. Données indicatives — consultez le <a href="https://maree.shom.fr" target="_blank" rel="noopener">SHOM officiel</a> pour la navigation.</p>
+      <p><a href="/reglementation/">📋 Réglementation pêche à pied DDTM 44</a></p>
+    </div>
+
+    <!-- Pub sidebar bas -->
+    <div class="ad-wrap">
+      <span class="ad-label">Publicité</span>
+      <ins class="adsbygoogle ad-square"
+           style="display:block"
+           data-ad-client="ca-pub-1465276904717454"
+           data-ad-slot="AUTO"
+           data-ad-format="rectangle"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+  </aside>
+</div><!-- /.container -->
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer>
+  <span class="footer-wave" aria-hidden="true">〰️</span>
+  <p><strong>Marées Loire-Atlantique &amp; France</strong> — Calcul harmonique (méthode SHOM, J2000.0)</p>
+  <p style="margin-top:.3rem;opacity:.75">Saint-Nazaire · Le Croisic · Pornic · La Turballe · Piriac · Saint-Brevin · Paimbœuf · La Baule · Brest · Saint-Malo</p>
+  <p style="margin-top:.6rem;font-size:.73rem;opacity:.65">Données à titre indicatif. Consultez le <a href="https://maree.shom.fr" target="_blank" rel="noopener">SHOM officiel</a> pour la navigation.</p>
+  <p style="margin-top:.8rem;font-size:.75rem">
+    <a href="/peche-a-pied/">🦪 Pêche à pied</a> ·
+    <a href="/reglementation/">📋 Réglementation</a> ·
+    <a href="/guides/">📖 Guides</a> ·
+    <a href="/mentions-legales/">Mentions légales</a> ·
+    <a href="/mentions-legales/#cookies">Cookies</a> ·
+    <a href="https://www.cnil.fr" target="_blank" rel="noopener">CNIL</a>
+  </p>
+</footer>
+
+<!-- Pub mobile sticky bas -->
+<div class="mobile-sticky-ad" aria-hidden="true">
+  <span class="ad-label" style="margin:0 .5rem 0 0">Pub</span>
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:320px;height:50px"
+       data-ad-client="ca-pub-1465276904717454"
+       data-ad-slot="AUTO"></ins>
+</div>
+
+<!-- ═══════════════════════════════════════
+     BANDEAU COOKIES RGPD
+════════════════════════════════════════ -->
+<div id="cookieBanner" role="dialog" aria-label="Paramètres cookies">
+  <p>
+    Ce site utilise des cookies pour la publicité (Google AdSense) et des statistiques anonymes.
+    <a href="/mentions-legales/#cookies" style="color:var(--o300);text-decoration:underline">En savoir plus</a>
+  </p>
+  <button class="ck-btn" onclick="acceptCookies()">Accepter</button>
+  <button class="ck-btn-r" onclick="refuseCookies()">Refuser</button>
+</div>
+
+<!-- Script principal (tide calculations + rendering) -->
+<script src="/assets/script.js" defer></script>
+
+</body>
+</html>

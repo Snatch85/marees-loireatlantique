@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /icons/
+
+Sitemap: https://marees-loire-atlantique.netlify.app/sitemap.xml

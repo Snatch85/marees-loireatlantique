@@ -1,0 +1,90 @@
+headersOrigin = "config"
+redirectsOrigin = "config"
+plugins = []
+
+[functions]
+
+  [functions."*"]
+
+[build]
+publish = "C:\\Users\\33629\\Desktop\\Claude Cooode\\marees-loire"
+publishOrigin = "default"
+
+  [build.environment]
+
+  [build.processing]
+
+    [build.processing.css]
+
+    [build.processing.html]
+
+    [build.processing.images]
+
+    [build.processing.js]
+
+  [build.services]
+
+[[headers]]
+for = "/*"
+
+  [headers.values]
+  X-Frame-Options = "DENY"
+  X-Content-Type-Options = "nosniff"
+  Referrer-Policy = "strict-origin-when-cross-origin"
+  Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+[[headers]]
+for = "/service-worker.js"
+
+  [headers.values]
+  Cache-Control = "no-cache, no-store, must-revalidate"
+  Content-Type = "application/javascript"
+
+[[headers]]
+for = "/manifest.json"
+
+  [headers.values]
+  Cache-Control = "public, max-age=86400"
+  Content-Type = "application/manifest+json"
+
+[[headers]]
+for = "/icons/*"
+
+  [headers.values]
+  Cache-Control = "public, max-age=2592000, immutable"
+
+[[headers]]
+for = "/*.html"
+
+  [headers.values]
+  Cache-Control = "public, max-age=3600, must-revalidate"
+
+[[headers]]
+for = "/"
+
+  [headers.values]
+  Cache-Control = "public, max-age=3600, must-revalidate"
+
+[[redirects]]
+from = "/marees-batz-sur-mer"
+to = "/?port=BATZ-SUR-MER"
+status = 302
+force = false
+
+  [redirects.query]
+
+  [redirects.conditions]
+
+  [redirects.headers]
+
+[[redirects]]
+from = "/marees-saint-gildas"
+to = "/?port=SAINT-GILDAS"
+status = 302
+force = false
+
+  [redirects.query]
+
+  [redirects.conditions]
+
+  [redirects.headers]

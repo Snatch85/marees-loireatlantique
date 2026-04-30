@@ -1,0 +1,23 @@
+{
+  "appId": "fr.marees.loireatlantique",
+  "appName": "Marées Loire-Atlantique",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    },
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_icon_config_sample",
+      "iconColor": "#1A6B8A",
+      "sound": "beep.wav"
+    }
+  },
+  "android": {
+    "buildOptions": {
+      "releaseType": "APK"
+    }
+  }
+}

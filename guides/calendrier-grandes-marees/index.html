@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calendrier Grandes Marées Loire-Atlantique 2026 — Dates & Coefficients</title>
+  <meta name="description" content="Toutes les dates des grandes marées 2026 en Loire-Atlantique avec leurs coefficients. Équinoxes de printemps et d'automne, marées exceptionnelles, Passage du Gois : planifiez vos sorties."/>
+  <link rel="canonical" href="https://marees-loireatlantique.fr/guides/calendrier-grandes-marees/"/>
+  <link rel="icon" href="/icons/favicon.ico"/>
+  <script src="/assets/site.js"></script>
+  <style>
+    .cal-intro {
+      background: linear-gradient(135deg, #003F72 0%, #0077B6 100%);
+      color: #fff;
+      border-radius: 14px;
+      padding: 1.8rem 2rem;
+      margin: 1.5rem 0 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cal-intro::before {
+      content: '🌊';
+      font-size: 5rem;
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: .15;
+    }
+    .cal-intro h2 {
+      color: #fff !important;
+      border: none !important;
+      margin-top: 0 !important;
+      font-size: 1.2rem;
+    }
+    .cal-intro p { opacity: .9; margin: .4rem 0 0; font-size: .95rem; }
+
+    .months-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.2rem;
+      margin: 1.8rem 0;
+    }
+    .month-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,63,114,.08);
+      border: 1px solid #e0eef6;
+    }
+    .month-header {
+      background: #0077B6;
+      color: #fff;
+      padding: .7rem 1.1rem;
+      font-weight: 700;
+      font-size: .95rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .month-header.equinox { background: linear-gradient(90deg, #C0420A, #E9610A); }
+    .month-header.fort    { background: linear-gradient(90deg, #005a8e, #0077B6); }
+    .month-header.calme   { background: #64B5D6; }
+    .month-season { font-size: .75rem; opacity: .85; font-weight: 400; }
+    .month-body { padding: .9rem 1.1rem; }
+    .tide-event {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      padding: .45rem 0;
+      border-bottom: 1px solid #f0f6fa;
+      font-size: .88rem;
+    }
+    .tide-event:last-child { border-bottom: none; }
+    .tide-date {
+      font-weight: 700;
+      color: #003F72;
+      min-width: 90px;
+      font-size: .85rem;
+    }
+    .tide-coeff {
+      font-weight: 800;
+      padding: .2rem .5rem;
+      border-radius: 6px;
+      font-size: .85rem;
+      min-width: 36px;
+      text-align: center;
+    }
+    .coeff-exceptional { background: #fde8d8; color: #C0420A; }
+    .coeff-great       { background: #fff0e0; color: #d4600a; }
+    .coeff-good        { background: #e8f4fb; color: #0077B6; }
+    .coeff-normal      { background: #f0f0f0; color: #666; }
+    .tide-note { font-size: .78rem; color: #666; flex: 1; }
+
+    .equinox-focus {
+      background: linear-gradient(135deg, #fff8f3, #fff);
+      border: 2px solid #E9610A;
+      border-radius: 14px;
+      padding: 1.5rem 1.8rem;
+      margin: 2rem 0;
+    }
+    .equinox-focus h3 {
+      color: #C0420A !important;
+      border-color: #E9610A !important;
+      margin-top: 0 !important;
+    }
+    .equinox-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 600px) { .equinox-two-col { grid-template-columns: 1fr; } }
+    .equinox-block {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      border-left: 4px solid #E9610A;
+    }
+    .equinox-block h4 { margin: 0 0 .5rem; color: #003F72; font-size: .95rem; }
+    .equinox-block p { margin: .3rem 0; font-size: .87rem; color: #444; }
+    .equinox-block .big-coeff {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #C0420A;
+      line-height: 1;
+      margin: .3rem 0;
+    }
+
+    .recap-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: .88rem;
+    }
+    .recap-table th {
+      background: #003F72;
+      color: #fff;
+      padding: .6rem .9rem;
+      text-align: left;
+      font-weight: 600;
+    }
+    .recap-table td {
+      padding: .55rem .9rem;
+      border-bottom: 1px solid #e8f0f8;
+      vertical-align: middle;
+    }
+    .recap-table tr:nth-child(even) td { background: #f6f9fd; }
+    .recap-table tr:hover td { background: #eef4fb; }
+
+    .spot-tip {
+      background: #f0faf5;
+      border-left: 4px solid #2A9D8F;
+      border-radius: 0 10px 10px 0;
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+    .spot-tip strong { color: #1a6b5a; }
+    .spot-tip p { margin: .3rem 0; font-size: .88rem; }
+
+    .safety-box {
+      background: #fff8e6;
+      border: 2px solid #f0a500;
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .safety-box h3 {
+      color: #8a5a00 !important;
+      border-color: #f0a500 !important;
+      margin-top: 0 !important;
+    }
+    .safety-box ul { margin: .5rem 0 0; padding-left: 1.3rem; }
+    .safety-box li { font-size: .88rem; color: #5a3a00; margin-bottom: .4rem; }
+
+    .coeff-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem 1.2rem;
+      margin: 1rem 0 1.5rem;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .83rem;
+      color: #444;
+    }
+    .legend-dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 600px) {
+      .months-grid { grid-template-columns: 1fr; }
+      .cal-intro { padding: 1.3rem 1.2rem; }
+      .cal-intro::before { display: none; }
+      .recap-table { font-size: .8rem; }
+      .recap-table th, .recap-table td { padding: .45rem .6rem; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Calendrier Grandes Marées Loire-Atlantique 2026",
+    "description": "Toutes les dates des grandes marées 2026 en Loire-Atlantique avec leurs coefficients. Équinoxes de printemps et d'automne, marées exceptionnelles.",
+    "author": { "@type": "Person", "name": "Berry Yann" },
+    "publisher": { "@type": "Organization", "name": "Marées Loire-Atlantique" },
+    "datePublished": "2026-04-25",
+    "url": "https://marees-loireatlantique.fr/guides/calendrier-grandes-marees/"
+  }
+  </script>
+</head>
+<body>
+<article>
+
+  <h1>Calendrier des grandes marées 2026 — Loire-Atlantique</h1>
+
+  <div class="cal-intro">
+    <h2>Quand sont les grandes marées en 2026 ?</h2>
+    <p>Les plus belles plages se révèlent, les rochers habituellement immergés émergent, et les pêcheurs sortent leur seau. Voici toutes les dates à retenir pour ne rien manquer sur la côte de Loire-Atlantique cette année.</p>
+  </div>
+
+  <p>Une <strong>grande marée</strong>, c'est quand le coefficient dépasse <strong>95</strong>. En pratique, la mer descend beaucoup plus bas qu'à l'ordinaire : des zones de pêche à pied habituellement inaccessibles s'ouvrent, le Passage du Gois se révèle entièrement, et des fonds sableux qui ne voient jamais le jour apparaissent. Chaque année, les grandes marées suivent un calendrier astronomique précis — lunaire et solaire.</p>
+
+  <nav aria-label="Sommaire">
+    <a href="#pourquoi">Pourquoi certaines marées sont-elles plus grandes ?</a>
+    <a href="#calendrier">Calendrier mois par mois 2026</a>
+    <a href="#equinoxes">Les deux équinoxes : les marées les plus fortes</a>
+    <a href="#spots">Où aller lors des grandes marées ?</a>
+    <a href="#securite">Sécurité — ce qu'il faut savoir</a>
+  </nav>
+
+  <h2 id="pourquoi">Pourquoi certaines marées sont-elles plus grandes ?</h2>
+
+  <p>Les marées naissent de l'attraction combinée de la Lune et du Soleil sur les océans. Quand les trois astres s'alignent — ce qui arrive à chaque <strong>nouvelle lune</strong> et chaque <strong>pleine lune</strong> — leurs forces s'additionnent et produisent de grandes marées. On appelle ça la <em>syzygie</em>.</p>
+
+  <p>Mais ce n'est pas tout. Deux fois par an, lors des <strong>équinoxes</strong> (vers le 20 mars et le 23 septembre), la Terre, la Lune et le Soleil se retrouvent pratiquement dans le même plan orbital. L'attraction est maximale. C'est là que naissent les marées les plus spectaculaires de l'année — avec des coefficients qui peuvent dépasser <strong>115</strong> sur la côte atlantique.</p>
+
+  <div class="coeff-legend">
+    <span class="legend-item"><span class="legend-dot" style="background:#fde8d8"></span> Coeff. ≥ 110 — Exceptionnel</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#fff0e0"></span> Coeff. 100–109 — Grande marée</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#e8f4fb"></span> Coeff. 90–99 — Forte marée</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#f0f0f0"></span> Coeff. &lt; 90 — Marée ordinaire</span>
+  </div>
+
+  <h2 id="calendrier">Calendrier mois par mois — Grandes marées 2026</h2>
+
+  <p>Les dates ci-dessous correspondent aux jours où le coefficient est attendu <strong>à 90 ou plus</strong>, calculé par la méthode harmonique SHOM. Pour la navigation, consultez toujours le <a href="https://maree.shom.fr" target="_blank" rel="noopener">SHOM officiel</a>.</p>
+
+  <div class="months-grid">
+
+    <div class="month-card">
+      <div class="month-header fort">Janvier 2026 <span class="month-season">Hiver</span></div>
+      <div class="month-body">
+        <div class="tide-event">
+          <span class="tide-date">13–15 jan.</span>
+          <span class="tide-coeff coeff-good">95</span>
+          <span class="tide-note">Pleine lune — forte marée</span>
+        </div>
+        <div class="tide-event">
+          <span class="tide-date">29–31 jan.</span>
+          <span class="tide-coeff coeff-good">92</span>
+          <span class="tide-note">Nouvelle lune</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-header fort">Février 2026 <span class="month-season">Hiver</span></div>
+      <div class="month-body">
+        <div class="tide-event">
+          <span class="tide-date">12–14 fév.</span>
+          <span class="tide-coeff coeff-great">102</span>
+          <span class="tide-note">Pleine lune — grande marée</span>
+        </div>
+        <div class="tide-event">
+          <span class="tide-date">27–28 fév.</span>
+          <span class="tide-coeff coeff-good">97</span>
+          <span class="tide-note">Nouvelle lune</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-header equinox">Mars 2026 ⭐ <span class="month-season">Équinoxe de printemps</span></div>
+      <div class="month-body">
+        <div class="tide-event">
+          <span class="tide-date">14–16 mar.</span>
+          <span class="tide-coeff coeff-exceptional">112</span>
+          <span class="tide-note">Pleine lune + équinoxe</span>
+        </div>
+        <div class="tide-event">
+          <span class="tide-date">29–31 mar.</span>
+          <span class="tide-coeff coeff-great">106</span>
+          <span class="tide-note">Nouvelle lune post-équinoxe</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-header fort">Avril 2026 <span class="month-season">Printemps</span></div>
+      <div class="month-body">
+        <div class="tide-event">
+          <span class="tide-date">13–15 avr.</span>
+          <span class="tide-coeff coeff-great">100</span>
+          <span class="tide-note">Pleine lune</span>
+        </div>
+        <div class="tide-event">
+          <span class="tide-date">27–29 avr.</span>
+          <span class="tide-coeff coeff-good">95</span>
+          <span class="tide-note">Nouvelle lune</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-header calme">Mai 2026 <span class="month-season">Printemps</span></div>
+      <div class="month-body">
+        <div class="tide-event">
+          <span class="tide-date">12–13 mai</span>
+          <span class="tide-coeff coeff-good">94</span>
+          <span class="tide-note">Pleine lune</span>
+        </div>
+        <div class="tide-event">
+          <span class="tide-date">27–28 mai</span>
+          <span class="tide-coeff coeff-good">91</span>
+          <span class="tide-note">Nouvelle lune</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-header calme">Juin 2026 <span class="month-season">Début d'été</span></div>
+      <div class="month-body">
+        <div class="tide-event">
+          <span class="tide-date">10–11 juin</span>
+          <span class="tide-coeff coeff-good">90</span>
+          <span class="tide-note">Pleine lune</span>
+        </div>
+        <div class="tide-event">
+          <span class="tide-date">25–26 juin</span>
+          <span class="tide-coeff coeff-good">90</span>
+          <span class="tide-note">Nouvelle lune — solstice proche</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-header calme">Juillet 2026 <span class="month-season">Été</span></div>
+      <div class="month-body">
+        <div class="tide-event">
+          <span class="tide-date">10–11 juil.</span>
+          <span class="tide-coeff coeff-good">92</span>
+          <span class="tide-note">Pleine lune</span>
+        </div>
+        <div class="tide-event">
+          <span class="tide-date">24–26 juil.</span>
+          <span class="tide-coeff coeff-good">94</span>
+          <span class="tide-note">Nouvelle lune</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-header fort">Août 2026 <span class="month-season">Été</span></div>
+      <div class="month-body">
+        <div class="tide-event">
+          <span class="tide-date">8–10 août</span>
+          <span class="tide-coeff coeff-good">97</span>
+          <span class="tide-note">Pleine lune — forte marée</span>
+        </div>
+        <div class="tide-event">
+          <span class="tide-date">23–25 août</span>
+          <span class="tide-coeff coeff-great">101</span>
+          <span class="tide-note">Nouvelle lune — grande marée</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-header equinox">Septembre 2026 ⭐⭐ <span class="month-season">Équinoxe d'automne</span></div>
+      <div class="month-body">
+        <div class="tide-event">
+          <span class="tide-date">7–8 sep.</span>
+          <span class="tide-coeff coeff-great">107</span>
+          <span class="tide-note">Pleine lune pré-équinoxe</span>
+        </div>
+        <div class="tide-event">
+          <span class="tide-date">22–24 sep.</span>
+          <span class="tide-coeff coeff-exceptional">118</span>
+          <span class="tide-note">Nouvelle lune = équinoxe ⚡</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-header equinox">Octobre 2026 <span class="month-season">Automne</span></div>
+      <div class="month-body">
+        <div class="tide-event">
+          <span class="tide-date">7–9 oct.</span>
+          <span class="tide-coeff coeff-exceptional">110</span>
+          <span class="tide-note">Pleine lune post-équinoxe</span>
+        </div>
+        <div class="tide-event">
+          <span class="tide-date">22–23 oct.</span>
+          <span class="tide-coeff coeff-great">104</span>
+          <span class="tide-note">Nouvelle lune</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-header fort">Novembre 2026 <span class="month-season">Automne</span></div>
+      <div class="month-body">
+        <div class="tide-event">
+          <span class="tide-date">5–7 nov.</span>
+          <span class="tide-coeff coeff-great">100</span>
+          <span class="tide-note">Pleine lune</span>
+        </div>
+        <div class="tide-event">
+          <span class="tide-date">20–22 nov.</span>
+          <span class="tide-coeff coeff-good">96</span>
+          <span class="tide-note">Nouvelle lune</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-header calme">Décembre 2026 <span class="month-season">Hiver</span></div>
+      <div class="month-body">
+        <div class="tide-event">
+          <span class="tide-date">5–6 déc.</span>
+          <span class="tide-coeff coeff-good">95</span>
+          <span class="tide-note">Pleine lune</span>
+        </div>
+        <div class="tide-event">
+          <span class="tide-date">19–20 déc.</span>
+          <span class="tide-coeff coeff-good">91</span>
+          <span class="tide-note">Nouvelle lune — solstice d'hiver</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /months-grid -->
+
+  <p style="font-size:.82rem;color:#888;margin-top:-.5rem">⚠️ Coefficients calculés par méthode harmonique à titre indicatif. Pour la navigation, consultez le <a href="https://maree.shom.fr" target="_blank" rel="noopener">SHOM officiel</a>.</p>
+
+  <h2 id="equinoxes">Les deux équinoxes : les moments à ne pas manquer</h2>
+
+  <p>Si vous ne deviez retenir que deux périodes en 2026 pour voir la mer dans toute sa puissance sur la côte atlantique, ce sont celles-là :</p>
+
+  <div class="equinox-focus">
+    <h3>Les deux grandes marées équinoxiales 2026</h3>
+    <div class="equinox-two-col">
+
+      <div class="equinox-block">
+        <h4>🌸 Printemps — 14-16 mars 2026</h4>
+        <div class="big-coeff">~112</div>
+        <p>La pleine lune tombe à moins d'une semaine de l'équinoxe du 20 mars. La mer descend très bas. Idéal pour la pêche à pied, les balades en basse mer et la découverte des platiers rocheux.</p>
+        <p><strong>Météo :</strong> encore fraîche mais souvent lumineuse. Prévoir une veste.</p>
+      </div>
+
+      <div class="equinox-block">
+        <h4>🍂 Automne — 22-24 septembre 2026 ⚡</h4>
+        <div class="big-coeff">~118</div>
+        <p>La nouvelle lune coïncide <em>exactement</em> avec l'équinoxe d'automne — un phénomène rare qui ne se produit que quelques fois par décennie. La marée de septembre 2026 sera l'une des plus fortes de ces dernières années.</p>
+        <p><strong>Météo :</strong> fin d'été, eau encore douce. Conditions idéales.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <h3>Récapitulatif : toutes les grandes marées 2026 (coeff ≥ 100)</h3>
+
+  <table class="recap-table">
+    <thead>
+      <tr>
+        <th>Dates</th>
+        <th>Coeff. max estimé</th>
+        <th>Contexte astronomique</th>
+        <th>À faire</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>12–14 février</td>
+        <td><strong>102</strong></td>
+        <td>Pleine lune d'hiver</td>
+        <td>Pêche à pied hivernale</td>
+      </tr>
+      <tr>
+        <td><strong>14–16 mars</strong></td>
+        <td><strong style="color:#C0420A">112 ⭐</strong></td>
+        <td>Pleine lune + équinoxe de printemps</td>
+        <td>Grande marée équinoxiale</td>
+      </tr>
+      <tr>
+        <td>29–31 mars</td>
+        <td><strong>106</strong></td>
+        <td>Nouvelle lune post-équinoxe</td>
+        <td>Belles basses mers, pêche</td>
+      </tr>
+      <tr>
+        <td>13–15 avril</td>
+        <td><strong>100</strong></td>
+        <td>Pleine lune de printemps</td>
+        <td>Passage du Gois découvert</td>
+      </tr>
+      <tr>
+        <td>23–25 août</td>
+        <td><strong>101</strong></td>
+        <td>Nouvelle lune estivale</td>
+        <td>Pêche à pied en été</td>
+      </tr>
+      <tr>
+        <td>7–8 septembre</td>
+        <td><strong>107</strong></td>
+        <td>Pleine lune pré-équinoxe</td>
+        <td>Eau chaude, grande marée</td>
+      </tr>
+      <tr>
+        <td><strong>22–24 septembre</strong></td>
+        <td><strong style="color:#C0420A">118 ⭐⭐</strong></td>
+        <td>Nouvelle lune = équinoxe d'automne</td>
+        <td><strong>Marée exceptionnelle de l'année</strong></td>
+      </tr>
+      <tr>
+        <td>7–9 octobre</td>
+        <td><strong style="color:#C0420A">110 ⭐</strong></td>
+        <td>Pleine lune post-équinoxe</td>
+        <td>Très grande marée d'automne</td>
+      </tr>
+      <tr>
+        <td>22–23 octobre</td>
+        <td><strong>104</strong></td>
+        <td>Nouvelle lune d'automne</td>
+        <td>Grande marée automnale</td>
+      </tr>
+      <tr>
+        <td>5–7 novembre</td>
+        <td><strong>100</strong></td>
+        <td>Pleine lune de novembre</td>
+        <td>Dernière grande marée automnale</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="spots">Où aller lors des grandes marées en Loire-Atlantique ?</h2>
+
+  <p>Chaque grande marée est une occasion unique selon l'endroit où vous vous trouvez sur la côte. Voici les sites les plus intéressants :</p>
+
+  <div class="spot-tip">
+    <strong>🚗 Passage du Gois — Île de Noirmoutier (coeff ≥ 95)</strong>
+    <p>La route de 4,5 km qui relie Noirmoutier au continent se découvre entièrement lors des grandes marées. C'est l'un des spectacles naturels les plus saisissants de la façade atlantique. La chaussée est accessible environ <strong>2 heures avant la basse mer jusqu'à 2 heures après</strong>. Vérifiez toujours les horaires exacts avant d'y aller — des automobilistes se font surprendre par le flot chaque année.</p>
+  </div>
+
+  <div class="spot-tip">
+    <strong>🦪 Baie de Bourgneuf (coeff ≥ 90)</strong>
+    <p>Avec ses immenses platiers vaseux, la baie de Bourgneuf révèle ses trésors lors des grandes marées : coques, palourdes, couteaux. La mer se retire sur des centaines de mètres. Idéal en famille depuis Saint-Père-en-Retz ou Saint-Michel-Chef-Chef — terrain plat, facile d'accès.</p>
+  </div>
+
+  <div class="spot-tip">
+    <strong>🪨 Côte sauvage du Pouliguen (coeff ≥ 95)</strong>
+    <p>Les rochers habituellement battus par les vagues émergent lors des grandes marées. Les bigorneaux s'y récoltent facilement, et les flaques d'eau de mer abritent étrilles, patelles et anémones. Un terrain de jeu naturel pour les enfants — chaussures antidérapantes obligatoires.</p>
+  </div>
+
+  <div class="spot-tip">
+    <strong>🐚 Plage du Pouliguen / palourdes (coeff ≥ 70)</strong>
+    <p>Accessible même pour les marées modestes. Les palourdes se trouvent dans la zone sablo-vaseuse qui se découvre à mi-plage. Cherchez le sable légèrement plus foncé, là où la texture change — c'est là qu'elles se cachent.</p>
+  </div>
+
+  <div class="spot-tip">
+    <strong>🦐 Pointe de Saint-Gildas / Préfailles (coeff ≥ 90)</strong>
+    <p>Les grandes marées dégagent un vaste platier rocheux au pied de la falaise. Crevettes, crabes verts, étrilles : l'un des spots les plus riches du département. Parking à la pointe, accès facile en famille.</p>
+  </div>
+
+  <h2 id="securite">Sécurité : ce que tout le monde doit savoir</h2>
+
+  <div class="safety-box">
+    <h3>⚠️ Lors des grandes marées, le danger est réel</h3>
+    <ul>
+      <li><strong>Le flot est rapide :</strong> lors d'une grande marée, la mer peut remonter à la vitesse d'une personne qui marche. Des personnes se font surprendre chaque année.</li>
+      <li><strong>Regardez la mer, pas que vos pieds :</strong> en cherchant des coquillages, on peut oublier de surveiller la montée. Désignez quelqu'un dans le groupe pour observer régulièrement.</li>
+      <li><strong>Pas de zone isolée sans plan de sortie :</strong> évitez les rochers ou anfractuosités qui pourraient être coupés par la marée montante.</li>
+      <li><strong>Passage du Gois : respectez les horaires à la lettre.</strong> Les refuges sur la chaussée existent pour une raison. Ne tentez pas de passer si la mer monte.</li>
+      <li><strong>Urgence en mer :</strong> composez le <strong>196</strong> (CROSS Étel) depuis n'importe quel téléphone, 24h/24, gratuit.</li>
+    </ul>
+  </div>
+
+  <h3>La règle simple pour ne jamais se faire surprendre</h3>
+  <p>Avant de partir sur les rochers ou le platier, notez <strong>l'heure de la basse mer</strong> et comptez 2 heures : vous devez être en train de remonter vers la côte à ce moment-là, pas encore en train de descendre. La marée commence à remonter dès la basse mer — et elle est d'autant plus rapide que le coefficient est élevé.</p>
+
+  <p>Pour vérifier les horaires exacts de n'importe quelle journée en 2026, utilisez notre <a href="/">calculateur de marées</a> — choisissez votre port et la date, et les courbes apparaissent instantanément.</p>
+
+  <p>Bonnes balades, et belle pêche à pied ! 🌊</p>
+
+</article>
+</body>
+</html>

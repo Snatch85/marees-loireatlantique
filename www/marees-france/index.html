@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>MaréaFrance – Marées en temps réel | Coefficients & Horaires</title>
+<meta name="description" content="Horaires des marées en France : coefficient du jour, prochaine marée, hauteurs. Saint-Nazaire, Le Croisic, Saint-Malo, Brest, La Rochelle et plus."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{}}}</script>
+<style>
+*,::before,::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg0:#03111f;--bg1:#051e35;--bg2:#072f50;--bg3:#0a4a6e;
+  --teal:#00c8b0;--teal2:#00e5cc;--teal3:#a8fff4;
+  --gold:#f0a500;--gold2:#ffd166;
+  --danger:#ff6b6b;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg0);color:#e2f0f7;overflow-x:hidden;min-height:100vh}
+
+/* ═══ HERO ═══ */
+#hero{
+  min-height:100vh;
+  background:linear-gradient(170deg,var(--bg0) 0%,var(--bg1) 35%,var(--bg2) 65%,var(--bg3) 100%);
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:0 1.5rem 100px;
+  text-align:center;
+}
+
+/* Stars */
+#stars{position:absolute;inset:0;pointer-events:none;z-index:0}
+.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle var(--d,3s) ease-in-out infinite alternate}
+@keyframes twinkle{0%{opacity:.15;transform:scale(.8)}100%{opacity:.9;transform:scale(1.2)}}
+
+/* Waves */
+.waves-wrap{position:absolute;bottom:0;left:0;right:0;z-index:1;line-height:0}
+.wave-svg{width:200%;animation:waveMove var(--s,18s) linear infinite}
+.wave-svg2{animation-direction:reverse;opacity:.4}
+@keyframes waveMove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* Glow rings */
+.coeff-ring{
+  width:220px;height:220px;border-radius:50%;
+  border:2px solid rgba(0,200,176,.25);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  position:relative;
+  background:radial-gradient(circle at 50% 40%,rgba(0,200,176,.08) 0%,transparent 70%);
+  box-shadow:0 0 60px rgba(0,200,176,.15),0 0 120px rgba(0,200,176,.08),inset 0 0 40px rgba(0,200,176,.05);
+  transition:all .6s ease;
+  margin:0 auto 2rem;
+}
+.coeff-ring::before{
+  content:'';position:absolute;inset:-8px;border-radius:50%;
+  border:1px solid rgba(0,200,176,.12);
+  animation:ringPulse 3s ease-in-out infinite;
+}
+.coeff-ring::after{
+  content:'';position:absolute;inset:-18px;border-radius:50%;
+  border:1px solid rgba(0,200,176,.06);
+  animation:ringPulse 3s ease-in-out infinite .5s;
+}
+@keyframes ringPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.04);opacity:.5}}
+
+.coeff-num{
+  font-size:5rem;font-weight:900;line-height:1;letter-spacing:-.04em;
+  transition:color .6s,text-shadow .6s;
+}
+.coeff-label{font-size:.7rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;opacity:.6;margin-top:.15rem}
+.coeff-type{font-size:.85rem;font-weight:600;margin-top:.3rem;opacity:.85}
+
+/* Next tide big block */
+.next-tide-block{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;
+  backdrop-filter:blur(20px);
+  padding:1.4rem 2.5rem;
+  display:inline-flex;align-items:center;gap:2rem;flex-wrap:wrap;justify-content:center;
+  margin:0 auto 2rem;
+  max-width:600px;width:100%;
+}
+.next-label{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;opacity:.5;font-weight:600}
+.next-time{font-size:2.6rem;font-weight:900;line-height:1;letter-spacing:-.03em}
+.next-height{font-size:.95rem;font-weight:600;opacity:.7}
+.next-in{
+  font-size:1.6rem;font-weight:800;color:var(--teal2);
+  text-shadow:0 0 20px rgba(0,229,204,.5);
+  white-space:nowrap;
+}
+.next-in-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;opacity:.5;margin-top:.1rem}
+.divider-v{width:1px;height:60px;background:rgba(255,255,255,.1);flex-shrink:0}
+
+/* Port selector hero */
+.port-hero-bar{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:50px;backdrop-filter:blur(20px);
+  padding:.6rem .6rem .6rem 1.4rem;
+  display:inline-flex;align-items:center;gap:.8rem;flex-wrap:wrap;
+  margin-bottom:2.5rem;
+}
+
+/* ═══ CARDS ═══ */
+.glass-card{
+  background:rgba(5,30,53,.7);
+  border:1px solid rgba(0,200,176,.12);
+  border-radius:20px;
+  backdrop-filter:blur(30px);
+  box-shadow:0 8px 40px rgba(0,0,0,.4),0 1px 0 rgba(0,200,176,.08) inset;
+  overflow:hidden;
+}
+.card-header{
+  background:linear-gradient(90deg,rgba(0,200,176,.12),rgba(0,200,176,.04));
+  border-bottom:1px solid rgba(0,200,176,.1);
+  padding:1rem 1.4rem;display:flex;align-items:center;gap:.6rem;
+}
+.card-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal)}
+.card-title{font-size:.78rem;font-weight:700;color:var(--teal3);letter-spacing:.06em;text-transform:uppercase}
+
+/* Tide items */
+.tide-cell{
+  padding:1.2rem 1rem;text-align:center;
+  border-right:1px solid rgba(0,200,176,.08);
+  border-top:1px solid rgba(0,200,176,.08);
+  transition:background .2s;cursor:default;
+  position:relative;
+}
+.tide-cell:hover{background:rgba(0,200,176,.05)}
+.tide-cell:last-child{border-right:none}
+.tc-type{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;margin-bottom:.5rem}
+.tc-type.pm{color:var(--teal2)}.tc-type.bm{color:#5bc8f5}
+.tc-time{font-size:1.8rem;font-weight:900;letter-spacing:-.03em;line-height:1}
+.tc-h{font-size:.82rem;font-weight:600;color:#8ab8d0;margin-top:.35rem}
+.tc-c{font-size:.65rem;font-weight:700;letter-spacing:.1em;color:var(--teal);margin-top:.2rem;opacity:.8}
+
+/* Week rows */
+.week-row{
+  display:grid;grid-template-columns:100px 1fr;
+  border-bottom:1px solid rgba(0,200,176,.07);
+  transition:background .15s;
+}
+.week-row:hover{background:rgba(0,200,176,.04)}
+.week-row.today{background:rgba(0,200,176,.07);border-left:3px solid var(--teal)}
+.wd-name{font-weight:800;font-size:.82rem}
+.wd-date{font-size:.7rem;color:#5d90a8;margin-top:.1rem}
+.wt-chip{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.72rem;background:rgba(0,200,176,.07);
+  border:1px solid rgba(0,200,176,.12);
+  border-radius:6px;padding:.25rem .55rem;
+  transition:background .15s;
+}
+.wt-chip:hover{background:rgba(0,200,176,.12)}
+.wt-chip.pm{border-left:2px solid var(--teal)}.wt-chip.bm{border-left:2px solid #5bc8f5}
+.wt-chip-time{font-weight:700;color:#d6eef7}
+.wt-chip-h{color:#5d90a8}
+.wt-chip-c{font-size:.65rem;background:rgba(0,200,176,.15);color:var(--teal);padding:.05rem .3rem;border-radius:3px;font-weight:700}
+
+/* Ad slots */
+.ad-slot{
+  background:linear-gradient(135deg,rgba(5,30,53,.8),rgba(3,17,31,.9));
+  border:1.5px dashed rgba(0,200,176,.2);
+  border-radius:14px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:rgba(0,200,176,.4);font-size:.68rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;text-align:center;gap:3px;
+}
+.ad-slot small{font-size:.6rem;color:rgba(0,200,176,.25);font-weight:400;letter-spacing:.05em;text-transform:none}
+
+/* Coeff bar */
+.coeff-scale-bar{
+  height:8px;border-radius:4px;
+  background:linear-gradient(90deg,#00c8b0,#1296bc,#e07b00,#c0392b);
+  position:relative;
+}
+.coeff-scale-marker{
+  position:absolute;top:-4px;width:3px;height:16px;background:#fff;border-radius:2px;
+  box-shadow:0 0 8px rgba(255,255,255,.6);
+  transition:left .6s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* Inputs */
+select,input[type=date]{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(0,200,176,.2);
+  color:#e2f0f7;border-radius:10px;
+  padding:.55rem .9rem;font-size:.85rem;
+  font-family:'Inter',sans-serif;cursor:pointer;
+  outline:none;transition:border-color .2s,background .2s;
+  -webkit-appearance:none;
+}
+select:focus,input[type=date]:focus{border-color:var(--teal);background:rgba(0,200,176,.06)}
+select option{background:#051e35;color:#e2f0f7}
+
+/* Button */
+.btn-teal{
+  background:linear-gradient(135deg,var(--teal),#009e8e);
+  color:#031118;font-weight:800;font-size:.82rem;
+  padding:.55rem 1.3rem;border-radius:10px;border:none;
+  cursor:pointer;transition:all .2s;white-space:nowrap;
+  box-shadow:0 4px 20px rgba(0,200,176,.3);
+  letter-spacing:.03em;
+}
+.btn-teal:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(0,200,176,.45)}
+.btn-teal:active{transform:translateY(0)}
+
+/* Cookie banner */
+#cookie{
+  position:fixed;bottom:0;left:0;right:0;z-index:9999;
+  background:rgba(3,17,31,.97);
+  border-top:1px solid rgba(0,200,176,.15);
+  padding:1rem 1.5rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  backdrop-filter:blur(20px);
+}
+
+/* Mobile sticky ad */
+#mobileSticky{
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;
+  height:60px;background:rgba(3,17,31,.95);
+  border-top:1px dashed rgba(0,200,176,.2);
+}
+@media(max-width:768px){
+  #mobileSticky{display:flex;align-items:center;justify-content:center}
+  .hero-port-row{flex-direction:column;gap:.5rem!important}
+  .hero-port-row select,.hero-port-row input{width:100%!important}
+  .coeff-num{font-size:3.8rem!important}
+  .coeff-ring{width:170px!important;height:170px!important}
+  .next-time{font-size:2rem!important}
+  .next-in{font-size:1.3rem!important}
+  #mainGrid{grid-template-columns:1fr!important}
+  .tide-cell{padding:.9rem .6rem!important}
+  .tc-time{font-size:1.4rem!important}
+  body{padding-bottom:60px}
+}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* Shimmer loading */
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.loading{
+  background:linear-gradient(90deg,rgba(0,200,176,.05) 25%,rgba(0,200,176,.12) 50%,rgba(0,200,176,.05) 75%);
+  background-size:200% 100%;animation:shimmer 1.5s infinite;
+  border-radius:8px;
+}
+
+/* Pulse dot */
+@keyframes pulseDot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.7}}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);display:inline-block;
+  box-shadow:0 0 8px var(--teal);animation:pulseDot 1.5s ease-in-out infinite;vertical-align:middle}
+
+canvas{display:block}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg0)}
+::-webkit-scrollbar-thumb{background:rgba(0,200,176,.3);border-radius:3px}
+</style>
+</head>
+<body>
+
+<!-- ═══ AD HEADER ═══ -->
+<div class="ad-slot w-full" style="height:88px;border-radius:0;border-left:0;border-right:0;border-top:0">
+  Espace Publicitaire – The Moneytizer / Google AdSense
+  <small>728×90 – Leaderboard header</small>
+</div>
+
+<!-- ════════════════════════════════════════════
+     HERO SECTION
+════════════════════════════════════════════ -->
+<section id="hero">
+  <!-- Stars canvas -->
+  <div id="stars"></div>
+
+  <div style="position:relative;z-index:2;width:100%;max-width:700px">
+
+    <!-- Logo + live indicator -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:.7rem;margin-bottom:2.5rem">
+      <span style="font-size:1.5rem">🌊</span>
+      <span style="font-size:1.1rem;font-weight:800;letter-spacing:-.01em;color:#fff">MaréaFrance</span>
+      <span style="display:flex;align-items:center;gap:.4rem;font-size:.65rem;color:var(--teal);font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:rgba(0,200,176,.1);border:1px solid rgba(0,200,176,.2);padding:.25rem .7rem;border-radius:20px">
+        <span class="live-dot"></span>En direct
+      </span>
+    </div>
+
+    <!-- Port selector bar -->
+    <div class="port-hero-bar hero-port-row" style="gap:.7rem;margin-bottom:2.5rem">
+      <span style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap">Port</span>
+      <select id="portSelect" style="flex:1;min-width:200px">
+        <optgroup label="── Loire-Atlantique (44) ──">
+          <option value="saint-nazaire">Saint-Nazaire</option>
+          <option value="le-croisic">Le Croisic</option>
+          <option value="la-baule">La Baule-Escoublac</option>
+          <option value="batz">Batz-sur-Mer</option>
+          <option value="le-pouliguen">Le Pouliguen</option>
+          <option value="la-turballe">La Turballe</option>
+          <option value="piriac">Piriac-sur-Mer</option>
+          <option value="pornic">Pornic</option>
+          <option value="prefailles">Préfailles</option>
+          <option value="saint-brevin">Saint-Brevin-les-Pins</option>
+          <option value="paimboeuf">Paimboeuf</option>
+          <option value="saint-gildas">Saint-Gildas (Pointe)</option>
+        </optgroup>
+        <optgroup label="── Bretagne ──">
+          <option value="saint-malo">Saint-Malo</option>
+          <option value="brest">Brest</option>
+          <option value="lorient">Lorient</option>
+          <option value="concarneau">Concarneau</option>
+          <option value="quiberon">Quiberon</option>
+        </optgroup>
+        <optgroup label="── Normandie ──">
+          <option value="cherbourg">Cherbourg</option>
+          <option value="le-havre">Le Havre</option>
+          <option value="granville">Granville</option>
+        </optgroup>
+        <optgroup label="── Nord ──">
+          <option value="calais">Calais</option>
+          <option value="dunkerque">Dunkerque</option>
+        </optgroup>
+        <optgroup label="── Atlantique Sud ──">
+          <option value="la-rochelle">La Rochelle</option>
+          <option value="bordeaux">Bordeaux (Pauillac)</option>
+          <option value="arcachon">Arcachon</option>
+        </optgroup>
+        <optgroup label="── Méditerranée ──">
+          <option value="marseille">Marseille</option>
+          <option value="nice">Nice</option>
+        </optgroup>
+      </select>
+      <input type="date" id="dateInput"/>
+      <button class="btn-teal" onclick="loadTides()">↻ Actualiser</button>
+    </div>
+
+    <!-- COEFFICIENT BIG RING -->
+    <div class="coeff-ring" id="coeffRing">
+      <div class="coeff-num" id="coeffNum">—</div>
+      <div class="coeff-label">coefficient</div>
+      <div class="coeff-type" id="coeffType">—</div>
+    </div>
+
+    <!-- Port + date label -->
+    <div style="margin-bottom:1.5rem;opacity:.55;font-size:.8rem;font-weight:500;letter-spacing:.04em" id="heroPortDate">—</div>
+
+    <!-- NEXT TIDE BLOCK -->
+    <div class="next-tide-block">
+      <div>
+        <div class="next-label" id="nextTideLabel">Prochaine marée</div>
+        <div class="next-time" id="nextTideTime">—</div>
+        <div class="next-height" id="nextTideHeight">— m</div>
+      </div>
+      <div class="divider-v"></div>
+      <div>
+        <div class="next-in" id="nextTideIn">—</div>
+        <div class="next-in-label">temps restant</div>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div style="margin-top:1rem;opacity:.25;font-size:.72rem;animation:twinkle 2s ease-in-out infinite alternate">▼ Horaires complets ci-dessous</div>
+  </div>
+
+  <!-- Waves -->
+  <div class="waves-wrap">
+    <svg class="wave-svg" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:80px">
+      <path d="M0,40 C180,70 360,10 540,40 C720,70 900,10 1080,40 C1260,70 1350,30 1440,40 L1440,80 L0,80 Z" fill="rgba(3,17,31,0.5)"/>
+    </svg>
+    <svg class="wave-svg wave-svg2" viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:60px;margin-top:-40px">
+      <path d="M0,30 C240,55 480,5 720,30 C960,55 1200,5 1440,30 L1440,60 L0,60 Z" fill="rgba(3,17,31,0.8)"/>
+    </svg>
+    <div style="background:#03111f;height:30px;margin-top:-20px"></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     MAIN CONTENT
+════════════════════════════════════════════ -->
+<div style="background:#03111f;padding:2rem 1.2rem 4rem">
+<div id="mainGrid" style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 300px;gap:1.5rem;align-items:start">
+
+  <!-- ═══ LEFT COL ═══ -->
+  <div style="display:flex;flex-direction:column;gap:1.5rem">
+
+    <!-- TODAY CARD -->
+    <div class="glass-card reveal" id="todayCard">
+      <div class="card-header">
+        <div class="card-dot"></div>
+        <span class="card-title">Marées du jour</span>
+        <span id="todayDateLabel" style="margin-left:auto;font-size:.72rem;color:#5d90a8;font-weight:500"></span>
+      </div>
+      <div id="todayTides" style="display:grid;grid-template-columns:repeat(4,1fr)">
+        <div style="grid-column:1/-1;padding:3rem;text-align:center;color:#2a5f7a;font-size:.85rem" class="loading">&nbsp;</div>
+      </div>
+    </div>
+
+    <!-- CHART CARD -->
+    <div class="glass-card reveal">
+      <div class="card-header">
+        <div class="card-dot"></div>
+        <span class="card-title">Courbe de marée — 24 h</span>
+      </div>
+      <div style="padding:1.2rem">
+        <canvas id="tideChart"></canvas>
+        <div style="display:flex;gap:1.5rem;margin-top:.8rem;justify-content:center;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:.4rem;font-size:.68rem;color:#5d90a8"><div style="width:10px;height:10px;border-radius:50%;background:var(--teal)"></div>Pleine mer</div>
+          <div style="display:flex;align-items:center;gap:.4rem;font-size:.68rem;color:#5d90a8"><div style="width:10px;height:10px;border-radius:50%;background:#5bc8f5"></div>Basse mer</div>
+          <div style="display:flex;align-items:center;gap:.4rem;font-size:.68rem;color:#5d90a8"><div style="width:10px;height:10px;border-radius:50%;background:#f0a500"></div>Niveau actuel</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AD NATIVE -->
+    <div class="ad-slot reveal" style="height:110px;padding:1rem">
+      Espace Publicitaire – The Moneytizer / AdSense
+      <small>Format natif – Rectangle 468×60 ou responsive</small>
+    </div>
+
+    <!-- WEEK TABLE -->
+    <div class="glass-card reveal" id="semaine">
+      <div class="card-header">
+        <div class="card-dot"></div>
+        <span class="card-title">Prévisions 7 jours</span>
+      </div>
+      <div id="weekTable">
+        <div style="padding:3rem;text-align:center;color:#2a5f7a;font-size:.85rem" class="loading">&nbsp;</div>
+      </div>
+    </div>
+
+    <!-- INFO COEFF SECTION -->
+    <div class="glass-card reveal" id="infos">
+      <div class="card-header">
+        <div class="card-dot"></div>
+        <span class="card-title">Comprendre le coefficient</span>
+      </div>
+      <div style="padding:1.4rem;display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+        <div style="background:rgba(0,200,176,.06);border:1px solid rgba(0,200,176,.12);border-radius:12px;padding:1rem">
+          <div style="font-size:1.6rem;font-weight:900;color:#5bc8f5;line-height:1">20–44</div>
+          <div style="font-size:.78rem;font-weight:700;color:var(--teal);margin:.2rem 0">Morte-eau</div>
+          <p style="font-size:.72rem;color:#5d90a8;line-height:1.5">Faible marnage. Peu de courant. Idéal pour la baignade.</p>
+        </div>
+        <div style="background:rgba(0,200,176,.06);border:1px solid rgba(0,200,176,.12);border-radius:12px;padding:1rem">
+          <div style="font-size:1.6rem;font-weight:900;color:#8dd8ef;line-height:1">45–69</div>
+          <div style="font-size:.78rem;font-weight:700;color:var(--teal);margin:.2rem 0">Marée moyenne</div>
+          <p style="font-size:.72rem;color:#5d90a8;line-height:1.5">Conditions habituelles. Courants modérés.</p>
+        </div>
+        <div style="background:rgba(240,165,0,.06);border:1px solid rgba(240,165,0,.15);border-radius:12px;padding:1rem">
+          <div style="font-size:1.6rem;font-weight:900;color:var(--gold2);line-height:1">70–99</div>
+          <div style="font-size:.78rem;font-weight:700;color:var(--gold);margin:.2rem 0">Vive-eau</div>
+          <p style="font-size:.72rem;color:#5d90a8;line-height:1.5">Fort marnage. Courants puissants. Vigilance navigateurs.</p>
+        </div>
+        <div style="background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.15);border-radius:12px;padding:1rem">
+          <div style="font-size:1.6rem;font-weight:900;color:var(--danger);line-height:1">100+</div>
+          <div style="font-size:.78rem;font-weight:700;color:var(--danger);margin:.2rem 0">Vive-eau exception.</div>
+          <p style="font-size:.72rem;color:#5d90a8;line-height:1.5">Marnage maximal. Risques d'inondation en zones basses.</p>
+        </div>
+      </div>
+      <div style="padding:0 1.4rem 1.2rem;font-size:.7rem;color:#2a5f7a;line-height:1.6">
+        ⚠️ <strong style="color:#3d7a95">Données indicatives.</strong> Horaires approximatifs (méthode harmonique M2). Pour la navigation, consultez le <a href="https://maree.shom.fr" target="_blank" style="color:var(--teal);text-decoration:underline">SHOM officiel</a>.
+      </div>
+    </div>
+
+  </div><!-- /left col -->
+
+  <!-- ═══ RIGHT SIDEBAR ═══ -->
+  <aside style="display:flex;flex-direction:column;gap:1.4rem;position:sticky;top:1rem;align-self:start" id="sidebar">
+
+    <!-- AD 300x250 #1 -->
+    <div class="ad-slot" style="width:300px;height:250px">
+      Espace Publicitaire
+      <small>300×250 – Google AdSense</small>
+      <small>/ The Moneytizer</small>
+    </div>
+
+    <!-- PORT INFO -->
+    <div class="glass-card">
+      <div class="card-header">
+        <div class="card-dot"></div>
+        <span class="card-title">Port sélectionné</span>
+      </div>
+      <div id="portInfoBox" style="padding:1rem;font-size:.75rem;color:#5d90a8;display:flex;flex-direction:column;gap:.4rem"></div>
+    </div>
+
+    <!-- COEFF SCALE -->
+    <div class="glass-card">
+      <div class="card-header">
+        <div class="card-dot"></div>
+        <span class="card-title">Échelle du coefficient</span>
+      </div>
+      <div style="padding:1.2rem">
+        <div class="coeff-scale-bar">
+          <div class="coeff-scale-marker" id="scaleMarker"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:.5rem;font-size:.62rem;color:#2a5f7a;font-weight:600">
+          <span>20</span><span>Morte-eau</span><span>Vive-eau</span><span>120</span>
+        </div>
+        <div style="margin-top:.8rem;display:flex;flex-direction:column;gap:.35rem">
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem">
+            <div style="width:10px;height:10px;border-radius:50%;background:#00c8b0;flex-shrink:0"></div>
+            <span style="color:#5d90a8">Morte-eau &nbsp;<strong style="color:#8ab8d0">20–44</strong></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem">
+            <div style="width:10px;height:10px;border-radius:50%;background:#1296bc;flex-shrink:0"></div>
+            <span style="color:#5d90a8">Moyenne &nbsp;<strong style="color:#8ab8d0">45–69</strong></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem">
+            <div style="width:10px;height:10px;border-radius:50%;background:#e07b00;flex-shrink:0"></div>
+            <span style="color:#5d90a8">Vive-eau &nbsp;<strong style="color:#8ab8d0">70–99</strong></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem">
+            <div style="width:10px;height:10px;border-radius:50%;background:#c0392b;flex-shrink:0"></div>
+            <span style="color:#5d90a8">Exceptionnelle &nbsp;<strong style="color:#8ab8d0">100+</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AD 300x250 #2 -->
+    <div class="ad-slot" style="width:300px;height:250px">
+      Espace Publicitaire
+      <small>300×250 – Google AdSense</small>
+      <small>/ The Moneytizer</small>
+    </div>
+
+  </aside>
+
+</div><!-- /mainGrid -->
+</div><!-- /bg -->
+
+<!-- FOOTER AD -->
+<div style="background:#020d18;padding:1rem 1.2rem;display:flex;justify-content:center;border-top:1px solid rgba(0,200,176,.08)">
+  <div class="ad-slot" style="width:100%;max-width:728px;height:90px">
+    Espace Publicitaire – The Moneytizer / AdSense
+    <small>728×90 – Bannière Footer</small>
+  </div>
+</div>
+
+<footer style="background:#020d18;text-align:center;padding:1.5rem;border-top:1px solid rgba(0,200,176,.06)">
+  <p style="color:#fff;font-weight:700;font-size:.85rem;margin-bottom:.3rem">🌊 MaréaFrance</p>
+  <p style="font-size:.72rem;color:#2a5f7a">Loire-Atlantique · Bretagne · Normandie · Nord · Atlantique · Méditerranée</p>
+  <p style="font-size:.65rem;color:#1a3a50;margin-top:.5rem">Données indicatives. <a href="https://maree.shom.fr" target="_blank" style="color:#1a6a82">SHOM officiel</a> pour la navigation professionnelle.</p>
+</footer>
+
+<!-- MOBILE STICKY AD -->
+<div id="mobileSticky" class="ad-slot" style="border-radius:0;border-top:1px dashed rgba(0,200,176,.2);border-left:0;border-right:0;border-bottom:0">
+  Pub mobile — 320×50
+  <small>The Moneytizer / AdSense</small>
+</div>
+
+<!-- COOKIE BANNER -->
+<div id="cookie">
+  <p style="font-size:.75rem;color:rgba(0,200,176,.7);flex:1">
+    🍪 Ce site utilise des cookies pour la publicité et l'analyse. En continuant, vous acceptez notre
+    <a href="#" style="color:var(--teal);text-decoration:underline">politique de confidentialité</a>.
+  </p>
+  <div style="display:flex;gap:.6rem;flex-shrink:0">
+    <button onclick="closeCookie()" class="btn-teal" style="font-size:.75rem;padding:.45rem 1.1rem">Accepter</button>
+    <button onclick="closeCookie()" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:.45rem .9rem;font-size:.75rem;cursor:pointer;font-family:inherit">Refuser</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+// ───────────────────────────────────────────
+// DONNÉES DES PORTS
+// ───────────────────────────────────────────
+const PORTS = {
+  'saint-nazaire': { name:'Saint-Nazaire',       region:'Loire-Atlantique (44)', Z0:3.15, rangeS:5.20, rangeN:2.10, refPM:482, lat:'47.27°N', lon:'2.20°O', marnageLabel:'Marnage VE ~5.2m / ME ~2.1m' },
+  'le-croisic':    { name:'Le Croisic',           region:'Loire-Atlantique (44)', Z0:3.03, rangeS:5.00, rangeN:1.95, refPM:465, lat:'47.29°N', lon:'2.51°O', marnageLabel:'Marnage VE ~5.0m / ME ~2.0m' },
+  'la-baule':      { name:'La Baule-Escoublac',   region:'Loire-Atlantique (44)', Z0:3.00, rangeS:4.95, rangeN:1.90, refPM:462, lat:'47.28°N', lon:'2.40°O', marnageLabel:'Marnage VE ~5.0m / ME ~1.9m' },
+  'batz':          { name:'Batz-sur-Mer',          region:'Loire-Atlantique (44)', Z0:3.01, rangeS:4.97, rangeN:1.92, refPM:463, lat:'47.28°N', lon:'2.48°O', marnageLabel:'Marnage VE ~5.0m / ME ~1.9m' },
+  'le-pouliguen':  { name:'Le Pouliguen',          region:'Loire-Atlantique (44)', Z0:3.00, rangeS:4.90, rangeN:1.90, refPM:462, lat:'47.27°N', lon:'2.42°O', marnageLabel:'Marnage VE ~4.9m / ME ~1.9m' },
+  'la-turballe':   { name:'La Turballe',           region:'Loire-Atlantique (44)', Z0:3.04, rangeS:5.02, rangeN:1.93, refPM:466, lat:'47.35°N', lon:'2.51°O', marnageLabel:'Marnage VE ~5.0m / ME ~1.9m' },
+  'piriac':        { name:'Piriac-sur-Mer',        region:'Loire-Atlantique (44)', Z0:3.04, rangeS:5.01, rangeN:1.93, refPM:466, lat:'47.38°N', lon:'2.54°O', marnageLabel:'Marnage VE ~5.0m / ME ~1.9m' },
+  'pornic':        { name:'Pornic',                region:'Loire-Atlantique (44)', Z0:2.95, rangeS:4.85, rangeN:1.85, refPM:475, lat:'47.11°N', lon:'2.10°O', marnageLabel:'Marnage VE ~4.9m / ME ~1.9m' },
+  'prefailles':    { name:'Préfailles',            region:'Loire-Atlantique (44)', Z0:2.97, rangeS:4.87, rangeN:1.87, refPM:472, lat:'47.13°N', lon:'2.21°O', marnageLabel:'Marnage VE ~4.9m / ME ~1.9m' },
+  'saint-brevin':  { name:'Saint-Brevin-les-Pins', region:'Loire-Atlantique (44)', Z0:3.10, rangeS:5.10, rangeN:1.95, refPM:480, lat:'47.23°N', lon:'2.17°O', marnageLabel:'Marnage VE ~5.1m / ME ~2.0m' },
+  'paimboeuf':     { name:'Paimboeuf (Estuaire)',  region:'Loire-Atlantique (44)', Z0:3.35, rangeS:5.50, rangeN:2.15, refPM:512, lat:'47.29°N', lon:'2.02°O', marnageLabel:'Marnage VE ~5.5m / ME ~2.2m' },
+  'saint-gildas':  { name:'Saint-Gildas (Pointe)', region:'Loire-Atlantique (44)', Z0:2.98, rangeS:4.88, rangeN:1.87, refPM:470, lat:'47.08°N', lon:'2.24°O', marnageLabel:'Marnage VE ~4.9m / ME ~1.9m' },
+  'saint-malo':    { name:'Saint-Malo',            region:'Ille-et-Vilaine (35)', Z0:6.10, rangeS:11.0, rangeN:4.20, refPM:418, lat:'48.64°N', lon:'2.02°O', marnageLabel:'Marnage VE ~11m / ME ~4.2m' },
+  'brest':         { name:'Brest',                 region:'Finistère (29)',       Z0:3.56, rangeS:6.50, rangeN:2.50, refPM:398, lat:'48.39°N', lon:'4.49°O', marnageLabel:'Marnage VE ~6.5m / ME ~2.5m' },
+  'lorient':       { name:'Lorient',               region:'Morbihan (56)',        Z0:2.95, rangeS:5.00, rangeN:1.95, refPM:415, lat:'47.75°N', lon:'3.37°O', marnageLabel:'Marnage VE ~5.0m / ME ~2.0m' },
+  'concarneau':    { name:'Concarneau',            region:'Finistère (29)',       Z0:2.80, rangeS:4.80, rangeN:1.85, refPM:420, lat:'47.87°N', lon:'3.91°O', marnageLabel:'Marnage VE ~4.8m / ME ~1.9m' },
+  'quiberon':      { name:'Quiberon',              region:'Morbihan (56)',        Z0:2.90, rangeS:4.95, rangeN:1.90, refPM:416, lat:'47.49°N', lon:'3.12°O', marnageLabel:'Marnage VE ~5.0m / ME ~1.9m' },
+  'cherbourg':     { name:'Cherbourg',             region:'Manche (50)',          Z0:3.70, rangeS:5.80, rangeN:2.30, refPM:375, lat:'49.65°N', lon:'1.62°O', marnageLabel:'Marnage VE ~5.8m / ME ~2.3m' },
+  'le-havre':      { name:'Le Havre',              region:'Seine-Maritime (76)',  Z0:4.60, rangeS:7.50, rangeN:2.80, refPM:390, lat:'49.49°N', lon:'0.11°E', marnageLabel:'Marnage VE ~7.5m / ME ~2.8m' },
+  'granville':     { name:'Granville',             region:'Manche (50)',          Z0:7.20, rangeS:13.0, rangeN:5.00, refPM:408, lat:'48.84°N', lon:'1.60°O', marnageLabel:'Marnage VE ~13m / ME ~5.0m' },
+  'calais':        { name:'Calais',                region:'Pas-de-Calais (62)',   Z0:4.10, rangeS:6.80, rangeN:2.60, refPM:360, lat:'50.97°N', lon:'1.85°E', marnageLabel:'Marnage VE ~6.8m / ME ~2.6m' },
+  'dunkerque':     { name:'Dunkerque',             region:'Nord (59)',            Z0:3.00, rangeS:5.00, rangeN:1.90, refPM:355, lat:'51.04°N', lon:'2.38°E', marnageLabel:'Marnage VE ~5.0m / ME ~1.9m' },
+  'la-rochelle':   { name:'La Rochelle',           region:'Charente-Maritime (17)',Z0:3.30, rangeS:5.80, rangeN:2.20, refPM:492, lat:'46.16°N', lon:'1.15°O', marnageLabel:'Marnage VE ~5.8m / ME ~2.2m' },
+  'bordeaux':      { name:'Bordeaux (Pauillac)',   region:'Gironde (33)',         Z0:2.60, rangeS:4.50, rangeN:1.70, refPM:542, lat:'45.20°N', lon:'0.75°O', marnageLabel:'Marnage VE ~4.5m / ME ~1.7m' },
+  'arcachon':      { name:'Arcachon',              region:'Gironde (33)',         Z0:2.40, rangeS:3.80, rangeN:1.40, refPM:508, lat:'44.66°N', lon:'1.17°O', marnageLabel:'Marnage VE ~3.8m / ME ~1.4m' },
+  'marseille':     { name:'Marseille',             region:'Bouches-du-Rhône (13)',Z0:0.20, rangeS:0.28, rangeN:0.12, refPM:480, lat:'43.30°N', lon:'5.37°E', marnageLabel:'Méditerranée: marnage ~0.3m' },
+  'nice':          { name:'Nice',                  region:'Alpes-Maritimes (06)', Z0:0.15, rangeS:0.22, rangeN:0.08, refPM:480, lat:'43.70°N', lon:'7.27°E', marnageLabel:'Méditerranée: marnage ~0.2m' },
+};
+
+// ───────────────────────────────────────────
+// CYCLE LUNAIRE → COEFFICIENT
+// ───────────────────────────────────────────
+const REF_NM = new Date('2021-01-13T05:00:00Z').getTime();
+const SYNODIC = 29.53059 * 86400000;
+
+function lunarCoeff(date) {
+  const phase = ((date.getTime() - REF_NM) % SYNODIC + SYNODIC) % SYNODIC;
+  const distSyz = Math.min(phase, SYNODIC - phase);
+  const lag = 1.5 * 86400000;
+  const adj = (distSyz - lag + SYNODIC/2) % (SYNODIC/2);
+  const frac = adj / (SYNODIC/2);
+  const raw = 110 - 80*(frac < 0.5 ? frac*2 : 2 - frac*2);
+  return Math.min(120, Math.max(20, Math.round(raw)));
+}
+
+// ───────────────────────────────────────────
+// HORAIRES DE MARÉE
+// ───────────────────────────────────────────
+const M2H = 372.57;   // demi-période M2 en minutes
+const DS  = 50.47;    // glissement journalier en minutes
+const REF_DATE = new Date('2024-01-01T00:00:00').getTime();
+
+function getTides(portId, date) {
+  const port = PORTS[portId];
+  const midnight = new Date(date); midnight.setHours(0,0,0,0);
+  const days = Math.round((midnight.getTime() - REF_DATE) / 86400000);
+  let firstPM = ((port.refPM + days * DS) % (2*M2H) + 2*M2H) % (2*M2H);
+  const coeff = lunarCoeff(midnight);
+  const sf = Math.max(0, Math.min(1, (coeff-20)/100));
+  const range = port.rangeN + (port.rangeS - port.rangeN)*sf;
+  const pmH = +(port.Z0 + range/2).toFixed(2);
+  const bmH = +(Math.max(0.05, port.Z0 - range/2)).toFixed(2);
+  const tides = [];
+  let t = firstPM - 2*M2H;
+  let hw = true;
+  for (let i=0;i<10;i++) {
+    if (t >= 0 && t < 1440) {
+      const hh = Math.floor(t/60), mm = Math.round(t%60);
+      const mmc = mm >= 60 ? 0 : mm;
+      const hhc = mm >= 60 ? hh+1 : hh;
+      tides.push({ type:hw?'PM':'BM', timeMin:t, time:String(hhc).padStart(2,'0')+'h'+String(mmc).padStart(2,'0'), height:hw?pmH:bmH });
+    }
+    t += M2H; hw = !hw;
+    if (t > 1500) break;
+  }
+  return { tides, coeff, port, range, pmH, bmH };
+}
+
+// ───────────────────────────────────────────
+// COULEURS COEFFICIENT
+// ───────────────────────────────────────────
+function coeffStyle(c) {
+  if (c >= 100) return { color:'#ff6b6b', glow:'rgba(255,107,107,.5)', type:'Vive-eau exceptionnelle 🔴', ringBg:'rgba(255,107,107,.1)', ringBorder:'rgba(255,107,107,.4)' };
+  if (c >= 70)  return { color:'#f0a500', glow:'rgba(240,165,0,.5)',   type:'Vive-eau 🟠',              ringBg:'rgba(240,165,0,.1)',   ringBorder:'rgba(240,165,0,.4)' };
+  if (c >= 45)  return { color:'#35b3d8', glow:'rgba(53,179,216,.5)',  type:'Marée moyenne 🔵',         ringBg:'rgba(53,179,216,.1)',  ringBorder:'rgba(53,179,216,.4)' };
+  return           { color:'#00c8b0', glow:'rgba(0,200,176,.5)',   type:'Morte-eau 🟢',             ringBg:'rgba(0,200,176,.1)',  ringBorder:'rgba(0,200,176,.4)' };
+}
+
+// ───────────────────────────────────────────
+// RENDU HERO
+// ───────────────────────────────────────────
+let _lastPortId=null, _lastDate=null, _tides=[], _coeff=0;
+
+function renderHero(portId, date) {
+  const { tides, coeff, port } = getTides(portId, date);
+  const cs = coeffStyle(coeff);
+  _tides = tides; _coeff = coeff;
+  document.getElementById('coeffNum').textContent = coeff;
+  document.getElementById('coeffNum').style.color = cs.color;
+  document.getElementById('coeffNum').style.textShadow = `0 0 40px ${cs.glow},0 0 80px ${cs.glow}`;
+  document.getElementById('coeffType').textContent = cs.type;
+  document.getElementById('coeffType').style.color = cs.color;
+  const ring = document.getElementById('coeffRing');
+  ring.style.background = `radial-gradient(circle at 50% 40%,${cs.ringBg} 0%,transparent 70%)`;
+  ring.style.borderColor = cs.ringBorder;
+  ring.style.boxShadow = `0 0 60px ${cs.glow.replace('.5)','.2)')},0 0 120px ${cs.glow.replace('.5)','.1)')}`;
+  // Port + date
+  document.getElementById('heroPortDate').textContent =
+    `📍 ${port.name} · ${date.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}`;
+  // Coeff scale marker
+  const pct = Math.min(97, Math.max(3, (coeff-20)/100*100));
+  document.getElementById('scaleMarker').style.left = pct+'%';
+  // Port info box
+  document.getElementById('portInfoBox').innerHTML = `
+    <div style="font-weight:800;color:#c8e8f5;font-size:.85rem">${port.name}</div>
+    <div>${port.region}</div>
+    <div style="margin-top:.3rem">📍 ${port.lat} ${port.lon}</div>
+    <div style="margin-top:.4rem;color:#3d7a95">Marnage du jour:<br/><strong style="color:#8ab8d0">${(port.rangeN + (port.rangeS-port.rangeN)*Math.max(0,Math.min(1,(coeff-20)/100))).toFixed(2)} m</strong></div>
+    <div>${port.marnageLabel}</div>`;
+  updateNextTide();
+}
+
+// ───────────────────────────────────────────
+// PROCHAINE MARÉE + COUNTDOWN
+// ───────────────────────────────────────────
+function updateNextTide() {
+  if (!_tides.length) return;
+  const now = new Date();
+  const dateInput = document.getElementById('dateInput').value;
+  const selDate = dateInput ? new Date(dateInput+'T00:00:00') : new Date();
+  const isToday = selDate.toDateString() === now.toDateString();
+  let next = null;
+  if (isToday) {
+    const nowMin = now.getHours()*60+now.getMinutes();
+    next = _tides.find(t => t.timeMin > nowMin);
+    if (!next) next = _tides[_tides.length-1];
+  } else {
+    next = _tides[0];
+  }
+  if (!next) return;
+  const cs = coeffStyle(_coeff);
+  const labelEl = document.getElementById('nextTideLabel');
+  const timeEl = document.getElementById('nextTideTime');
+  const heightEl = document.getElementById('nextTideHeight');
+  const inEl = document.getElementById('nextTideIn');
+  labelEl.textContent = next.type==='PM' ? '▲ Prochaine pleine mer' : '▼ Prochaine basse mer';
+  timeEl.textContent = next.time;
+  timeEl.style.color = next.type==='PM' ? cs.color : '#5bc8f5';
+  timeEl.style.textShadow = next.type==='PM' ? `0 0 20px ${cs.glow}` : '0 0 20px rgba(91,200,245,.4)';
+  heightEl.textContent = next.height.toFixed(2)+' m';
+  if (isToday) {
+    const nowMin = now.getHours()*60+now.getMinutes();
+    const diffMin = Math.max(0, Math.round(next.timeMin - nowMin));
+    const h = Math.floor(diffMin/60), m = diffMin%60;
+    inEl.textContent = h>0 ? `dans ${h}h${String(m).padStart(2,'0')}` : `dans ${m} min`;
+  } else {
+    inEl.textContent = next.time;
+  }
+}
+
+// ───────────────────────────────────────────
+// RENDU TABLEAU DU JOUR
+// ───────────────────────────────────────────
+function renderToday(portId, date) {
+  const { tides, coeff } = getTides(portId, date);
+  document.getElementById('todayDateLabel').textContent =
+    date.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
+  if (!tides.length) {
+    document.getElementById('todayTides').innerHTML = '<div style="grid-column:1/-1;padding:2rem;text-align:center;color:#2a5f7a">Aucune marée trouvée</div>';
+    return;
+  }
+  const cols = Math.min(4, tides.length);
+  const container = document.getElementById('todayTides');
+  container.style.gridTemplateColumns = `repeat(${cols},1fr)`;
+  container.innerHTML = tides.map((e,i) => {
+    const now = new Date();
+    const selDate = document.getElementById('dateInput').value;
+    const isSel = selDate ? new Date(selDate+'T00:00:00').toDateString()===now.toDateString() : true;
+    const nowMin = now.getHours()*60+now.getMinutes();
+    const isCurrent = isSel && i>0 && tides[i-1].timeMin <= nowMin && e.timeMin > nowMin;
+    return `<div class="tide-cell${isCurrent?' current':''}">
+      ${isCurrent?'<div style="position:absolute;top:6px;right:8px;width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 6px var(--teal);animation:pulseDot 1.5s infinite"></div>':''}
+      <div class="tc-type ${e.type.toLowerCase()}">${e.type==='PM'?'▲ Pleine mer':'▼ Basse mer'}</div>
+      <div class="tc-time">${e.time}</div>
+      <div class="tc-h">${e.height.toFixed(2)} m</div>
+      ${e.type==='PM'?`<div class="tc-c">Coeff. ${coeff}</div>`:''}
+    </div>`;
+  }).join('');
+}
+
+// ───────────────────────────────────────────
+// CANVAS CHART
+// ───────────────────────────────────────────
+function renderChart(portId, date) {
+  const canvas = document.getElementById('tideChart');
+  const W = canvas.offsetWidth || 600;
+  const H = 180;
+  canvas.width = W*devicePixelRatio; canvas.height = H*devicePixelRatio;
+  canvas.style.width = W+'px'; canvas.style.height = H+'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+  const port = PORTS[portId];
+  const midnight = new Date(date); midnight.setHours(0,0,0,0);
+  const days = Math.round((midnight.getTime()-REF_DATE)/86400000);
+  const firstPM = ((port.refPM + days*DS) % (2*M2H) + 2*M2H) % (2*M2H);
+  const coeff = lunarCoeff(midnight);
+  const sf = Math.max(0,Math.min(1,(coeff-20)/100));
+  const range = port.rangeN+(port.rangeS-port.rangeN)*sf;
+  const pts = [];
+  for (let m=0;m<=1440;m+=5) {
+    const phase = ((m-firstPM)/M2H)*Math.PI;
+    pts.push({ x:m/1440, h:Math.max(0, port.Z0+(range/2)*Math.cos(phase)) });
+  }
+  const minH = Math.min(...pts.map(p=>p.h));
+  const maxH = Math.max(...pts.map(p=>p.h));
+  const rng = maxH-minH||1;
+  const pad = {t:16,b:28,l:42,r:12};
+  const cW = W-pad.l-pad.r, cH = H-pad.t-pad.b;
+  const tx = x => pad.l+x*cW;
+  const ty = h => pad.t+cH-((h-minH)/rng)*cH;
+  ctx.clearRect(0,0,W,H);
+  // Grid lines
+  for (let i=0;i<=4;i++) {
+    const y = pad.t+(cH/4)*i;
+    ctx.strokeStyle='rgba(0,200,176,.07)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(pad.l,y); ctx.lineTo(pad.l+cW,y); ctx.stroke();
+    ctx.fillStyle='rgba(93,144,168,.6)'; ctx.font='10px Inter'; ctx.textAlign='right';
+    ctx.fillText((maxH-(rng/4)*i).toFixed(1)+'m', pad.l-4, y+4);
+  }
+  ctx.fillStyle='rgba(93,144,168,.5)'; ctx.font='10px Inter'; ctx.textAlign='center';
+  [0,6,12,18,24].forEach(h=>ctx.fillText(h+'h',tx(h/24),H-8));
+  // Fill area
+  const grad = ctx.createLinearGradient(0,pad.t,0,pad.t+cH);
+  grad.addColorStop(0,'rgba(0,200,176,.25)'); grad.addColorStop(1,'rgba(5,30,53,.05)');
+  ctx.beginPath(); ctx.moveTo(tx(0),ty(minH));
+  pts.forEach(p=>ctx.lineTo(tx(p.x),ty(p.h)));
+  ctx.lineTo(tx(1),ty(minH)); ctx.closePath(); ctx.fillStyle=grad; ctx.fill();
+  // Curve
+  ctx.beginPath();
+  pts.forEach((p,i)=>i===0?ctx.moveTo(tx(p.x),ty(p.h)):ctx.lineTo(tx(p.x),ty(p.h)));
+  ctx.strokeStyle='#00c8b0'; ctx.lineWidth=2.5; ctx.lineJoin='round'; ctx.stroke();
+  // Glow stroke
+  ctx.beginPath();
+  pts.forEach((p,i)=>i===0?ctx.moveTo(tx(p.x),ty(p.h)):ctx.lineTo(tx(p.x),ty(p.h)));
+  ctx.strokeStyle='rgba(0,200,176,.15)'; ctx.lineWidth=8; ctx.stroke();
+  // Current time
+  const now = new Date();
+  if (now.toDateString()===new Date(date).toDateString()) {
+    const frac = (now.getHours()*60+now.getMinutes())/1440;
+    const phase = ((frac*1440-firstPM)/M2H)*Math.PI;
+    const nh = Math.max(0, port.Z0+(range/2)*Math.cos(phase));
+    const nx=tx(frac), ny=ty(nh);
+    ctx.beginPath(); ctx.moveTo(nx,pad.t); ctx.lineTo(nx,pad.t+cH);
+    ctx.strokeStyle='rgba(240,165,0,.4)'; ctx.lineWidth=1.5; ctx.setLineDash([4,4]); ctx.stroke(); ctx.setLineDash([]);
+    ctx.beginPath(); ctx.arc(nx,ny,5,0,Math.PI*2);
+    ctx.fillStyle='#f0a500'; ctx.fill();
+    ctx.shadowColor='#f0a500'; ctx.shadowBlur=10;
+    ctx.beginPath(); ctx.arc(nx,ny,3,0,Math.PI*2); ctx.fillStyle='#fff'; ctx.fill();
+    ctx.shadowBlur=0;
+    ctx.fillStyle='#f0a500'; ctx.font='bold 10px Inter'; ctx.textAlign='center';
+    ctx.fillText(nh.toFixed(2)+'m', nx, ny-12);
+  }
+}
+
+// ───────────────────────────────────────────
+// RENDU SEMAINE
+// ───────────────────────────────────────────
+const JOURS = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+function renderWeek(portId, baseDate) {
+  const today = new Date(); today.setHours(0,0,0,0);
+  let html = '';
+  for (let d=0;d<7;d++) {
+    const date = new Date(baseDate); date.setDate(baseDate.getDate()+d);
+    const { tides, coeff } = getTides(portId, date);
+    const isToday = date.toDateString()===today.toDateString();
+    const cs = coeffStyle(coeff);
+    html += `<div class="week-row${isToday?' today':''}">
+      <div style="padding:.75rem 1rem;border-right:1px solid rgba(0,200,176,.07);display:flex;flex-direction:column;justify-content:center">
+        <div class="wd-name">${JOURS[date.getDay()]} ${date.getDate()}</div>
+        <div style="font-size:.7rem;font-weight:700;color:${cs.color};margin-top:.2rem">${coeff}</div>
+      </div>
+      <div style="padding:.6rem .9rem;display:flex;flex-wrap:wrap;gap:.4rem;align-items:center">
+        ${tides.map(e=>`<div class="wt-chip ${e.type.toLowerCase()}">
+          <span class="wt-chip-time">${e.time}</span>
+          <span class="wt-chip-h">${e.height.toFixed(2)}m</span>
+          ${e.type==='PM'?`<span class="wt-chip-c">${coeff}</span>`:''}
+        </div>`).join('')}
+      </div>
+    </div>`;
+  }
+  document.getElementById('weekTable').innerHTML = html;
+}
+
+// ───────────────────────────────────────────
+// MAIN LOAD
+// ───────────────────────────────────────────
+function loadTides() {
+  const portId = document.getElementById('portSelect').value;
+  const ds = document.getElementById('dateInput').value;
+  const date = ds ? new Date(ds+'T06:00:00') : new Date();
+  _lastPortId = portId; _lastDate = date;
+  renderHero(portId, date);
+  renderToday(portId, date);
+  setTimeout(()=>renderChart(portId, date), 60);
+  renderWeek(portId, date);
+}
+
+// ───────────────────────────────────────────
+// STARS GENERATION
+// ───────────────────────────────────────────
+(function createStars() {
+  const c = document.getElementById('stars');
+  for (let i=0;i<120;i++) {
+    const s = document.createElement('div');
+    const size = Math.random()*2+.5;
+    s.classList.add('star');
+    s.style.cssText = `width:${size}px;height:${size}px;top:${Math.random()*80}%;left:${Math.random()*100}%;--d:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s`;
+    c.appendChild(s);
+  }
+})();
+
+// ───────────────────────────────────────────
+// SCROLL REVEAL
+// ───────────────────────────────────────────
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } });
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// ───────────────────────────────────────────
+// RESPONSIVE GRID
+// ───────────────────────────────────────────
+function updateLayout() {
+  const g = document.getElementById('mainGrid');
+  const s = document.getElementById('sidebar');
+  if (window.innerWidth < 900) {
+    g.style.gridTemplateColumns='1fr';
+    s.style.cssText='display:none';
+  } else {
+    g.style.gridTemplateColumns='1fr 300px';
+    s.style.cssText='display:flex;flex-direction:column;gap:1.4rem;position:sticky;top:1rem;align-self:start';
+  }
+}
+
+// ───────────────────────────────────────────
+// COOKIE
+// ───────────────────────────────────────────
+function closeCookie() {
+  document.getElementById('cookie').style.display='none';
+  document.getElementById('mobileSticky').style.bottom='0';
+}
+
+// ───────────────────────────────────────────
+// INIT
+// ───────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', ()=>{
+  const t = new Date();
+  document.getElementById('dateInput').value =
+    `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;
+  updateLayout();
+  loadTides();
+  window.addEventListener('resize', ()=>{
+    updateLayout();
+    if(_lastPortId && _lastDate) setTimeout(()=>renderChart(_lastPortId,_lastDate),50);
+  });
+  // Countdown update every minute
+  setInterval(()=>{ if(_tides.length) updateNextTide(); }, 60000);
+  // Full reload every 5 min
+  setInterval(loadTides, 300000);
+});
+document.getElementById('portSelect').addEventListener('change', loadTides);
+document.getElementById('dateInput').addEventListener('change', loadTides);
+</script>
+</body>
+</html>
