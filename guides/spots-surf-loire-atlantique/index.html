@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spots de surf en Loire-Atlantique — La Govelle, Batz-sur-Mer et les meilleures vagues du 44</title>
+  <meta name="description" content="La Govelle à Batz-sur-Mer : la plus belle plage de surf pour débutants en Loire-Atlantique. Vagues accessibles, skimboard à marée basse, paysage exceptionnel. Guide complet des spots du 44.">
+  <link rel="canonical" href="https://www.marees-loireatlantique.fr/guides/spots-surf-loire-atlantique/">
+  <meta name="robots" content="index, follow">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Spots de surf en Loire-Atlantique — La Govelle et les meilleures vagues du 44",
+    "description": "La Govelle à Batz-sur-Mer : la plus belle plage de surf pour débutants en Loire-Atlantique. Vagues accessibles, skimboard à marée basse, paysage exceptionnel.",
+    "author": { "@type": "Person", "name": "Berry Yann" },
+    "publisher": { "@type": "Organization", "name": "Marées Loire-Atlantique" },
+    "datePublished": "2026-05-01",
+    "url": "https://www.marees-loireatlantique.fr/guides/spots-surf-loire-atlantique/"
+  }
+  </script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/site.css"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png"/>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1465276904717454" crossorigin="anonymous"></script>
+<style>
+.hero-surf {
+  background: linear-gradient(135deg, #0077B6 0%, #00B4D8 50%, #90E0EF 100%);
+  border-radius: 14px;
+  padding: 2rem 2.2rem;
+  color: #fff;
+  margin: 1.5rem 0 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero-surf::before {
+  content: '🏄';
+  font-size: 5rem;
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: .15;
+}
+.hero-surf h2 { color: #fff !important; border: none !important; margin: 0 0 .5rem !important; font-size: 1.15rem; }
+.hero-surf p { opacity: .92; margin: 0; font-size: .95rem; }
+
+.spot-card {
+  background: #fff;
+  border: 1px solid #DDE8ED;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0,63,114,.09);
+  margin: 1.8rem 0;
+}
+.spot-header {
+  background: linear-gradient(90deg, #0077B6, #00B4D8);
+  color: #fff;
+  padding: 1rem 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.spot-header.govelle { background: linear-gradient(90deg, #0F4F6B, #1A6B8A, #2A9D8F); }
+.spot-title { font-size: 1.05rem; font-weight: 800; }
+.spot-level {
+  background: rgba(255,255,255,.2);
+  border: 1px solid rgba(255,255,255,.35);
+  padding: .3rem .8rem;
+  border-radius: 20px;
+  font-size: .78rem;
+  font-weight: 600;
+}
+.spot-body { padding: 1.4rem 1.6rem; }
+.spot-body p { font-size: .88rem; color: #4A5568; line-height: 1.8; margin-bottom: .8rem; }
+.spot-body h3 { font-size: .92rem; font-weight: 700; color: #0F4F6B; margin: 1.1rem 0 .5rem; }
+
+.tide-conditions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .8rem;
+  margin: 1rem 0;
+}
+@media (max-width: 600px) { .tide-conditions { grid-template-columns: 1fr; } }
+
+.tide-box {
+  background: #F0F8FF;
+  border-radius: 10px;
+  padding: .9rem 1rem;
+  text-align: center;
+  border: 1px solid #DDE8ED;
+}
+.tide-box.ideal { background: #E0F5F3; border-color: #2A9D8F; }
+.tide-box.good  { background: #E8F4F9; border-color: #1A6B8A; }
+.tide-box.avoid { background: #FFF3F3; border-color: #E53E3E; }
+.tide-box-icon { font-size: 1.4rem; margin-bottom: .3rem; }
+.tide-box-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #666; }
+.tide-box-value { font-size: .85rem; font-weight: 600; color: #1A2332; margin-top: .2rem; }
+.tide-box-desc  { font-size: .75rem; color: #718096; margin-top: .2rem; line-height: 1.4; }
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .6rem;
+  margin: 1rem 0;
+}
+@media (max-width: 600px) { .info-grid { grid-template-columns: 1fr; } }
+.info-item {
+  background: #F7FAFB;
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  font-size: .82rem;
+}
+.info-item strong { color: #0F4F6B; display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; margin-bottom: .15rem; }
+
+.govelle-highlight {
+  background: linear-gradient(135deg, #E0F5F3, #F0F8FF);
+  border: 2px solid #2A9D8F;
+  border-radius: 14px;
+  padding: 1.4rem 1.6rem;
+  margin: 2rem 0;
+}
+.govelle-highlight h3 { color: #1a6b5a !important; border-color: #2A9D8F !important; margin-top: 0 !important; }
+
+.activity-strip {
+  display: flex;
+  gap: .8rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+.activity-tag {
+  background: #E8F4F9;
+  color: #0F4F6B;
+  padding: .35rem .8rem;
+  border-radius: 20px;
+  font-size: .78rem;
+  font-weight: 600;
+  border: 1px solid #DDE8ED;
+}
+.activity-tag.green { background: #E0F5F3; color: #1a6b5a; border-color: #2A9D8F; }
+.activity-tag.orange { background: #FFF3E0; color: #8a4a00; border-color: #F0A500; }
+
+.tip-box {
+  background: #FFFBF0;
+  border-left: 4px solid #F0A500;
+  border-radius: 0 10px 10px 0;
+  padding: 1rem 1.2rem;
+  margin: 1.2rem 0;
+  font-size: .87rem;
+  color: #5a3a00;
+}
+.tip-box strong { color: #8a5a00; }
+
+.cta-maree {
+  background: linear-gradient(135deg, #E8F4F9, #F0F8FF);
+  border: 1px solid #DDE8ED;
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  margin: 2rem 0;
+  text-align: center;
+}
+.cta-maree p { font-size: .88rem; color: #4A5568; margin: 0 0 .8rem; }
+.cta-btn {
+  display: inline-block;
+  background: #1A6B8A;
+  color: #fff;
+  padding: .6rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: .88rem;
+  text-decoration: none;
+}
+.cta-btn:hover { background: #0F4F6B; }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Aller au contenu</a>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <span class="logo-wave" aria-hidden="true">🌊</span>
+      <div class="logo-text">
+        <h1>Marées Loire-Atlantique</h1>
+        <p>Horaires · Coefficients · Hauteurs d'eau</p>
+      </div>
+    </a>
+    <nav class="header-nav" aria-label="Navigation rapide">
+      <a href="/">← Calculateur</a>
+      <a href="/guides/">Tous les guides</a>
+      <a href="/peche-a-pied/">🦪 Pêche à pied</a>
+    </nav>
+  </div>
+  <div class="wave-wrap" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="wv1" d="M0,28 C120,52 240,4 360,28 C480,52 600,4 720,28 C840,52 960,4 1080,28 C1200,52 1320,4 1440,28 C1560,52 1680,4 1800,28 C1920,52 2040,4 2160,28 C2280,52 2400,4 2520,28 C2640,52 2760,4 2880,28 L2880,60 L0,60 Z"/>
+      <path class="wv2" d="M0,38 C180,14 360,54 540,38 C720,22 900,54 1080,38 C1260,22 1440,54 1620,38 C1800,22 1980,54 2160,38 C2340,22 2520,54 2700,38 C2880,22 2880,22 2880,38 L2880,60 L0,60 Z"/>
+      <path class="wv3" d="M0,34 C90,46 200,20 320,34 C440,48 560,18 680,34 C800,50 920,16 1040,34 C1160,52 1280,14 1440,34 C1600,54 1720,12 1840,34 C1960,56 2080,10 2200,34 C2320,58 2440,8 2560,34 C2680,60 2800,6 2880,34 L2880,60 L0,60 Z"/>
+    </svg>
+  </div>
+</header>
+
+<div class="page-wrap" id="main-content">
+<article>
+
+  <nav style="font-size:.75rem;color:#718096;margin-bottom:.5rem">
+    <a href="/" style="color:#1A6B8A">Accueil</a> ›
+    <a href="/guides/" style="color:#1A6B8A">Guides</a> ›
+    <span>Spots de surf Loire-Atlantique</span>
+  </nav>
+
+  <h1>Spots de surf en Loire-Atlantique — La Govelle et les meilleures vagues du 44</h1>
+
+  <div class="hero-surf">
+    <h2>Le surf en Loire-Atlantique, c'est possible — et c'est beau</h2>
+    <p>Entre la presqu'île de Guérande et la côte de Jade, le littoral du 44 cache des spots accessibles aux débutants, avec des vagues qui donnent le sourire et des paysages à couper le souffle. La Govelle, à Batz-sur-Mer, en est le meilleur exemple.</p>
+  </div>
+
+  <nav aria-label="Sommaire" style="background:#F7FAFB;border:1px solid #DDE8ED;border-radius:10px;padding:1rem 1.2rem;margin-bottom:1.5rem">
+    <p style="font-size:.78rem;font-weight:700;color:#0F4F6B;margin:0 0 .5rem">Dans cet article :</p>
+    <a href="#govelle">La Govelle — le joyau de Batz-sur-Mer</a><br>
+    <a href="#skimboard">Skimboard à marée basse</a><br>
+    <a href="#maree-surf">Quelle marée pour surfer ?</a><br>
+    <a href="#autres-spots">Autres spots du 44</a><br>
+    <a href="#conseils">Conseils pour débuter</a>
+  </nav>
+
+  <div class="govelle-highlight" id="govelle">
+    <h3>🌊 La Govelle (Batz-sur-Mer) — le spot incontournable du 44</h3>
+    <p>Si vous ne connaissez pas encore La Govelle, préparez-vous à être surpris. Nichée au pied des falaises de gneiss noir de la Côte Sauvage, à quelques minutes du centre de Batz-sur-Mer, cette plage en fer à cheval est probablement <strong>la plus belle plage de surf de Loire-Atlantique</strong>. Encadrée par des rochers sculptés par l'Atlantique, elle offre un cadre naturel exceptionnel — et des vagues qui raviront aussi bien les débutants que les habitués.</p>
+    <p>Ce qui rend La Govelle si spéciale, c'est son <strong>exposition directe aux houles d'ouest et de nord-ouest</strong> qui arrivent de l'Atlantique sans obstacle. La houle déferle sur un fond de sable fin, ce qui donne des vagues régulières, creuses et puissantes les bons jours — mais aussi des vagues plus douces et longues par petite houle, idéales pour progresser.</p>
+    <div class="activity-strip">
+      <span class="activity-tag green">🏄 Surf débutant & intermédiaire</span>
+      <span class="activity-tag green">🛹 Skimboard</span>
+      <span class="activity-tag">🚶 Balade côtière</span>
+      <span class="activity-tag">📸 Photographie</span>
+      <span class="activity-tag orange">👀 Spot contemplatif</span>
+    </div>
+  </div>
+
+  <div class="spot-card">
+    <div class="spot-header govelle">
+      <span class="spot-title">🏄 La Govelle — Batz-sur-Mer</span>
+      <span class="spot-level">Débutants ✓ / Intermédiaires ✓</span>
+    </div>
+    <div class="spot-body">
+
+      <div class="info-grid">
+        <div class="info-item"><strong>Exposition</strong>Ouest / Nord-Ouest — houle Atlantique directe</div>
+        <div class="info-item"><strong>Fond</strong>Sable fin, quelques rochers sur les côtés</div>
+        <div class="info-item"><strong>Vagues idéales</strong>1 à 2 m — houle de secteur ouest</div>
+        <div class="info-item"><strong>Accès</strong>Parking au-dessus, descente à pied (5 min)</div>
+        <div class="info-item"><strong>Surveillance</strong>Non surveillée — baignade prudente</div>
+        <div class="info-item"><strong>Meilleure saison</strong>Automne & printemps pour la houle</div>
+      </div>
+
+      <h3>Les vagues de La Govelle</h3>
+      <p>La Govelle produit des vagues sur un large spectre de conditions. Par petite houle (0,5 à 1 m), la plage est parfaite pour les <strong>surfers débutants en herbe</strong> : les vagues déroulent doucement sur le sable, laissant le temps de se lever et de trouver l'équilibre. Par houle plus forte (1,5 à 2 m et au-delà), le spot révèle son vrai caractère — des vagues plus creuses, plus rapides, qui récompensent la technique.</p>
+      <p>La forme de la plage en crique naturelle crée des <strong>pics qui cassent de façon régulière</strong>, ce qui est précieux pour les débutants : pas besoin de ramer pendant des heures pour trouver la bonne vague. Les vagues arrivent souvent en séries bien espacées, ce qui laisse le temps de se préparer.</p>
+
+      <h3 id="maree-surf">Quelle marée pour surfer à La Govelle ?</h3>
+      <p>La marée change tout à La Govelle — et c'est là que l'expérience locale fait la différence :</p>
+
+      <div class="tide-conditions">
+        <div class="tide-box ideal">
+          <div class="tide-box-icon">⬆️</div>
+          <div class="tide-box-label">Marée montante</div>
+          <div class="tide-box-value">Idéale</div>
+          <div class="tide-box-desc">Le fond se remplit, les vagues gagnent en puissance et régularité. Le meilleur moment pour surfer.</div>
+        </div>
+        <div class="tide-box good">
+          <div class="tide-box-icon">🌊</div>
+          <div class="tide-box-label">Mi-marée</div>
+          <div class="tide-box-value">Très bon</div>
+          <div class="tide-box-desc">Fond suffisant, vagues régulières. Conditions agréables toute la session.</div>
+        </div>
+        <div class="tide-box avoid">
+          <div class="tide-box-icon">⬇️</div>
+          <div class="tide-box-label">Basse mer</div>
+          <div class="tide-box-value">Skimboard !</div>
+          <div class="tide-box-desc">Vagues moins surfables mais plan d'eau idéal pour le skimboard sur le film d'eau.</div>
+        </div>
+      </div>
+
+      <h3 id="skimboard">Skimboard à marée basse — La Govelle, terrain de jeu parfait</h3>
+      <p>C'est peut-être là que La Govelle brille le plus. À <strong>marée basse</strong>, lorsque la mer se retire et laisse derrière elle une longue étendue de sable mouillé, la plage se transforme en <strong>terrain de skimboard idéal</strong>. Le film d'eau laissé sur le sable lisse est parfait pour glisser : on lance la planche, on saute dessus et on file vers les vagues qui arrivent. À La Govelle, les petites vagues de basse mer permettent même d'exécuter les premières figures — tourner sur la vague, repartir vers le bord.</p>
+      <p>C'est un moment d'<strong>amusement pur</strong>, accessible dès 8-10 ans avec une planche de skimboard basique. L'ambiance sur la plage est légère, familiale, décontractée. Les plus jeunes découvrent le plaisir de glisser sur l'eau pour la première fois, les plus aguerris perfectionnent leur technique dans un cadre qui vaut à lui seul le déplacement.</p>
+
+      <div class="tip-box">
+        <strong>💡 Le bon timing pour le skimboard à La Govelle :</strong> Arrivez 1h30 avant la basse mer. Le sable est encore assez mouillé, les vagues assez proches. Restez jusqu'à 1h après — vous aurez le spot dans son état optimal pendant 2h30. Consultez les <a href="/marees-batz-sur-mer/">horaires de marée de Batz-sur-Mer</a> avant de partir.
+      </div>
+
+      <h3>Ce que vous verrez depuis La Govelle</h3>
+      <p>Même si vous ne surfez pas, La Govelle mérite le détour pour ce que vous voyez depuis ses rochers. À l'horizon, par temps clair, on distingue <strong>Belle-Île-en-Mer</strong> au sud-ouest et les côtes bretonnes au nord. Les falaises noires de gneiss qui encadrent la plage forment un décor sauvage et puissant, contrastant avec le blanc de l'écume et le turquoise de l'eau par beau temps. Les couchers de soleil sur La Govelle sont parmi les plus photographiés de la presqu'île de Guérande.</p>
+      <p>C'est un endroit qui touche les gens — pas besoin d'être surfeur pour ressentir quelque chose en voyant l'océan déferler sur ce sable noir et blanc. Une <strong>plage pour les yeux autant que pour le corps</strong>.</p>
+
+    </div>
+  </div>
+
+  <h2 id="autres-spots">Autres spots de surf et de glisse en Loire-Atlantique</h2>
+
+  <div class="spot-card">
+    <div class="spot-header" style="background:linear-gradient(90deg,#1A6B8A,#2A9D8F)">
+      <span class="spot-title">🏄 La Côte Sauvage du Croisic</span>
+      <span class="spot-level">Tous niveaux</span>
+    </div>
+    <div class="spot-body">
+      <p>La Côte Sauvage entre Le Croisic et Batz-sur-Mer expose plusieurs plages à la houle d'ouest. Les vagues y sont généralement moins régulières qu'à La Govelle mais peuvent être excellentes les bons jours. L'accès est parfois difficile (falaises, rochers) — prévoir des chaussures adaptées.</p>
+      <div class="activity-strip">
+        <span class="activity-tag green">🏄 Surf</span>
+        <span class="activity-tag">🤿 Snorkeling à BM</span>
+        <span class="activity-tag orange">⚠️ Non surveillé</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="spot-card">
+    <div class="spot-header" style="background:linear-gradient(90deg,#2A5C8A,#1A6B8A)">
+      <span class="spot-title">🏄 Plage de la Source — Préfailles</span>
+      <span class="spot-level">Débutants</span>
+    </div>
+    <div class="spot-body">
+      <p>La plage de la Source à Préfailles reçoit la houle de l'Atlantique dans une configuration plus abritée que La Govelle. Idéale pour les débutants et les familles — les vagues sont généralement plus douces. La plage est facilement accessible depuis le village.</p>
+      <div class="activity-strip">
+        <span class="activity-tag green">🏄 Surf débutant</span>
+        <span class="activity-tag green">🛹 Skimboard</span>
+        <span class="activity-tag">👨‍👩‍👧 Familles</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="spot-card">
+    <div class="spot-header" style="background:linear-gradient(90deg,#005a8e,#0077B6)">
+      <span class="spot-title">🏄 Saint-Brévin-les-Pins — Pointe de Mindin</span>
+      <span class="spot-level">Variable</span>
+    </div>
+    <div class="spot-body">
+      <p>La pointe de Mindin, à l'entrée de l'estuaire de la Loire, capte des vagues intéressantes lors des bonnes houles de sud-ouest. Le spot est moins prévisible car les courants de l'estuaire peuvent perturber la qualité des vagues. À éviter par fort courant de marée.</p>
+      <div class="activity-strip">
+        <span class="activity-tag">🏄 Surf occasionnel</span>
+        <span class="activity-tag orange">⚠️ Courants estuar.</span>
+      </div>
+    </div>
+  </div>
+
+  <h2 id="conseils">Conseils pour débuter le surf en Loire-Atlantique</h2>
+
+  <p>Le surf en Loire-Atlantique est accessible, mais quelques règles permettent de débuter dans les meilleures conditions :</p>
+
+  <ul style="font-size:.88rem;color:#4A5568;line-height:1.9">
+    <li><strong>Commencez avec un cours encadré :</strong> les écoles de surf de La Baule, du Croisic et de Pornichet proposent des initiations même pour les adultes. Deux heures suffisent pour tenir debout une première fois.</li>
+    <li><strong>Choisissez une grande planche au début :</strong> une "mousse" (planche en foam souple) de 8 à 9 pieds est beaucoup plus facile à contrôler qu'une shortboard. Plusieurs surf shops du 44 proposent la location.</li>
+    <li><strong>Consultez les marées avant de partir :</strong> la <a href="/marees-batz-sur-mer/">hauteur d'eau à Batz-sur-Mer</a> détermine la qualité des vagues à La Govelle. Marée montante = session surf. Basse mer = session skimboard.</li>
+    <li><strong>Vérifiez la houle :</strong> les applications Windguru, Surfline ou Magicseaweed donnent les prévisions de houle à 7 jours. Une houle de 1 à 1,5 m de période 10-12 secondes est idéale pour débuter à La Govelle.</li>
+    <li><strong>Jamais seul sur une plage non surveillée :</strong> La Govelle n'est pas surveillée. Allez-y à plusieurs, restez visibles des autres baigneurs.</li>
+    <li><strong>Respectez les règles de priorité :</strong> dans l'eau, le surfeur debout sur la vague a la priorité. Ne ramez pas à travers une vague si quelqu'un est déjà debout dessus.</li>
+  </ul>
+
+  <div class="tip-box">
+    <strong>🌬️ Vent et surf :</strong> un vent de terre (<em>offshore</em> — soufflant de l'est) creuse les vagues et améliore leur qualité. Un vent de mer (<em>onshore</em>) les aplatit et les rend plus chaotiques. À La Govelle, le vent d'est est votre ami. Consultez la météo marine avant de partir.
+  </div>
+
+  <div class="cta-maree">
+    <p>Avant chaque session à La Govelle, vérifiez l'heure de la basse mer pour planifier votre créneau skimboard — et les prochaines heures pour la fenêtre surf.</p>
+    <a class="cta-btn" href="/marees-batz-sur-mer/">📊 Voir les marées de Batz-sur-Mer</a>
+  </div>
+
+  <nav aria-label="Pages associées" style="margin-top:1.5rem">
+    <ul>
+      <li><a href="/marees-batz-sur-mer/">Horaires de marée — Batz-sur-Mer</a></li>
+      <li><a href="/marees-le-croisic/">Horaires de marée — Le Croisic</a></li>
+      <li><a href="/guides/calendrier-grandes-marees/">Calendrier grandes marées 2026</a></li>
+      <li><a href="/peche-a-pied/">Pêche à pied en Loire-Atlantique</a></li>
+      <li><a href="/guides/">Tous les guides navigation</a></li>
+    </ul>
+  </nav>
+
+</article>
+</div>
+
+<footer>
+  <p><strong>Marées Loire-Atlantique</strong> — Calcul harmonique (méthode SHOM, J2000.0)</p>
+  <p style="margin-top:.5rem">
+    <a href="/">Accueil</a> ·
+    <a href="/guides/">Guides</a> ·
+    <a href="/a-propos/">À propos</a> ·
+    <a href="/contact/">Contact</a> ·
+    <a href="/mentions-legales/">Mentions légales</a> ·
+    <a href="/politique-de-confidentialite/">Confidentialité</a>
+  </p>
+</footer>
+
+</body>
+</html>
