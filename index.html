@@ -272,7 +272,7 @@
 
     <!-- Bannière photo du port -->
     <div class="port-banner" id="portBanner">
-      <img class="port-banner-img" id="portBannerImg" src="" alt="" loading="lazy"/>
+      <img class="port-banner-img" id="portBannerImg" src="" alt=""/>
       <div class="port-banner-overlay">
         <div class="port-banner-title" id="portBannerTitle"></div>
         <div class="port-banner-sub" id="portBannerSub">Loire-Atlantique · France</div>
@@ -476,13 +476,11 @@ function updatePortBanner(portKey){
   const src = PORT_IMAGES[portKey];
   if(!img) return;
   title.textContent = portName;
-  if(!src){ img.style.display='none'; return; }
-  img.style.display='block';
-  img.style.opacity='0';
-  img.onload = ()=>{ img.style.transition='opacity .5s ease'; img.style.opacity='1'; };
-  img.onerror = ()=>{ img.style.display='none'; };
-  img.alt = portName;
-  img.src = src;
+  if(!src){ img.style.opacity='0'; return; }
+  const newImg = new Image();
+  newImg.onload = ()=>{ img.src = src; img.style.opacity='1'; };
+  newImg.onerror = ()=>{ img.style.opacity='0'; };
+  newImg.src = src;
 }
 
 const METEO_COORDS = {
