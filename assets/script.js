@@ -161,6 +161,7 @@ const PORTS = {
   // Corrections appliquées : G_M2+22.9°, G_S2+29.5°, A_M2×0.626, Z0+0.161m
   "SAINT-NAZAIRE":{
     name:"Saint-Nazaire", region:"Loire-Atlantique (44)", Z0:3.585, M2_A:1.8147,
+    lat:47.2736, lon:-2.2136,
     info:{ "Lat/Lon":"47°16'N 2°12'O", "Marnage VE":"~5.2 m", "Marnage ME":"~2.1 m", "Niveau moyen":"3.31 m" },
     cst:[
       {n:"M2",  A:1.8147, G:104.66}, {n:"S2",  A:0.7627, G:119.49}, {n:"N2",  A:0.3211, G:110.42},
@@ -173,6 +174,7 @@ const PORTS = {
   },
   "LE-CROISIC":{
     name:"Le Croisic", region:"Loire-Atlantique (44)", Z0:3.191, M2_A:1.502,
+    lat:47.2833, lon:-2.5167,
     info:{ "Lat/Lon":"47°17'N 2°31'O", "Marnage VE":"~5.0 m", "Marnage ME":"~2.0 m", "Niveau moyen":"3.03 m" },
     cst:[
       {n:"M2",A:1.502,G:90.0},{n:"S2",A:0.638,G:124.8},{n:"N2",A:0.500,G:82.8},{n:"K2",A:0.228,G:130.6},
@@ -182,6 +184,7 @@ const PORTS = {
   },
   "LA-BAULE":{
     name:"La Baule-Escoublac", region:"Loire-Atlantique (44)", Z0:3.171, M2_A:1.509,
+    lat:47.2833, lon:-2.4000,
     info:{ "Lat/Lon":"47°17'N 2°24'O", "Marnage VE":"~5.0 m", "Marnage ME":"~1.9 m", "Niveau moyen":"3.01 m" },
     cst:[
       {n:"M2",A:1.509,G:91.0},{n:"S2",A:0.642,G:125.8},{n:"N2",A:0.503,G:83.8},{n:"K2",A:0.230,G:131.6},
@@ -191,6 +194,7 @@ const PORTS = {
   },
   "BATZ":{
     name:"Batz-sur-Mer", region:"Loire-Atlantique (44)", Z0:3.181, M2_A:1.506,
+    lat:47.2833, lon:-2.4833,
     info:{ "Lat/Lon":"47°17'N 2°29'O", "Marnage VE":"~5.0 m", "Marnage ME":"~1.9 m", "Niveau moyen":"3.02 m" },
     cst:[
       {n:"M2",A:1.506,G:90.5},{n:"S2",A:0.640,G:125.3},{n:"N2",A:0.501,G:83.3},{n:"K2",A:0.229,G:131.1},
@@ -200,6 +204,7 @@ const PORTS = {
   },
   "LE-POULIGUEN":{
     name:"Le Pouliguen", region:"Loire-Atlantique (44)", Z0:3.171, M2_A:1.507,
+    lat:47.2667, lon:-2.4167,
     info:{ "Lat/Lon":"47°16'N 2°25'O", "Marnage VE":"~5.0 m", "Marnage ME":"~1.9 m", "Niveau moyen":"3.01 m" },
     cst:[
       {n:"M2",A:1.507,G:90.8},{n:"S2",A:0.641,G:125.6},{n:"N2",A:0.502,G:83.6},{n:"K2",A:0.229,G:131.4},
@@ -209,6 +214,7 @@ const PORTS = {
   },
   "LA-TURBALLE":{
     name:"La Turballe", region:"Loire-Atlantique (44)", Z0:3.201, M2_A:1.515,
+    lat:47.3500, lon:-2.5167,
     info:{ "Lat/Lon":"47°21'N 2°31'O", "Marnage VE":"~5.0 m", "Marnage ME":"~1.9 m", "Niveau moyen":"3.04 m" },
     cst:[
       {n:"M2",A:1.515,G:91.1},{n:"S2",A:0.643,G:126.5},{n:"N2",A:0.505,G:83.8},{n:"K2",A:0.230,G:131.6},
@@ -218,6 +224,7 @@ const PORTS = {
   },
   "PIRIAC":{
     name:"Piriac-sur-Mer", region:"Loire-Atlantique (44)", Z0:3.201, M2_A:1.514,
+    lat:47.3833, lon:-2.5500,
     info:{ "Lat/Lon":"47°23'N 2°33'O", "Marnage VE":"~5.0 m", "Marnage ME":"~1.9 m", "Niveau moyen":"3.04 m" },
     cst:[
       {n:"M2",A:1.514,G:91.0},{n:"S2",A:0.642,G:126.4},{n:"N2",A:0.504,G:83.8},{n:"K2",A:0.230,G:131.5},
@@ -227,6 +234,7 @@ const PORTS = {
   },
   "PORNIC":{
     name:"Pornic", region:"Loire-Atlantique (44)", Z0:3.111, M2_A:1.471,
+    lat:47.1167, lon:-2.1000,
     info:{ "Lat/Lon":"47°07'N 2°06'O", "Marnage VE":"~4.9 m", "Marnage ME":"~1.9 m", "Niveau moyen":"2.95 m" },
     cst:[
       {n:"M2",A:1.471,G:91.0},{n:"S2",A:0.622,G:126.8},{n:"N2",A:0.490,G:83.8},{n:"K2",A:0.222,G:132.6},
@@ -236,6 +244,7 @@ const PORTS = {
   },
   "PREFAILLES":{
     name:"Préfailles", region:"Loire-Atlantique (44)", Z0:3.131, M2_A:1.481,
+    lat:47.1333, lon:-2.2167,
     info:{ "Lat/Lon":"47°08'N 2°13'O", "Marnage VE":"~4.9 m", "Marnage ME":"~1.9 m", "Niveau moyen":"2.97 m" },
     cst:[
       {n:"M2",A:1.481,G:91.0},{n:"S2",A:0.627,G:126.8},{n:"N2",A:0.493,G:83.8},{n:"K2",A:0.224,G:132.6},
@@ -245,6 +254,7 @@ const PORTS = {
   },
   "SAINT-BREVIN":{
     name:"Saint-Brevin-les-Pins", region:"Loire-Atlantique (44)", Z0:3.261, M2_A:1.546,
+    lat:47.2333, lon:-2.1667,
     info:{ "Lat/Lon":"47°14'N 2°10'O", "Marnage VE":"~5.1 m", "Marnage ME":"~2.0 m", "Niveau moyen":"3.10 m" },
     cst:[
       {n:"M2",A:1.546,G:92.8},{n:"S2",A:0.657,G:128.3},{n:"N2",A:0.515,G:85.4},{n:"K2",A:0.234,G:133.6},
@@ -254,6 +264,7 @@ const PORTS = {
   },
   "PAIMBOEUF":{
     name:"Paimboeuf (Estuaire Loire)", region:"Loire-Atlantique (44)", Z0:3.361, M2_A:1.584,
+    lat:47.2833, lon:-2.0167,
     info:{ "Lat/Lon":"47°17'N 2°01'O", "Marnage VE":"~5.3 m", "Marnage ME":"~2.1 m", "Estuaire Loire":"-" },
     cst:[
       // Estuaire : M4 et M6 amplifiés par les fonds
@@ -265,6 +276,7 @@ const PORTS = {
   },
   "SAINT-GILDAS":{
     name:"Saint-Gildas (Pointe)", region:"Loire-Atlantique (44)", Z0:3.141, M2_A:1.484,
+    lat:47.0833, lon:-2.2333,
     info:{ "Lat/Lon":"47°05'N 2°14'O", "Marnage VE":"~4.9 m", "Marnage ME":"~1.9 m", "Niveau moyen":"2.98 m" },
     cst:[
       {n:"M2",A:1.484,G:90.5},{n:"S2",A:0.629,G:125.8},{n:"N2",A:0.493,G:83.3},{n:"K2",A:0.225,G:131.6},
