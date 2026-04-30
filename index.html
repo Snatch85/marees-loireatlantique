@@ -270,9 +270,9 @@
       <button id="alertBtn" class="refresh-btn alert-btn" onclick="activerAlertes()">🔔 Alertes marées</button>
     </div>
 
-    <!-- Bannière photo du port -->
+    <!-- Bannière du port -->
     <div class="port-banner" id="portBanner">
-      <img class="port-banner-img" id="portBannerImg" src="" alt=""/>
+      <div class="port-banner-icon" id="portBannerIcon">🌊</div>
       <div class="port-banner-overlay">
         <div class="port-banner-title" id="portBannerTitle"></div>
         <div class="port-banner-sub" id="portBannerSub">Loire-Atlantique · France</div>
@@ -452,34 +452,39 @@
 <script src="/assets/script.js" defer></script>
 
 <script>
-const PORT_IMAGES = {
-  "SAINT-NAZAIRE":"https://loremflickr.com/800/200/saint-nazaire,port,france/all",
-  "LE-CROISIC":"https://loremflickr.com/800/200/croisic,harbor,brittany/all",
-  "LA-BAULE":"https://loremflickr.com/800/200/baule,beach,atlantic/all",
-  "BATZ-SUR-MER":"https://loremflickr.com/800/200/batz,coast,sea/all",
-  "LE-POULIGUEN":"https://loremflickr.com/800/200/pouliguen,port,sea/all",
-  "LA-TURBALLE":"https://loremflickr.com/800/200/turballe,fishing,port/all",
-  "PIRIAC-SUR-MER":"https://loremflickr.com/800/200/piriac,village,coast/all",
-  "PORNIC":"https://loremflickr.com/800/200/pornic,castle,harbor/all",
-  "PREFAILLES":"https://loremflickr.com/800/200/prefailles,cliff,atlantic/all",
-  "SAINT-BREVIN-LES-PINS":"https://loremflickr.com/800/200/brevin,beach,estuary/all",
-  "PAIMBOEUF":"https://loremflickr.com/800/200/paimboeuf,loire,estuary/all",
-  "NOIRMOUTIER":"https://loremflickr.com/800/200/noirmoutier,island,france/all",
-  "PASSAGE-DU-GOIS":"https://loremflickr.com/800/200/gois,causeway,tide/all",
-  "SAINT-GILDAS":"https://loremflickr.com/800/200/saint-gildas,coast,sea/all"
+const PORT_GRADIENTS = {
+  "SAINT-NAZAIRE":   {g:"linear-gradient(135deg,#0a2a4a,#1a6b8a,#2a9d8f)", icon:"🏭", sub:"Estuaire de la Loire"},
+  "LE-CROISIC":      {g:"linear-gradient(135deg,#0d3b6e,#1565a0,#4db6ac)", icon:"⚓", sub:"Presqu'île guérandaise"},
+  "LA-BAULE":        {g:"linear-gradient(135deg,#1a5276,#2980b9,#76d7c4)", icon:"🏖️", sub:"Grande plage de l'Atlantique"},
+  "BATZ-SUR-MER":    {g:"linear-gradient(135deg,#0e4d3e,#1a7a5e,#48c9b0)", icon:"🌊", sub:"Côte sauvage"},
+  "LE-POULIGUEN":    {g:"linear-gradient(135deg,#154360,#1a6b8a,#5dade2)", icon:"⛵", sub:"Port de plaisance"},
+  "LA-TURBALLE":     {g:"linear-gradient(135deg,#1b2631,#2e4057,#4a7fa5)", icon:"🐟", sub:"Premier port de pêche du 44"},
+  "PIRIAC-SUR-MER":  {g:"linear-gradient(135deg,#0b3d52,#17607e,#3d9bc1)", icon:"🏘️", sub:"Village pittoresque"},
+  "PORNIC":          {g:"linear-gradient(135deg,#1a1a5e,#2e4482,#5b8dd9)", icon:"🏰", sub:"Château et port"},
+  "PREFAILLES":      {g:"linear-gradient(135deg,#0a4f3e,#0e7a5f,#27ae60)", icon:"🌿", sub:"Pointe Saint-Gildas"},
+  "SAINT-BREVIN-LES-PINS":{g:"linear-gradient(135deg,#1a3a5c,#2471a3,#85c1e9)", icon:"🌉", sub:"Estuaire de la Loire"},
+  "PAIMBOEUF":       {g:"linear-gradient(135deg,#3d2b1f,#7d5a3c,#c4986a)", icon:"🚢", sub:"Rive sud de la Loire"},
+  "NOIRMOUTIER":     {g:"linear-gradient(135deg,#0d4f6e,#1a8a9a,#45d4cc)", icon:"🏝️", sub:"Île de Noirmoutier"},
+  "PASSAGE-DU-GOIS": {g:"linear-gradient(135deg,#1c3a5e,#245e8a,#3a9fd6)", icon:"🛣️", sub:"Route submersible"},
+  "SAINT-GILDAS":    {g:"linear-gradient(135deg,#0c3547,#1a6575,#2eaab0)", icon:"⛪", sub:"Pointe Saint-Gildas"}
 };
 
+function getPortGradient(portKey){
+  return PORT_GRADIENTS[portKey] || {g:"linear-gradient(135deg,#0a3a5c,#1a6b8a,#2a9d8f)", icon:"🌊", sub:"Loire-Atlantique"};
+}
+
 function updatePortBanner(portKey){
-  const img = document.getElementById('portBannerImg');
-  const title = document.getElementById('portBannerTitle');
-  const sel = document.getElementById('portSelect');
+  const banner = document.getElementById('portBanner');
+  const icon   = document.getElementById('portBannerIcon');
+  const title  = document.getElementById('portBannerTitle');
+  const sub    = document.getElementById('portBannerSub');
+  const sel    = document.getElementById('portSelect');
   const portName = sel ? sel.options[sel.selectedIndex].text : portKey;
-  const src = PORT_IMAGES[portKey];
-  if(title) title.textContent = portName;
-  if(img && src){
-    img.src = src;
-    img.style.opacity = '1';
-  }
+  const data = getPortGradient(portKey);
+  if(banner) banner.style.background = data.g;
+  if(icon)   icon.textContent = data.icon;
+  if(title)  title.textContent = portName;
+  if(sub)    sub.textContent   = data.sub;
 }
 
 const METEO_COORDS = {
