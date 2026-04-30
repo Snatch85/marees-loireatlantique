@@ -76,25 +76,39 @@ a:focus-visible{outline:3px solid var(--o500);outline-offset:3px;border-radius:4
 ══════════════════════════════════════════════ */
 header{
   position:relative;
-  background:linear-gradient(150deg,var(--o900) 0%,var(--o700) 55%,var(--o500) 100%);
+  background:linear-gradient(150deg,#0a2a4a 0%,#0d3b6e 35%,#0a4a7c 65%,#1a6b8a 100%);
+  background-size:200% 200%;
+  animation:oceanShift 12s ease-in-out infinite;
   color:#fff;
   overflow:hidden;
   padding-bottom:56px;
 }
-/* cercles déco */
+@keyframes oceanShift{
+  0%,100%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+}
+/* reflets lumineux flottants */
 header::before{
   content:'';position:absolute;
-  top:-60px;right:-60px;
-  width:220px;height:220px;
-  background:rgba(255,255,255,.05);
+  top:-40px;right:-20px;
+  width:180px;height:180px;
+  background:radial-gradient(circle,rgba(255,255,255,.12) 0%,transparent 70%);
   border-radius:50%;
+  animation:shimmer 8s ease-in-out infinite;
 }
 header::after{
   content:'';position:absolute;
-  bottom:40px;left:-40px;
-  width:160px;height:160px;
-  background:rgba(255,255,255,.04);
+  bottom:60px;left:-30px;
+  width:140px;height:140px;
+  background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);
   border-radius:50%;
+  animation:shimmer 8s ease-in-out infinite reverse;
+}
+@keyframes shimmer{
+  0%,100%{transform:translate(0,0) scale(1);opacity:.6}
+  25%{transform:translate(20px,-15px) scale(1.1);opacity:.8}
+  50%{transform:translate(-10px,10px) scale(.95);opacity:.5}
+  75%{transform:translate(15px,5px) scale(1.05);opacity:.7}
 }
 .header-inner{
   position:relative;z-index:2;
@@ -105,17 +119,28 @@ header::after{
 }
 .logo{display:flex;align-items:center;gap:.75rem}
 .logo-wave{
-  font-size:2.1rem;
+  font-size:2.5rem;
   filter:drop-shadow(0 3px 6px rgba(0,0,0,.25));
-  animation:bob 3s ease-in-out infinite;
+  animation:bob 4s ease-in-out infinite,spinRock 4s ease-in-out infinite;
 }
 @keyframes bob{
   0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-4px)}
+  50%{transform:translateY(-5px)}
+}
+@keyframes spinRock{
+  0%,100%{transform:rotate(0deg)}
+  25%{transform:rotate(8deg)}
+  75%{transform:rotate(-8deg)}
 }
 .logo-text h1{
   font-size:1.15rem;font-weight:800;
   letter-spacing:-.025em;line-height:1.2;
+  text-shadow:0 0 20px rgba(42,157,143,.4);
+  animation:titleGlow 4s ease-in-out infinite;
+}
+@keyframes titleGlow{
+  0%,100%{text-shadow:0 0 20px rgba(42,157,143,.4)}
+  50%{text-shadow:0 0 30px rgba(42,157,143,.6),0 0 10px rgba(42,157,143,.3)}
 }
 .logo-text p{font-size:.72rem;opacity:.78;font-weight:400;letter-spacing:.04em;margin-top:.1rem}
 .header-nav{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
@@ -125,39 +150,92 @@ header::after{
   padding:.4rem .9rem;border-radius:20px;
   border:1.5px solid rgba(255,255,255,.22);
   transition:all .2s;white-space:nowrap;
+  position:relative;overflow:hidden;
 }
+.header-nav a::before{
+  content:'';position:absolute;
+  top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+  transition:left .4s;
+}
+.header-nav a:hover::before{left:100%}
 .header-nav a:hover{
   background:rgba(255,255,255,.2);color:#fff;
   border-color:rgba(255,255,255,.45);transform:translateY(-1px);
+}
+/* bande de stats */
+.header-stats{
+  position:relative;z-index:2;
+  max-width:1100px;margin:0 auto;
+  padding:0 1.5rem 1rem;
+  display:flex;gap:2rem;flex-wrap:wrap;
+  font-size:.72rem;color:rgba(255,255,255,.7);
+  font-weight:500;
+  animation:fadeInUp .8s ease-out .2s both;
+}
+.header-stats span{
+  display:flex;align-items:center;gap:.5rem;
+}
+.header-stats span::after{
+  content:'·';opacity:.5;margin-left:.3rem;
+}
+.header-stats span:last-child::after{content:none}
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(15px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
 /* ── Vagues SVG animées (3 calques) ── */
 .wave-wrap{
   position:absolute;bottom:-1px;left:0;right:0;
-  line-height:0;z-index:2;overflow:hidden;height:60px;
+  line-height:0;z-index:2;overflow:hidden;height:80px;
 }
-.wave-wrap svg{position:absolute;bottom:0;width:200%;height:60px}
+.wave-wrap svg{position:absolute;bottom:0;width:200%;height:80px}
 
 @keyframes waveSlide{
   from{transform:translateX(0)}
   to{transform:translateX(-50%)}
 }
-/* vague 1 — fond plein, rapide */
+/* vague 1 — fond plein, rapide, plus opaque */
 .wv1{
   animation:waveSlide 9s linear infinite;
   fill:var(--bg);
+  opacity:.95;
 }
 /* vague 2 — semi-transparente, lente, sens inverse */
 .wv2{
   animation:waveSlide 13s linear infinite reverse;
-  fill:rgba(238,246,251,.6);
-  opacity:.7;
+  fill:rgba(238,246,251,.7);
+  opacity:.8;
 }
 /* vague 3 — très légère, rythme décalé */
 .wv3{
   animation:waveSlide 17s linear infinite;
-  fill:rgba(0,119,182,.08);
-  opacity:.5;
+  fill:rgba(0,119,182,.1);
+  opacity:.6;
+}
+/* bulles sous-marines */
+.bubbles-wrap{
+  position:absolute;bottom:60px;left:0;right:0;
+  height:80px;overflow:hidden;pointer-events:none;
+  z-index:1;
+}
+.bubble{
+  fill:rgba(255,255,255,.15);
+  animation:bubbleRise 6s ease-in infinite;
+}
+.bubble:nth-child(1){cx:10%;r:4;animation-duration:7s;animation-delay:0s}
+.bubble:nth-child(2){cx:20%;r:3;animation-duration:9s;animation-delay:1.5s}
+.bubble:nth-child(3){cx:35%;r:5;animation-duration:8s;animation-delay:3s}
+.bubble:nth-child(4){cx:50%;r:3.5;animation-duration:10s;animation-delay:0.5s}
+.bubble:nth-child(5){cx:65%;r:4.5;animation-duration:6s;animation-delay:2s}
+.bubble:nth-child(6){cx:80%;r:3;animation-duration:11s;animation-delay:4s}
+.bubble:nth-child(7){cx:90%;r:4;animation-duration:8s;animation-delay:1s}
+@keyframes bubbleRise{
+  0%{transform:translateY(0);opacity:0}
+  10%{opacity:.8}
+  90%{opacity:.6}
+  100%{transform:translateY(-80px);opacity:0}
 }
 
 
