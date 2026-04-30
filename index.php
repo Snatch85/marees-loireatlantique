@@ -486,6 +486,89 @@ body{
     color:var(--text-secondary);
 }
 
+/* WIDGET MÉTÉO MARINE */
+.marine-weather-widget{
+    background:var(--card-bg);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border-radius:24px;
+    border:1px solid var(--card-border);
+    padding:25px 30px;
+    margin-top:20px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.3);
+    animation:cardFadeIn 0.6s ease-out forwards;
+}
+.marine-weather-title{
+    font-size:1.1rem;
+    font-weight:600;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--text-primary);
+}
+.marine-weather-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:15px;
+}
+.marine-weather-item{
+    background:linear-gradient(135deg,rgba(0,102,204,0.15),rgba(0,153,255,0.08));
+    border-radius:16px;
+    padding:15px;
+    border:1px solid rgba(0,153,255,0.2);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    transition:all 0.3s ease;
+}
+.marine-weather-item:hover{
+    transform:translateY(-3px);
+    box-shadow:0 6px 20px rgba(0,153,255,0.25);
+    border-color:var(--accent);
+}
+.marine-weather-icon{
+    font-size:2rem;
+}
+.marine-weather-value{
+    font-size:1.1rem;
+    font-weight:700;
+    color:var(--text-primary);
+    text-align:center;
+}
+.marine-weather-label{
+    font-size:0.8rem;
+    color:var(--text-secondary);
+    text-align:center;
+}
+.wind-arrow{
+    display:inline-block;
+    transition:transform 0.5s ease;
+    font-size:1.2rem;
+}
+.wind-arrow.rotating{
+    animation:windRotate 2s ease-in-out infinite;
+}
+@keyframes windRotate{
+    0%,100%{transform:rotate(-10deg)}
+    50%{transform:rotate(10deg)}
+}
+.weather-loading{
+    text-align:center;
+    padding:20px;
+    color:var(--text-secondary);
+}
+.weather-error{
+    background:rgba(239,68,68,0.2);
+    border:1px solid rgba(239,68,68,0.4);
+    border-radius:12px;
+    padding:15px;
+    color:#fca5a5;
+    font-size:0.9rem;
+    text-align:center;
+}
+
 /* RESPONSIVE */
 @media(max-width:768px){
     .ocean-header{height:280px}
@@ -518,6 +601,14 @@ body{
                 <?=esc($p['icon'])?> <?=esc($p['name'])?>
             </button>
             <?php endforeach;?>
+        </div>
+        
+        <!-- Widget Météo Marine -->
+        <div class="marine-weather-widget" id="marineWeatherWidget">
+            <h3 class="marine-weather-title">🌊 Météo Marine - <?=esc($port['name'])?></h3>
+            <div class="marine-weather-grid" id="marineWeatherContent">
+                <div class="weather-loading">Chargement des données météo...</div>
+            </div>
         </div>
     </div>
     <div class="waves-container">
@@ -586,6 +677,112 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 document.querySelectorAll('.card').forEach(card => observer.observe(card));
+
+// Widget Météo Marine avec API Open-Meteo
+const PORT_COORDS = <?=json_encode(array_map(fn($p) => ['lat' => $p['lat'], 'lon' => $p['lon']], $PORTS))?>;
+
+async function fetchMarineWeather(lat, lon) {
+    try {
+        const url = `https://marine-api.open-meteo.com/v1/marine?latitude=${lat}&longitude=${lon}&current=temperature_2m,water_temperature,wave_height,wind_speed_10m,wind_direction_10m,weather_code&hourly=wind_direction_10m`;
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Erreur API');
+        return await response.json();
+    } catch (error) {
+        console.error('Erreur récupération météo:', error);
+        return null;
+    }
+}
+
+function getWindDirectionArrow(degrees) {
+    const directions = [
+        { min: 337.5, max: 360, label: 'N', arrow: '↑' },
+        { min: 0, max: 22.5, label: 'N', arrow: '↑' },
+        { min: 22.5, max: 67.5, label: 'NE', arrow: '↗' },
+        { min: 67.5, max: 112.5, label: 'E', arrow: '→' },
+        { min: 112.5, max: 157.5, label: 'SE', arrow: '↘' },
+        { min: 157.5, max: 202.5, label: 'S', arrow: '↓' },
+        { min: 202.5, max: 247.5, label: 'SO', arrow: '↙' },
+        { min: 247.5, max: 292.5, label: 'O', arrow: '←' },
+        { min: 292.5, max: 337.5, label: 'NO', arrow: '↖' }
+    ];
+    for (const dir of directions) {
+        if (degrees >= dir.min && degrees < dir.max) {
+            return dir;
+        }
+    }
+    return { label: 'N', arrow: '↑' };
+}
+
+function getWeatherIcon(code) {
+    const icons = {
+        0: { icon: '☀️', text: 'Ensoleillé' },
+        1: { icon: '🌤️', text: 'Peu nuageux' },
+        2: { icon: '⛅', text: 'Nuageux' },
+        3: { icon: '☁️', text: 'Couvert' },
+        45: { icon: '🌫️', text: 'Brouillard' },
+        48: { icon: '🌫️', text: 'Brouillard givrant' },
+        51: { icon: '🌦️', text: 'Bruine légère' },
+        53: { icon: '🌦️', text: 'Bruine modérée' },
+        55: { icon: '🌧️', text: 'Bruine dense' },
+        61: { icon: '🌧️', text: 'Pluie faible' },
+        63: { icon: '🌧️', text: 'Pluie modérée' },
+        65: { icon: '🌧️', text: 'Pluie forte' },
+        80: { icon: '🌦️', text: 'Averses légères' },
+        81: { icon: '🌧️', text: 'Averses modérées' },
+        82: { icon: '⛈️', text: 'Averses violentes' },
+        95: { icon: '⛈️', text: 'Orage' },
+        96: { icon: '⛈️', text: 'Orage avec grêle' }
+    };
+    return icons[code] || { icon: '🌡️', text: 'Variable' };
+}
+
+function renderMarineWeather(data) {
+    const container = document.getElementById('marineWeatherContent');
+    if (!data || !data.current) {
+        container.innerHTML = '<div class="weather-error">Données météo non disponibles</div>';
+        return;
+    }
+    
+    const current = data.current;
+    const windDir = getWindDirectionArrow(current.wind_direction_10m);
+    const weather = getWeatherIcon(current.weather_code);
+    const windSpeedKmh = Math.round(current.wind_speed_10m * 3.6); // m/s to km/h
+    
+    container.innerHTML = `
+        <div class="marine-weather-item">
+            <span class="marine-weather-icon">🌡️</span>
+            <div class="marine-weather-value">${Math.round(current.temperature_2m)}°C</div>
+            <div class="marine-weather-label">Air</div>
+        </div>
+        <div class="marine-weather-item">
+            <span class="marine-weather-icon">💧</span>
+            <div class="marine-weather-value">${Math.round(current.water_temperature)}°C</div>
+            <div class="marine-weather-label">Eau</div>
+        </div>
+        <div class="marine-weather-item">
+            <span class="marine-weather-icon">💨</span>
+            <div class="marine-weather-value">${windSpeedKmh} km/h ${windDir.label} <span class="wind-arrow rotating">${windDir.arrow}</span></div>
+            <div class="marine-weather-label">Vent</div>
+        </div>
+        <div class="marine-weather-item">
+            <span class="marine-weather-icon">🌊</span>
+            <div class="marine-weather-value">${current.wave_height.toFixed(1)}m</div>
+            <div class="marine-weather-label">Vagues</div>
+        </div>
+        <div class="marine-weather-item">
+            <span class="marine-weather-icon">${weather.icon}</span>
+            <div class="marine-weather-value">${weather.text}</div>
+            <div class="marine-weather-label">Météo</div>
+        </div>
+    `;
+}
+
+// Charger la météo au chargement de la page
+const currentPortKey = '<?=$port_key?>';
+const coords = PORT_COORDS[currentPortKey];
+if (coords) {
+    fetchMarineWeather(coords.lat, coords.lon).then(renderMarineWeather);
+}
 </script>
 </body>
 </html>
