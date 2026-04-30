@@ -474,14 +474,15 @@ function updatePortBanner(portKey){
   const sel = document.getElementById('portSelect');
   const portName = sel?.options[sel?.selectedIndex]?.text || portKey;
   const src = PORT_IMAGES[portKey];
-  if(!src || !img) return;
-  img.classList.add('fade');
-  setTimeout(()=>{
-    img.src = src;
-    img.alt = portName;
-    title.textContent = portName;
-    img.onload = ()=>img.classList.remove('fade');
-  }, 300);
+  if(!img) return;
+  title.textContent = portName;
+  if(!src){ img.style.display='none'; return; }
+  img.style.display='block';
+  img.style.opacity='0';
+  img.onload = ()=>{ img.style.transition='opacity .5s ease'; img.style.opacity='1'; };
+  img.onerror = ()=>{ img.style.display='none'; };
+  img.alt = portName;
+  img.src = src;
 }
 
 const METEO_COORDS = {
