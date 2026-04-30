@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>À propos — Marées Loire-Atlantique</title>
+<meta name="description" content="Qui sommes-nous ? Découvrez l'histoire et la méthode de calcul derrière Marées Loire-Atlantique, le site gratuit d'horaires de marées pour le 44."/>
+<link rel="canonical" href="https://marees-loireatlantique.fr/a-propos/"/>
+<meta name="robots" content="index, follow"/>
+<link rel="manifest" href="/manifest.json"/>
+<meta name="theme-color" content="#1A6B8A"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#1A6B8A;--blue-d:#0F4F6B;--blue-l:#E8F4F9;
+  --sea:#2A9D8F;
+  --text:#1A2332;--text-m:#4A5568;--text-l:#718096;
+  --bg:#F7FAFB;--white:#FFFFFF;--border:#DDE8ED;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7}
+a{color:var(--blue)}
+header{background:linear-gradient(135deg,var(--blue-d) 0%,var(--blue) 60%,var(--sea) 100%);color:#fff;padding:0 1.5rem}
+.header-inner{max-width:900px;margin:0 auto;padding:1rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:#fff}
+.logo-text h1{font-size:1.1rem;font-weight:700}
+.logo-text p{font-size:.72rem;opacity:.75}
+.header-nav a{background:rgba(255,255,255,.12);color:#fff;padding:.4rem .9rem;border-radius:20px;font-size:.75rem;font-weight:500;text-decoration:none}
+.container{max-width:900px;margin:2rem auto;padding:0 1.5rem 3rem}
+.breadcrumb{font-size:.75rem;color:var(--text-l);margin-bottom:1.5rem}
+.breadcrumb a{color:var(--blue)}
+.card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:2rem;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.hero-card{background:linear-gradient(135deg,var(--blue-d),var(--blue));color:#fff;border:none}
+.hero-card h2{color:#fff;border-bottom-color:rgba(255,255,255,.2)}
+.hero-card p{color:rgba(255,255,255,.85)}
+h2{font-size:1.1rem;font-weight:800;color:var(--blue-d);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--blue-l)}
+h3{font-size:.92rem;font-weight:700;color:var(--blue);margin:1.2rem 0 .5rem}
+p{font-size:.85rem;color:var(--text-m);margin-bottom:.7rem}
+ul{font-size:.85rem;color:var(--text-m);padding-left:1.3rem;margin-bottom:.7rem}
+li{margin-bottom:.4rem}
+.highlight{background:var(--blue-l);border-left:3px solid var(--blue);padding:.8rem 1rem;border-radius:0 6px 6px 0;margin:.8rem 0;font-size:.82rem;color:var(--blue-d)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin:1rem 0}
+.stat{background:var(--blue-l);border-radius:10px;padding:1rem;text-align:center}
+.stat .val{font-size:1.6rem;font-weight:800;color:var(--blue-d)}
+.stat .lbl{font-size:.72rem;color:var(--text-l);margin-top:.2rem}
+footer{background:var(--blue-d);color:rgba(255,255,255,.6);padding:1.5rem;text-align:center}
+footer p{font-size:.75rem;line-height:1.8}
+footer a{color:rgba(255,255,255,.7)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <span style="font-size:1.6rem">🌊</span>
+      <div class="logo-text">
+        <h1>Marées Loire-Atlantique</h1>
+        <p>Horaires · Coefficients · Hauteurs d'eau</p>
+      </div>
+    </a>
+    <a href="/" class="header-nav">← Retour au calculateur</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="breadcrumb"><a href="/">Accueil</a> › À propos</div>
+
+  <div class="card hero-card">
+    <h2>🌊 À propos de Marées Loire-Atlantique</h2>
+    <p>Un site gratuit, sans inscription, dédié aux horaires de marées pour tous les ports de Loire-Atlantique et de France. Créé par un passionné de la côte atlantique, pour les pêcheurs à pied, les plaisanciers et les curieux.</p>
+  </div>
+
+  <div class="card">
+    <h2>👤 Qui sommes-nous ?</h2>
+    <p>Je m'appelle <strong>Yann Berry</strong>, passionné de mer et de la côte bretonne et ligérienne. J'ai créé ce site en constatant qu'il manquait un outil simple, rapide et gratuit pour consulter les marées en Loire-Atlantique sans publicité intrusive ni inscription obligatoire.</p>
+    <p>Le site est entièrement indépendant, sans affiliation commerciale avec le SHOM ou tout autre organisme officiel. Les données sont calculées par méthode harmonique à partir de constantes publiées.</p>
+    <div class="highlight">📍 Basé en Loire-Atlantique (44) — France</div>
+  </div>
+
+  <div class="card">
+    <h2>📊 Le site en chiffres</h2>
+    <div class="stats">
+      <div class="stat"><div class="val">14</div><div class="lbl">Ports couverts</div></div>
+      <div class="stat"><div class="val">7</div><div class="lbl">Jours de prévision</div></div>
+      <div class="stat"><div class="val">0€</div><div class="lbl">Coût pour l'utilisateur</div></div>
+      <div class="stat"><div class="val">24h</div><div class="lbl">Graphique de marée</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🔬 Notre méthode de calcul</h2>
+    <p>Les horaires et hauteurs de marées sont calculés par <strong>méthode harmonique</strong>, la même que celle utilisée par le SHOM (Service Hydrographique et Océanographique de la Marine).</p>
+    <h3>Comment ça fonctionne ?</h3>
+    <ul>
+      <li>Les marées sont la somme de plusieurs composantes périodiques (M2, S2, N2, K1…) liées aux positions de la Lune et du Soleil</li>
+      <li>Chaque port possède ses propres constantes harmoniques (amplitude et phase) calibrées sur les données SHOM</li>
+      <li>Le calcul utilise les arguments astronomiques J2000.0 pour une précision optimale</li>
+      <li>Les coefficients de marée sont calculés en référence au port de Brest (port de référence SHOM)</li>
+    </ul>
+    <div class="highlight">⚠️ Les données sont fournies à titre indicatif. Pour la navigation, consultez toujours le <a href="https://maree.shom.fr" target="_blank" rel="noopener">SHOM officiel</a>.</div>
+  </div>
+
+  <div class="card">
+    <h2>🎯 Ce que nous proposons</h2>
+    <ul>
+      <li><strong>Horaires de marées</strong> — pleine mer et basse mer pour aujourd'hui et les 7 prochains jours</li>
+      <li><strong>Coefficients de marée</strong> — de 20 (morte-eau) à 120 (vive-eau exceptionnelle)</li>
+      <li><strong>Graphique 24h</strong> — visualisation continue de la courbe de marée</li>
+      <li><strong>Météo marine</strong> — température, vent et hauteur des vagues en temps réel</li>
+      <li><strong>Guides pratiques</strong> — pêche à pied, sécurité, réglementation DTDM44</li>
+      <li><strong>Alertes marées</strong> — notifications pour les grandes marées</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>📬 Contact</h2>
+    <p>Une question, une suggestion d'amélioration ou une erreur à signaler ? N'hésitez pas à nous contacter.</p>
+    <p><a href="/contact/">→ Formulaire de contact</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <p><strong>Marées Loire-Atlantique</strong> — Calcul harmonique (méthode SHOM, J2000.0)</p>
+  <p style="margin-top:.5rem">
+    <a href="/">Accueil</a> ·
+    <a href="/a-propos/">À propos</a> ·
+    <a href="/contact/">Contact</a> ·
+    <a href="/mentions-legales/">Mentions légales</a>
+  </p>
+</footer>
+
+</body>
+</html>

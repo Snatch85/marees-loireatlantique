@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Contact — Marées Loire-Atlantique</title>
+<meta name="description" content="Contactez l'équipe de Marées Loire-Atlantique pour toute question, suggestion ou signalement d'erreur sur les horaires de marées."/>
+<link rel="canonical" href="https://marees-loireatlantique.fr/contact/"/>
+<meta name="robots" content="index, follow"/>
+<link rel="manifest" href="/manifest.json"/>
+<meta name="theme-color" content="#1A6B8A"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#1A6B8A;--blue-d:#0F4F6B;--blue-l:#E8F4F9;
+  --sea:#2A9D8F;
+  --text:#1A2332;--text-m:#4A5568;--text-l:#718096;
+  --bg:#F7FAFB;--white:#FFFFFF;--border:#DDE8ED;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7}
+a{color:var(--blue)}
+header{background:linear-gradient(135deg,var(--blue-d) 0%,var(--blue) 60%,var(--sea) 100%);color:#fff;padding:0 1.5rem}
+.header-inner{max-width:900px;margin:0 auto;padding:1rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:#fff}
+.logo-text h1{font-size:1.1rem;font-weight:700}
+.logo-text p{font-size:.72rem;opacity:.75}
+.header-nav a{background:rgba(255,255,255,.12);color:#fff;padding:.4rem .9rem;border-radius:20px;font-size:.75rem;font-weight:500;text-decoration:none}
+.container{max-width:700px;margin:2rem auto;padding:0 1.5rem 3rem}
+.breadcrumb{font-size:.75rem;color:var(--text-l);margin-bottom:1.5rem}
+.breadcrumb a{color:var(--blue)}
+.card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:2rem;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+h2{font-size:1.1rem;font-weight:800;color:var(--blue-d);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--blue-l)}
+p{font-size:.85rem;color:var(--text-m);margin-bottom:.7rem}
+label{display:block;font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:.3rem;margin-top:1rem}
+input,select,textarea{width:100%;padding:.65rem .9rem;border:1px solid var(--border);border-radius:8px;font-family:'Inter',sans-serif;font-size:.85rem;color:var(--text);background:var(--bg);transition:border-color .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);background:#fff}
+textarea{resize:vertical;min-height:130px}
+.btn{display:inline-block;background:linear-gradient(135deg,var(--blue),var(--sea));color:#fff;border:none;padding:.75rem 2rem;border-radius:25px;font-size:.9rem;font-weight:600;cursor:pointer;margin-top:1.2rem;transition:opacity .2s}
+.btn:hover{opacity:.9}
+.success{display:none;background:#d4edda;border:1px solid #c3e6cb;color:#155724;border-radius:8px;padding:1rem;margin-top:1rem;font-size:.85rem}
+.info-box{background:var(--blue-l);border-radius:10px;padding:1rem 1.2rem;font-size:.82rem;color:var(--blue-d);margin-bottom:1.5rem}
+footer{background:var(--blue-d);color:rgba(255,255,255,.6);padding:1.5rem;text-align:center}
+footer p{font-size:.75rem;line-height:1.8}
+footer a{color:rgba(255,255,255,.7)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <span style="font-size:1.6rem">🌊</span>
+      <div class="logo-text">
+        <h1>Marées Loire-Atlantique</h1>
+        <p>Horaires · Coefficients · Hauteurs d'eau</p>
+      </div>
+    </a>
+    <a href="/" class="header-nav">← Retour au calculateur</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="breadcrumb"><a href="/">Accueil</a> › Contact</div>
+
+  <div class="info-box">
+    💬 Une question sur les horaires, une erreur à signaler, ou une suggestion ? On vous répond sous 48h.
+  </div>
+
+  <div class="card">
+    <h2>📬 Nous contacter</h2>
+
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
+      <input type="hidden" name="form-name" value="contact"/>
+      <p style="display:none"><input name="bot-field"/></p>
+
+      <label for="nom">Votre nom *</label>
+      <input type="text" id="nom" name="nom" required placeholder="Jean Dupont"/>
+
+      <label for="email">Votre email *</label>
+      <input type="email" id="email" name="email" required placeholder="jean@exemple.fr"/>
+
+      <label for="sujet">Sujet *</label>
+      <select id="sujet" name="sujet" required>
+        <option value="">— Choisir un sujet —</option>
+        <option value="erreur-maree">Erreur dans les horaires de marée</option>
+        <option value="suggestion">Suggestion d'amélioration</option>
+        <option value="nouveau-port">Demande d'ajout d'un port</option>
+        <option value="bug">Bug technique</option>
+        <option value="partenariat">Partenariat / presse</option>
+        <option value="autre">Autre</option>
+      </select>
+
+      <label for="message">Message *</label>
+      <textarea id="message" name="message" required placeholder="Décrivez votre demande…"></textarea>
+
+      <button type="submit" class="btn">Envoyer le message →</button>
+    </form>
+
+    <div class="success" id="successMsg">
+      ✅ Message envoyé ! Nous vous répondrons sous 48h.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>ℹ️ Autres informations</h2>
+    <p><strong>Délai de réponse :</strong> 24 à 48h en semaine.</p>
+    <p><strong>Signaler une erreur :</strong> Si vous constatez une différence entre nos horaires et le SHOM officiel, merci de préciser le port, la date et l'heure concernés.</p>
+    <p><strong>À propos du site :</strong> <a href="/a-propos/">En savoir plus sur notre méthode de calcul</a></p>
+  </div>
+</div>
+
+<footer>
+  <p><strong>Marées Loire-Atlantique</strong> — Calcul harmonique (méthode SHOM, J2000.0)</p>
+  <p style="margin-top:.5rem">
+    <a href="/">Accueil</a> ·
+    <a href="/a-propos/">À propos</a> ·
+    <a href="/contact/">Contact</a> ·
+    <a href="/mentions-legales/">Mentions légales</a>
+  </p>
+</footer>
+
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const form = this;
+  fetch('/', {method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: new URLSearchParams(new FormData(form)).toString()})
+    .then(() => { form.style.display='none'; document.getElementById('successMsg').style.display='block'; })
+    .catch(() => { form.submit(); });
+});
+</script>
+
+</body>
+</html>
