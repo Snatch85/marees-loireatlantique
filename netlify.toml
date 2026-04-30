@@ -7,7 +7,7 @@ plugins = []
   [functions."*"]
 
 [build]
-publish = "C:\\Users\\33629\\Desktop\\Claude Cooode\\marees-loire"
+publish = "."
 publishOrigin = "default"
 
   [build.environment]
