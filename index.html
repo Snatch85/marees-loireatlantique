@@ -472,15 +472,13 @@ function updatePortBanner(portKey){
   const img = document.getElementById('portBannerImg');
   const title = document.getElementById('portBannerTitle');
   const sel = document.getElementById('portSelect');
-  const portName = sel?.options[sel?.selectedIndex]?.text || portKey;
+  const portName = sel ? sel.options[sel.selectedIndex].text : portKey;
   const src = PORT_IMAGES[portKey];
-  if(!img) return;
-  title.textContent = portName;
-  if(!src){ img.style.opacity='0'; return; }
-  const newImg = new Image();
-  newImg.onload = ()=>{ img.src = src; img.style.opacity='1'; };
-  newImg.onerror = ()=>{ img.style.opacity='0'; };
-  newImg.src = src;
+  if(title) title.textContent = portName;
+  if(img && src){
+    img.src = src;
+    img.style.opacity = '1';
+  }
 }
 
 const METEO_COORDS = {
