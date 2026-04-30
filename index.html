@@ -270,6 +270,15 @@
       <button id="alertBtn" class="refresh-btn alert-btn" onclick="activerAlertes()">🔔 Alertes marées</button>
     </div>
 
+    <!-- Bannière photo du port -->
+    <div class="port-banner" id="portBanner">
+      <img class="port-banner-img" id="portBannerImg" src="" alt="" loading="lazy"/>
+      <div class="port-banner-overlay">
+        <div class="port-banner-title" id="portBannerTitle"></div>
+        <div class="port-banner-sub" id="portBannerSub">Loire-Atlantique · France</div>
+      </div>
+    </div>
+
     <!-- Widget Météo Marine -->
     <div class="meteo-widget" id="meteoWidget">
       <div class="meteo-widget-title">🌊 Météo Marine — <span id="meteoPortName">…</span></div>
@@ -443,6 +452,38 @@
 <script src="/assets/script.js" defer></script>
 
 <script>
+const PORT_IMAGES = {
+  "SAINT-NAZAIRE":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Saint-Nazaire_le_pont_puis_le_chantier_naval.JPG/800px-Saint-Nazaire_le_pont_puis_le_chantier_naval.JPG",
+  "LE-CROISIC":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Croisic_Port_Lin.JPG/800px-Croisic_Port_Lin.JPG",
+  "LA-BAULE":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Plage_de_La_Baule-Escoublac_01.JPG/800px-Plage_de_La_Baule-Escoublac_01.JPG",
+  "BATZ-SUR-MER":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Batz-sur-Mer_Coast.JPG/800px-Batz-sur-Mer_Coast.JPG",
+  "LE-POULIGUEN":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Le_Pouliguen.JPG/800px-Le_Pouliguen.JPG",
+  "LA-TURBALLE":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Turballe_port.JPG/800px-Turballe_port.JPG",
+  "PIRIAC-SUR-MER":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Semaphore_Piriac.JPG/800px-Semaphore_Piriac.JPG",
+  "PORNIC":"https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Pornic_%281%29.JPG/800px-Pornic_%281%29.JPG",
+  "PREFAILLES":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/44_Pr%C3%A9failles_mam.JPG/800px-44_Pr%C3%A9failles_mam.JPG",
+  "SAINT-BREVIN-LES-PINS":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Le_Serpent_d%27oc%C3%A9an_%28Estuaire_de_la_Loire%29_%289313907702%29.jpg/800px-Le_Serpent_d%27oc%C3%A9an_%28Estuaire_de_la_Loire%29_%289313907702%29.jpg",
+  "PAIMBOEUF":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Vue_de_la_Loire_allant_de_Nantes_a_Paimboeuf_des_villages_de_la_basse_inde_et_d%27indret_ce_dernier_reconnu_pour_sa_fonderie_de_Canons._%28titre_inscrit%29%2C_1816%2C_M_2781_A_14.jpg/800px-Vue_de_la_Loire_allant_de_Nantes_a_Paimboeuf_des_villages_de_la_basse_inde_et_d%27indret_ce_dernier_reconnu_pour_sa_fonderie_de_Canons._%28titre_inscrit%29%2C_1816%2C_M_2781_A_14.jpg",
+  "NOIRMOUTIER":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Noirmoutier_-_Vue_du_port_de_Morin_%C3%A0_mar%C3%A9e_basse.JPG/800px-Noirmoutier_-_Vue_du_port_de_Morin_%C3%A0_mar%C3%A9e_basse.JPG",
+  "PASSAGE-DU-GOIS":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Passage_du_Gois_001.JPG/800px-Passage_du_Gois_001.JPG"
+};
+
+function updatePortBanner(portKey){
+  const img = document.getElementById('portBannerImg');
+  const title = document.getElementById('portBannerTitle');
+  const sel = document.getElementById('portSelect');
+  const portName = sel?.options[sel?.selectedIndex]?.text || portKey;
+  const src = PORT_IMAGES[portKey];
+  if(!src || !img) return;
+  img.classList.add('fade');
+  setTimeout(()=>{
+    img.src = src;
+    img.alt = portName;
+    title.textContent = portName;
+    img.onload = ()=>img.classList.remove('fade');
+  }, 300);
+}
+
 const METEO_COORDS = {
   "SAINT-NAZAIRE":{lat:47.2736,lon:-2.2136},
   "LE-CROISIC":{lat:47.2944,lon:-2.5158},
@@ -488,7 +529,14 @@ async function loadMeteo(portKey){
 
 document.addEventListener('DOMContentLoaded',()=>{
   const sel = document.getElementById('portSelect');
-  if(sel){loadMeteo(sel.value); sel.addEventListener('change',()=>loadMeteo(sel.value));}
+  if(sel){
+    updatePortBanner(sel.value);
+    loadMeteo(sel.value);
+    sel.addEventListener('change',()=>{
+      updatePortBanner(sel.value);
+      loadMeteo(sel.value);
+    });
+  }
 });
 </script>
 

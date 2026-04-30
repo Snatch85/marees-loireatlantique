@@ -825,3 +825,12 @@ article nav[aria-label] a::before{content:'→';opacity:.5;font-size:.75rem}
   article h1{font-size:1.35rem}
   article h2{font-size:1rem}
 }
+
+/* ── Bannière photo port ── */
+.port-banner{position:relative;height:200px;border-radius:12px;overflow:hidden;margin:.8rem 0;background:#0a3a5c}
+.port-banner-img{width:100%;height:100%;object-fit:cover;transition:opacity .5s ease}
+.port-banner-img.fade{opacity:0}
+.port-banner-overlay{position:absolute;bottom:0;left:0;right:0;padding:1rem 1.2rem;background:linear-gradient(transparent,rgba(0,20,40,.75))}
+.port-banner-title{color:#fff;font-size:1.1rem;font-weight:700;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.port-banner-sub{color:rgba(255,255,255,.75);font-size:.75rem;margin-top:.15rem}
+@media(max-width:600px){.port-banner{height:140px}}
