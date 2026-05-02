@@ -205,4 +205,10 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  <!-- Page Webcams -->
+  <url>
+    <loc>https://marees-loireatlantique.fr/webcams/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
 </urlset>
