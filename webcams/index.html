@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>Webcams en direct — Côte de Loire-Atlantique | Marées Loire-Atlantique</title>
-<meta name="description" content="Webcams en direct sur la côte de Loire-Atlantique : La Govelle, Le Croisic, La Turballe, La Baule, Le Pouliguen, Pornic, Préfailles, Saint-Brévin. Voir la mer en temps réel avant de partir."/>
+<meta name="description" content="Webcams en direct sur la côte de Loire-Atlantique : La Govelle, Le Croisic, La Turballe, La Baule, Le Pouliguen, Pornic, Pornichet, Saint-Brévin. Voir la mer en temps réel avant de partir."/>
 <meta name="keywords" content="webcams loire atlantique, webcam surf, webcam plage, la govelle, le croisic, pornic, saint-brevin, prefailles, vue mer en direct"/>
 
 <link rel="canonical" href="https://marees-loireatlantique.fr/webcams/"/>
@@ -15,7 +15,7 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="Webcams en direct — Côte de Loire-Atlantique"/>
-<meta property="og:description" content="6 webcams en direct pour voir les conditions de mer avant de partir."/>
+<meta property="og:description" content="8 webcams en direct pour voir les conditions de mer avant de partir."/>
 <meta property="og:url" content="https://marees-loireatlantique.fr/webcams/"/>
 <meta property="og:image" content="https://marees-loireatlantique.fr/icons/og-webcams.jpg"/>
 <meta property="og:locale" content="fr_FR"/>
@@ -38,7 +38,7 @@
 <link rel="stylesheet" href="/assets/site.css"/>
 
 <style>
-/* Styles spécifiques page Webcams */
+/* ── Styles spécifiques page Webcams ── */
 .webcams-intro{
   background:var(--white);border-radius:var(--r-lg);
   border:1px solid var(--border);padding:1.5rem 1.8rem;
@@ -49,28 +49,95 @@
   margin-bottom:.8rem;display:flex;align-items:center;gap:.6rem;
 }
 .webcams-intro p{color:var(--text-m);line-height:1.7;font-size:.92rem;}
+
+/* Bandeau info */
+.webcams-notice{
+  display:flex;align-items:flex-start;gap:.8rem;
+  background:rgba(0,150,199,.07);border:1px solid rgba(0,150,199,.25);
+  border-radius:var(--r-lg);padding:1rem 1.2rem;margin:0 0 1.5rem;
+  font-size:.85rem;color:var(--text-m);line-height:1.6;
+}
+.webcams-notice .ni{font-size:1.3rem;flex-shrink:0;margin-top:.05rem;}
+
+/* Grille */
 .webcams-grid{
   display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;
   margin:1.5rem 0;
 }
+
+/* Carte webcam */
 .webcam-card{
   background:var(--white);border-radius:var(--r-lg);
   border:1px solid var(--border);overflow:hidden;
   box-shadow:var(--sh-md);transition:transform .3s,box-shadow .3s;
-  position:relative;
 }
-.webcam-card::after{
-  content:'';position:absolute;
-  top:0;left:-100%;width:100%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
-  transition:left .5s;pointer-events:none;
-}
-.webcam-card:hover::after{left:100%}
 .webcam-card:hover{transform:translateY(-4px);box-shadow:var(--sh-lg);}
-.webcam-iframe-wrap{position:relative;width:100%;padding-top:56.25%;}
-.webcam-iframe-wrap iframe{
-  position:absolute;top:0;left:0;width:100%;height:100%;border:none;
+
+/* ── Miniature cliquable ── */
+.webcam-thumb{
+  position:relative;width:100%;padding-top:56.25%;
+  background:#0a1628;overflow:hidden;display:block;
+  text-decoration:none;
 }
+.webcam-thumb img{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  object-fit:cover;transition:transform .4s,opacity .3s;opacity:.9;
+}
+.webcam-card:hover .webcam-thumb img{transform:scale(1.05);opacity:1;}
+
+/* Dégradé bas */
+.webcam-thumb::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:60%;
+  background:linear-gradient(transparent,rgba(4,12,30,.85));
+  pointer-events:none;z-index:1;
+}
+
+/* Bouton play centré */
+.wcam-play{
+  position:absolute;top:50%;left:50%;z-index:2;
+  transform:translate(-50%,-58%);
+  width:60px;height:60px;border-radius:50%;
+  background:rgba(0,150,199,.9);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .25s,background .2s;
+  box-shadow:0 4px 20px rgba(0,0,0,.45);
+}
+.wcam-play svg{width:24px;height:24px;fill:#fff;margin-left:4px;}
+.webcam-card:hover .wcam-play{
+  transform:translate(-50%,-58%) scale(1.15);
+  background:#0096c7;
+}
+
+/* Badge LIVE */
+.wcam-live{
+  position:absolute;top:10px;left:12px;z-index:3;
+  background:#e53935;color:#fff;
+  font-size:.62rem;font-weight:800;letter-spacing:.08em;
+  padding:.18rem .55rem;border-radius:4px;text-transform:uppercase;
+  display:flex;align-items:center;gap:.35rem;
+  box-shadow:0 2px 8px rgba(229,57,53,.5);
+}
+.wcam-live::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:#fff;animation:lpulse 1.4s infinite;flex-shrink:0;
+}
+@keyframes lpulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.35;transform:scale(.65);}}
+
+/* Label bas miniature */
+.wcam-label{
+  position:absolute;bottom:10px;left:12px;right:12px;z-index:3;
+  color:#fff;font-size:.76rem;font-weight:600;
+  text-shadow:0 1px 5px rgba(0,0,0,.75);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:.5rem;
+}
+.wcam-label-spot{
+  background:rgba(0,150,199,.85);backdrop-filter:blur(4px);
+  padding:.2rem .55rem;border-radius:6px;
+  font-size:.7rem;font-weight:700;white-space:nowrap;
+}
+
+/* Info bas de carte */
 .webcam-info{padding:1rem 1.2rem;}
 .webcam-title{
   font-size:1rem;font-weight:700;color:var(--text);
@@ -85,13 +152,21 @@
 .webcam-tag.plage{background:rgba(247,127,0,.15);color:var(--sea);}
 .webcam-tag.port{background:rgba(2,62,138,.15);color:var(--blue-d);}
 .webcam-desc{
-  font-size:.82rem;color:var(--text-m);line-height:1.6;
-  margin:.6rem 0;
+  font-size:.82rem;color:var(--text-m);line-height:1.6;margin:.6rem 0;
 }
+.webcam-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem;}
+.wcam-btn-live{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.82rem;font-weight:700;color:#fff;text-decoration:none;
+  padding:.5rem .95rem;background:var(--blue);
+  border-radius:8px;transition:all .2s;
+  box-shadow:0 2px 8px rgba(0,150,199,.3);
+}
+.wcam-btn-live:hover{background:#0080b3;transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,150,199,.4);}
 .webcam-link{
-  display:inline-block;margin-top:.7rem;font-size:.8rem;
-  font-weight:600;color:var(--blue);text-decoration:none;
-  padding:.4rem .7rem;background:var(--blue-l);
+  display:inline-flex;align-items:center;gap:.3rem;
+  font-size:.8rem;font-weight:600;color:var(--blue);text-decoration:none;
+  padding:.45rem .7rem;background:var(--blue-l);
   border-radius:8px;transition:all .2s;
 }
 .webcam-link:hover{background:var(--blue);color:#fff;}
@@ -100,6 +175,8 @@
   .webcams-grid{grid-template-columns:1fr;}
   .webcams-intro{padding:1.2rem;}
   .webcams-intro h1{font-size:1.2rem;}
+  .webcam-actions{flex-direction:column;}
+  .wcam-btn-live,.webcam-link{justify-content:center;text-align:center;}
 }
 </style>
 </head>
@@ -202,43 +279,78 @@
     <p>
       Consultez nos 8 webcams en direct pour observer les conditions de mer en temps réel avant de vous déplacer.
       Que vous soyez surfeur à la recherche de vagues parfaites, navigateur souhaitant vérifier l'état du port,
-      ou simplement curieux de contempler le littoral atlantique, ces flux vidéo vous offrent une vue imprenable
+      ou simplement curieux de contempler le littoral atlantique, ces caméras vous offrent une vue imprenable
       sur les spots emblématiques de la côte. La Govelle (Batz-sur-Mer), Le Croisic, La Turballe, La Baule,
-      Le Pouliguen, Pornic, Préfailles, Saint-Brévin : chaque webcam transmet des images en continu pour
+      Le Pouliguen, Pornic, Pornichet, Saint-Brévin : chaque webcam transmet des images en continu pour
       vous aider à planifier votre sortie. Couplées aux horaires de marée, elles constituent l'outil
       indispensable pour optimiser votre journée bord de mer. Surfez malin, naviguez serein !
     </p>
   </section>
 
+  <!-- Bandeau info -->
+  <div class="webcams-notice" role="note">
+    <span class="ni" aria-hidden="true">📡</span>
+    <span>
+      Cliquez sur la miniature ou sur <strong>▶ Voir en direct</strong> pour lancer le flux vidéo en temps réel sur Windy.
+      Les images ci-dessous se rafraîchissent régulièrement pour vous donner un aperçu des conditions actuelles.
+    </span>
+  </div>
+
   <!-- Grille des webcams -->
   <section class="webcams-grid" aria-label="Grille des webcams">
 
-    <!-- 1. Le Croisic — Windy webcam -->
+    <!-- 1. Le Croisic -->
     <article class="webcam-card">
-      <div class="webcam-iframe-wrap">
-        <iframe src="https://webcams.windy.com/webcams/public/embed/player?webcamId=1429566189&playerType=live&loop=0&autoPlay=0&interactive=1"
-                width="100%" height="360" frameborder="0" allowfullscreen
-                title="Webcam Le Croisic — Windy" loading="lazy"></iframe>
-      </div>
+      <a class="webcam-thumb"
+         href="https://www.windy.com/webcams/1429566189"
+         target="_blank" rel="noopener"
+         aria-label="Voir la webcam du Croisic en direct sur Windy">
+        <img src="https://webcams.windy.com/webcams/public/thumbs/webcam_1429566189_l.jpg"
+             alt="Vue en direct sur la plage et le port du Croisic, Loire-Atlantique"
+             loading="lazy" width="640" height="360"/>
+        <span class="wcam-live" aria-hidden="true">LIVE</span>
+        <span class="wcam-play" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <span class="wcam-label" aria-hidden="true">
+          Le Croisic — Vue mer
+          <span class="wcam-label-spot">Windy.com</span>
+        </span>
+      </a>
       <div class="webcam-info">
         <h2 class="webcam-title">📹 Le Croisic — Vue mer en direct</h2>
         <span class="webcam-tag plage">Plage &amp; Port</span>
         <p class="webcam-desc">
           Vue en direct sur la presqu'île du Croisic, ses plages de sable fin et son port de pêche
-          actif. La caméra capture l'horizon atlantique pour apprécier la météo marine, la couleur
-          de l'eau et l'agitation des flots. Parfait avant une escapade familiale.
+          actif. Vérifiez la météo marine, la couleur de l'eau et l'agitation des flots avant
+          une escapade familiale ou une sortie en mer.
         </p>
-        <a href="/marees-le-croisic/" class="webcam-link">Voir les marées au Croisic →</a>
+        <div class="webcam-actions">
+          <a href="https://www.windy.com/webcams/1429566189" target="_blank" rel="noopener"
+             class="wcam-btn-live">▶ Voir en direct</a>
+          <a href="/marees-le-croisic/" class="webcam-link">Marées au Croisic →</a>
+        </div>
       </div>
     </article>
 
-    <!-- 2. La Turballe — Windy webcam -->
+    <!-- 2. La Turballe -->
     <article class="webcam-card">
-      <div class="webcam-iframe-wrap">
-        <iframe src="https://webcams.windy.com/webcams/public/embed/player?webcamId=1739182005&playerType=live&loop=0&autoPlay=0&interactive=1"
-                width="100%" height="360" frameborder="0" allowfullscreen
-                title="Webcam La Turballe — Windy" loading="lazy"></iframe>
-      </div>
+      <a class="webcam-thumb"
+         href="https://www.windy.com/webcams/1739182005"
+         target="_blank" rel="noopener"
+         aria-label="Voir la webcam de La Turballe en direct sur Windy">
+        <img src="https://webcams.windy.com/webcams/public/thumbs/webcam_1739182005_l.jpg"
+             alt="Vue en direct sur le port de pêche de La Turballe, Loire-Atlantique"
+             loading="lazy" width="640" height="360"/>
+        <span class="wcam-live" aria-hidden="true">LIVE</span>
+        <span class="wcam-play" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <span class="wcam-label" aria-hidden="true">
+          La Turballe — Port de pêche
+          <span class="wcam-label-spot">Windy.com</span>
+        </span>
+      </a>
       <div class="webcam-info">
         <h2 class="webcam-title">📹 La Turballe — Port en direct</h2>
         <span class="webcam-tag port">Port</span>
@@ -247,17 +359,32 @@
           du port, les arrivées de bateaux et les conditions de mer. Idéal pour observer
           les départs de pêche et planifier une balade sur le port.
         </p>
-        <a href="/marees-la-turballe/" class="webcam-link">Voir les marées à La Turballe →</a>
+        <div class="webcam-actions">
+          <a href="https://www.windy.com/webcams/1739182005" target="_blank" rel="noopener"
+             class="wcam-btn-live">▶ Voir en direct</a>
+          <a href="/marees-la-turballe/" class="webcam-link">Marées à La Turballe →</a>
+        </div>
       </div>
     </article>
 
-    <!-- 3. La Baule — Windy webcam -->
+    <!-- 3. La Baule -->
     <article class="webcam-card">
-      <div class="webcam-iframe-wrap">
-        <iframe src="https://webcams.windy.com/webcams/public/embed/player?webcamId=1691053273&playerType=live&loop=0&autoPlay=0&interactive=1"
-                width="100%" height="360" frameborder="0" allowfullscreen
-                title="Webcam La Baule — Windy" loading="lazy"></iframe>
-      </div>
+      <a class="webcam-thumb"
+         href="https://www.windy.com/webcams/1691053273"
+         target="_blank" rel="noopener"
+         aria-label="Voir la webcam de La Baule en direct sur Windy">
+        <img src="https://webcams.windy.com/webcams/public/thumbs/webcam_1691053273_l.jpg"
+             alt="Vue en direct sur la grande plage de La Baule et la baie atlantique"
+             loading="lazy" width="640" height="360"/>
+        <span class="wcam-live" aria-hidden="true">LIVE</span>
+        <span class="wcam-play" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <span class="wcam-label" aria-hidden="true">
+          La Baule — Grande plage
+          <span class="wcam-label-spot">Windy.com</span>
+        </span>
+      </a>
       <div class="webcam-info">
         <h2 class="webcam-title">📹 La Baule — Grande plage</h2>
         <span class="webcam-tag plage">Plage</span>
@@ -266,17 +393,32 @@
           les conditions de baignade, la hauteur de la mer et l'animation de la plage avant
           de partir. Vue imprenable sur l'Atlantique.
         </p>
-        <a href="/marees-la-baule/" class="webcam-link">Voir les marées à La Baule →</a>
+        <div class="webcam-actions">
+          <a href="https://www.windy.com/webcams/1691053273" target="_blank" rel="noopener"
+             class="wcam-btn-live">▶ Voir en direct</a>
+          <a href="/marees-la-baule/" class="webcam-link">Marées à La Baule →</a>
+        </div>
       </div>
     </article>
 
-    <!-- 4. Pornic — Windy webcam -->
+    <!-- 4. Pornic -->
     <article class="webcam-card">
-      <div class="webcam-iframe-wrap">
-        <iframe src="https://webcams.windy.com/webcams/public/embed/player?webcamId=1759694653&playerType=live&loop=0&autoPlay=0&interactive=1"
-                width="100%" height="360" frameborder="0" allowfullscreen
-                title="Webcam Pornic — Windy" loading="lazy"></iframe>
-      </div>
+      <a class="webcam-thumb"
+         href="https://www.windy.com/webcams/1759694653"
+         target="_blank" rel="noopener"
+         aria-label="Voir la webcam de Pornic en direct sur Windy">
+        <img src="https://webcams.windy.com/webcams/public/thumbs/webcam_1759694653_l.jpg"
+             alt="Vue en direct sur la plage de Pornic et le château médiéval, Loire-Atlantique"
+             loading="lazy" width="640" height="360"/>
+        <span class="wcam-live" aria-hidden="true">LIVE</span>
+        <span class="wcam-play" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <span class="wcam-label" aria-hidden="true">
+          Pornic — Plage
+          <span class="wcam-label-spot">Windy.com</span>
+        </span>
+      </a>
       <div class="webcam-info">
         <h2 class="webcam-title">📹 Pornic — Plage en direct</h2>
         <span class="webcam-tag plage">Plage</span>
@@ -285,17 +427,32 @@
           La webcam révèle les conditions de baignade, l'occupation du sable et la
           tranquillité des eaux. Appréciée des familles, idéale aussi pour le paddle.
         </p>
-        <a href="/marees-pornic/" class="webcam-link">Voir les marées à Pornic →</a>
+        <div class="webcam-actions">
+          <a href="https://www.windy.com/webcams/1759694653" target="_blank" rel="noopener"
+             class="wcam-btn-live">▶ Voir en direct</a>
+          <a href="/marees-pornic/" class="webcam-link">Marées à Pornic →</a>
+        </div>
       </div>
     </article>
 
-    <!-- 5. Pornichet — Windy webcam -->
+    <!-- 5. Pornichet -->
     <article class="webcam-card">
-      <div class="webcam-iframe-wrap">
-        <iframe src="https://webcams.windy.com/webcams/public/embed/player?webcamId=1720562521&playerType=live&loop=0&autoPlay=0&interactive=1"
-                width="100%" height="360" frameborder="0" allowfullscreen
-                title="Webcam Pornichet Plage de La Baule — Windy" loading="lazy"></iframe>
-      </div>
+      <a class="webcam-thumb"
+         href="https://www.windy.com/webcams/1720562521"
+         target="_blank" rel="noopener"
+         aria-label="Voir la webcam de Pornichet en direct sur Windy">
+        <img src="https://webcams.windy.com/webcams/public/thumbs/webcam_1720562521_l.jpg"
+             alt="Vue en direct sur la plage de La Baule depuis Pornichet, Loire-Atlantique"
+             loading="lazy" width="640" height="360"/>
+        <span class="wcam-live" aria-hidden="true">LIVE</span>
+        <span class="wcam-play" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <span class="wcam-label" aria-hidden="true">
+          Pornichet — Plage de La Baule
+          <span class="wcam-label-spot">Windy.com</span>
+        </span>
+      </a>
       <div class="webcam-info">
         <h2 class="webcam-title">📹 Pornichet — Plage de La Baule</h2>
         <span class="webcam-tag plage">Plage</span>
@@ -304,36 +461,66 @@
           les conditions de baignade sur l'une des plus belles plages d'Europe. Idéal
           pour préparer une journée en famille sur le sable.
         </p>
-        <a href="/marees-la-baule/" class="webcam-link">Voir les marées à La Baule →</a>
+        <div class="webcam-actions">
+          <a href="https://www.windy.com/webcams/1720562521" target="_blank" rel="noopener"
+             class="wcam-btn-live">▶ Voir en direct</a>
+          <a href="/marees-la-baule/" class="webcam-link">Marées à La Baule →</a>
+        </div>
       </div>
     </article>
 
-    <!-- 6. Saint-Brévin — Windy webcam -->
+    <!-- 6. Saint-Brévin -->
     <article class="webcam-card">
-      <div class="webcam-iframe-wrap">
-        <iframe src="https://webcams.windy.com/webcams/public/embed/player?webcamId=1418524973&playerType=live&loop=0&autoPlay=0&interactive=1"
-                width="100%" height="360" frameborder="0" allowfullscreen
-                title="Webcam Saint-Brévin — Windy" loading="lazy"></iframe>
-      </div>
+      <a class="webcam-thumb"
+         href="https://www.windy.com/webcams/1418524973"
+         target="_blank" rel="noopener"
+         aria-label="Voir la webcam de Saint-Brévin en direct sur Windy">
+        <img src="https://webcams.windy.com/webcams/public/thumbs/webcam_1418524973_l.jpg"
+             alt="Vue en direct sur le spot de surf de Saint-Brévin-les-Pins, Loire-Atlantique"
+             loading="lazy" width="640" height="360"/>
+        <span class="wcam-live" aria-hidden="true">LIVE</span>
+        <span class="wcam-play" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <span class="wcam-label" aria-hidden="true">
+          Saint-Brévin — Surf spot
+          <span class="wcam-label-spot">Windy.com</span>
+        </span>
+      </a>
       <div class="webcam-info">
-        <h2 class="webcam-title">📹 Saint-Brévin — Live Surf</h2>
+        <h2 class="webcam-title">📹 Saint-Brévin — Spot de surf</h2>
         <span class="webcam-tag surf">Surf</span>
         <p class="webcam-desc">
           Le spot de surf de Saint-Brévin-les-Pins, face à l'estuaire de la Loire.
           Les vagues y sont souvent bien formées grâce aux courants de marée. La webcam aide
           à évaluer la houle, le vent offshore/onshore et la fréquentation du spot.
         </p>
-        <a href="/marees-saint-brevin/" class="webcam-link">Voir les marées à Saint-Brévin →</a>
+        <div class="webcam-actions">
+          <a href="https://www.windy.com/webcams/1418524973" target="_blank" rel="noopener"
+             class="wcam-btn-live">▶ Voir en direct</a>
+          <a href="/marees-saint-brevin/" class="webcam-link">Marées à Saint-Brévin →</a>
+        </div>
       </div>
     </article>
 
-    <!-- 7. Batz-sur-Mer / La Govelle — Windy webcam -->
+    <!-- 7. Batz-sur-Mer / La Govelle -->
     <article class="webcam-card">
-      <div class="webcam-iframe-wrap">
-        <iframe src="https://webcams.windy.com/webcams/public/embed/player?webcamId=1683105729&playerType=live&loop=0&autoPlay=0&interactive=1"
-                width="100%" height="360" frameborder="0" allowfullscreen
-                title="Webcam Batz-sur-Mer La Govelle — Windy" loading="lazy"></iframe>
-      </div>
+      <a class="webcam-thumb"
+         href="https://www.windy.com/webcams/1683105729"
+         target="_blank" rel="noopener"
+         aria-label="Voir la webcam de La Govelle à Batz-sur-Mer en direct sur Windy">
+        <img src="https://webcams.windy.com/webcams/public/thumbs/webcam_1683105729_l.jpg"
+             alt="Vue en direct sur le spot de surf de La Govelle à Batz-sur-Mer, Loire-Atlantique"
+             loading="lazy" width="640" height="360"/>
+        <span class="wcam-live" aria-hidden="true">LIVE</span>
+        <span class="wcam-play" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <span class="wcam-label" aria-hidden="true">
+          Batz-sur-Mer — La Govelle
+          <span class="wcam-label-spot">Windy.com</span>
+        </span>
+      </a>
       <div class="webcam-info">
         <h2 class="webcam-title">📹 Batz-sur-Mer — La Govelle</h2>
         <span class="webcam-tag surf">Surf &amp; Skimboard</span>
@@ -342,26 +529,45 @@
           aux houles d'ouest, idéales pour les surfeurs intermédiaires. La webcam permet d'évaluer
           la taille des vagues et les conditions avant de se lancer.
         </p>
-        <a href="/marees-batz-sur-mer/" class="webcam-link">Voir les marées à Batz-sur-Mer →</a>
+        <div class="webcam-actions">
+          <a href="https://www.windy.com/webcams/1683105729" target="_blank" rel="noopener"
+             class="wcam-btn-live">▶ Voir en direct</a>
+          <a href="/marees-batz-sur-mer/" class="webcam-link">Marées à Batz-sur-Mer →</a>
+        </div>
       </div>
     </article>
 
-    <!-- 8. Le Pouliguen — Windy webcam -->
+    <!-- 8. Le Pouliguen -->
     <article class="webcam-card">
-      <div class="webcam-iframe-wrap">
-        <iframe src="https://webcams.windy.com/webcams/public/embed/player?webcamId=1466200963&playerType=live&loop=0&autoPlay=0&interactive=1"
-                width="100%" height="360" frameborder="0" allowfullscreen
-                title="Webcam Le Pouliguen — Windy" loading="lazy"></iframe>
-      </div>
+      <a class="webcam-thumb"
+         href="https://www.windy.com/webcams/1466200963"
+         target="_blank" rel="noopener"
+         aria-label="Voir la webcam du Pouliguen en direct sur Windy">
+        <img src="https://webcams.windy.com/webcams/public/thumbs/webcam_1466200963_l.jpg"
+             alt="Vue en direct sur la baie et le port de plaisance du Pouliguen, Loire-Atlantique"
+             loading="lazy" width="640" height="360"/>
+        <span class="wcam-live" aria-hidden="true">LIVE</span>
+        <span class="wcam-play" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <span class="wcam-label" aria-hidden="true">
+          Le Pouliguen — Port &amp; Plage
+          <span class="wcam-label-spot">Windy.com</span>
+        </span>
+      </a>
       <div class="webcam-info">
-        <h2 class="webcam-title">📹 Le Pouliguen — Live</h2>
+        <h2 class="webcam-title">📹 Le Pouliguen — Port &amp; Plage</h2>
         <span class="webcam-tag port">Port &amp; Plage</span>
         <p class="webcam-desc">
           Le Pouliguen et sa baie, à l'entrée de La Baule. La webcam montre l'état de la mer,
           le port de plaisance et les plages alentour. Idéal pour planifier une baignade
-          ou une sortie en mer depuis ce charmant port.
+          ou une sortie en mer depuis ce charmant port breton.
         </p>
-        <a href="/marees-le-pouliguen/" class="webcam-link">Voir les marées au Pouliguen →</a>
+        <div class="webcam-actions">
+          <a href="https://www.windy.com/webcams/1466200963" target="_blank" rel="noopener"
+             class="wcam-btn-live">▶ Voir en direct</a>
+          <a href="/marees-le-pouliguen/" class="webcam-link">Marées au Pouliguen →</a>
+        </div>
       </div>
     </article>
 
