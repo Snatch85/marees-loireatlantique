@@ -9,32 +9,32 @@
 
 :root{
   /* -- Palette principale -- */
-  --o900:#003F72;
-  --o700:#0077B6;
-  --o500:#00B4D8;
-  --o300:#90E0EF;
-  --o100:#CAF0F8;
-  --o50 :#E0F7FA;
-  --teal :#2A9D8F;
-  --teal-l:#4DBDAF;
+  --o900:#2D5A4F;
+  --o700:#4A7C6F;
+  --o500:#7B9E87;
+  --o300:#A8C4B5;
+  --o100:#CEE3D6;
+  --o50 :#EEF4EE;
+  --teal :#7B9E87;
+  --teal-l:#9BB8A5;
   --coral:#E76F51;
   --sand :#F8F3EA;
 
   /* fond page, cartes, texte */
-  --bg   :#EEF6FB;
+  --bg   :#F6F3EE;
   --white:#FFFFFF;
-  --text :#0D1B2A;
-  --text-m:#2B4057;
-  --text-l:#5A7A9A;
-  --border:rgba(0,119,182,.13);
+  --text :#2C2C2C;
+  --text-m:#5C5C52;
+  --text-l:#8A8778;
+  --border:#D5CEBE;
 
   /* -- Ombres -- */
-  --sh-sm:0 2px 8px rgba(0,119,182,.08);
-  --sh-md:0 6px 24px rgba(0,119,182,.13);
-  --sh-lg:0 12px 40px rgba(0,119,182,.18);
+  --sh-sm:0 2px 8px rgba(45,90,79,.08);
+  --sh-md:0 6px 24px rgba(45,90,79,.13);
+  --sh-lg:0 12px 40px rgba(45,90,79,.18);
   --sh-3d:0 2px 4px rgba(0,0,0,.04),
-          0 8px 24px rgba(0,119,182,.11),
-          0 20px 48px rgba(0,119,182,.07);
+          0 8px 24px rgba(45,90,79,.11),
+          0 20px 48px rgba(45,90,79,.07);
 
   /* -- Rayons -- */
   --r-sm:10px;
@@ -43,10 +43,10 @@
   --r-xl:30px;
 
   /* compat anciens alias (sous-pages) */
-  --blue:#0077B6;
-  --blue-d:#003F72;
-  --blue-l:#E0F7FA;
-  --sea:#2A9D8F;
+  --blue:#4A7C6F;
+  --blue-d:#2D5A4F;
+  --blue-l:#EDF5F0;
+  --sea:#7B9E87;
 }
 
 html{scroll-behavior:smooth;font-size:16px}
@@ -76,7 +76,7 @@ a:focus-visible{outline:3px solid var(--o500);outline-offset:3px;border-radius:4
 ══════════════════════════════════════════════ */
 header{
   position:relative;
-  background:linear-gradient(150deg,#0a2a4a 0%,#0d3b6e 35%,#0a4a7c 65%,#1a6b8a 100%);
+  background:linear-gradient(135deg,#2D5A4F 0%,#4A7C6F 60%,#7B9E87 100%);
   background-size:200% 200%;
   animation:oceanShift 12s ease-in-out infinite;
   color:#fff;
@@ -199,19 +199,19 @@ header::after{
 /* vague 1 — fond plein, rapide, plus opaque */
 .wv1{
   animation:waveSlide 9s linear infinite;
-  fill:var(--bg);
+  fill:#EDF5F0;
   opacity:.95;
 }
 /* vague 2 — semi-transparente, lente, sens inverse */
 .wv2{
   animation:waveSlide 13s linear infinite reverse;
-  fill:rgba(238,246,251,.7);
+  fill:rgba(237,245,240,.7);
   opacity:.8;
 }
 /* vague 3 — très légère, rythme décalé */
 .wv3{
   animation:waveSlide 17s linear infinite;
-  fill:rgba(0,119,182,.1);
+  fill:rgba(74,124,111,.1);
   opacity:.6;
 }
 /* bulles sous-marines */
