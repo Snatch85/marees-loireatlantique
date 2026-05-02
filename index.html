@@ -304,6 +304,37 @@
       <div id="meteoContent" class="meteo-loading">Chargement météo…</div>
     </div>
 
+    <!-- 🎯 FENÊTRE IDÉALE — Planificateur d'activités -->
+    <section class="fenetre-ideale-section" id="fenetreIdeale" aria-labelledby="fenetreTitle">
+      <div class="fenetre-header">
+        <div class="fenetre-title">
+          <span aria-hidden="true">🎯</span>
+          <span id="fenetreTitle">Trouver ma fenêtre idéale</span>
+        </div>
+        <div class="fenetre-subtitle">Les 3 meilleurs créneaux sur 7 jours selon votre activité</div>
+        <div class="fenetre-activities" role="group" aria-label="Sélection d'activité">
+          <button class="fenetre-btn" data-activity="peche" aria-pressed="false" aria-label="Pêche à pied">
+            🦪 Pêche à pied
+          </button>
+          <button class="fenetre-btn" data-activity="surf" aria-pressed="false" aria-label="Surf">
+            🏄 Surf
+          </button>
+          <button class="fenetre-btn" data-activity="kayak" aria-pressed="false" aria-label="Kayak / Paddle">
+            🚣 Kayak / Paddle
+          </button>
+          <button class="fenetre-btn" data-activity="baignade" aria-pressed="false" aria-label="Baignade">
+            🏊 Baignade
+          </button>
+          <button class="fenetre-btn" data-activity="navigation" aria-pressed="false" aria-label="Navigation plaisance">
+            ⚓ Navigation
+          </button>
+        </div>
+      </div>
+      <div class="fenetre-results" id="fenetreResults" aria-live="polite">
+        <div class="fenetre-empty">Sélectionnez une activité pour découvrir les meilleurs créneaux de marée</div>
+      </div>
+    </section>
+
     <!-- Marées du jour -->
     <section class="today-card" id="today" aria-labelledby="todayTitle">
       <div class="today-header">

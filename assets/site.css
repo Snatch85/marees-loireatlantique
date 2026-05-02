@@ -422,6 +422,117 @@ header::after{
 
 
 /* ══════════════════════════════════════════════
+   FENÊTRE IDÉALE — Planificateur d'activités
+══════════════════════════════════════════════ */
+.fenetre-ideale-section{
+  background:var(--white);border-radius:var(--r-lg);
+  border:1px solid var(--border);overflow:hidden;
+  box-shadow:var(--sh-md);margin-bottom:1.5rem;
+}
+.fenetre-header{
+  padding:1.2rem 1.4rem;
+  background:linear-gradient(135deg,rgba(0,119,182,.08),rgba(42,157,143,.08));
+  border-bottom:1px solid var(--o50);
+}
+.fenetre-title{
+  font-size:1.05rem;font-weight:800;color:var(--o900);
+  margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;
+}
+.fenetre-subtitle{
+  font-size:.78rem;color:var(--text-m);
+}
+.fenetre-activities{
+  display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem;
+}
+.fenetre-btn{
+  flex:1 1 auto;min-width:100px;max-width:160px;
+  padding:.65rem .9rem;border:none;border-radius:12px;
+  font-size:.75rem;font-weight:700;cursor:pointer;
+  transition:all .2s ease;text-align:center;
+  background:rgba(255,255,255,.7);color:var(--text-m);
+  border:2px solid transparent;
+}
+.fenetre-btn:hover{
+  background:var(--white);transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+.fenetre-btn[aria-pressed="true"],.fenetre-btn.active{
+  color:#fff;transform:translateY(-2px);
+  box-shadow:0 4px 16px rgba(0,0,0,.15);
+}
+.fenetre-btn[data-activity="peche"]{background:rgba(42,157,143,.15);border-color:rgba(42,157,143,.3);}
+.fenetre-btn[data-activity="peche"][aria-pressed="true"]{background:#2A9D8F;}
+.fenetre-btn[data-activity="surf"]{background:rgba(231,111,81,.15);border-color:rgba(231,111,81,.3);}
+.fenetre-btn[data-activity="surf"][aria-pressed="true"]{background:#E76F51;}
+.fenetre-btn[data-activity="kayak"]{background:rgba(74,124,111,.15);border-color:rgba(74,124,111,.3);}
+.fenetre-btn[data-activity="kayak"][aria-pressed="true"]{background:#4A7C6F;}
+.fenetre-btn[data-activity="baignade"]{background:rgba(74,176,210,.15);border-color:rgba(74,176,210,.3);}
+.fenetre-btn[data-activity="baignade"][aria-pressed="true"]{background:#4AB0D2;}
+.fenetre-btn[data-activity="navigation"]{background:rgba(45,90,79,.15);border-color:rgba(45,90,79,.3);}
+.fenetre-btn[data-activity="navigation"][aria-pressed="true"]{background:#2D5A4F;}
+
+.fenetre-results{padding:0;}
+.fenetre-empty{
+  padding:2rem;text-align:center;color:var(--text-l);
+  font-size:.85rem;
+}
+.fenetre-card{
+  display:flex;align-items:center;gap:1rem;
+  padding:1rem 1.4rem;border-bottom:1px solid var(--o50);
+  transition:background .15s ease;
+}
+.fenetre-card:last-child{border-bottom:none;}
+.fenetre-card:hover{background:var(--o50);}
+.fenetre-card-rank{
+  width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;font-weight:800;color:#fff;
+  flex-shrink:0;
+}
+.fenetre-card-rank.rank-1{background:linear-gradient(135deg,#FFD700,#FFA500);}
+.fenetre-card-rank.rank-2{background:linear-gradient(135deg,#C0C0C0,#9CA3AF);}
+.fenetre-card-rank.rank-3{background:linear-gradient(135deg,#CD7F32,#B87333);}
+.fenetre-card-content{flex:1;min-width:0;}
+.fenetre-card-row1{
+  display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem;flex-wrap:wrap;
+}
+.fenetre-day{font-weight:800;font-size:.85rem;color:var(--o900);}
+.fenetre-date{font-size:.72rem;color:var(--text-l);}
+.fenetre-stars{margin-left:auto;display:flex;gap:2px;}
+.fenetre-star{font-size:.85rem;color:#FFD700;}
+.fenetre-star.empty{color:#D1D5DB;}
+.fenetre-card-row2{
+  display:flex;align-items:center;gap:.7rem;margin-bottom:.35rem;flex-wrap:wrap;
+}
+.fenetre-time{
+  font-weight:700;font-size:.9rem;color:var(--text);
+  background:var(--bg);padding:.2rem .6rem;border-radius:8px;
+}
+.fenetre-duration{
+  font-size:.72rem;color:var(--text-m);
+  background:rgba(42,157,143,.1);padding:.15rem .5rem;border-radius:6px;
+}
+.fenetre-coeff{
+  font-size:.7rem;font-weight:700;padding:.15rem .5rem;border-radius:6px;
+}
+.fenetre-coeff.high{background:rgba(231,111,81,.15);color:#E76F51;}
+.fenetre-coeff.medium{background:rgba(74,124,111,.15);color:#4A7C6F;}
+.fenetre-coeff.low{background:rgba(42,157,143,.15);color:#2A9D8F;}
+.fenetre-desc{
+  font-size:.78rem;color:var(--text-m);line-height:1.5;
+}
+.fenetre-desc strong{color:var(--o900);}
+
+@media (max-width: 640px){
+  .fenetre-activities{gap:.35rem;}
+  .fenetre-btn{min-width:calc(50% - 0.2rem);max-width:none;}
+  .fenetre-card{flex-direction:column;align-items:flex-start;gap:.6rem;}
+  .fenetre-card-rank{width:28px;height:28px;font-size:.8rem;}
+  .fenetre-card-row1{width:100%;}
+  .fenetre-stars{margin-left:0;}
+}
+
+/* ══════════════════════════════════════════════
    WEEK CARD — Tableau 7 jours
 ══════════════════════════════════════════════ */
 .week-card{
