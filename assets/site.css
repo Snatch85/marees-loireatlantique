@@ -119,18 +119,13 @@ header::after{
 }
 .logo{display:flex;align-items:center;gap:.75rem}
 .logo-wave{
-  font-size:2.5rem;
-  filter:drop-shadow(0 3px 6px rgba(0,0,0,.25));
-  animation:bob 4s ease-in-out infinite,spinRock 4s ease-in-out infinite;
+  width:52px;height:52px;flex-shrink:0;
+  filter:drop-shadow(0 3px 10px rgba(0,180,216,.35));
+  animation:bob 4s ease-in-out infinite;
 }
 @keyframes bob{
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-5px)}
-}
-@keyframes spinRock{
-  0%,100%{transform:rotate(0deg)}
-  25%{transform:rotate(8deg)}
-  75%{transform:rotate(-8deg)}
 }
 .logo-text h1{
   font-size:1.15rem;font-weight:800;
