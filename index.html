@@ -291,6 +291,14 @@
   </div>
 </nav>
 
+<!-- Vague décorative animée -->
+<div class="wave-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-path-1" d="M0,30 C240,55 480,5 720,30 C960,55 1200,5 1440,30 L1440,60 L0,60 Z" fill="#00B4D8" opacity="0.18"/>
+    <path class="wave-path-2" d="M0,30 C240,5 480,55 720,30 C960,5 1200,55 1440,30 L1440,60 L0,60 Z" fill="#0077B6" opacity="0.12"/>
+  </svg>
+</div>
+
 <!-- ═══════════════════════════════════════
      BANNIÈRE PUBLICITAIRE HAUTE
 ════════════════════════════════════════ -->
@@ -672,6 +680,15 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 <script>
 (function(){
+  // 1. Parallaxe sur l'image hero
+  const heroImg = document.querySelector('.hero-img');
+  if(heroImg){
+    window.addEventListener('scroll', ()=>{
+      heroImg.style.transform = 'translateY('+Math.round(window.scrollY * 0.38)+'px)';
+    }, {passive:true});
+  }
+
+  // 2. Scroll reveal pour le contenu bas de page
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
       if(e.isIntersecting){
@@ -679,8 +696,18 @@ document.addEventListener('DOMContentLoaded',()=>{
         io.unobserve(e.target);
       }
     });
-  },{threshold:0.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  },{threshold:0.1, rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.scroll-reveal').forEach(el=>io.observe(el));
+
+  // 3. Vague accélère au scroll
+  const waveSpeed = ()=>{
+    const ratio = Math.min(1, window.scrollY / 400);
+    const dur1 = (6 - ratio * 3.5).toFixed(1)+'s';
+    const dur2 = (9 - ratio * 5).toFixed(1)+'s';
+    document.querySelectorAll('.wave-path-1').forEach(p=>p.style.animationDuration=dur1);
+    document.querySelectorAll('.wave-path-2').forEach(p=>p.style.animationDuration=dur2);
+  };
+  window.addEventListener('scroll', waveSpeed, {passive:true});
 })();
 </script>
 
