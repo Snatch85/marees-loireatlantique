@@ -48,6 +48,9 @@ window.addEventListener('load', function() {
   // Activer les emplacements AdSense si consentement déjà donné
   var consent = localStorage.getItem('cookieConsent');
   if (consent === 'accepted') loadAds();
+  
+  // Initialiser la Fenêtre Idéale
+  initFenetreIdeale();
 });
 
 // ══════════════════════════════════════════════════════════════
@@ -806,5 +809,242 @@ function programmerAlertes() {
         tag:  'grande-maree'
       });
     }, delai);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+// FENÊTRE IDÉALE — Planificateur intelligent d'activités
+// ══════════════════════════════════════════════════════════════
+
+var ACTIVITES_CONFIG = {
+  peche: {
+    name: "Pêche à pied",
+    icon: "🦪",
+    color: "#2A9D8F",
+    criteria: function(coeff, extrema, portId, date) {
+      if (coeff < 85) return null;
+      var BMs = extrema.filter(function(e){ return e.type === 'BM'; });
+      if (!BMs.length) return null;
+      var bm = BMs[0];
+      var windowStart = new Date(bm.t.getTime() - 90 * 60000);
+      var windowEnd = new Date(bm.t.getTime() + 90 * 60000);
+      var duration = 180;
+      var score = coeff >= 100 ? 95 : 75;
+      var bonusText = coeff >= 100 
+        ? "Coefficient exceptionnel — zones rarement découvertes accessibles" 
+        : "Bon coefficient pour la pêche à pied";
+      return {
+        startTime: windowStart,
+        endTime: windowEnd,
+        duration: duration,
+        score: score,
+        coeff: coeff,
+        description: bonusText + ", basse mer à " + fmtTime(bm.t)
+      };
+    }
+  },
+  surf: {
+    name: "Surf",
+    icon: "🏄",
+    color: "#E76F51",
+    criteria: function(coeff, extrema, portId, date) {
+      if (coeff < 50 || coeff > 90) return null;
+      var PMs = extrema.filter(function(e){ return e.type === 'PM'; });
+      var BMs = extrema.filter(function(e){ return e.type === 'BM'; });
+      if (!PMs.length || !BMs.length) return null;
+      var bm = BMs[0];
+      var pm = PMs[0];
+      var midRising = new Date(bm.t.getTime() + (pm.t.getTime() - bm.t.getTime()) / 2);
+      var windowStart = new Date(midRising.getTime() - 60 * 60000);
+      var windowEnd = new Date(midRising.getTime() + 60 * 60000);
+      var duration = 120;
+      var score = 70 + (90 - Math.abs(coeff - 70));
+      if (bm.t < pm.t) score += 10;
+      return {
+        startTime: windowStart,
+        endTime: windowEnd,
+        duration: duration,
+        score: Math.min(95, score),
+        coeff: coeff,
+        description: (bm.t < pm.t ? "Marée montante idéale" : "Marée descendante") + 
+                     ", mi-flot vers " + fmtTime(midRising)
+      };
+    }
+  },
+  kayak: {
+    name: "Kayak / Paddle",
+    icon: "🚣",
+    color: "#4A7C6F",
+    criteria: function(coeff, extrema, portId, date) {
+      if (coeff < 30 || coeff > 70) return null;
+      var PMs = extrema.filter(function(e){ return e.type === 'PM'; });
+      var BMs = extrema.filter(function(e){ return e.type === 'BM'; });
+      if (!PMs.length || !BMs.length) return null;
+      var bm = BMs[0];
+      var windowStart = new Date(bm.t.getTime() - 60 * 60000);
+      var windowEnd = new Date(bm.t.getTime() + 60 * 60000);
+      var duration = 120;
+      var score = 75 + (70 - coeff);
+      return {
+        startTime: windowStart,
+        endTime: windowEnd,
+        duration: duration,
+        score: Math.min(90, score),
+        coeff: coeff,
+        description: "Courant minimal à l'étale, basse mer à " + fmtTime(bm.t) + 
+                     " — conditions calmes idéales"
+      };
+    }
+  },
+  baignade: {
+    name: "Baignade",
+    icon: "🏊",
+    color: "#4AB0D2",
+    criteria: function(coeff, extrema, portId, date) {
+      var PMs = extrema.filter(function(e){ return e.type === 'PM'; });
+      if (!PMs.length) return null;
+      var pm = PMs[0];
+      var windowStart = new Date(pm.t.getTime() - 120 * 60000);
+      var windowEnd = pm.t;
+      var duration = 120;
+      var score = coeff < 60 ? 85 : 65;
+      return {
+        startTime: windowStart,
+        endTime: windowEnd,
+        duration: duration,
+        score: score,
+        coeff: coeff,
+        description: (coeff < 60 ? "Peu de courant, idéal" : "Conditions correctes") + 
+                     ", pleine mer à " + fmtTime(pm.t) + " — eau profonde au bord"
+      };
+    }
+  },
+  navigation: {
+    name: "Navigation plaisance",
+    icon: "⚓",
+    color: "#2D5A4F",
+    criteria: function(coeff, extrema, portId, date) {
+      if (coeff >= 85) return null;
+      var PMs = extrema.filter(function(e){ return e.type === 'PM'; });
+      var BMs = extrema.filter(function(e){ return e.type === 'BM'; });
+      if (!PMs.length || !BMs.length) return null;
+      var pm = PMs[0];
+      var windowStart = new Date(pm.t.getTime() - 45 * 60000);
+      var windowEnd = new Date(pm.t.getTime() + 45 * 60000);
+      var duration = 90;
+      var score = coeff < 50 ? 90 : 75;
+      return {
+        startTime: windowStart,
+        endTime: windowEnd,
+        duration: duration,
+        score: score,
+        coeff: coeff,
+        description: "Courant réduit à l'étale, pleine mer à " + fmtTime(pm.t) + 
+                     " — passage chenal sécurisé"
+      };
+    }
+  }
+};
+
+function calculerFenetresIdealles(portId, activity, daysAhead) {
+  var start = new Date();
+  start.setHours(0, 0, 0, 0);
+  var results = [];
+  var config = ACTIVITES_CONFIG[activity];
+  if (!config) return [];
+  
+  for (var i = 0; i < daysAhead; i++) {
+    var date = new Date(start.getTime() + i * 86400000);
+    var extrema = findExtrema(portId, date);
+    var coeff = calcCoeff(portId, date);
+    var slot = config.criteria(coeff, extrema, portId, date);
+    if (slot) {
+      slot.date = date;
+      slot.dayName = date.toLocaleDateString('fr-FR', { weekday: 'long' });
+      slot.dayDate = date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
+      results.push(slot);
+    }
+  }
+  
+  results.sort(function(a, b) { return b.score - a.score; });
+  return results.slice(0, 3);
+}
+
+function renderFenetreIdeale(portId, activity) {
+  var container = document.getElementById('fenetreResults');
+  if (!container) return;
+  
+  var results = calculerFenetresIdealles(portId, activity, 7);
+  
+  if (!results.length) {
+    var msg = "";
+    if (activity === 'peche') msg = "Aucun créneau idéal — attendez un coefficient ≥ 85 (grandes marées)";
+    else if (activity === 'surf') msg = "Aucun créneau idéal — visez un coefficient 50-90 avec marée montante";
+    else if (activity === 'kayak') msg = "Aucun créneau idéal — privilégiez les mortes-eaux (coeff 30-70)";
+    else if (activity === 'navigation') msg = "Aucun créneau idéal — attendez un coefficient < 85";
+    else msg = "Aucun créneau idéal trouvé pour cette activité sur les 7 prochains jours";
+    
+    container.innerHTML = '<div class="fenetre-empty">' + msg + '</div>';
+    return;
+  }
+  
+  var html = '';
+  results.forEach(function(slot, idx) {
+    var rankClass = 'rank-' + (idx + 1);
+    var starsHtml = '';
+    var starCount = slot.score >= 85 ? 3 : (slot.score >= 70 ? 2 : 1);
+    for (var s = 1; s <= 3; s++) {
+      starsHtml += '<span class="fenetre-star' + (s > starCount ? ' empty' : '') + '" aria-hidden="true">★</span>';
+    }
+    var coeffClass = slot.coeff >= 85 ? 'high' : (slot.coeff >= 50 ? 'medium' : 'low');
+    
+    html += '<div class="fenetre-card">';
+    html += '<div class="fenetre-card-rank ' + rankClass + '">' + (idx + 1) + '</div>';
+    html += '<div class="fenetre-card-content">';
+    html += '<div class="fenetre-card-row1">';
+    html += '<span class="fenetre-day">' + slot.dayName.charAt(0).toUpperCase() + slot.dayName.slice(1) + '</span>';
+    html += '<span class="fenetre-date">' + slot.dayDate + '</span>';
+    html += '<div class="fenetre-stars" aria-label="' + starCount + ' étoiles sur 3">' + starsHtml + '</div>';
+    html += '</div>';
+    html += '<div class="fenetre-card-row2">';
+    html += '<span class="fenetre-time">' + fmtTime(slot.startTime) + ' – ' + fmtTime(slot.endTime) + '</span>';
+    html += '<span class="fenetre-duration">' + slot.duration + ' min</span>';
+    html += '<span class="fenetre-coeff ' + coeffClass + '">Coeff. ' + slot.coeff + '</span>';
+    html += '</div>';
+    html += '<div class="fenetre-desc"><strong>' + ACTIVITES_CONFIG[activity].icon + ' ' + ACTIVITES_CONFIG[activity].name + ' :</strong> ' + slot.description + '</div>';
+    html += '</div></div>';
+  });
+  
+  container.innerHTML = html;
+}
+
+function initFenetreIdeale() {
+  var buttons = document.querySelectorAll('.fenetre-btn');
+  buttons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      buttons.forEach(function(b) {
+        b.setAttribute('aria-pressed', 'false');
+        b.classList.remove('active');
+      });
+      btn.setAttribute('aria-pressed', 'true');
+      btn.classList.add('active');
+      
+      var activity = btn.getAttribute('data-activity');
+      var portSelect = document.getElementById('portSelect');
+      var portId = portSelect ? portSelect.value : 'SAINT-NAZAIRE';
+      
+      renderFenetreIdeale(portId, activity);
+    });
+  });
+  
+  var portSelect = document.getElementById('portSelect');
+  if (portSelect) {
+    portSelect.addEventListener('change', function() {
+      var activeBtn = document.querySelector('.fenetre-btn[aria-pressed="true"]');
+      if (activeBtn) {
+        var activity = activeBtn.getAttribute('data-activity');
+        renderFenetreIdeale(portSelect.value, activity);
+      }
+    });
   }
 }

@@ -1,40 +1,52 @@
 /* ═══════════════════════════════════════════════════
-   MARÉES LOIRE-ATLANTIQUE — Design System v3
-   Palette marine lumineuse · WCAG AA · Mobile-first
+   MARÉES LOIRE-ATLANTIQUE — Design System v4
+   Palette Océan Atlantique · WCAG AA · Mobile-first
    Auteur : Berry Yann — berry.guihal@gmail.com
-   Dernière modif : avril 2026
+   Dernière modif : Mai 2026 — Refonte couleurs Ocean + Webcams
 ═══════════════════════════════════════════════════ */
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  /* -- Palette principale -- */
-  --o900:#003F72;
-  --o700:#0077B6;
-  --o500:#00B4D8;
-  --o300:#90E0EF;
-  --o100:#CAF0F8;
-  --o50 :#E0F7FA;
-  --teal :#2A9D8F;
-  --teal-l:#4DBDAF;
-  --coral:#E76F51;
-  --sand :#F8F3EA;
-
-  /* fond page, cartes, texte */
-  --bg   :#EEF6FB;
-  --white:#FFFFFF;
-  --text :#0D1B2A;
-  --text-m:#2B4057;
-  --text-l:#5A7A9A;
-  --border:rgba(0,119,182,.13);
+  /* -- Palette Océan Atlantique -- */
+  --blue   : #0096C7;  /* Bleu Atlantique vif */
+  --blue-d : #023E8A;  /* Bleu nuit profonde */
+  --blue-l : #CAF0F8;  /* Écume soleil */
+  --sea    : #F77F00;  /* Soleil — accents */
+  --sea-l  : #FFF3E0;  /* Sable chaud */
+  --bg     : #F0F8FF;  /* Ciel matin */
+  --border : #90E0EF;  /* Reflet vague */
+  --text   : #03045E;  /* Encre marine */
+  --text-m : #0077B6;  /* Bleu moyen */
+  --text-l : #48CAE4;  /* Bleu clair */
+  --white  : #FFFFFF;
+  
+  /* compat anciens alias */
+  --o900: #023E8A;
+  --o700: #0096C7;
+  --o500: #48CAE4;
+  --o300: #90E0EF;
+  --o100: #CAF0F8;
+  --o50 : #F0F8FF;
+  --teal : #0096C7;
+  --teal-l: #48CAE4;
+  --coral: #F77F00;
+  --sand : #FFF3E0;
+  
+  /* fond page, cartes, texte — aliases legacy */
+  --bg-old   : #F6F3EE;
+  --text-old : #2C2C2C;
+  --text-m-old:#5C5C52;
+  --text-l-old:#8A8778;
+  --border-old:#D5CEBE;
 
   /* -- Ombres -- */
-  --sh-sm:0 2px 8px rgba(0,119,182,.08);
-  --sh-md:0 6px 24px rgba(0,119,182,.13);
-  --sh-lg:0 12px 40px rgba(0,119,182,.18);
+  --sh-sm:0 2px 8px rgba(45,90,79,.08);
+  --sh-md:0 6px 24px rgba(45,90,79,.13);
+  --sh-lg:0 12px 40px rgba(45,90,79,.18);
   --sh-3d:0 2px 4px rgba(0,0,0,.04),
-          0 8px 24px rgba(0,119,182,.11),
-          0 20px 48px rgba(0,119,182,.07);
+          0 8px 24px rgba(45,90,79,.11),
+          0 20px 48px rgba(45,90,79,.07);
 
   /* -- Rayons -- */
   --r-sm:10px;
@@ -42,11 +54,7 @@
   --r-lg:22px;
   --r-xl:30px;
 
-  /* compat anciens alias (sous-pages) */
-  --blue:#0077B6;
-  --blue-d:#003F72;
-  --blue-l:#E0F7FA;
-  --sea:#2A9D8F;
+  /* compat anciens alias (sous-pages) — REMAP vers nouvelle palette */
 }
 
 html{scroll-behavior:smooth;font-size:16px}
@@ -76,7 +84,7 @@ a:focus-visible{outline:3px solid var(--o500);outline-offset:3px;border-radius:4
 ══════════════════════════════════════════════ */
 header{
   position:relative;
-  background:linear-gradient(150deg,#0a2a4a 0%,#0d3b6e 35%,#0a4a7c 65%,#1a6b8a 100%);
+  background:linear-gradient(135deg,#023E8A 0%,#0096C7 60%,#48CAE4 100%);
   background-size:200% 200%;
   animation:oceanShift 12s ease-in-out infinite;
   color:#fff;
@@ -191,22 +199,26 @@ header::after{
   from{transform:translateX(0)}
   to{transform:translateX(-50%)}
 }
+@keyframes waveSlideRev{
+  from{transform:translateX(-50%)}
+  to{transform:translateX(0)}
+}
 /* vague 1 — fond plein, rapide, plus opaque */
 .wv1{
-  animation:waveSlide 9s linear infinite;
-  fill:var(--bg);
+  animation:waveSlide 18s linear infinite;
+  fill:#CAF0F8;
   opacity:.95;
 }
 /* vague 2 — semi-transparente, lente, sens inverse */
 .wv2{
-  animation:waveSlide 13s linear infinite reverse;
-  fill:rgba(238,246,251,.7);
+  animation:waveSlideRev 25s linear infinite;
+  fill:rgba(202,240,248,.7);
   opacity:.8;
 }
 /* vague 3 — très légère, rythme décalé */
 .wv3{
-  animation:waveSlide 17s linear infinite;
-  fill:rgba(0,119,182,.1);
+  animation:waveSlide 12s linear infinite;
+  fill:rgba(0,150,199,.1);
   opacity:.6;
 }
 /* bulles sous-marines */
@@ -288,9 +300,21 @@ header::after{
   font-size:.82rem;font-weight:700;cursor:pointer;
   transition:all .25s;white-space:nowrap;
   box-shadow:0 3px 10px rgba(0,119,182,.25);
+  position:relative;overflow:hidden;
 }
 .refresh-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,119,182,.35)}
 .refresh-btn:focus-visible{outline:3px solid var(--o500);outline-offset:2px}
+/* Ripple effect au clic */
+.refresh-btn::after{
+  content:'';position:absolute;
+  top:50%;left:50%;width:0;height:0;
+  background:rgba(255,255,255,.4);
+  border-radius:50%;transform:translate(-50%,-50%);
+  transition:width .6s,height .6s,opacity .6s;
+}
+.refresh-btn:active::after{
+  width:200px;height:200px;opacity:0;
+}
 .refresh-btn.alert-btn{
   background:linear-gradient(135deg,var(--teal),var(--teal-l));
   box-shadow:0 3px 10px rgba(42,157,143,.25);
@@ -305,7 +329,18 @@ header::after{
   background:var(--white);border-radius:var(--r-lg);
   border:1px solid var(--border);overflow:hidden;
   box-shadow:var(--sh-3d);transition:box-shadow .3s;
+  position:relative;
 }
+/* Shimmer doré au hover */
+.today-card::after{
+  content:'';position:absolute;
+  top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+  transition:left .5s;
+  pointer-events:none;
+}
+.today-card:hover::after{left:100%}
+
 .today-header{
   background:linear-gradient(135deg,var(--o900) 0%,var(--o700) 60%,var(--o500) 100%);
   color:#fff;padding:1.4rem 1.6rem 1.25rem;
@@ -320,7 +355,7 @@ header::after{
 .today-title{font-size:1.05rem;font-weight:800;letter-spacing:-.02em;line-height:1.3}
 .today-date{font-size:.8rem;opacity:.82;margin-top:.2rem;font-weight:400}
 
-/* badge coefficient — pulse quand la valeur change */
+/* badge coefficient — pulse + couleur selon valeur */
 .coeff-badge{
   background:rgba(255,255,255,.18);
   border:1.5px solid rgba(255,255,255,.38);
@@ -328,13 +363,25 @@ header::after{
   font-size:.84rem;font-weight:800;white-space:nowrap;
   backdrop-filter:blur(8px);
   box-shadow:0 2px 8px rgba(0,0,0,.15);
-  transition:transform .15s;
+  transition:transform .15s,background .3s,box-shadow .3s;
+  animation:coeffPulse 2s ease-in-out infinite;
 }
-.coeff-badge.pulse{animation:coeffPulse .4s ease}
 @keyframes coeffPulse{
-  0%{transform:scale(1)}
-  40%{transform:scale(1.12)}
-  100%{transform:scale(1)}
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.05)}
+}
+/* Couleurs dynamiques selon coefficient */
+.coeff-badge.low{background:#52B788;border-color:rgba(255,255,255,.5)}
+.coeff-badge.medium{background:#0096C7;border-color:rgba(255,255,255,.5)}
+.coeff-badge.high{background:#F77F00;border-color:rgba(255,255,255,.5)}
+.coeff-badge.extreme{
+  background:#D62828;border-color:rgba(255,255,255,.6);
+  box-shadow:0 0 12px rgba(214,40,40,.6),0 2px 8px rgba(0,0,0,.2);
+  animation:coeffPulse 2s ease-in-out infinite,extremeGlow 1.5s ease-in-out infinite alternate;
+}
+@keyframes extremeGlow{
+  from{box-shadow:0 0 8px rgba(214,40,40,.5)}
+  to{box-shadow:0 0 16px rgba(214,40,40,.9),0 0 24px rgba(214,40,40,.6)}
 }
 
 /* grille des horaires */
@@ -417,13 +464,134 @@ header::after{
 
 
 /* ══════════════════════════════════════════════
+   FENÊTRE IDÉALE — Planificateur d'activités
+══════════════════════════════════════════════ */
+.fenetre-ideale-section{
+  background:var(--white);border-radius:var(--r-lg);
+  border:1px solid var(--border);overflow:hidden;
+  box-shadow:var(--sh-md);margin-bottom:1.5rem;
+}
+.fenetre-header{
+  padding:1.2rem 1.4rem;
+  background:linear-gradient(135deg,rgba(0,119,182,.08),rgba(42,157,143,.08));
+  border-bottom:1px solid var(--o50);
+}
+.fenetre-title{
+  font-size:1.05rem;font-weight:800;color:var(--o900);
+  margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;
+}
+.fenetre-subtitle{
+  font-size:.78rem;color:var(--text-m);
+}
+.fenetre-activities{
+  display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem;
+}
+.fenetre-btn{
+  flex:1 1 auto;min-width:100px;max-width:160px;
+  padding:.65rem .9rem;border:none;border-radius:12px;
+  font-size:.75rem;font-weight:700;cursor:pointer;
+  transition:all .2s ease;text-align:center;
+  background:rgba(255,255,255,.7);color:var(--text-m);
+  border:2px solid transparent;
+}
+.fenetre-btn:hover{
+  background:var(--white);transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+.fenetre-btn[aria-pressed="true"],.fenetre-btn.active{
+  color:#fff;transform:translateY(-2px);
+  box-shadow:0 4px 16px rgba(0,0,0,.15);
+}
+.fenetre-btn[data-activity="peche"]{background:rgba(42,157,143,.15);border-color:rgba(42,157,143,.3);}
+.fenetre-btn[data-activity="peche"][aria-pressed="true"]{background:#2A9D8F;}
+.fenetre-btn[data-activity="surf"]{background:rgba(231,111,81,.15);border-color:rgba(231,111,81,.3);}
+.fenetre-btn[data-activity="surf"][aria-pressed="true"]{background:#E76F51;}
+.fenetre-btn[data-activity="kayak"]{background:rgba(74,124,111,.15);border-color:rgba(74,124,111,.3);}
+.fenetre-btn[data-activity="kayak"][aria-pressed="true"]{background:#4A7C6F;}
+.fenetre-btn[data-activity="baignade"]{background:rgba(74,176,210,.15);border-color:rgba(74,176,210,.3);}
+.fenetre-btn[data-activity="baignade"][aria-pressed="true"]{background:#4AB0D2;}
+.fenetre-btn[data-activity="navigation"]{background:rgba(45,90,79,.15);border-color:rgba(45,90,79,.3);}
+.fenetre-btn[data-activity="navigation"][aria-pressed="true"]{background:#2D5A4F;}
+
+.fenetre-results{padding:0;}
+.fenetre-empty{
+  padding:2rem;text-align:center;color:var(--text-l);
+  font-size:.85rem;
+}
+.fenetre-card{
+  display:flex;align-items:center;gap:1rem;
+  padding:1rem 1.4rem;border-bottom:1px solid var(--o50);
+  transition:background .15s ease;
+}
+.fenetre-card:last-child{border-bottom:none;}
+.fenetre-card:hover{background:var(--o50);}
+.fenetre-card-rank{
+  width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;font-weight:800;color:#fff;
+  flex-shrink:0;
+}
+.fenetre-card-rank.rank-1{background:linear-gradient(135deg,#FFD700,#FFA500);}
+.fenetre-card-rank.rank-2{background:linear-gradient(135deg,#C0C0C0,#9CA3AF);}
+.fenetre-card-rank.rank-3{background:linear-gradient(135deg,#CD7F32,#B87333);}
+.fenetre-card-content{flex:1;min-width:0;}
+.fenetre-card-row1{
+  display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem;flex-wrap:wrap;
+}
+.fenetre-day{font-weight:800;font-size:.85rem;color:var(--o900);}
+.fenetre-date{font-size:.72rem;color:var(--text-l);}
+.fenetre-stars{margin-left:auto;display:flex;gap:2px;}
+.fenetre-star{font-size:.85rem;color:#FFD700;}
+.fenetre-star.empty{color:#D1D5DB;}
+.fenetre-card-row2{
+  display:flex;align-items:center;gap:.7rem;margin-bottom:.35rem;flex-wrap:wrap;
+}
+.fenetre-time{
+  font-weight:700;font-size:.9rem;color:var(--text);
+  background:var(--bg);padding:.2rem .6rem;border-radius:8px;
+}
+.fenetre-duration{
+  font-size:.72rem;color:var(--text-m);
+  background:rgba(42,157,143,.1);padding:.15rem .5rem;border-radius:6px;
+}
+.fenetre-coeff{
+  font-size:.7rem;font-weight:700;padding:.15rem .5rem;border-radius:6px;
+}
+.fenetre-coeff.high{background:rgba(231,111,81,.15);color:#E76F51;}
+.fenetre-coeff.medium{background:rgba(74,124,111,.15);color:#4A7C6F;}
+.fenetre-coeff.low{background:rgba(42,157,143,.15);color:#2A9D8F;}
+.fenetre-desc{
+  font-size:.78rem;color:var(--text-m);line-height:1.5;
+}
+.fenetre-desc strong{color:var(--o900);}
+
+@media (max-width: 640px){
+  .fenetre-activities{gap:.35rem;}
+  .fenetre-btn{min-width:calc(50% - 0.2rem);max-width:none;}
+  .fenetre-card{flex-direction:column;align-items:flex-start;gap:.6rem;}
+  .fenetre-card-rank{width:28px;height:28px;font-size:.8rem;}
+  .fenetre-card-row1{width:100%;}
+  .fenetre-stars{margin-left:0;}
+}
+
+/* ══════════════════════════════════════════════
    WEEK CARD — Tableau 7 jours
 ══════════════════════════════════════════════ */
 .week-card{
   background:var(--white);border-radius:var(--r-lg);
   border:1px solid var(--border);overflow:hidden;
   box-shadow:var(--sh-md);
+  position:relative;
 }
+/* Shimmer doré au hover */
+.week-card::after{
+  content:'';position:absolute;
+  top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+  transition:left .5s;
+  pointer-events:none;
+}
+.week-card:hover::after{left:100%}
 .week-header{
   padding:1.1rem 1.4rem .9rem;
   border-bottom:1px solid var(--o50);
