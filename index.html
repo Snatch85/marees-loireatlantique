@@ -314,7 +314,7 @@
   <div class="main-col">
 
     <!-- Sélection port + date -->
-    <div class="port-bar">
+    <div class="port-bar reveal">
       <label for="portSelect">Port :</label>
       <select class="port-select" id="portSelect" aria-label="Choisir un port">
         <optgroup label="── Loire-Atlantique (44) ──">
@@ -367,7 +367,7 @@
     </div>
 
     <!-- Bannière du port -->
-    <div class="port-banner" id="portBanner">
+    <div class="port-banner reveal" id="portBanner">
       <div class="port-banner-icon" id="portBannerIcon">🌊</div>
       <div class="port-banner-overlay">
         <div class="port-banner-title" id="portBannerTitle"></div>
@@ -376,13 +376,13 @@
     </div>
 
     <!-- Widget Météo Marine -->
-    <div class="meteo-widget" id="meteoWidget">
+    <div class="meteo-widget reveal" id="meteoWidget">
       <div class="meteo-widget-title">🌊 Météo Marine — <span id="meteoPortName">…</span></div>
       <div id="meteoContent" class="meteo-loading">Chargement météo…</div>
     </div>
 
     <!-- 🎯 FENÊTRE IDÉALE — Planificateur d'activités -->
-    <section class="fenetre-ideale-section" id="fenetreIdeale" aria-labelledby="fenetreTitle">
+    <section class="fenetre-ideale-section reveal" id="fenetreIdeale" aria-labelledby="fenetreTitle">
       <div class="fenetre-header">
         <div class="fenetre-title">
           <span aria-hidden="true">🎯</span>
@@ -413,7 +413,7 @@
     </section>
 
     <!-- Marées du jour -->
-    <section class="today-card" id="today" aria-labelledby="todayTitle">
+    <section class="today-card reveal" id="today" aria-labelledby="todayTitle">
       <div class="today-header">
         <div>
           <div class="today-title" id="todayTitle">Marées du jour</div>
@@ -427,7 +427,7 @@
     </section>
 
     <!-- Graphique 24h -->
-    <div class="chart-card">
+    <div class="chart-card reveal reveal-delay-1">
       <div class="chart-title">
         <span class="chart-title-dot"></span>
         Courbe de marée — 24h
@@ -452,7 +452,7 @@
     </div>
 
     <!-- Tableau 7 jours -->
-    <section class="week-card" id="semaine" aria-labelledby="weekTitle">
+    <section class="week-card reveal reveal-delay-2" id="semaine" aria-labelledby="weekTitle">
       <div class="week-header">
         <h2 id="weekTitle">📅 Marées sur 7 jours</h2>
       </div>
@@ -464,7 +464,7 @@
   </div><!-- /.main-col -->
 
   <!-- Colonne latérale -->
-  <aside class="side-col" aria-label="Informations complémentaires">
+  <aside class="side-col reveal reveal-delay-3" aria-label="Informations complémentaires">
 
     <!-- Pub sidebar -->
     <div class="ad-wrap">
@@ -668,6 +668,20 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
   }
 });
+</script>
+
+<script>
+(function(){
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+})();
 </script>
 
 </body>
