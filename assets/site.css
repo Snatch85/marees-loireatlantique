@@ -432,18 +432,21 @@ header::after{
 .tide-item{
   padding:1.3rem 1rem 1.1rem;text-align:center;
   border-right:1px solid var(--o50);
-  transition:background .2s;position:relative;
+  transition:background .2s,box-shadow .2s;position:relative;
 }
 .tide-item::after{
   content:'';position:absolute;
-  bottom:0;left:15%;right:15%;height:2px;
-  border-radius:2px;opacity:0;
-  transition:opacity .2s;
+  top:0;left:0;right:0;height:4px;
+  border-radius:0;
 }
-.tide-item.pm::after{background:var(--o500)}
-.tide-item.bm::after{background:var(--teal)}
-.tide-item:hover{background:var(--o50)}
-.tide-item:hover::after{opacity:1}
+/* PLEINE MER — teinte ambre chaude */
+.tide-item.pm{background:rgba(247,127,0,.07)}
+.tide-item.pm::after{background:linear-gradient(90deg,#F77F00,#FFA940)}
+.tide-item.pm:hover{background:rgba(247,127,0,.13);box-shadow:inset 0 0 0 1px rgba(247,127,0,.2)}
+/* BASSE MER — teinte bleue froide */
+.tide-item.bm{background:rgba(0,150,199,.07)}
+.tide-item.bm::after{background:linear-gradient(90deg,#0096C7,#48CAE4)}
+.tide-item.bm:hover{background:rgba(0,150,199,.13);box-shadow:inset 0 0 0 1px rgba(0,150,199,.2)}
 .tide-item:last-child{border-right:none}
 .tide-type{
   font-size:.63rem;font-weight:800;
@@ -451,8 +454,8 @@ header::after{
   margin-bottom:.55rem;
   display:flex;align-items:center;justify-content:center;gap:.3rem;
 }
-.tide-type.pm{color:var(--o700)}
-.tide-type.bm{color:var(--teal)}
+.tide-type.pm{color:#D4600A}
+.tide-type.bm{color:#0077B6}
 .tide-time{
   font-size:1.65rem;font-weight:800;
   color:var(--text);line-height:1;margin-bottom:.45rem;
@@ -660,11 +663,15 @@ header::after{
   display:flex;align-items:center;gap:.35rem;
   font-size:.75rem;color:var(--text-m);
   white-space:nowrap;
-  background:var(--bg);padding:.25rem .6rem;
+  padding:.25rem .6rem;
   border-radius:20px;border:1px solid var(--border);
 }
+/* PLEINE MER badge — ambre */
+.wt-item.pm{background:rgba(247,127,0,.1);border-color:rgba(247,127,0,.3)}
+/* BASSE MER badge — bleu */
+.wt-item.bm{background:rgba(0,150,199,.09);border-color:rgba(0,150,199,.25)}
 .wt-type{font-weight:800;font-size:.62rem;letter-spacing:.05em}
-.wt-type.pm{color:var(--o700)}.wt-type.bm{color:var(--teal)}
+.wt-type.pm{color:#D4600A}.wt-type.bm{color:#0077B6}
 .wt-h{font-weight:600;color:var(--text-l);font-size:.7rem}
 .wt-c{
   background:var(--o700);color:#fff;

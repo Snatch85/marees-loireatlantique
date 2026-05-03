@@ -568,7 +568,7 @@ function renderToday(portId, date) {
   }
 
   container.innerHTML = extrema.map(function(e){
-    return '<div class="tide-item">' +
+    return '<div class="tide-item ' + e.type.toLowerCase() + '">' +
       '<div class="tide-type ' + e.type.toLowerCase() + '">' + (e.type==='PM' ? '▲ Pleine mer' : '▼ Basse mer') + '</div>' +
       '<div class="tide-time">' + fmtTime(e.t) + '</div>' +
       '<div class="tide-height">' + Math.max(0, e.h).toFixed(2) + ' m</div>' +
@@ -694,7 +694,7 @@ function renderWeek(portId, baseDate) {
       '</div>' +
       '<div class="week-tides-row">' +
         extrema.map(function(e){
-          return '<div class="wt-item">' +
+          return '<div class="wt-item ' + e.type.toLowerCase() + '">' +
             '<span class="wt-type ' + e.type.toLowerCase() + '">' + e.type + '</span>' +
             '<span>' + fmtTime(e.t) + '</span>' +
             '<span class="wt-h">' + Math.max(0, e.h).toFixed(2) + 'm</span>' +
