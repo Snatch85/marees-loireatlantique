@@ -160,13 +160,23 @@
 ════════════════════════════════════════ -->
 <header>
   <div class="header-inner">
-    <div class="logo">
-      <span class="logo-wave" aria-hidden="true">🌊</span>
+    <a href="/" class="logo" aria-label="Marées Loire-Atlantique — Accueil">
+      <!-- Logo SVG inline — Vague + Flèche marée -->
+      <svg class="logo-svg" viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- Vague stylisée -->
+        <path class="logo-wave-path" d="M0,45 C15,40 25,50 40,45 C55,40 65,50 80,45 L80,60 L0,60 Z" fill="#00B4D8"/>
+        <!-- Flèche montante (marée haute) -->
+        <path class="logo-arrow-up" d="M40,15 L40,35 M40,35 L32,27 M40,35 L48,27" stroke="#F0F4F8" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- Flèche descendante (marée basse) -->
+        <path class="logo-arrow-down" d="M52,20 L52,40 M52,40 L44,32 M52,40 L60,32" stroke="#0A2342" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+        <!-- Cercle fond -->
+        <circle cx="40" cy="30" r="28" fill="none" stroke="#F0F4F8" stroke-width="2" opacity="0.3"/>
+      </svg>
       <div class="logo-text">
-        <h1>Marées Loire-Atlantique &amp; France</h1>
-        <p>Horaires · Coefficients · Hauteurs d'eau</p>
+        <h1>Marées Loire-Atlantique</h1>
+        <p class="tagline">Les marées de Loire-Atlantique en temps réel</p>
       </div>
-    </div>
+    </a>
     <nav class="header-nav" aria-label="Navigation rapide">
       <a href="#today">Aujourd'hui</a>
       <a href="#semaine">7 jours</a>
@@ -175,6 +185,19 @@
       <a href="/reglementation/" style="background:rgba(231,111,81,.28);border-color:rgba(231,111,81,.55)">📋 Réglementation</a>
       <a href="/webcams/" style="background:rgba(247,127,0,.35);border-color:rgba(247,127,0,.6)">📹 Webcams</a>
     </nav>
+  </div>
+
+  <!-- Hero section — Image Côte Sauvage avec overlay -->
+  <div class="hero-section" role="img" aria-label="Vagues de l'océan Atlantique sur la Côte Sauvage">
+    <picture>
+      <source srcset="/assets/images/hero-cote-sauvage.webp" type="image/webp"/>
+      <img src="/assets/images/hero-cote-sauvage.jpg" alt="Vagues puissantes de l'océan Atlantique se brisant sur les rochers de la Côte Sauvage en Loire-Atlantique, ciel dramatique au coucher du soleil" loading="eager" fetchpriority="high"/>
+    </picture>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h2 class="hero-title">Les marées de Loire-Atlantique en temps réel</h2>
+      <p class="hero-subtitle">Horaires, coefficients et hauteurs d'eau pour tous les ports de la côte atlantique</p>
+    </div>
   </div>
 
   <!-- Bande de stats décorative -->
