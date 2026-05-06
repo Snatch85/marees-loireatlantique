@@ -137,6 +137,7 @@
 
 <!-- Feuille de style principale -->
 <link rel="stylesheet" href="/assets/site.css"/>
+<link rel="stylesheet" href="/assets/moon-widget.css"/>
 
 <!-- Google AdSense — Auto-ads (activation après validation du compte) -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1465276904717454" crossorigin="anonymous"></script>
@@ -460,6 +461,42 @@
            data-full-width-responsive="true"></ins>
     </div>
 
+
+    <!-- ═══════════════════════════════════════
+         WIDGET PHASE LUNAIRE
+    ════════════════════════════════════════ -->
+    <section id="moon-widget" aria-label="Phase lunaire et influence sur les marées">
+      <h2 class="mw-title">🌙 Phase Lunaire &amp; Marées</h2>
+      <div class="mw-top">
+        <canvas id="mw-canvas" width="180" height="180" aria-label="Phase lunaire actuelle en 3D"></canvas>
+        <div class="mw-info">
+          <div class="mw-phase-name" id="mw-phase-name">Chargement…</div>
+          <div class="mw-stats">
+            <div>
+              <div class="mw-stat-label">Illumination</div>
+              <div class="mw-stat-value"><span id="mw-illum">—</span>%</div>
+            </div>
+            <div>
+              <div class="mw-stat-label">Âge lunaire</div>
+              <div class="mw-stat-value"><span id="mw-age">—</span> j</div>
+            </div>
+          </div>
+          <div id="mw-tide-tag" class="mw-tag mw-tag--neutral">—</div>
+          <div class="mw-next-events">
+            Prochaine pleine lune :&nbsp;<span id="mw-next-full">—</span><br>
+            Prochaine nouvelle lune :&nbsp;<span id="mw-next-new">—</span>
+          </div>
+        </div>
+      </div>
+      <hr class="mw-divider">
+      <div class="mw-section-label">Cycle lunaire en cours</div>
+      <div id="mw-cycle-row" role="list"></div>
+      <div class="mw-tide-block">
+        <div class="mw-section-label">Influence sur les marées</div>
+        <p id="mw-tide-info">Chargement…</p>
+      </div>
+    </section>
+
     <!-- Tableau 7 jours -->
     <section class="week-card reveal reveal-delay-2" id="semaine" aria-labelledby="weekTitle">
       <div class="week-header">
@@ -727,5 +764,6 @@ document.addEventListener('DOMContentLoaded',()=>{
 })();
 </script>
 
+<script src="/assets/moon-widget.js" defer></script>
 </body>
 </html>
