@@ -75,7 +75,7 @@ header{background:linear-gradient(135deg,var(--blue-d) 0%,var(--blue) 60%,var(--
 .header-inner{max-width:1100px;margin:0 auto;padding:1rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .logo{display:flex;align-items:center;gap:.6rem}
 .logo-wave{font-size:1.6rem}
-.logo-text h1{font-size:1.1rem;font-weight:700}
+.logo-text h1,.logo-text .site-name{font-size:1.1rem;font-weight:700}
 .logo-text p{font-size:.72rem;opacity:.75;font-weight:300}
 .header-nav{display:flex;gap:.5rem;flex-wrap:wrap}
 .header-nav a{background:rgba(255,255,255,.12);color:#fff;padding:.4rem .9rem;border-radius:20px;font-size:.75rem;font-weight:500;transition:background .2s}
@@ -179,7 +179,7 @@ footer a{color:rgba(255,255,255,.7)}
     <div class="logo">
       <span class="logo-wave">&#127754;</span>
       <div class="logo-text">
-        <h1>Marées Loire-Atlantique</h1>
+        <span class="site-name">Marées Loire-Atlantique</span>
         <p>Horaires · Coefficients · Hauteurs d'eau</p>
       </div>
     </div>
@@ -320,6 +320,20 @@ footer a{color:rgba(255,255,255,.7)}
 
       <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Côte et accès à la mer</h3>
       <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">La côte de La Turballe est caractérisée par une alternance de <strong>plages de sable et de zones rocheuses</strong>. La plage du Castouillet (au nord) et la plage de Pen Bron (en direction du Croisic) sont accessibles à pied depuis le centre-bourg. Le <strong>marnage de vive-eau atteint environ 4,8 m</strong>, exposant à basse mer de larges platiers rocheux propices à la pêche à pied (homard juvénile, étrille, moules, patelles).</p>
+
+    <!-- AdSense — intégré dans le contenu éditorial -->
+    <div style="margin:1.2rem 0;text-align:center">
+      <span style="font-size:.7rem;color:#999;display:block;margin-bottom:4px">Publicité</span>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1465276904717454"
+           data-ad-slot="AUTO"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+
 
       <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Pêche à pied et réglementation</h3>
       <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">Les zones de pêche à pied autour de La Turballe sont <strong>régulièrement contrôlées par les affaires maritimes</strong>. La qualité des eaux est classée A ou B selon les secteurs — consultez les arrêtés préfectoraux sur le site de la DDTM44 avant toute récolte de coquillages. Les étrilles (minimum 6 cm) et les homards (minimum 87 mm) font l'objet de quotas stricts. La pêche professionnelle est interdite dans un rayon de 300 m autour des casiers balisés.</p>
