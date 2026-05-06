@@ -1,32 +1,33 @@
 /* ============================================================
    moon-widget.css — Cycles de Lune
-   marees-loireatlantique.fr
-   Palette : bleu océan #0077B6 — fond sombre #0a1628
+   marees-loireatlantique.fr — Thème Océan Atlantique v4
+   Palette : --bg #F0F8FF / --text #03045E / --blue #0096C7
    ============================================================ */
 
-/* ─── Section principale ─────────────────────────────────── */
+/* ─── Section principale ────────────────────────────────── */
 #moon-widget {
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(0, 119, 182, 0.22);
-  border-radius: 14px;
+  background: #FFFFFF;
+  border: 1px solid #90E0EF;
+  border-radius: 22px;
   padding: 1.5rem;
   margin: 1.5rem 0;
-  color: #e8f4fd;
-  font-family: inherit;
+  color: #03045E;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  box-shadow: 0 6px 24px rgba(45,90,79,.13);
 }
 
-/* ─── Titre de section ───────────────────────────────────── */
+/* ─── Titre ───────────────────────────────────────────────── */
 #moon-widget .mw-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #e8f4fd;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #023E8A;
   margin: 0 0 1.25rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-/* ─── Layout haut : lune + infos ─────────────────────────── */
+/* ─── Layout haut ─────────────────────────────────────────── */
 .mw-top {
   display: flex;
   gap: 1.5rem;
@@ -35,23 +36,24 @@
   margin-bottom: 1.5rem;
 }
 
-/* ─── Canvas principale 180×180 ─────────────────────────── */
+/* ─── Canvas 180px ────────────────────────────────────────── */
 #mw-canvas {
   flex-shrink: 0;
   border-radius: 50%;
   display: block;
+  box-shadow: 0 4px 18px rgba(0,70,120,.25);
 }
 
-/* ─── Panneau d'infos ────────────────────────────────────── */
+/* ─── Panneau d'infos ──────────────────────────────────────── */
 .mw-info {
   flex: 1;
   min-width: 180px;
 }
 
 .mw-phase-name {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #e8f4fd;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #023E8A;
   margin-bottom: 0.6rem;
 }
 
@@ -63,78 +65,79 @@
 
 .mw-stat-label {
   font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: #7ab8d4;
-  margin-bottom: 0.15rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
+  color: #0096C7;
+  margin-bottom: 0.15rem;
 }
 
 .mw-stat-value {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #e8f4fd;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #023E8A;
   line-height: 1;
 }
 
-/* ─── Badge d'impact marée ───────────────────────────────── */
+/* ─── Badges ─────────────────────────────────────────────── */
 .mw-tag {
   display: inline-block;
   font-size: 0.75rem;
-  font-weight: 600;
-  padding: 0.25rem 0.65rem;
-  border-radius: 6px;
+  font-weight: 700;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
   margin-bottom: 0.75rem;
+  border: 1.5px solid transparent;
 }
 
 .mw-tag--danger {
-  background: rgba(220, 53, 69, 0.18);
-  color: #ff8a95;
-  border: 1px solid rgba(220, 53, 69, 0.35);
+  background: #FFF0EE;
+  color: #C0392B;
+  border-color: #F5C6C2;
 }
 
 .mw-tag--warning {
-  background: rgba(253, 174, 50, 0.14);
-  color: #fdc76a;
-  border: 1px solid rgba(253, 174, 50, 0.3);
+  background: #FFF8EE;
+  color: #E67E22;
+  border-color: #FAD5A5;
 }
 
 .mw-tag--neutral {
-  background: rgba(0, 119, 182, 0.15);
-  color: #7ab8d4;
-  border: 1px solid rgba(0, 119, 182, 0.3);
+  background: #EEF6FF;
+  color: #0077B6;
+  border-color: #90E0EF;
 }
 
-/* ─── Prochaines phases ──────────────────────────────────── */
+/* ─── Prochaines phases ───────────────────────────────────── */
 .mw-next-events {
-  font-size: 0.8rem;
-  color: #9bbfd4;
-  line-height: 1.9;
+  font-size: 0.82rem;
+  color: #0077B6;
+  line-height: 2;
 }
 
 .mw-next-events span {
-  color: #e8f4fd;
-  font-weight: 600;
+  color: #023E8A;
+  font-weight: 700;
 }
 
-/* ─── Séparateur ─────────────────────────────────────────── */
+/* ─── Séparateur ──────────────────────────────────────────── */
 .mw-divider {
   border: none;
-  border-top: 1px solid rgba(0, 119, 182, 0.18);
+  border-top: 1px solid #90E0EF;
   margin: 0 0 1rem;
 }
 
-/* ─── Libellé de section ─────────────────────────────────── */
+/* ─── Label de section ────────────────────────────────────── */
 .mw-section-label {
   font-size: 0.68rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: #7ab8d4;
+  color: #0096C7;
   margin-bottom: 0.65rem;
 }
 
-/* ─── Rangée du cycle (8 mini-lunes) ────────────────────── */
+/* ─── Rangée 8 mini-lunes ─────────────────────────────────── */
 #mw-cycle-row {
   display: flex;
   gap: 6px;
@@ -147,81 +150,72 @@
   text-align: center;
   padding: 6px 8px;
   min-width: 60px;
-  border-radius: 9px;
-  border: 1px solid rgba(0, 119, 182, 0.2);
-  background: rgba(255, 255, 255, 0.03);
-  transition: border-color 0.2s;
+  border-radius: 12px;
+  border: 1.5px solid #CAF0F8;
+  background: #F0F8FF;
+  transition: border-color 0.2s, background 0.2s;
 }
 
 .mw-phase-card--active {
-  border-color: rgba(0, 180, 255, 0.55);
-  background: rgba(0, 119, 182, 0.15);
+  border-color: #0096C7;
+  background: #CAF0F8;
 }
 
 .mw-mini-moon {
   display: block;
   margin: 0 auto 4px;
   border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,70,120,.2);
 }
 
 .mw-phase-label {
-  font-size: 0.625rem;
-  font-weight: 600;
+  font-size: 0.6rem;
+  font-weight: 700;
   margin-bottom: 1px;
-  color: #9bbfd4;
+  color: #0077B6;
 }
 
 .mw-phase-card--active .mw-phase-label {
-  color: #7dd3f8;
+  color: #023E8A;
 }
 
 .mw-phase-date {
-  font-size: 0.625rem;
-  color: #6a96ad;
+  font-size: 0.6rem;
+  color: #48CAE4;
 }
 
 .mw-phase-card--active .mw-phase-date {
-  color: #5dc8f5;
+  color: #0096C7;
 }
 
-/* ─── Bloc connexion marées ──────────────────────────────── */
+/* ─── Bloc connexion marées ───────────────────────────────── */
 .mw-tide-block {
-  background: rgba(0, 119, 182, 0.08);
-  border: 1px solid rgba(0, 119, 182, 0.2);
-  border-radius: 10px;
+  background: #EEF6FF;
+  border: 1px solid #CAF0F8;
+  border-radius: 14px;
   padding: 0.9rem 1rem;
 }
 
 #mw-tide-info {
-  font-size: 0.82rem;
-  color: #9bbfd4;
-  line-height: 1.65;
+  font-size: 0.84rem;
+  color: #0077B6;
+  line-height: 1.7;
   margin: 0;
 }
 
 #mw-tide-info strong {
-  color: #e8f4fd;
-  font-weight: 600;
+  color: #023E8A;
+  font-weight: 700;
 }
 
-/* ─── Responsive mobile ──────────────────────────────────── */
+/* ─── Responsive mobile ───────────────────────────────────── */
 @media (max-width: 520px) {
   .mw-top {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
-
-  .mw-stats {
-    justify-content: center;
-  }
-
-  #mw-canvas {
-    width: 130px !important;
-    height: 130px !important;
-  }
-
-  #mw-cycle-row {
-    justify-content: center;
-  }
+  .mw-stats { justify-content: center; }
+  #mw-canvas { width: 130px !important; height: 130px !important; }
+  #mw-cycle-row { justify-content: center; }
 }
