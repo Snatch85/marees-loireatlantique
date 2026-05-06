@@ -1,4 +1,4 @@
-const CACHE = 'marees-v3';
+const CACHE = 'marees-v4';
 const OFFLINE = '/offline.html';
 
 const PRECACHE = [
@@ -7,7 +7,9 @@ const PRECACHE = [
   '/offline.html',
   '/manifest.json',
   '/icons/icon-192.png',
-  '/icons/icon-512.png'
+  '/icons/icon-512.png',
+  '/assets/moon-widget.css',
+  '/assets/moon-widget.js'
 ];
 
 self.addEventListener('install', e => {
