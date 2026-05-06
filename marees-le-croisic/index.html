@@ -75,7 +75,7 @@ header{background:linear-gradient(135deg,var(--blue-d) 0%,var(--blue) 60%,var(--
 .header-inner{max-width:1100px;margin:0 auto;padding:1rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .logo{display:flex;align-items:center;gap:.6rem}
 .logo-wave{font-size:1.6rem}
-.logo-text h1{font-size:1.1rem;font-weight:700}
+.logo-text h1,.logo-text .site-name{font-size:1.1rem;font-weight:700}
 .logo-text p{font-size:.72rem;opacity:.75;font-weight:300}
 .header-nav{display:flex;gap:.5rem;flex-wrap:wrap}
 .header-nav a{background:rgba(255,255,255,.12);color:#fff;padding:.4rem .9rem;border-radius:20px;font-size:.75rem;font-weight:500;transition:background .2s}
@@ -179,7 +179,7 @@ footer a{color:rgba(255,255,255,.7)}
     <div class="logo">
       <span class="logo-wave">&#127754;</span>
       <div class="logo-text">
-        <h1>Marées Loire-Atlantique</h1>
+        <span class="site-name">Marées Loire-Atlantique</span>
         <p>Horaires · Coefficients · Hauteurs d'eau</p>
       </div>
     </div>
@@ -320,6 +320,20 @@ footer a{color:rgba(255,255,255,.7)}
 
       <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">La Côte Sauvage et la Grande Côte</h3>
       <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">À l'ouest de la presqu'île s'étend la <strong>Côte Sauvage</strong>, une succession de falaises et de criques battues par l'Atlantique. La <strong>Grande Côte</strong> offre plusieurs spots de pêche à pied accessibles à marée basse dès le coefficient 85 : oursin, étrille, coque et balane se récoltent sur les rochers noirs. Attention aux vagues déferlantes — la côte est exposée aux houles de sud-ouest et peut être dangereuse même par temps calme.</p>
+
+    <!-- AdSense — intégré dans le contenu éditorial -->
+    <div style="margin:1.2rem 0;text-align:center">
+      <span style="font-size:.7rem;color:#999;display:block;margin-bottom:4px">Publicité</span>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1465276904717454"
+           data-ad-slot="AUTO"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+
 
       <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Marais salants et éco-tourisme</h3>
       <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">À l'arrière de la presqu'île, les marais salants du Croisic bordent le Grand Traict. Les <strong>paludiers</strong> récoltent le sel et la <strong>fleur de sel</strong> de mi-juin à mi-septembre, exclusivement lors des journées ensoleillées et ventées. Ces marais constituent une zone Natura 2000 abritant de nombreuses espèces d'oiseaux migrateurs — les hauteurs d'eau dans les marais sont distinctes du niveau marin et dépendent des écluses de régulation.</p>
