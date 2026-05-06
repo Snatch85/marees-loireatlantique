@@ -1,0 +1,227 @@
+/* ============================================================
+   moon-widget.css — Cycles de Lune
+   marees-loireatlantique.fr
+   Palette : bleu océan #0077B6 — fond sombre #0a1628
+   ============================================================ */
+
+/* ─── Section principale ─────────────────────────────────── */
+#moon-widget {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(0, 119, 182, 0.22);
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  color: #e8f4fd;
+  font-family: inherit;
+}
+
+/* ─── Titre de section ───────────────────────────────────── */
+#moon-widget .mw-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e8f4fd;
+  margin: 0 0 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ─── Layout haut : lune + infos ─────────────────────────── */
+.mw-top {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+/* ─── Canvas principale 180×180 ─────────────────────────── */
+#mw-canvas {
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: block;
+}
+
+/* ─── Panneau d'infos ────────────────────────────────────── */
+.mw-info {
+  flex: 1;
+  min-width: 180px;
+}
+
+.mw-phase-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #e8f4fd;
+  margin-bottom: 0.6rem;
+}
+
+.mw-stats {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.mw-stat-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #7ab8d4;
+  margin-bottom: 0.15rem;
+  text-transform: uppercase;
+}
+
+.mw-stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #e8f4fd;
+  line-height: 1;
+}
+
+/* ─── Badge d'impact marée ───────────────────────────────── */
+.mw-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+}
+
+.mw-tag--danger {
+  background: rgba(220, 53, 69, 0.18);
+  color: #ff8a95;
+  border: 1px solid rgba(220, 53, 69, 0.35);
+}
+
+.mw-tag--warning {
+  background: rgba(253, 174, 50, 0.14);
+  color: #fdc76a;
+  border: 1px solid rgba(253, 174, 50, 0.3);
+}
+
+.mw-tag--neutral {
+  background: rgba(0, 119, 182, 0.15);
+  color: #7ab8d4;
+  border: 1px solid rgba(0, 119, 182, 0.3);
+}
+
+/* ─── Prochaines phases ──────────────────────────────────── */
+.mw-next-events {
+  font-size: 0.8rem;
+  color: #9bbfd4;
+  line-height: 1.9;
+}
+
+.mw-next-events span {
+  color: #e8f4fd;
+  font-weight: 600;
+}
+
+/* ─── Séparateur ─────────────────────────────────────────── */
+.mw-divider {
+  border: none;
+  border-top: 1px solid rgba(0, 119, 182, 0.18);
+  margin: 0 0 1rem;
+}
+
+/* ─── Libellé de section ─────────────────────────────────── */
+.mw-section-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #7ab8d4;
+  margin-bottom: 0.65rem;
+}
+
+/* ─── Rangée du cycle (8 mini-lunes) ────────────────────── */
+#mw-cycle-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.mw-phase-card {
+  flex-shrink: 0;
+  text-align: center;
+  padding: 6px 8px;
+  min-width: 60px;
+  border-radius: 9px;
+  border: 1px solid rgba(0, 119, 182, 0.2);
+  background: rgba(255, 255, 255, 0.03);
+  transition: border-color 0.2s;
+}
+
+.mw-phase-card--active {
+  border-color: rgba(0, 180, 255, 0.55);
+  background: rgba(0, 119, 182, 0.15);
+}
+
+.mw-mini-moon {
+  display: block;
+  margin: 0 auto 4px;
+  border-radius: 50%;
+}
+
+.mw-phase-label {
+  font-size: 0.625rem;
+  font-weight: 600;
+  margin-bottom: 1px;
+  color: #9bbfd4;
+}
+
+.mw-phase-card--active .mw-phase-label {
+  color: #7dd3f8;
+}
+
+.mw-phase-date {
+  font-size: 0.625rem;
+  color: #6a96ad;
+}
+
+.mw-phase-card--active .mw-phase-date {
+  color: #5dc8f5;
+}
+
+/* ─── Bloc connexion marées ──────────────────────────────── */
+.mw-tide-block {
+  background: rgba(0, 119, 182, 0.08);
+  border: 1px solid rgba(0, 119, 182, 0.2);
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+}
+
+#mw-tide-info {
+  font-size: 0.82rem;
+  color: #9bbfd4;
+  line-height: 1.65;
+  margin: 0;
+}
+
+#mw-tide-info strong {
+  color: #e8f4fd;
+  font-weight: 600;
+}
+
+/* ─── Responsive mobile ──────────────────────────────────── */
+@media (max-width: 520px) {
+  .mw-top {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .mw-stats {
+    justify-content: center;
+  }
+
+  #mw-canvas {
+    width: 130px !important;
+    height: 130px !important;
+  }
+
+  #mw-cycle-row {
+    justify-content: center;
+  }
+}
