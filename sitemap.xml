@@ -38,7 +38,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://marees-loireatlantique.fr/marees-saint-brevin/</loc>
+    <loc>https://marees-loireatlantique.fr/marees-saint-brevin-les-pins/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
@@ -211,4 +211,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
+  <url><loc>https://marees-loireatlantique.fr/marees-france/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/meteo-marine/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 </urlset>
