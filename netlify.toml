@@ -88,3 +88,9 @@ force = false
   [redirects.conditions]
 
   [redirects.headers]
+
+[[redirects]]
+  from = "/marees-saint-brevin/"
+  to   = "/marees-saint-brevin-les-pins/"
+  status = 301
+  force  = true
