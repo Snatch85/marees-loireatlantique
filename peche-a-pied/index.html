@@ -17,7 +17,7 @@
 <meta property="og:locale" content="fr_FR"/>
 <meta property="og:site_name" content="Marées Loire-Atlantique"/>
 <link rel="manifest" href="/manifest.json"/>
-<meta name="theme-color" content="#1A6B8A"/>
+<meta name="theme-color" content="#0096C7"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-title" content="Marées 44"/>
 <link rel="apple-touch-icon" href="/icons/icon-192.png"/>
@@ -458,7 +458,7 @@ footer a{color:rgba(255,255,255,.7)}
         <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.7rem">
           <span style="background:#FFF3CD;border:1px solid #F0C040;color:#7A4F00;padding:.3rem .7rem;border-radius:5px;font-size:.75rem;font-weight:600">Coeff &lt; 45 : Morte-eau — peu d'estran découvert</span>
           <span style="background:#D4EDDA;border:1px solid #28A745;color:#155724;padding:.3rem .7rem;border-radius:5px;font-size:.75rem;font-weight:600">Coeff 70–90 : Bonne pêche ✓</span>
-          <span style="background:#D1ECF1;border:1px solid #1A6B8A;color:#0F4F6B;padding:.3rem .7rem;border-radius:5px;font-size:.75rem;font-weight:600">Coeff &gt; 90 : Excellente pêche ✓✓</span>
+          <span style="background:#D1ECF1;border:1px solid #0096C7;color:#023E8A;padding:.3rem .7rem;border-radius:5px;font-size:.75rem;font-weight:600">Coeff &gt; 90 : Excellente pêche ✓✓</span>
         </div>
       </div>
 
@@ -570,10 +570,10 @@ footer a{color:rgba(255,255,255,.7)}
     <div class="coeff-card">
       <h3>Echelle des coefficients</h3>
       <div class="coeff-scale">
-        <div class="cs-row"><span class="cs-label">Tres forte</span><div class="cs-bar" style="background:#0F4F6B;width:100%"></div><span class="cs-range">100-120</span></div>
-        <div class="cs-row"><span class="cs-label">Vive-eau</span><div class="cs-bar" style="background:#1A6B8A;width:80%"></div><span class="cs-range">70-99</span></div>
+        <div class="cs-row"><span class="cs-label">Tres forte</span><div class="cs-bar" style="background:#023E8A;width:100%"></div><span class="cs-range">100-120</span></div>
+        <div class="cs-row"><span class="cs-label">Vive-eau</span><div class="cs-bar" style="background:#0096C7;width:80%"></div><span class="cs-range">70-99</span></div>
         <div class="cs-row"><span class="cs-label">Moyenne</span><div class="cs-bar" style="background:#4AA8C4;width:58%"></div><span class="cs-range">45-69</span></div>
-        <div class="cs-row"><span class="cs-label">Morte-eau</span><div class="cs-bar" style="background:#2A9D8F;width:35%"></div><span class="cs-range">20-44</span></div>
+        <div class="cs-row"><span class="cs-label">Morte-eau</span><div class="cs-bar" style="background:#0096C7;width:35%"></div><span class="cs-range">20-44</span></div>
       </div>
     </div>
     <div class="port-info-card">
@@ -987,10 +987,10 @@ function fmtDateLong(d) {
   return d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 }
 function coeffColor(c) {
-  if (c>=100) return '#0F4F6B';
-  if (c>=70)  return '#1A6B8A';
+  if (c>=100) return '#023E8A';
+  if (c>=70)  return '#0096C7';
   if (c>=45)  return '#4AA8C4';
-  return '#2A9D8F';
+  return '#0096C7';
 }
 function coeffLabel(c) {
   if (c>=100) return 'Vive-eau exceptionnelle';
@@ -1070,7 +1070,7 @@ function renderChart(portId, date) {
   ctx.lineTo(tx(1),ty(minH)); ctx.closePath(); ctx.fillStyle=grad; ctx.fill();
   ctx.beginPath();
   pts.forEach((p,i)=>i===0?ctx.moveTo(tx(p.x),ty(p.h)):ctx.lineTo(tx(p.x),ty(p.h)));
-  ctx.strokeStyle='#1A6B8A'; ctx.lineWidth=2.5; ctx.lineJoin='round'; ctx.stroke();
+  ctx.strokeStyle='#0096C7'; ctx.lineWidth=2.5; ctx.lineJoin='round'; ctx.stroke();
   const now = new Date();
   if (now.toDateString()===date.toDateString()) {
     const frac=(now.getHours()*60+now.getMinutes())/1440;
