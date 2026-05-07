@@ -139,7 +139,12 @@ footer a{color:rgba(255,255,255,.7)}
 
   <div class="card" style="margin-top:1.5rem">
     <h2>📬 Envoyer un message</h2>
-    <form name="contact" method="POST" data-netlify="true" style="display:flex;flex-direction:column;gap:1rem">
+    <div id="form-success" style="display:none;background:#d4edda;border:1px solid #28a745;border-radius:12px;padding:1.5rem;text-align:center">
+        <div style="font-size:2rem;margin-bottom:.5rem">✅</div>
+        <h3 style="color:#155724;margin-bottom:.5rem">Message envoyé !</h3>
+        <p style="color:#155724;margin:0">Merci pour votre message. Je vous répondrai dans les 24-48h à l'adresse que vous avez indiquée.</p>
+      </div>
+      <form id="contact-form" name="contact" method="POST" data-netlify="true" style="display:flex;flex-direction:column;gap:1rem">
       <input type="hidden" name="form-name" value="contact"/>
       <div>
         <label style="font-size:.82rem;font-weight:600;color:var(--blue-d);display:block;margin-bottom:.35rem">Votre nom</label>
@@ -231,5 +236,42 @@ footer a{color:rgba(255,255,255,.7)}
   };
 })();
 </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    var origText = btn.textContent;
+    btn.textContent = 'Envoi en cours…';
+    btn.disabled = true;
+    var data = new FormData(form);
+    fetch('/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: new URLSearchParams(data).toString()
+    })
+    .then(function(res) {
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+        window.scrollTo({top: document.getElementById('form-success').offsetTop - 100, behavior: 'smooth'});
+      } else {
+        btn.textContent = origText;
+        btn.disabled = false;
+        alert('Une erreur est survenue. Vous pouvez nous écrire directement à contact@marees-loireatlantique.fr');
+      }
+    })
+    .catch(function() {
+      btn.textContent = origText;
+      btn.disabled = false;
+      alert('Erreur de connexion. Écrivez-nous directement à contact@marees-loireatlantique.fr');
+    });
+  });
+});
+</script>
+
 </body>
 </html>
