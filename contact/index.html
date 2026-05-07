@@ -82,7 +82,7 @@ footer a{color:rgba(255,255,255,.7)}
       <span class="contact-icon">✉️</span>
       <div class="contact-info">
         <strong>Email</strong>
-        <a href="mailto:exoduseden85@gmail.com">exoduseden85@gmail.com</a>
+        <a href="mailto:contact@marees-loireatlantique.fr">contact@marees-loireatlantique.fr</a>
       </div>
     </div>
 
@@ -111,6 +111,26 @@ footer a{color:rgba(255,255,255,.7)}
 
     <h3>Le site est-il gratuit ?</h3>
     <p>Oui, entièrement gratuit. Il est financé par la publicité (Google AdSense). Consultez notre <a href="/politique-de-confidentialite/">politique de confidentialité</a> pour plus de détails.</p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem">
+    <h2>📬 Envoyer un message</h2>
+    <form name="contact" method="POST" data-netlify="true" style="display:flex;flex-direction:column;gap:1rem">
+      <input type="hidden" name="form-name" value="contact"/>
+      <div>
+        <label style="font-size:.82rem;font-weight:600;color:var(--blue-d);display:block;margin-bottom:.35rem">Votre nom</label>
+        <input type="text" name="name" required placeholder="Prénom Nom" style="width:100%;padding:.65rem .9rem;border:1.5px solid var(--border);border-radius:8px;font-size:.9rem;font-family:inherit;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='#0096C7'" onblur="this.style.borderColor=''"/>
+      </div>
+      <div>
+        <label style="font-size:.82rem;font-weight:600;color:var(--blue-d);display:block;margin-bottom:.35rem">Votre email</label>
+        <input type="email" name="email" required placeholder="votre@email.fr" style="width:100%;padding:.65rem .9rem;border:1.5px solid var(--border);border-radius:8px;font-size:.9rem;font-family:inherit;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='#0096C7'" onblur="this.style.borderColor=''"/>
+      </div>
+      <div>
+        <label style="font-size:.82rem;font-weight:600;color:var(--blue-d);display:block;margin-bottom:.35rem">Votre message</label>
+        <textarea name="message" required rows="5" placeholder="Votre message, suggestion ou correction..." style="width:100%;padding:.65rem .9rem;border:1.5px solid var(--border);border-radius:8px;font-size:.9rem;font-family:inherit;resize:vertical;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='#0096C7'" onblur="this.style.borderColor=''"></textarea>
+      </div>
+      <button type="submit" style="background:#0096C7;color:#fff;border:none;padding:.75rem 1.75rem;border-radius:24px;font-size:.92rem;font-weight:600;cursor:pointer;font-family:inherit;width:fit-content;transition:background .2s" onmouseover="this.style.background='#023E8A'" onmouseout="this.style.background='#0096C7'">Envoyer le message</button>
+    </form>
   </div>
 </div>
 
