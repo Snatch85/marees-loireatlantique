@@ -132,6 +132,7 @@
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 
@@ -150,6 +151,10 @@
 .meteo-item .val{font-size:1.3rem;font-weight:700;line-height:1.1;color:#0a3a5c}
 .meteo-item .lbl{font-size:.72rem;color:#2a6a8a;margin-top:.2rem}
 .meteo-loading{text-align:center;color:#2a6a8a;padding:.5rem;font-size:.85rem}
+
+.skel-line{display:inline-block;width:140px;height:14px;background:linear-gradient(90deg,rgba(0,119,182,.08) 25%,rgba(0,119,182,.18) 50%,rgba(0,119,182,.08) 75%);border-radius:6px;animation:sk 1.4s ease infinite;background-size:200% 100%}
+.skel-sm{width:90%}
+@keyframes sk{0%{background-position:200% 0}100%{background-position:-200% 0}}
 </style>
 </head>
 <body>
@@ -177,6 +182,7 @@
       <a href="#semaine">7 jours</a>
       <a href="#infos">Infos</a>
       <a href="/peche-a-pied/" style="background:rgba(42,157,143,.32);border-color:rgba(42,157,143,.6)">🦪 Pêche à pied</a>
+      <a href="/blog/" style="background:rgba(0,150,199,.18);border-color:rgba(0,150,199,.4)">📖 Blog</a>
       <a href="/reglementation/" style="background:rgba(231,111,81,.28);border-color:rgba(231,111,81,.55)">📋 Réglementation</a>
       <a href="/webcams/" style="background:rgba(247,127,0,.35);border-color:rgba(247,127,0,.6)">📹 Webcams</a>
     </nav>
@@ -254,6 +260,7 @@
     </div>
 
     <div class="site-nav-item">
+      <a href="/blog/" style="background:rgba(0,150,199,.18);border-color:rgba(0,150,199,.4)">📖 Blog</a>
       <a href="/reglementation/">📋 Réglementation</a>
     </div>
 
@@ -427,12 +434,12 @@
       <div class="today-header">
         <div>
           <div class="today-title" id="todayTitle">Marées du jour</div>
-          <div class="today-date" id="todayDate">Chargement…</div>
+          <div class="today-date" id="todayDate"><span class="skel-line"></span></div>
         </div>
         <div class="coeff-badge" id="coeffBadge" aria-live="polite">Coeff. —</div>
       </div>
       <div class="today-tides" id="todayTides">
-        <div style="grid-column:1/-1;padding:2rem;text-align:center;color:var(--text-l)">Chargement…</div>
+        <div style="grid-column:1/-1;padding:2rem;text-align:center;color:var(--text-l)"><span style="display:inline-block;width:180px;height:16px;background:linear-gradient(90deg,rgba(0,119,182,.1) 25%,rgba(0,119,182,.2) 50%,rgba(0,119,182,.1) 75%);border-radius:8px;animation:skeleton 1.5s infinite"></span></div>
       </div>
     </section>
 
@@ -470,7 +477,7 @@
       <div class="mw-top">
         <canvas id="mw-canvas" width="180" height="180" aria-label="Phase lunaire actuelle en 3D"></canvas>
         <div class="mw-info">
-          <div class="mw-phase-name" id="mw-phase-name">Chargement…</div>
+          <div class="mw-phase-name" id="mw-phase-name"><span class="skel-line"></span></div>
           <div class="mw-stats">
             <div>
               <div class="mw-stat-label">Illumination</div>
@@ -493,7 +500,7 @@
       <div id="mw-cycle-row" role="list"></div>
       <div class="mw-tide-block">
         <div class="mw-section-label">Influence sur les marées</div>
-        <p id="mw-tide-info">Chargement…</p>
+        <p id="mw-tide-info"><span class="skel-line skel-sm"></span></p>
       </div>
     </section>
 
@@ -563,7 +570,8 @@
       <p>Le <strong>coefficient</strong> varie de 20 (morte-eau) à 120 (vive-eau exceptionnelle). Coefficients &ge; 95 : grandes marées.</p>
       <p>Calcul par <strong>méthode harmonique</strong> avec arguments astronomiques complets (Lune &amp; Soleil, J2000.0). Coefficient basé sur Brest (port de référence SHOM).</p>
       <p>Hauteurs en mètres au-dessus du <strong>zéro hydrographique</strong>. Données indicatives — consultez le <a href="https://maree.shom.fr" target="_blank" rel="noopener">SHOM officiel</a> pour la navigation.</p>
-      <p><a href="/reglementation/">📋 Réglementation pêche à pied DDTM 44</a></p>
+      <p><a href="/blog/" style="background:rgba(0,150,199,.18);border-color:rgba(0,150,199,.4)">📖 Blog</a>
+      <a href="/reglementation/">📋 Réglementation pêche à pied DDTM 44</a></p>
     </div>
 
     <!-- Pub sidebar bas -->
@@ -580,6 +588,64 @@
   </aside>
 </div><!-- /.container -->
 
+
+
+<!-- ═══════════════════════════════════════
+     INTRO PERSONNELLE — E-E-A-T
+════════════════════════════════════════ -->
+<section style="background:#fff;padding:3rem 1.5rem;margin-top:0">
+  <div style="max-width:860px;margin:0 auto">
+    <div style="display:flex;gap:1.5rem;align-items:flex-start;background:linear-gradient(135deg,#023E8A,#025DAD);border-radius:20px;padding:2rem 2.5rem;color:#fff;flex-wrap:wrap">
+      <div style="width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:800;color:#fff;border:3px solid rgba(255,255,255,.3);flex-shrink:0">YB</div>
+      <div style="flex:1;min-width:220px">
+        <div style="font-size:.8rem;font-weight:600;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.4rem">Le mot du fondateur</div>
+        <blockquote style="font-family:'Lora',Georgia,serif;font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.9);line-height:1.75;border:none;margin:0 0 .9rem;padding:0">"J'ai grandi en voyant mon père consulter l'almanach des marées avant chaque sortie. En 2024, j'ai voulu créer l'outil que j'aurais aimé avoir — simple, précis, gratuit. Ce site, c'est ma façon de rendre à la côte ce qu'elle m'a donné."</blockquote>
+        <div style="font-size:.85rem;color:rgba(255,255,255,.75)">— <strong style="color:#fff">Yann Berry</strong>, fondateur · Loire-Atlantique (44) · <a href="/a-propos/" style="color:rgba(255,255,255,.8);text-decoration:underline">En savoir plus</a> · <a href="/blog/" style="color:rgba(255,255,255,.8);text-decoration:underline">Lire le blog</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     TRUST SECTION — POURQUOI CE SITE EST FIABLE
+════════════════════════════════════════ -->
+<section style="background:var(--bg);padding:2.5rem 1.5rem">
+  <div style="max-width:900px;margin:0 auto">
+    <h2 style="font-size:1.05rem;font-weight:700;color:var(--blue-d);text-align:center;margin-bottom:1.5rem;text-transform:uppercase;letter-spacing:.06em">Pourquoi ce site est fiable</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem">
+      <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.1rem;display:flex;gap:.8rem;align-items:flex-start">
+        <span style="font-size:1.3rem;flex-shrink:0">🔬</span>
+        <div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--blue-d);margin-bottom:.25rem">Calcul harmonique SHOM</div>
+          <div style="font-size:.78rem;color:var(--text-m);line-height:1.55">Même méthode que les officiers de marine. Constantes J2000.0 officielles.</div>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.1rem;display:flex;gap:.8rem;align-items:flex-start">
+        <span style="font-size:1.3rem;flex-shrink:0">👤</span>
+        <div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--blue-d);margin-bottom:.25rem">Auteur identifié</div>
+          <div style="font-size:.78rem;color:var(--text-m);line-height:1.55">Yann Berry, Loire-Atlantique. 20+ ans de terrain. Permis côtier.</div>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.1rem;display:flex;gap:.8rem;align-items:flex-start">
+        <span style="font-size:1.3rem;flex-shrink:0">📴</span>
+        <div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--blue-d);margin-bottom:.25rem">Fonctionne hors ligne</div>
+          <div style="font-size:.78rem;color:var(--text-m);line-height:1.55">PWA installable. Marées disponibles même sans connexion internet.</div>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.1rem;display:flex;gap:.8rem;align-items:flex-start">
+        <span style="font-size:1.3rem;flex-shrink:0">🆓</span>
+        <div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--blue-d);margin-bottom:.25rem">Gratuit & sans inscription</div>
+          <div style="font-size:.78rem;color:var(--text-m);line-height:1.55">Aucun compte, aucune affiliation commerciale, aucun partenariat payant.</div>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:.78rem;color:var(--text-l);margin-top:1rem">⚠️ Données indicatives — pour la navigation professionnelle, consultez le <a href="https://maree.shom.fr" target="_blank" rel="noopener">SHOM officiel</a></p>
+  </div>
+</section>
+
 <!-- ═══════════════════════════════════════
      FOOTER
 ════════════════════════════════════════ -->
@@ -590,7 +656,8 @@
   <p style="margin-top:.6rem;font-size:.73rem;opacity:.65">Données à titre indicatif. Consultez le <a href="https://maree.shom.fr" target="_blank" rel="noopener">SHOM officiel</a> pour la navigation.</p>
   <p style="margin-top:.8rem;font-size:.75rem">
     <a href="/peche-a-pied/">🦪 Pêche à pied</a> ·
-    <a href="/reglementation/">📋 Réglementation</a> ·
+    <a href="/blog/" style="background:rgba(0,150,199,.18);border-color:rgba(0,150,199,.4)">📖 Blog</a>
+      <a href="/reglementation/">📋 Réglementation</a> ·
     <a href="/guides/">📖 Guides</a> ·
     <a href="/a-propos/">À propos</a> ·
     <a href="/contact/">Contact</a> ·
