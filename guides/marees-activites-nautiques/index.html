@@ -13,8 +13,34 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="stylesheet" href="/assets/site.css"/>
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png"/>
+
+<style>
+/* ═══ COOKIE CONSENT BANNER ═══ */
+#cconsent-banner{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(2,30,80,.97);color:#fff;padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.9rem;box-shadow:0 -4px 24px rgba(0,0,0,.3);backdrop-filter:blur(8px);font-family:'Outfit',sans-serif;font-size:.83rem;line-height:1.5;transform:translateY(100%);transition:transform .35s ease}
+#cconsent-banner.visible{transform:translateY(0)}
+#cconsent-banner p{margin:0;flex:1;min-width:200px;color:rgba(255,255,255,.88)}
+#cconsent-banner a{color:#00B4D8;text-decoration:underline}
+.cb-btns{display:flex;gap:.6rem;flex-shrink:0;flex-wrap:wrap}
+.cb-btn{padding:.45rem 1.1rem;border-radius:20px;font-size:.8rem;font-weight:600;cursor:pointer;border:none;font-family:'Outfit',sans-serif;transition:all .15s}
+.cb-accept{background:#0096C7;color:#fff}.cb-accept:hover{background:#0077A8}
+.cb-decline{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.3)}.cb-decline:hover{background:rgba(255,255,255,.1);color:#fff}
+.cb-settings{background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);font-size:.75rem}.cb-settings:hover{background:rgba(255,255,255,.08)}
+@media(max-width:600px){#cconsent-banner{padding:.9rem 1rem}.cb-btns{width:100%;justify-content:flex-end}}
+</style>
 </head>
 <body>
+
+<!-- ═══ BANDEAU CONSENTEMENT COOKIES RGPD ═══ -->
+<div id="cconsent-banner" role="dialog" aria-live="polite" aria-label="Consentement cookies">
+  <p>Ce site utilise des cookies publicitaires (Google AdSense) pour financer son fonctionnement. 
+  Vous pouvez accepter les annonces personnalisées ou refuser (annonces génériques uniquement). 
+  <a href="/politique-de-confidentialite/">En savoir plus</a></p>
+  <div class="cb-btns">
+    <button class="cb-btn cb-decline" id="cb-decline">Refuser</button>
+    <button class="cb-btn cb-accept" id="cb-accept">Accepter</button>
+  </div>
+</div>
+
 <a href="#main-content" class="skip-link">Aller au contenu</a>
 
 <header>
@@ -224,5 +250,70 @@
   </p>
 </footer>
 
+
+<script>
+// ═══ COOKIE CONSENT — RGPD / AdSense TCF ═══
+(function(){
+  var CONSENT_KEY = 'mla_cookie_consent';
+  var CONSENT_VERSION = '1';
+
+  function getConsent(){
+    try{ var d=JSON.parse(localStorage.getItem(CONSENT_KEY)||'{}');
+    return d.v===CONSENT_VERSION?d.choice:null; }catch(e){return null;}
+  }
+  function setConsent(choice){
+    try{ localStorage.setItem(CONSENT_KEY, JSON.stringify({choice:choice,v:CONSENT_VERSION,ts:Date.now()})); }catch(e){}
+  }
+
+  function applyConsent(choice){
+    if(choice==='accept'){
+      // Activer AdSense personnalisé
+      if(window.adsbygoogle){
+        window.adsbygoogle.pauseAdRequests = 0;
+      }
+      (window.adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 0;
+    } else {
+      // Annonces non personnalisées uniquement
+      (window.adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 1;
+    }
+  }
+
+  function showBanner(){
+    var b = document.getElementById('cconsent-banner');
+    if(b){ setTimeout(function(){b.classList.add('visible');},400); }
+  }
+  function hideBanner(){
+    var b = document.getElementById('cconsent-banner');
+    if(b){ b.classList.remove('visible'); setTimeout(function(){b.style.display='none';},400); }
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var existing = getConsent();
+    if(existing !== null){
+      applyConsent(existing);
+      return; // Ne pas afficher le banner
+    }
+    // Pas de choix enregistré — afficher
+    showBanner();
+
+    var acceptBtn = document.getElementById('cb-accept');
+    var declineBtn = document.getElementById('cb-decline');
+
+    if(acceptBtn) acceptBtn.addEventListener('click', function(){
+      setConsent('accept'); applyConsent('accept'); hideBanner();
+    });
+    if(declineBtn) declineBtn.addEventListener('click', function(){
+      setConsent('decline'); applyConsent('decline'); hideBanner();
+    });
+  });
+
+  // Lien "Gérer mes cookies" dans le footer
+  window.showCookieConsent = function(){
+    localStorage.removeItem(CONSENT_KEY);
+    var b = document.getElementById('cconsent-banner');
+    if(b){ b.style.display='flex'; setTimeout(function(){b.classList.add('visible');},50); }
+  };
+})();
+</script>
 </body>
 </html>
