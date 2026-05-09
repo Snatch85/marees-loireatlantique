@@ -432,18 +432,21 @@ header::after{
 .tide-item{
   padding:1.3rem 1rem 1.1rem;text-align:center;
   border-right:1px solid var(--o50);
-  transition:background .2s;position:relative;
+  transition:background .2s,box-shadow .2s;position:relative;
 }
 .tide-item::after{
   content:'';position:absolute;
-  bottom:0;left:15%;right:15%;height:2px;
-  border-radius:2px;opacity:0;
-  transition:opacity .2s;
+  top:0;left:0;right:0;height:4px;
+  border-radius:0;
 }
-.tide-item.pm::after{background:var(--o500)}
-.tide-item.bm::after{background:var(--teal)}
-.tide-item:hover{background:var(--o50)}
-.tide-item:hover::after{opacity:1}
+/* PLEINE MER — teinte ambre chaude */
+.tide-item.pm{background:rgba(247,127,0,.07)}
+.tide-item.pm::after{background:linear-gradient(90deg,#F77F00,#FFA940)}
+.tide-item.pm:hover{background:rgba(247,127,0,.13);box-shadow:inset 0 0 0 1px rgba(247,127,0,.2)}
+/* BASSE MER — teinte bleue froide */
+.tide-item.bm{background:rgba(0,150,199,.07)}
+.tide-item.bm::after{background:linear-gradient(90deg,#0096C7,#48CAE4)}
+.tide-item.bm:hover{background:rgba(0,150,199,.13);box-shadow:inset 0 0 0 1px rgba(0,150,199,.2)}
 .tide-item:last-child{border-right:none}
 .tide-type{
   font-size:.63rem;font-weight:800;
@@ -451,8 +454,8 @@ header::after{
   margin-bottom:.55rem;
   display:flex;align-items:center;justify-content:center;gap:.3rem;
 }
-.tide-type.pm{color:var(--o700)}
-.tide-type.bm{color:var(--teal)}
+.tide-type.pm{color:#D4600A}
+.tide-type.bm{color:#0077B6}
 .tide-time{
   font-size:1.65rem;font-weight:800;
   color:var(--text);line-height:1;margin-bottom:.45rem;
@@ -660,11 +663,15 @@ header::after{
   display:flex;align-items:center;gap:.35rem;
   font-size:.75rem;color:var(--text-m);
   white-space:nowrap;
-  background:var(--bg);padding:.25rem .6rem;
+  padding:.25rem .6rem;
   border-radius:20px;border:1px solid var(--border);
 }
+/* PLEINE MER badge — ambre */
+.wt-item.pm{background:rgba(247,127,0,.1);border-color:rgba(247,127,0,.3)}
+/* BASSE MER badge — bleu */
+.wt-item.bm{background:rgba(0,150,199,.09);border-color:rgba(0,150,199,.25)}
 .wt-type{font-weight:800;font-size:.62rem;letter-spacing:.05em}
-.wt-type.pm{color:var(--o700)}.wt-type.bm{color:var(--teal)}
+.wt-type.pm{color:#D4600A}.wt-type.bm{color:#0077B6}
 .wt-h{font-weight:600;color:var(--text-l);font-size:.7rem}
 .wt-c{
   background:var(--o700);color:#fff;
@@ -1109,25 +1116,62 @@ article nav[aria-label] a::before{content:'→';opacity:.5;font-size:.75rem}
 
 /* ── Bannière port (dégradé CSS) ── */
 .port-banner{position:relative;height:200px;border-radius:12px;overflow:hidden;margin:.8rem 0;background:linear-gradient(135deg,#0a3a5c,#1a6b8a,#2a9d8f);transition:background .4s ease}
-.port-banner-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);font-size:3.5rem;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4));pointer-events:none;user-select:none}
-.port-banner-overlay{position:absolute;bottom:0;left:0;right:0;padding:1rem 1.2rem;background:linear-gradient(transparent,rgba(0,20,40,.75))}
-.port-banner-title{color:#fff;font-size:1.1rem;font-weight:700;text-shadow:0 1px 4px rgba(0,0,0,.5)}
-.port-banner-sub{color:rgba(255,255,255,.75);font-size:.75rem;margin-top:.15rem}
+.port-banner-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease;pointer-events:none}
+.port-banner-img.loaded{opacity:1}
+.port-banner-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);font-size:3.5rem;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4));pointer-events:none;user-select:none;transition:opacity .4s ease}
+.port-banner-img.loaded ~ .port-banner-icon{opacity:0}
+.port-banner-overlay{position:absolute;bottom:0;left:0;right:0;padding:1rem 1.2rem;background:linear-gradient(transparent,rgba(0,10,30,.82))}
+.port-banner-title{color:#fff;font-size:1.1rem;font-weight:700;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.port-banner-sub{color:rgba(255,255,255,.8);font-size:.75rem;margin-top:.15rem}
 @media(max-width:600px){.port-banner{height:150px}.port-banner-icon{font-size:2.8rem}}
 
-/* ── Scroll reveal animations ───────────────────── */
-.reveal{
+/* ── Scroll animations ───────────────────────────── */
+
+/* 1. Parallaxe hero */
+.hero-img{will-change:transform}
+
+/* 2. Cards hover lift */
+.today-card,.chart-card,.week-card,.port-info-card,.coeff-card,.meteo-widget{
+  transition:transform .32s cubic-bezier(.4,0,.2,1),box-shadow .32s cubic-bezier(.4,0,.2,1);
+}
+.today-card:hover,.chart-card:hover,.week-card:hover,
+.port-info-card:hover,.coeff-card:hover,.meteo-widget:hover{
+  transform:translateY(-5px);
+  box-shadow:0 20px 48px rgba(0,119,182,.22);
+}
+
+/* 3. Reveal bas de page */
+.scroll-reveal{
   opacity:0;
-  transform:translateY(28px);
-  transition:opacity .55s cubic-bezier(.4,0,.2,1), transform .55s cubic-bezier(.4,0,.2,1);
+  transform:translateY(55px);
+  transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1);
 }
-.reveal.visible{
-  opacity:1;
-  transform:translateY(0);
+.scroll-reveal.visible{opacity:1;transform:translateY(0)}
+.scroll-reveal.d1{transition-delay:.12s}
+.scroll-reveal.d2{transition-delay:.24s}
+
+/* 4. Vague décorative animée entre sections */
+.wave-divider{
+  width:100%;overflow:hidden;line-height:0;
+  margin:-2px 0;
 }
-.reveal-delay-1{transition-delay:.08s}
-.reveal-delay-2{transition-delay:.16s}
-.reveal-delay-3{transition-delay:.24s}
+.wave-divider svg{display:block;width:100%;height:60px}
+.wave-path-1{
+  animation:waveFlow 6s ease-in-out infinite;
+  transform-origin:center bottom;
+}
+.wave-path-2{
+  animation:waveFlow 9s ease-in-out infinite reverse;
+  transform-origin:center bottom;
+  opacity:.5;
+}
+@keyframes waveFlow{
+  0%,100%{d:path("M0,30 C240,55 480,5 720,30 C960,55 1200,5 1440,30 L1440,60 L0,60 Z")}
+  50%{d:path("M0,30 C240,5 480,55 720,30 C960,5 1200,55 1440,30 L1440,60 L0,60 Z")}
+}
+
 @media(prefers-reduced-motion:reduce){
-  .reveal{opacity:1;transform:none;transition:none}
+  .scroll-reveal{opacity:1;transform:none;transition:none}
+  .today-card,.chart-card,.week-card,.port-info-card,.coeff-card,.meteo-widget{transition:none}
+  .wave-path-1,.wave-path-2{animation:none}
 }
