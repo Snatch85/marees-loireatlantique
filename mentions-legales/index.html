@@ -6,21 +6,28 @@
 <title>Mentions légales &amp; Politique de confidentialité — Marées Loire-Atlantique</title>
 <meta name="description" content="Mentions légales, politique de confidentialité et gestion des cookies du site Marées Loire-Atlantique."/>
 <link rel="canonical" href="https://marees-loireatlantique.fr/mentions-legales/"/>
-<meta name="robots" content="noindex, follow"/>
+<meta name="robots" content="index, follow"/>
 <link rel="manifest" href="/manifest.json"/>
-<meta name="theme-color" content="#1A6B8A"/>
+<meta name="theme-color" content="#0096C7"/>
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --blue:#1A6B8A;--blue-d:#0F4F6B;--blue-l:#E8F4F9;
-  --sea:#2A9D8F;
-  --text:#1A2332;--text-m:#4A5568;--text-l:#718096;
-  --bg:#F7FAFB;--white:#FFFFFF;--border:#DDE8ED;
+:root {
+  --blue   : #0096C7;
+  --blue-d : #023E8A;
+  --blue-l : #CAF0F8;
+  --sea    : #F77F00;
+  --sea-l  : #FFF3E0;
+  --bg     : #F0F8FF;
+  --border : #90E0EF;
+  --text   : #03045E;
+  --text-m : #0077B6;
+  --text-l : #48CAE4;
+  --white  : #FFFFFF;
 }
-body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-size:15px;line-height:1.7}
 a{color:var(--blue)}
 header{background:linear-gradient(135deg,var(--blue-d) 0%,var(--blue) 60%,var(--sea) 100%);color:#fff;padding:0 1.5rem}
 .header-inner{max-width:900px;margin:0 auto;padding:1rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
@@ -44,9 +51,33 @@ td{padding:.55rem .8rem;border-bottom:1px solid var(--border);color:var(--text-m
 footer{background:var(--blue-d);color:rgba(255,255,255,.6);padding:1.5rem;text-align:center}
 footer p{font-size:.75rem;line-height:1.8}
 footer a{color:rgba(255,255,255,.7)}
+
+/* ═══ COOKIE CONSENT BANNER ═══ */
+#cconsent-banner{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(2,30,80,.97);color:#fff;padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.9rem;box-shadow:0 -4px 24px rgba(0,0,0,.3);backdrop-filter:blur(8px);font-family:'Outfit',sans-serif;font-size:.83rem;line-height:1.5;transform:translateY(100%);transition:transform .35s ease}
+#cconsent-banner.visible{transform:translateY(0)}
+#cconsent-banner p{margin:0;flex:1;min-width:200px;color:rgba(255,255,255,.88)}
+#cconsent-banner a{color:#00B4D8;text-decoration:underline}
+.cb-btns{display:flex;gap:.6rem;flex-shrink:0;flex-wrap:wrap}
+.cb-btn{padding:.45rem 1.1rem;border-radius:20px;font-size:.8rem;font-weight:600;cursor:pointer;border:none;font-family:'Outfit',sans-serif;transition:all .15s}
+.cb-accept{background:#0096C7;color:#fff}.cb-accept:hover{background:#0077A8}
+.cb-decline{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.3)}.cb-decline:hover{background:rgba(255,255,255,.1);color:#fff}
+.cb-settings{background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);font-size:.75rem}.cb-settings:hover{background:rgba(255,255,255,.08)}
+@media(max-width:600px){#cconsent-banner{padding:.9rem 1rem}.cb-btns{width:100%;justify-content:flex-end}}
 </style>
 </head>
 <body>
+
+<!-- ═══ BANDEAU CONSENTEMENT COOKIES RGPD ═══ -->
+<div id="cconsent-banner" role="dialog" aria-live="polite" aria-label="Consentement cookies">
+  <p>Ce site utilise des cookies publicitaires (Google AdSense) pour financer son fonctionnement. 
+  Vous pouvez accepter les annonces personnalisées ou refuser (annonces génériques uniquement). 
+  <a href="/politique-de-confidentialite/">En savoir plus</a></p>
+  <div class="cb-btns">
+    <button class="cb-btn cb-decline" id="cb-decline">Refuser</button>
+    <button class="cb-btn cb-accept" id="cb-accept">Accepter</button>
+  </div>
+</div>
+
 
 <header>
   <div class="header-inner">
@@ -69,6 +100,14 @@ footer a{color:rgba(255,255,255,.7)}
   <!-- ÉDITEUR -->
   <div class="card">
     <h2>1. Mentions légales — Éditeur du site</h2>
+    <div style="background:#EEF6FF;border:1px solid rgba(0,150,199,.2);border-radius:10px;padding:1rem 1.25rem;margin:1rem 0 1.5rem">
+      <p style="margin:0;font-family:'Outfit',sans-serif;font-size:.9rem;color:#023E8A">
+        <strong>Eden</strong> — Personne physique non professionnelle, résidant en Loire-Atlantique (France)<br>
+        <strong>Statut :</strong> Ce site est édité à titre personnel et non commercial. Il n'est pas assujetti à la TVA.<br>
+        <strong>Directeur de la publication :</strong> Eden (fondateur du site)<br>
+        <strong>Contact :</strong> <a href="mailto:contact@marees-loireatlantique.fr" style="color:#0096C7">contact@marees-loireatlantique.fr</a>
+      </p>
+    </div>
     <p>Conformément aux dispositions de la loi n°2004-575 du 21 juin 2004 pour la Confiance dans l'Économie Numérique (LCEN), les informations suivantes sont portées à la connaissance des utilisateurs du site <strong>marees-loireatlantique.fr</strong>.</p>
 
     <h3>Éditeur</h3>
@@ -162,7 +201,7 @@ footer a{color:rgba(255,255,255,.7)}
     <p>Vous pouvez à tout moment modifier vos choix en cliquant sur le bouton ci-dessous, ou en configurant votre navigateur pour refuser les cookies :</p>
     <div style="margin:.8rem 0">
       <button onclick="localStorage.removeItem('cookieConsent'); location.reload();"
-              style="background:var(--blue);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:6px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif">
+              style="background:var(--blue);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:6px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif">
         🔄 Réinitialiser mes préférences cookies
       </button>
     </div>
@@ -229,5 +268,70 @@ footer a{color:rgba(255,255,255,.7)}
   <p style="margin-top:.5rem;font-size:.7rem">Données indicatives — Source harmonique SHOM</p>
 </footer>
 
+
+<script>
+// ═══ COOKIE CONSENT — RGPD / AdSense TCF ═══
+(function(){
+  var CONSENT_KEY = 'mla_cookie_consent';
+  var CONSENT_VERSION = '1';
+
+  function getConsent(){
+    try{ var d=JSON.parse(localStorage.getItem(CONSENT_KEY)||'{}');
+    return d.v===CONSENT_VERSION?d.choice:null; }catch(e){return null;}
+  }
+  function setConsent(choice){
+    try{ localStorage.setItem(CONSENT_KEY, JSON.stringify({choice:choice,v:CONSENT_VERSION,ts:Date.now()})); }catch(e){}
+  }
+
+  function applyConsent(choice){
+    if(choice==='accept'){
+      // Activer AdSense personnalisé
+      if(window.adsbygoogle){
+        window.adsbygoogle.pauseAdRequests = 0;
+      }
+      (window.adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 0;
+    } else {
+      // Annonces non personnalisées uniquement
+      (window.adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 1;
+    }
+  }
+
+  function showBanner(){
+    var b = document.getElementById('cconsent-banner');
+    if(b){ setTimeout(function(){b.classList.add('visible');},400); }
+  }
+  function hideBanner(){
+    var b = document.getElementById('cconsent-banner');
+    if(b){ b.classList.remove('visible'); setTimeout(function(){b.style.display='none';},400); }
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var existing = getConsent();
+    if(existing !== null){
+      applyConsent(existing);
+      return; // Ne pas afficher le banner
+    }
+    // Pas de choix enregistré — afficher
+    showBanner();
+
+    var acceptBtn = document.getElementById('cb-accept');
+    var declineBtn = document.getElementById('cb-decline');
+
+    if(acceptBtn) acceptBtn.addEventListener('click', function(){
+      setConsent('accept'); applyConsent('accept'); hideBanner();
+    });
+    if(declineBtn) declineBtn.addEventListener('click', function(){
+      setConsent('decline'); applyConsent('decline'); hideBanner();
+    });
+  });
+
+  // Lien "Gérer mes cookies" dans le footer
+  window.showCookieConsent = function(){
+    localStorage.removeItem(CONSENT_KEY);
+    var b = document.getElementById('cconsent-banner');
+    if(b){ b.style.display='flex'; setTimeout(function(){b.classList.add('visible');},50); }
+  };
+})();
+</script>
 </body>
 </html>

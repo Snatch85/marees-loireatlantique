@@ -8,14 +8,26 @@
 <link rel="canonical" href="https://marees-loireatlantique.fr/contact/"/>
 <meta name="robots" content="index, follow"/>
 <link rel="manifest" href="/manifest.json"/>
-<meta name="theme-color" content="#1A6B8A"/>
+<meta name="theme-color" content="#0096C7"/>
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--blue:#1A6B8A;--blue-d:#0F4F6B;--blue-l:#E8F4F9;--sea:#2A9D8F;--text:#1A2332;--text-m:#4A5568;--text-l:#718096;--bg:#F7FAFB;--white:#FFFFFF;--border:#DDE8ED}
-body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7}
+:root {
+  --blue   : #0096C7;
+  --blue-d : #023E8A;
+  --blue-l : #CAF0F8;
+  --sea    : #F77F00;
+  --sea-l  : #FFF3E0;
+  --bg     : #F0F8FF;
+  --border : #90E0EF;
+  --text   : #03045E;
+  --text-m : #0077B6;
+  --text-l : #48CAE4;
+  --white  : #FFFFFF;
+}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-size:15px;line-height:1.7}
 a{color:var(--blue)}
 header{background:linear-gradient(135deg,var(--blue-d) 0%,var(--blue) 60%,var(--sea) 100%);color:#fff;padding:0 1.5rem}
 .header-inner{max-width:900px;margin:0 auto;padding:1rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
@@ -38,9 +50,33 @@ p{font-size:.85rem;color:var(--text-m);margin-bottom:.7rem}
 footer{background:var(--blue-d);color:rgba(255,255,255,.6);padding:1.5rem;text-align:center}
 footer p{font-size:.75rem;line-height:1.8}
 footer a{color:rgba(255,255,255,.7)}
+
+/* ═══ COOKIE CONSENT BANNER ═══ */
+#cconsent-banner{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(2,30,80,.97);color:#fff;padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.9rem;box-shadow:0 -4px 24px rgba(0,0,0,.3);backdrop-filter:blur(8px);font-family:'Outfit',sans-serif;font-size:.83rem;line-height:1.5;transform:translateY(100%);transition:transform .35s ease}
+#cconsent-banner.visible{transform:translateY(0)}
+#cconsent-banner p{margin:0;flex:1;min-width:200px;color:rgba(255,255,255,.88)}
+#cconsent-banner a{color:#00B4D8;text-decoration:underline}
+.cb-btns{display:flex;gap:.6rem;flex-shrink:0;flex-wrap:wrap}
+.cb-btn{padding:.45rem 1.1rem;border-radius:20px;font-size:.8rem;font-weight:600;cursor:pointer;border:none;font-family:'Outfit',sans-serif;transition:all .15s}
+.cb-accept{background:#0096C7;color:#fff}.cb-accept:hover{background:#0077A8}
+.cb-decline{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.3)}.cb-decline:hover{background:rgba(255,255,255,.1);color:#fff}
+.cb-settings{background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);font-size:.75rem}.cb-settings:hover{background:rgba(255,255,255,.08)}
+@media(max-width:600px){#cconsent-banner{padding:.9rem 1rem}.cb-btns{width:100%;justify-content:flex-end}}
 </style>
 </head>
 <body>
+
+<!-- ═══ BANDEAU CONSENTEMENT COOKIES RGPD ═══ -->
+<div id="cconsent-banner" role="dialog" aria-live="polite" aria-label="Consentement cookies">
+  <p>Ce site utilise des cookies publicitaires (Google AdSense) pour financer son fonctionnement. 
+  Vous pouvez accepter les annonces personnalisées ou refuser (annonces génériques uniquement). 
+  <a href="/politique-de-confidentialite/">En savoir plus</a></p>
+  <div class="cb-btns">
+    <button class="cb-btn cb-decline" id="cb-decline">Refuser</button>
+    <button class="cb-btn cb-accept" id="cb-accept">Accepter</button>
+  </div>
+</div>
+
 
 <header>
   <div class="header-inner">
@@ -70,7 +106,7 @@ footer a{color:rgba(255,255,255,.7)}
       <span class="contact-icon">✉️</span>
       <div class="contact-info">
         <strong>Email</strong>
-        <a href="mailto:exoduseden85@gmail.com">exoduseden85@gmail.com</a>
+        <a href="mailto:contact@marees-loireatlantique.fr">contact@marees-loireatlantique.fr</a>
       </div>
     </div>
 
@@ -100,6 +136,32 @@ footer a{color:rgba(255,255,255,.7)}
     <h3>Le site est-il gratuit ?</h3>
     <p>Oui, entièrement gratuit. Il est financé par la publicité (Google AdSense). Consultez notre <a href="/politique-de-confidentialite/">politique de confidentialité</a> pour plus de détails.</p>
   </div>
+
+  <div class="card" style="margin-top:1.5rem">
+    <h2>📬 Envoyer un message</h2>
+    <div id="form-success" style="display:none;background:#d4edda;border:1px solid #28a745;border-radius:12px;padding:1.5rem;text-align:center">
+        <div style="font-size:2rem;margin-bottom:.5rem">✅</div>
+        <h3 style="color:#155724;margin-bottom:.5rem">Message envoyé !</h3>
+        <p style="color:#155724;margin:0">Merci pour votre message. Je vous répondrai dans les 24-48h à l'adresse que vous avez indiquée.</p>
+      </div>
+      <form id="contact-form" name="contact" method="POST" data-netlify="true" style="display:flex;flex-direction:column;gap:1rem">
+      <input type="hidden" name="form-name" value="contact"/>
+      <p style="display:none"><label>Ne pas remplir : <input name="bot-field"/></label></p>
+      <div>
+        <label style="font-size:.82rem;font-weight:600;color:var(--blue-d);display:block;margin-bottom:.35rem">Votre nom</label>
+        <input type="text" name="name" required placeholder="Prénom Nom" style="width:100%;padding:.65rem .9rem;border:1.5px solid var(--border);border-radius:8px;font-size:.9rem;font-family:inherit;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='#0096C7'" onblur="this.style.borderColor=''"/>
+      </div>
+      <div>
+        <label style="font-size:.82rem;font-weight:600;color:var(--blue-d);display:block;margin-bottom:.35rem">Votre email</label>
+        <input type="email" name="email" required placeholder="votre@email.fr" style="width:100%;padding:.65rem .9rem;border:1.5px solid var(--border);border-radius:8px;font-size:.9rem;font-family:inherit;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='#0096C7'" onblur="this.style.borderColor=''"/>
+      </div>
+      <div>
+        <label style="font-size:.82rem;font-weight:600;color:var(--blue-d);display:block;margin-bottom:.35rem">Votre message</label>
+        <textarea name="message" required rows="5" placeholder="Votre message, suggestion ou correction..." style="width:100%;padding:.65rem .9rem;border:1.5px solid var(--border);border-radius:8px;font-size:.9rem;font-family:inherit;resize:vertical;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='#0096C7'" onblur="this.style.borderColor=''"></textarea>
+      </div>
+      <button type="submit" style="background:#0096C7;color:#fff;border:none;padding:.75rem 1.75rem;border-radius:24px;font-size:.92rem;font-weight:600;cursor:pointer;font-family:inherit;width:fit-content;transition:background .2s" onmouseover="this.style.background='#023E8A'" onmouseout="this.style.background='#0096C7'">Envoyer le message</button>
+    </form>
+  </div>
 </div>
 
 <footer>
@@ -109,6 +171,108 @@ footer a{color:rgba(255,255,255,.7)}
   </p>
   <p style="margin-top:.5rem;font-size:.7rem">Données indicatives — Source harmonique SHOM</p>
 </footer>
+
+
+<script>
+// ═══ COOKIE CONSENT — RGPD / AdSense TCF ═══
+(function(){
+  var CONSENT_KEY = 'mla_cookie_consent';
+  var CONSENT_VERSION = '1';
+
+  function getConsent(){
+    try{ var d=JSON.parse(localStorage.getItem(CONSENT_KEY)||'{}');
+    return d.v===CONSENT_VERSION?d.choice:null; }catch(e){return null;}
+  }
+  function setConsent(choice){
+    try{ localStorage.setItem(CONSENT_KEY, JSON.stringify({choice:choice,v:CONSENT_VERSION,ts:Date.now()})); }catch(e){}
+  }
+
+  function applyConsent(choice){
+    if(choice==='accept'){
+      // Activer AdSense personnalisé
+      if(window.adsbygoogle){
+        window.adsbygoogle.pauseAdRequests = 0;
+      }
+      (window.adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 0;
+    } else {
+      // Annonces non personnalisées uniquement
+      (window.adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 1;
+    }
+  }
+
+  function showBanner(){
+    var b = document.getElementById('cconsent-banner');
+    if(b){ setTimeout(function(){b.classList.add('visible');},400); }
+  }
+  function hideBanner(){
+    var b = document.getElementById('cconsent-banner');
+    if(b){ b.classList.remove('visible'); setTimeout(function(){b.style.display='none';},400); }
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var existing = getConsent();
+    if(existing !== null){
+      applyConsent(existing);
+      return; // Ne pas afficher le banner
+    }
+    // Pas de choix enregistré — afficher
+    showBanner();
+
+    var acceptBtn = document.getElementById('cb-accept');
+    var declineBtn = document.getElementById('cb-decline');
+
+    if(acceptBtn) acceptBtn.addEventListener('click', function(){
+      setConsent('accept'); applyConsent('accept'); hideBanner();
+    });
+    if(declineBtn) declineBtn.addEventListener('click', function(){
+      setConsent('decline'); applyConsent('decline'); hideBanner();
+    });
+  });
+
+  // Lien "Gérer mes cookies" dans le footer
+  window.showCookieConsent = function(){
+    localStorage.removeItem(CONSENT_KEY);
+    var b = document.getElementById('cconsent-banner');
+    if(b){ b.style.display='flex'; setTimeout(function(){b.classList.add('visible');},50); }
+  };
+})();
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    var origText = btn.textContent;
+    btn.textContent = 'Envoi en cours…';
+    btn.disabled = true;
+    var data = new FormData(form);
+    fetch('/contact/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: new URLSearchParams(data).toString()
+    })
+    .then(function(res) {
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+        window.scrollTo({top: document.getElementById('form-success').offsetTop - 100, behavior: 'smooth'});
+      } else {
+        btn.textContent = origText;
+        btn.disabled = false;
+        alert('Une erreur est survenue. Vous pouvez nous écrire directement à contact@marees-loireatlantique.fr');
+      }
+    })
+    .catch(function() {
+      btn.textContent = origText;
+      btn.disabled = false;
+      alert('Erreur de connexion. Écrivez-nous directement à contact@marees-loireatlantique.fr');
+    });
+  });
+});
+</script>
 
 </body>
 </html>

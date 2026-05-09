@@ -132,11 +132,12 @@
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 
 <!-- Feuille de style principale -->
 <link rel="stylesheet" href="/assets/site.css"/>
+<link rel="stylesheet" href="/assets/moon-widget.css"/>
 
 <!-- Google AdSense — Auto-ads (activation après validation du compte) -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1465276904717454" crossorigin="anonymous"></script>
@@ -149,9 +150,37 @@
 .meteo-item .val{font-size:1.3rem;font-weight:700;line-height:1.1;color:#0a3a5c}
 .meteo-item .lbl{font-size:.72rem;color:#2a6a8a;margin-top:.2rem}
 .meteo-loading{text-align:center;color:#2a6a8a;padding:.5rem;font-size:.85rem}
+
+.skel-line{display:inline-block;width:140px;height:14px;background:linear-gradient(90deg,rgba(0,119,182,.08) 25%,rgba(0,119,182,.18) 50%,rgba(0,119,182,.08) 75%);border-radius:6px;animation:sk 1.4s ease infinite;background-size:200% 100%}
+.skel-sm{width:90%}
+@keyframes sk{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* ═══ COOKIE CONSENT BANNER ═══ */
+#cconsent-banner{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(2,30,80,.97);color:#fff;padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.9rem;box-shadow:0 -4px 24px rgba(0,0,0,.3);backdrop-filter:blur(8px);font-family:'Outfit',sans-serif;font-size:.83rem;line-height:1.5;transform:translateY(100%);transition:transform .35s ease}
+#cconsent-banner.visible{transform:translateY(0)}
+#cconsent-banner p{margin:0;flex:1;min-width:200px;color:rgba(255,255,255,.88)}
+#cconsent-banner a{color:#00B4D8;text-decoration:underline}
+.cb-btns{display:flex;gap:.6rem;flex-shrink:0;flex-wrap:wrap}
+.cb-btn{padding:.45rem 1.1rem;border-radius:20px;font-size:.8rem;font-weight:600;cursor:pointer;border:none;font-family:'Outfit',sans-serif;transition:all .15s}
+.cb-accept{background:#0096C7;color:#fff}.cb-accept:hover{background:#0077A8}
+.cb-decline{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.3)}.cb-decline:hover{background:rgba(255,255,255,.1);color:#fff}
+.cb-settings{background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);font-size:.75rem}.cb-settings:hover{background:rgba(255,255,255,.08)}
+@media(max-width:600px){#cconsent-banner{padding:.9rem 1rem}.cb-btns{width:100%;justify-content:flex-end}}
 </style>
 </head>
 <body>
+
+<!-- ═══ BANDEAU CONSENTEMENT COOKIES RGPD ═══ -->
+<div id="cconsent-banner" role="dialog" aria-live="polite" aria-label="Consentement cookies">
+  <p>Ce site utilise des cookies publicitaires (Google AdSense) pour financer son fonctionnement. 
+  Vous pouvez accepter les annonces personnalisées ou refuser (annonces génériques uniquement). 
+  <a href="/politique-de-confidentialite/">En savoir plus</a></p>
+  <div class="cb-btns">
+    <button class="cb-btn cb-decline" id="cb-decline">Refuser</button>
+    <button class="cb-btn cb-accept" id="cb-accept">Accepter</button>
+  </div>
+</div>
+
 
 <a href="#main" class="skip-link">Aller au contenu principal</a>
 
@@ -176,6 +205,7 @@
       <a href="#semaine">7 jours</a>
       <a href="#infos">Infos</a>
       <a href="/peche-a-pied/" style="background:rgba(42,157,143,.32);border-color:rgba(42,157,143,.6)">🦪 Pêche à pied</a>
+      <a href="/blog/" style="background:rgba(0,150,199,.18);border-color:rgba(0,150,199,.4)">📖 Blog</a>
       <a href="/reglementation/" style="background:rgba(231,111,81,.28);border-color:rgba(231,111,81,.55)">📋 Réglementation</a>
       <a href="/webcams/" style="background:rgba(247,127,0,.35);border-color:rgba(247,127,0,.6)">📹 Webcams</a>
     </nav>
@@ -241,7 +271,7 @@
         <a href="/marees-la-turballe/">La Turballe</a>
         <a href="/marees-piriac-sur-mer/">Piriac-sur-Mer</a>
         <a href="/marees-pornic/">Pornic</a>
-        <a href="/marees-saint-brevin/">Saint-Brevin</a>
+        <a href="/marees-saint-brevin-les-pins/">Saint-Brevin</a>
         <a href="/marees-prefailles/">Préfailles</a>
         <a href="/marees-paimboeuf/">Paimbœuf</a>
         <a href="/marees-saint-gildas/">Saint-Gildas</a>
@@ -253,6 +283,7 @@
     </div>
 
     <div class="site-nav-item">
+      <a href="/blog/" style="background:rgba(0,150,199,.18);border-color:rgba(0,150,199,.4)">📖 Blog</a>
       <a href="/reglementation/">📋 Réglementation</a>
     </div>
 
@@ -426,12 +457,12 @@
       <div class="today-header">
         <div>
           <div class="today-title" id="todayTitle">Marées du jour</div>
-          <div class="today-date" id="todayDate">Chargement…</div>
+          <div class="today-date" id="todayDate"><span class="skel-line"></span></div>
         </div>
         <div class="coeff-badge" id="coeffBadge" aria-live="polite">Coeff. —</div>
       </div>
       <div class="today-tides" id="todayTides">
-        <div style="grid-column:1/-1;padding:2rem;text-align:center;color:var(--text-l)">Chargement…</div>
+        <div style="grid-column:1/-1;padding:2rem;text-align:center;color:var(--text-l)"><span style="display:inline-block;width:180px;height:16px;background:linear-gradient(90deg,rgba(0,119,182,.1) 25%,rgba(0,119,182,.2) 50%,rgba(0,119,182,.1) 75%);border-radius:8px;animation:skeleton 1.5s infinite"></span></div>
       </div>
     </section>
 
@@ -459,6 +490,42 @@
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
     </div>
+
+
+    <!-- ═══════════════════════════════════════
+         WIDGET PHASE LUNAIRE
+    ════════════════════════════════════════ -->
+    <section id="moon-widget" aria-label="Phase lunaire et influence sur les marées">
+      <h2 class="mw-title">🌙 Phase Lunaire &amp; Marées</h2>
+      <div class="mw-top">
+        <canvas id="mw-canvas" width="180" height="180" aria-label="Phase lunaire actuelle en 3D"></canvas>
+        <div class="mw-info">
+          <div class="mw-phase-name" id="mw-phase-name"><span class="skel-line"></span></div>
+          <div class="mw-stats">
+            <div>
+              <div class="mw-stat-label">Illumination</div>
+              <div class="mw-stat-value"><span id="mw-illum">—</span>%</div>
+            </div>
+            <div>
+              <div class="mw-stat-label">Âge lunaire</div>
+              <div class="mw-stat-value"><span id="mw-age">—</span> j</div>
+            </div>
+          </div>
+          <div id="mw-tide-tag" class="mw-tag mw-tag--neutral">—</div>
+          <div class="mw-next-events">
+            Prochaine pleine lune :&nbsp;<span id="mw-next-full">—</span><br>
+            Prochaine nouvelle lune :&nbsp;<span id="mw-next-new">—</span>
+          </div>
+        </div>
+      </div>
+      <hr class="mw-divider">
+      <div class="mw-section-label">Cycle lunaire en cours</div>
+      <div id="mw-cycle-row" role="list"></div>
+      <div class="mw-tide-block">
+        <div class="mw-section-label">Influence sur les marées</div>
+        <p id="mw-tide-info"><span class="skel-line skel-sm"></span></p>
+      </div>
+    </section>
 
     <!-- Tableau 7 jours -->
     <section class="week-card reveal reveal-delay-2" id="semaine" aria-labelledby="weekTitle">
@@ -526,7 +593,8 @@
       <p>Le <strong>coefficient</strong> varie de 20 (morte-eau) à 120 (vive-eau exceptionnelle). Coefficients &ge; 95 : grandes marées.</p>
       <p>Calcul par <strong>méthode harmonique</strong> avec arguments astronomiques complets (Lune &amp; Soleil, J2000.0). Coefficient basé sur Brest (port de référence SHOM).</p>
       <p>Hauteurs en mètres au-dessus du <strong>zéro hydrographique</strong>. Données indicatives — consultez le <a href="https://maree.shom.fr" target="_blank" rel="noopener">SHOM officiel</a> pour la navigation.</p>
-      <p><a href="/reglementation/">📋 Réglementation pêche à pied DDTM 44</a></p>
+      <p><a href="/blog/" style="background:rgba(0,150,199,.18);border-color:rgba(0,150,199,.4)">📖 Blog</a>
+      <a href="/reglementation/">📋 Réglementation pêche à pied DDTM 44</a></p>
     </div>
 
     <!-- Pub sidebar bas -->
@@ -543,6 +611,96 @@
   </aside>
 </div><!-- /.container -->
 
+
+
+<!-- ═══════════════════════════════════════
+     INTRO PERSONNELLE — E-E-A-T
+════════════════════════════════════════ -->
+
+
+<!-- ═══ SECTION BLOG — DERNIERS ARTICLES ═══ -->
+<section style="background:#fff;padding:3rem 1.5rem 2rem">
+  <div style="max-width:1100px;margin:0 auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.75rem">
+      <h2 style="font-size:1.25rem;font-weight:800;color:#023E8A;letter-spacing:-.02em">📝 Guides & Articles récents</h2>
+      <a href="/blog/" style="font-size:.82rem;font-weight:600;color:#0096C7;padding:.4rem .9rem;border:1.5px solid rgba(0,150,199,.3);border-radius:20px;text-decoration:none">Voir tous les articles →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem">
+      <a href="/blog/guide-peche-pied-loire-atlantique-2026/" style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:1.1rem;text-decoration:none;display:flex;flex-direction:column;gap:.5rem;transition:all .2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(2,62,138,.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:.68rem;font-weight:600;color:#0096C7;text-transform:uppercase;letter-spacing:.05em">Guide complet</span>
+        <span style="font-size:.95rem;font-weight:700;color:#023E8A;line-height:1.35">Guide complet de la pêche à pied en Loire-Atlantique 2026</span>
+        <span style="font-size:.8rem;color:#555;line-height:1.55">Espèces, spots, réglementation et conseils de terrain par un passionné local.</span>
+        <span style="font-size:.75rem;color:#0096C7;font-weight:600;margin-top:.25rem">Lire → 12 min</span>
+      </a>
+      <a href="/blog/spots-secrets-peche-pied-loire-atlantique/" style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:1.1rem;text-decoration:none;display:flex;flex-direction:column;gap:.5rem;transition:all .2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(2,62,138,.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:.68rem;font-weight:600;color:#0096C7;text-transform:uppercase;letter-spacing:.05em">Spots & Terrain</span>
+        <span style="font-size:.95rem;font-weight:700;color:#023E8A;line-height:1.35">15 spots secrets de pêche à pied révélés après 20 ans</span>
+        <span style="font-size:.8rem;color:#555;line-height:1.55">Côte Sauvage, Piriac, Préfailles, Bouin — avec coefficients et espèces.</span>
+        <span style="font-size:.75rem;color:#0096C7;font-weight:600;margin-top:.25rem">Lire → 10 min</span>
+      </a>
+      <a href="/blog/erreurs-fatales-grande-maree/" style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:1.1rem;text-decoration:none;display:flex;flex-direction:column;gap:.5rem;transition:all .2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(2,62,138,.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:.68rem;font-weight:600;color:#F77F00;text-transform:uppercase;letter-spacing:.05em">⚠️ Sécurité</span>
+        <span style="font-size:.95rem;font-weight:700;color:#023E8A;line-height:1.35">10 erreurs fatales en grande marée — et comment les éviter</span>
+        <span style="font-size:.8rem;color:#555;line-height:1.55">Ce que 20 ans de terrain m'ont appris sur ce que font vraiment les gens qui se font piéger.</span>
+        <span style="font-size:.75rem;color:#0096C7;font-weight:600;margin-top:.25rem">Lire → 9 min</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section style="background:#fff;padding:3rem 1.5rem;margin-top:0">
+  <div style="max-width:860px;margin:0 auto">
+    <div style="display:flex;gap:1.5rem;align-items:flex-start;background:linear-gradient(135deg,#023E8A,#025DAD);border-radius:20px;padding:2rem 2.5rem;color:#fff;flex-wrap:wrap">
+      <div style="width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:800;color:#fff;border:3px solid rgba(255,255,255,.3);flex-shrink:0">E</div>
+      <div style="flex:1;min-width:220px">
+        <div style="font-size:.8rem;font-weight:600;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.4rem">Le mot du fondateur</div>
+        <blockquote style="font-family:'Lora',Georgia,serif;font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.9);line-height:1.75;border:none;margin:0 0 .9rem;padding:0">"J'ai grandi en voyant mon père consulter l'almanach des marées avant chaque sortie. En 2024, j'ai voulu créer l'outil que j'aurais aimé avoir — simple, précis, gratuit. Ce site, c'est ma façon de rendre à la côte ce qu'elle m'a donné."</blockquote>
+        <div style="font-size:.85rem;color:rgba(255,255,255,.75)">— <strong style="color:#fff">Eden</strong>, fondateur · Loire-Atlantique (44) · <a href="/a-propos/" style="color:rgba(255,255,255,.8);text-decoration:underline">En savoir plus</a> · <a href="/blog/" style="color:rgba(255,255,255,.8);text-decoration:underline">Lire le blog</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     TRUST SECTION — POURQUOI CE SITE EST FIABLE
+════════════════════════════════════════ -->
+<section style="background:var(--bg);padding:2.5rem 1.5rem">
+  <div style="max-width:900px;margin:0 auto">
+    <h2 style="font-size:1.05rem;font-weight:700;color:var(--blue-d);text-align:center;margin-bottom:1.5rem;text-transform:uppercase;letter-spacing:.06em">Pourquoi ce site est fiable</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem">
+      <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.1rem;display:flex;gap:.8rem;align-items:flex-start">
+        <span style="font-size:1.3rem;flex-shrink:0">🔬</span>
+        <div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--blue-d);margin-bottom:.25rem">Calcul harmonique SHOM</div>
+          <div style="font-size:.78rem;color:var(--text-m);line-height:1.55">Même méthode que les officiers de marine. Constantes J2000.0 officielles.</div>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.1rem;display:flex;gap:.8rem;align-items:flex-start">
+        <span style="font-size:1.3rem;flex-shrink:0">👤</span>
+        <div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--blue-d);margin-bottom:.25rem">Auteur identifié</div>
+          <div style="font-size:.78rem;color:var(--text-m);line-height:1.55">Eden, Loire-Atlantique. 20+ ans de terrain. Permis côtier.</div>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.1rem;display:flex;gap:.8rem;align-items:flex-start">
+        <span style="font-size:1.3rem;flex-shrink:0">📴</span>
+        <div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--blue-d);margin-bottom:.25rem">Fonctionne hors ligne</div>
+          <div style="font-size:.78rem;color:var(--text-m);line-height:1.55">PWA installable. Marées disponibles même sans connexion internet.</div>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.1rem;display:flex;gap:.8rem;align-items:flex-start">
+        <span style="font-size:1.3rem;flex-shrink:0">🆓</span>
+        <div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--blue-d);margin-bottom:.25rem">Gratuit & sans inscription</div>
+          <div style="font-size:.78rem;color:var(--text-m);line-height:1.55">Aucun compte, aucune affiliation commerciale, aucun partenariat payant.</div>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:.78rem;color:var(--text-l);margin-top:1rem">⚠️ Données indicatives — pour la navigation professionnelle, consultez le <a href="https://maree.shom.fr" target="_blank" rel="noopener">SHOM officiel</a></p>
+  </div>
+</section>
+
 <!-- ═══════════════════════════════════════
      FOOTER
 ════════════════════════════════════════ -->
@@ -553,7 +711,8 @@
   <p style="margin-top:.6rem;font-size:.73rem;opacity:.65">Données à titre indicatif. Consultez le <a href="https://maree.shom.fr" target="_blank" rel="noopener">SHOM officiel</a> pour la navigation.</p>
   <p style="margin-top:.8rem;font-size:.75rem">
     <a href="/peche-a-pied/">🦪 Pêche à pied</a> ·
-    <a href="/reglementation/">📋 Réglementation</a> ·
+    <a href="/blog/" style="background:rgba(0,150,199,.18);border-color:rgba(0,150,199,.4)">📖 Blog</a>
+      <a href="/reglementation/">📋 Réglementation</a> ·
     <a href="/guides/">📖 Guides</a> ·
     <a href="/a-propos/">À propos</a> ·
     <a href="/contact/">Contact</a> ·
@@ -727,5 +886,71 @@ document.addEventListener('DOMContentLoaded',()=>{
 })();
 </script>
 
+<script src="/assets/moon-widget.js" defer></script>
+
+<script>
+// ═══ COOKIE CONSENT — RGPD / AdSense TCF ═══
+(function(){
+  var CONSENT_KEY = 'mla_cookie_consent';
+  var CONSENT_VERSION = '1';
+
+  function getConsent(){
+    try{ var d=JSON.parse(localStorage.getItem(CONSENT_KEY)||'{}');
+    return d.v===CONSENT_VERSION?d.choice:null; }catch(e){return null;}
+  }
+  function setConsent(choice){
+    try{ localStorage.setItem(CONSENT_KEY, JSON.stringify({choice:choice,v:CONSENT_VERSION,ts:Date.now()})); }catch(e){}
+  }
+
+  function applyConsent(choice){
+    if(choice==='accept'){
+      // Activer AdSense personnalisé
+      if(window.adsbygoogle){
+        window.adsbygoogle.pauseAdRequests = 0;
+      }
+      (window.adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 0;
+    } else {
+      // Annonces non personnalisées uniquement
+      (window.adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 1;
+    }
+  }
+
+  function showBanner(){
+    var b = document.getElementById('cconsent-banner');
+    if(b){ setTimeout(function(){b.classList.add('visible');},400); }
+  }
+  function hideBanner(){
+    var b = document.getElementById('cconsent-banner');
+    if(b){ b.classList.remove('visible'); setTimeout(function(){b.style.display='none';},400); }
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var existing = getConsent();
+    if(existing !== null){
+      applyConsent(existing);
+      return; // Ne pas afficher le banner
+    }
+    // Pas de choix enregistré — afficher
+    showBanner();
+
+    var acceptBtn = document.getElementById('cb-accept');
+    var declineBtn = document.getElementById('cb-decline');
+
+    if(acceptBtn) acceptBtn.addEventListener('click', function(){
+      setConsent('accept'); applyConsent('accept'); hideBanner();
+    });
+    if(declineBtn) declineBtn.addEventListener('click', function(){
+      setConsent('decline'); applyConsent('decline'); hideBanner();
+    });
+  });
+
+  // Lien "Gérer mes cookies" dans le footer
+  window.showCookieConsent = function(){
+    localStorage.removeItem(CONSENT_KEY);
+    var b = document.getElementById('cconsent-banner');
+    if(b){ b.style.display='flex'; setTimeout(function(){b.classList.add('visible');},50); }
+  };
+})();
+</script>
 </body>
 </html>

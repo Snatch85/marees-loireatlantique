@@ -17,7 +17,7 @@
 <meta property="og:locale" content="fr_FR"/>
 <meta property="og:site_name" content="Marées Loire-Atlantique"/>
 <link rel="manifest" href="/manifest.json"/>
-<meta name="theme-color" content="#1A6B8A"/>
+<meta name="theme-color" content="#0096C7"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-title" content="Marées 44"/>
 <link rel="apple-touch-icon" href="/icons/icon-192.png"/>
@@ -100,15 +100,21 @@
   ]
 }</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --blue:#4A7C6F;--blue-d:#2D5A4F;--blue-l:#EDF5F0;
-  --sea:#7B9E87;--sea-l:#EEF4EE;
-  --text:#2C2C2C;--text-m:#5C5C52;--text-l:#8A8778;
-  --bg:#F6F3EE;--white:#FFFFFF;
-  --border:#D5CEBE;
+:root {
+  --blue   : #0096C7;
+  --blue-d : #023E8A;
+  --blue-l : #CAF0F8;
+  --sea    : #F77F00;
+  --sea-l  : #FFF3E0;
+  --bg     : #F0F8FF;
+  --border : #90E0EF;
+  --text   : #03045E;
+  --text-m : #0077B6;
+  --text-l : #48CAE4;
+  --white  : #FFFFFF;
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.6}
@@ -122,7 +128,7 @@ header{background:linear-gradient(135deg,var(--blue-d) 0%,var(--blue) 60%,var(--
 .header-inner{max-width:1100px;margin:0 auto;padding:1rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .logo{display:flex;align-items:center;gap:.6rem}
 .logo-wave{font-size:1.6rem}
-.logo-text h1{font-size:1.1rem;font-weight:700}
+.logo-text h1,.logo-text .site-name{font-size:1.1rem;font-weight:700}
 .logo-text p{font-size:.72rem;opacity:.75;font-weight:300}
 .header-nav{display:flex;gap:.5rem;flex-wrap:wrap}
 .header-nav a{background:rgba(255,255,255,.12);color:#fff;padding:.4rem .9rem;border-radius:20px;font-size:.75rem;font-weight:500;transition:background .2s}
@@ -211,9 +217,33 @@ footer a{color:rgba(255,255,255,.7)}
   .mobile-sticky-ad{display:flex!important}
 }
 .mobile-sticky-ad{display:none;position:fixed;bottom:0;left:0;right:0;height:60px;z-index:100;background:#f0f4f7;border-top:1.5px dashed #b0c4ce;align-items:center;justify-content:center;font-size:.68rem;color:#8aa8b5;font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+
+/* ═══ COOKIE CONSENT BANNER ═══ */
+#cconsent-banner{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(2,30,80,.97);color:#fff;padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.9rem;box-shadow:0 -4px 24px rgba(0,0,0,.3);backdrop-filter:blur(8px);font-family:'Outfit',sans-serif;font-size:.83rem;line-height:1.5;transform:translateY(100%);transition:transform .35s ease}
+#cconsent-banner.visible{transform:translateY(0)}
+#cconsent-banner p{margin:0;flex:1;min-width:200px;color:rgba(255,255,255,.88)}
+#cconsent-banner a{color:#00B4D8;text-decoration:underline}
+.cb-btns{display:flex;gap:.6rem;flex-shrink:0;flex-wrap:wrap}
+.cb-btn{padding:.45rem 1.1rem;border-radius:20px;font-size:.8rem;font-weight:600;cursor:pointer;border:none;font-family:'Outfit',sans-serif;transition:all .15s}
+.cb-accept{background:#0096C7;color:#fff}.cb-accept:hover{background:#0077A8}
+.cb-decline{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.3)}.cb-decline:hover{background:rgba(255,255,255,.1);color:#fff}
+.cb-settings{background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);font-size:.75rem}.cb-settings:hover{background:rgba(255,255,255,.08)}
+@media(max-width:600px){#cconsent-banner{padding:.9rem 1rem}.cb-btns{width:100%;justify-content:flex-end}}
 </style>
 </head>
 <body>
+
+<!-- ═══ BANDEAU CONSENTEMENT COOKIES RGPD ═══ -->
+<div id="cconsent-banner" role="dialog" aria-live="polite" aria-label="Consentement cookies">
+  <p>Ce site utilise des cookies publicitaires (Google AdSense) pour financer son fonctionnement. 
+  Vous pouvez accepter les annonces personnalisées ou refuser (annonces génériques uniquement). 
+  <a href="/politique-de-confidentialite/">En savoir plus</a></p>
+  <div class="cb-btns">
+    <button class="cb-btn cb-decline" id="cb-decline">Refuser</button>
+    <button class="cb-btn cb-accept" id="cb-accept">Accepter</button>
+  </div>
+</div>
+
 
 <div class="ad-top">
   <div class="ad-slot ad-banner">
@@ -226,11 +256,12 @@ footer a{color:rgba(255,255,255,.7)}
     <div class="logo">
       <span class="logo-wave">&#127754;</span>
       <div class="logo-text">
-        <h1>Marées Loire-Atlantique</h1>
+        <span class="site-name">Marées Loire-Atlantique</span>
         <p>Horaires · Coefficients · Hauteurs d'eau</p>
       </div>
     </div>
     <nav class="header-nav">
+      <a href="/blog/" style="background:rgba(0,150,199,.15)">📖 Blog</a>
       <a href="/">Accueil</a>
       <a href="#today">Aujourd'hui</a>
       <a href="#semaine">7 jours</a>
@@ -452,7 +483,7 @@ footer a{color:rgba(255,255,255,.7)}
         <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.7rem">
           <span style="background:#FFF3CD;border:1px solid #F0C040;color:#7A4F00;padding:.3rem .7rem;border-radius:5px;font-size:.75rem;font-weight:600">Coeff &lt; 45 : Morte-eau — peu d'estran découvert</span>
           <span style="background:#D4EDDA;border:1px solid #28A745;color:#155724;padding:.3rem .7rem;border-radius:5px;font-size:.75rem;font-weight:600">Coeff 70–90 : Bonne pêche ✓</span>
-          <span style="background:#D1ECF1;border:1px solid #1A6B8A;color:#0F4F6B;padding:.3rem .7rem;border-radius:5px;font-size:.75rem;font-weight:600">Coeff &gt; 90 : Excellente pêche ✓✓</span>
+          <span style="background:#D1ECF1;border:1px solid #0096C7;color:#023E8A;padding:.3rem .7rem;border-radius:5px;font-size:.75rem;font-weight:600">Coeff &gt; 90 : Excellente pêche ✓✓</span>
         </div>
       </div>
 
@@ -564,10 +595,10 @@ footer a{color:rgba(255,255,255,.7)}
     <div class="coeff-card">
       <h3>Echelle des coefficients</h3>
       <div class="coeff-scale">
-        <div class="cs-row"><span class="cs-label">Tres forte</span><div class="cs-bar" style="background:#0F4F6B;width:100%"></div><span class="cs-range">100-120</span></div>
-        <div class="cs-row"><span class="cs-label">Vive-eau</span><div class="cs-bar" style="background:#1A6B8A;width:80%"></div><span class="cs-range">70-99</span></div>
+        <div class="cs-row"><span class="cs-label">Tres forte</span><div class="cs-bar" style="background:#023E8A;width:100%"></div><span class="cs-range">100-120</span></div>
+        <div class="cs-row"><span class="cs-label">Vive-eau</span><div class="cs-bar" style="background:#0096C7;width:80%"></div><span class="cs-range">70-99</span></div>
         <div class="cs-row"><span class="cs-label">Moyenne</span><div class="cs-bar" style="background:#4AA8C4;width:58%"></div><span class="cs-range">45-69</span></div>
-        <div class="cs-row"><span class="cs-label">Morte-eau</span><div class="cs-bar" style="background:#2A9D8F;width:35%"></div><span class="cs-range">20-44</span></div>
+        <div class="cs-row"><span class="cs-label">Morte-eau</span><div class="cs-bar" style="background:#0096C7;width:35%"></div><span class="cs-range">20-44</span></div>
       </div>
     </div>
     <div class="port-info-card">
@@ -580,6 +611,23 @@ footer a{color:rgba(255,255,255,.7)}
   </div>
 </div>
 
+
+<div class="ad-wrap" style="max-width:900px;margin:2rem auto;padding:0 1.5rem;text-align:center"><span style="font-size:.7rem;color:#999;display:block;margin-bottom:4px">Publicité</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1465276904717454" data-ad-slot="AUTO" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+
+<!-- Liens vers articles blog pêche à pied -->
+<div style="background:#fff;border:1px solid rgba(0,150,199,.18);border-radius:14px;padding:1.5rem;margin:2rem 0">
+  <h3 style="font-size:1rem;font-weight:700;color:#023E8A;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.05em">📝 Articles et guides pour aller plus loin</h3>
+  <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem">
+    <li><a href="/blog/guide-peche-pied-loire-atlantique-2026/" style="color:#0096C7;font-size:.92rem;display:flex;align-items:center;gap:.4rem"><span style="font-weight:700">→</span> Guide complet de la pêche à pied en Loire-Atlantique 2026</a></li>
+    <li><a href="/blog/spots-secrets-peche-pied-loire-atlantique/" style="color:#0096C7;font-size:.92rem;display:flex;align-items:center;gap:.4rem"><span style="font-weight:700">→</span> 15 spots secrets révélés après 20 ans d'exploration</a></li>
+    <li><a href="/blog/erreurs-fatales-grande-maree/" style="color:#0096C7;font-size:.92rem;display:flex;align-items:center;gap:.4rem"><span style="font-weight:700">→</span> 10 erreurs fatales en grande marée — comment les éviter</a></li>
+    <li><a href="/blog/equipement-peche-pied-budget-100-euros/" style="color:#0096C7;font-size:.92rem;display:flex;align-items:center;gap:.4rem"><span style="font-weight:700">→</span> S'équiper pour la pêche à pied à moins de 100 €</a></li>
+    <li><a href="/blog/reglementation-peche-pied-2026/" style="color:#0096C7;font-size:.92rem;display:flex;align-items:center;gap:.4rem"><span style="font-weight:700">→</span> Réglementation complète 2026 : tailles, quotas, sanctions</a></li>
+    <li><a href="/blog/securite-bord-de-mer-loire-atlantique/" style="color:#0096C7;font-size:.92rem;display:flex;align-items:center;gap:.4rem"><span style="font-weight:700">→</span> Sécurité en bord de mer — les risques réels</a></li>
+    <li><a href="/blog/peche-pied-lune-saisons/" style="color:#0096C7;font-size:.92rem;display:flex;align-items:center;gap:.4rem"><span style="font-weight:700">→</span> Pêche à pied et phases de la lune — calendrier 2026</a></li>
+    <li><a href="/blog/recettes-conservation-coquillages/" style="color:#0096C7;font-size:.92rem;display:flex;align-items:center;gap:.4rem"><span style="font-weight:700">→</span> Recettes et conservation des coquillages pêchés</a></li>
+  </ul>
+</div>
 <footer>
   <p><strong>Marées Loire-Atlantique &amp; France</strong> — Calcul harmonique (méthode SHOM, J2000.0)</p>
   <p style="margin-top:.3rem;font-size:.72rem;opacity:.7">Données à titre indicatif. Consultez le <a href="https://maree.shom.fr" target="_blank" rel="noopener">SHOM officiel</a> pour la navigation.</p>
@@ -981,10 +1029,10 @@ function fmtDateLong(d) {
   return d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 }
 function coeffColor(c) {
-  if (c>=100) return '#0F4F6B';
-  if (c>=70)  return '#1A6B8A';
+  if (c>=100) return '#023E8A';
+  if (c>=70)  return '#0096C7';
   if (c>=45)  return '#4AA8C4';
-  return '#2A9D8F';
+  return '#0096C7';
 }
 function coeffLabel(c) {
   if (c>=100) return 'Vive-eau exceptionnelle';
@@ -1064,7 +1112,7 @@ function renderChart(portId, date) {
   ctx.lineTo(tx(1),ty(minH)); ctx.closePath(); ctx.fillStyle=grad; ctx.fill();
   ctx.beginPath();
   pts.forEach((p,i)=>i===0?ctx.moveTo(tx(p.x),ty(p.h)):ctx.lineTo(tx(p.x),ty(p.h)));
-  ctx.strokeStyle='#1A6B8A'; ctx.lineWidth=2.5; ctx.lineJoin='round'; ctx.stroke();
+  ctx.strokeStyle='#0096C7'; ctx.lineWidth=2.5; ctx.lineJoin='round'; ctx.stroke();
   const now = new Date();
   if (now.toDateString()===date.toDateString()) {
     const frac=(now.getHours()*60+now.getMinutes())/1440;
@@ -1212,6 +1260,71 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 document.getElementById('portSelect').addEventListener('change', loadTides);
 document.getElementById('dateInput').addEventListener('change', loadTides);
+</script>
+
+<script>
+// ═══ COOKIE CONSENT — RGPD / AdSense TCF ═══
+(function(){
+  var CONSENT_KEY = 'mla_cookie_consent';
+  var CONSENT_VERSION = '1';
+
+  function getConsent(){
+    try{ var d=JSON.parse(localStorage.getItem(CONSENT_KEY)||'{}');
+    return d.v===CONSENT_VERSION?d.choice:null; }catch(e){return null;}
+  }
+  function setConsent(choice){
+    try{ localStorage.setItem(CONSENT_KEY, JSON.stringify({choice:choice,v:CONSENT_VERSION,ts:Date.now()})); }catch(e){}
+  }
+
+  function applyConsent(choice){
+    if(choice==='accept'){
+      // Activer AdSense personnalisé
+      if(window.adsbygoogle){
+        window.adsbygoogle.pauseAdRequests = 0;
+      }
+      (window.adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 0;
+    } else {
+      // Annonces non personnalisées uniquement
+      (window.adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 1;
+    }
+  }
+
+  function showBanner(){
+    var b = document.getElementById('cconsent-banner');
+    if(b){ setTimeout(function(){b.classList.add('visible');},400); }
+  }
+  function hideBanner(){
+    var b = document.getElementById('cconsent-banner');
+    if(b){ b.classList.remove('visible'); setTimeout(function(){b.style.display='none';},400); }
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var existing = getConsent();
+    if(existing !== null){
+      applyConsent(existing);
+      return; // Ne pas afficher le banner
+    }
+    // Pas de choix enregistré — afficher
+    showBanner();
+
+    var acceptBtn = document.getElementById('cb-accept');
+    var declineBtn = document.getElementById('cb-decline');
+
+    if(acceptBtn) acceptBtn.addEventListener('click', function(){
+      setConsent('accept'); applyConsent('accept'); hideBanner();
+    });
+    if(declineBtn) declineBtn.addEventListener('click', function(){
+      setConsent('decline'); applyConsent('decline'); hideBanner();
+    });
+  });
+
+  // Lien "Gérer mes cookies" dans le footer
+  window.showCookieConsent = function(){
+    localStorage.removeItem(CONSENT_KEY);
+    var b = document.getElementById('cconsent-banner');
+    if(b){ b.style.display='flex'; setTimeout(function(){b.classList.add('visible');},50); }
+  };
+})();
 </script>
 </body>
 </html>

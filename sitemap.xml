@@ -5,210 +5,280 @@
     <loc>https://marees-loireatlantique.fr/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/peche-a-pied/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <!-- Pages marées par ville -->
   <url>
     <loc>https://marees-loireatlantique.fr/marees-saint-nazaire/</loc>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/marees-le-croisic/</loc>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/marees-pornic/</loc>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/marees-la-turballe/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/marees-piriac-sur-mer/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
-    <loc>https://marees-loireatlantique.fr/marees-saint-brevin/</loc>
+    <loc>https://marees-loireatlantique.fr/marees-saint-brevin-les-pins/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/marees-prefailles/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/marees-la-baule/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/marees-batz-sur-mer/</loc>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/marees-le-pouliguen/</loc>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/marees-paimboeuf/</loc>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/marees-saint-gildas/</loc>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <!-- Guides thématiques -->
   <url>
     <loc>https://marees-loireatlantique.fr/guides/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/quest-ce-que-la-maree/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/coefficient-maree/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/lire-horaire-maree/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/grandes-marees-mortes-eaux/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/calendrier-grandes-marees/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/marees-securite/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/marees-activites-nautiques/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/atlantique-vs-mediterranee/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/glossaire-marees/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/marees-meteo/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/chenal-saint-nazaire/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/debutant-plaisance/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/ile-de-noirmoutier/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/maree-et-navigation/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/mouillages/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/permis-bateau/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/remorquage/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/vhf-radio/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/spots-surf-loire-atlantique/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <!-- Pêche à pied -->
   <url>
     <loc>https://marees-loireatlantique.fr/reglementation/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/guides/spots-peche-pied-loire-atlantique/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <!-- Pages légales et institutionnelles -->
   <url>
     <loc>https://marees-loireatlantique.fr/a-propos/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/contact/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/mentions-legales/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://marees-loireatlantique.fr/politique-de-confidentialite/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
   <!-- Page Webcams -->
   <url>
     <loc>https://marees-loireatlantique.fr/webcams/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
+  <lastmod>2026-05-06</lastmod>
   </url>
+  <url><loc>https://marees-loireatlantique.fr/peche-a-pied/especes/coques/</loc><changefreq>monthly</changefreq><priority>0.6</priority><lastmod>2026-05-06</lastmod>
+  </url>
+  <url><loc>https://marees-loireatlantique.fr/peche-a-pied/especes/palourdes/</loc><changefreq>monthly</changefreq><priority>0.6</priority><lastmod>2026-05-06</lastmod>
+  </url>
+  <url><loc>https://marees-loireatlantique.fr/peche-a-pied/especes/bigorneaux/</loc><changefreq>monthly</changefreq><priority>0.6</priority><lastmod>2026-05-06</lastmod>
+  </url>
+  <url><loc>https://marees-loireatlantique.fr/peche-a-pied/especes/huitres/</loc><changefreq>monthly</changefreq><priority>0.6</priority><lastmod>2026-05-06</lastmod>
+  </url>
+  <url><loc>https://marees-loireatlantique.fr/blog/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/grande-maree-saint-nazaire/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/spots-peche-pied-secrets/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/grandes-marees-2026/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/pourquoi-ce-site/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/erreurs-debutant-grande-maree/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/journee-peche-pied-famille/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/lire-coefficients-comme-local/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/endroits-meconnus-cote-atlantique/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/guide-peche-pied-loire-atlantique-2026/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/spots-secrets-peche-pied-loire-atlantique/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/erreurs-fatales-grande-maree/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/equipement-peche-pied-budget-100-euros/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/reglementation-peche-pied-2026/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/peche-pied-lune-saisons/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/securite-bord-de-mer-loire-atlantique/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/navigation-plaisance-loire-atlantique/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/recettes-conservation-coquillages/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/comparatif-ports-spots-loire-atlantique/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/changement-climatique-marees-peche-pied/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marees-loireatlantique.fr/blog/interview-professionnel-mer-loire-atlantique/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

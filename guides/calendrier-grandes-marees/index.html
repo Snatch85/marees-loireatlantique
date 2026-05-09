@@ -150,7 +150,7 @@
 
     .spot-tip {
       background: #f0faf5;
-      border-left: 4px solid #2A9D8F;
+      border-left: 4px solid #0096C7;
       border-radius: 0 10px 10px 0;
       padding: 1rem 1.3rem;
       margin: 1.2rem 0;
@@ -200,7 +200,19 @@
       .recap-table { font-size: .8rem; }
       .recap-table th, .recap-table td { padding: .45rem .6rem; }
     }
-  </style>
+  .logo-text .site-name{font-size:1.1rem;font-weight:700;color:#fff;display:block}
+/* ═══ COOKIE CONSENT BANNER ═══ */
+#cconsent-banner{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(2,30,80,.97);color:#fff;padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.9rem;box-shadow:0 -4px 24px rgba(0,0,0,.3);backdrop-filter:blur(8px);font-family:'Outfit',sans-serif;font-size:.83rem;line-height:1.5;transform:translateY(100%);transition:transform .35s ease}
+#cconsent-banner.visible{transform:translateY(0)}
+#cconsent-banner p{margin:0;flex:1;min-width:200px;color:rgba(255,255,255,.88)}
+#cconsent-banner a{color:#00B4D8;text-decoration:underline}
+.cb-btns{display:flex;gap:.6rem;flex-shrink:0;flex-wrap:wrap}
+.cb-btn{padding:.45rem 1.1rem;border-radius:20px;font-size:.8rem;font-weight:600;cursor:pointer;border:none;font-family:'Outfit',sans-serif;transition:all .15s}
+.cb-accept{background:#0096C7;color:#fff}.cb-accept:hover{background:#0077A8}
+.cb-decline{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.3)}.cb-decline:hover{background:rgba(255,255,255,.1);color:#fff}
+.cb-settings{background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);font-size:.75rem}.cb-settings:hover{background:rgba(255,255,255,.08)}
+@media(max-width:600px){#cconsent-banner{padding:.9rem 1rem}.cb-btns{width:100%;justify-content:flex-end}}
+</style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -214,12 +226,24 @@
   }
   </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="/assets/site.css"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1465276904717454" crossorigin="anonymous"></script>
 </head>
 <body>
+
+<!-- ═══ BANDEAU CONSENTEMENT COOKIES RGPD ═══ -->
+<div id="cconsent-banner" role="dialog" aria-live="polite" aria-label="Consentement cookies">
+  <p>Ce site utilise des cookies publicitaires (Google AdSense) pour financer son fonctionnement. 
+  Vous pouvez accepter les annonces personnalisées ou refuser (annonces génériques uniquement). 
+  <a href="/politique-de-confidentialite/">En savoir plus</a></p>
+  <div class="cb-btns">
+    <button class="cb-btn cb-decline" id="cb-decline">Refuser</button>
+    <button class="cb-btn cb-accept" id="cb-accept">Accepter</button>
+  </div>
+</div>
+
 <a href="#main-content" class="skip-link">Aller au contenu</a>
 
 <header>
@@ -227,11 +251,12 @@
     <a href="/" class="logo">
       <span class="logo-wave" aria-hidden="true">🌊</span>
       <div class="logo-text">
-        <h1>Marées Loire-Atlantique</h1>
+        <span class="site-name" role="heading" aria-level="1">Marées Loire-Atlantique</span>
         <p>Horaires · Coefficients · Hauteurs d'eau</p>
       </div>
     </a>
     <nav class="header-nav" aria-label="Navigation rapide">
+      <a href="/blog/" style="background:rgba(0,150,199,.15)">📖 Blog</a>
       <a href="/">← Calculateur</a>
       <a href="/guides/">Tous les guides</a>
       <a href="/peche-a-pied/">🦪 Pêche à pied</a>
@@ -643,16 +668,16 @@
 
   <p>C'est ça, le vrai attrait des grandes marées pour les connaisseurs du coin : pas seulement les platiers ordinaires, mais ces <strong>zones rarement découvertes</strong> qui ne s'ouvrent qu'une poignée de fois par an. Un rocher qu'on ne voit jamais à la surface, une anse habituellement immergée, une chaîne de bouée chargée de coquillages… La mer révèle une géographie secrète, et chaque grande marée est une occasion de l'explorer.</p>
 
-  <div class="equinox-focus" style="border-color:#2A9D8F">
-    <h3 style="color:#1a6b5a !important;border-color:#2A9D8F !important">🗓️ Les meilleures dates 2026 pour la baie de La Baule (coeff ≥ 110)</h3>
+  <div class="equinox-focus" style="border-color:#0096C7">
+    <h3 style="color:#1a6b5a !important;border-color:#0096C7 !important">🗓️ Les meilleures dates 2026 pour la baie de La Baule (coeff ≥ 110)</h3>
     <div class="equinox-two-col">
-      <div class="equinox-block" style="border-color:#2A9D8F">
+      <div class="equinox-block" style="border-color:#0096C7">
         <h4>🌸 14–16 mars 2026</h4>
         <div class="big-coeff" style="color:#1a6b5a">~112</div>
         <p>Équinoxe de printemps. Basse mer en matinée sur plusieurs jours. Idéal pour accéder aux zones rarement découvertes.</p>
         <p><strong>Eau froide :</strong> combinaison néoprène recommandée.</p>
       </div>
-      <div class="equinox-block" style="border-color:#2A9D8F">
+      <div class="equinox-block" style="border-color:#0096C7">
         <h4>🍂 22–24 septembre 2026</h4>
         <div class="big-coeff" style="color:#1a6b5a">~118</div>
         <p>La plus grande marée de l'année. Eau encore chaude (18-19°C). C'est <strong>le</strong> rendez-vous de l'automne en baie de La Baule.</p>
@@ -680,5 +705,70 @@
   </p>
 </footer>
 
+
+<script>
+// ═══ COOKIE CONSENT — RGPD / AdSense TCF ═══
+(function(){
+  var CONSENT_KEY = 'mla_cookie_consent';
+  var CONSENT_VERSION = '1';
+
+  function getConsent(){
+    try{ var d=JSON.parse(localStorage.getItem(CONSENT_KEY)||'{}');
+    return d.v===CONSENT_VERSION?d.choice:null; }catch(e){return null;}
+  }
+  function setConsent(choice){
+    try{ localStorage.setItem(CONSENT_KEY, JSON.stringify({choice:choice,v:CONSENT_VERSION,ts:Date.now()})); }catch(e){}
+  }
+
+  function applyConsent(choice){
+    if(choice==='accept'){
+      // Activer AdSense personnalisé
+      if(window.adsbygoogle){
+        window.adsbygoogle.pauseAdRequests = 0;
+      }
+      (window.adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 0;
+    } else {
+      // Annonces non personnalisées uniquement
+      (window.adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 1;
+    }
+  }
+
+  function showBanner(){
+    var b = document.getElementById('cconsent-banner');
+    if(b){ setTimeout(function(){b.classList.add('visible');},400); }
+  }
+  function hideBanner(){
+    var b = document.getElementById('cconsent-banner');
+    if(b){ b.classList.remove('visible'); setTimeout(function(){b.style.display='none';},400); }
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var existing = getConsent();
+    if(existing !== null){
+      applyConsent(existing);
+      return; // Ne pas afficher le banner
+    }
+    // Pas de choix enregistré — afficher
+    showBanner();
+
+    var acceptBtn = document.getElementById('cb-accept');
+    var declineBtn = document.getElementById('cb-decline');
+
+    if(acceptBtn) acceptBtn.addEventListener('click', function(){
+      setConsent('accept'); applyConsent('accept'); hideBanner();
+    });
+    if(declineBtn) declineBtn.addEventListener('click', function(){
+      setConsent('decline'); applyConsent('decline'); hideBanner();
+    });
+  });
+
+  // Lien "Gérer mes cookies" dans le footer
+  window.showCookieConsent = function(){
+    localStorage.removeItem(CONSENT_KEY);
+    var b = document.getElementById('cconsent-banner');
+    if(b){ b.style.display='flex'; setTimeout(function(){b.classList.add('visible');},50); }
+  };
+})();
+</script>
 </body>
 </html>
