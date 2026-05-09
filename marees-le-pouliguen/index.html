@@ -17,7 +17,7 @@
 <meta property="og:locale" content="fr_FR"/>
 <meta property="og:site_name" content="Marées Loire-Atlantique"/>
 <link rel="manifest" href="/manifest.json"/>
-<meta name="theme-color" content="#1A6B8A"/>
+<meta name="theme-color" content="#0096C7"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-title" content="Marées 44"/>
 <link rel="apple-touch-icon" href="/icons/icon-192.png"/>
@@ -53,15 +53,22 @@
   ]
 }</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --blue:#4A7C6F;--blue-d:#2D5A4F;--blue-l:#EDF5F0;
-  --sea:#7B9E87;--sea-l:#EEF4EE;
-  --text:#2C2C2C;--text-m:#5C5C52;--text-l:#8A8778;
-  --bg:#F6F3EE;--white:#FFFFFF;
-  --border:#D5CEBE;
+:root {
+  --blue   : #0096C7;
+  --blue-d : #023E8A;
+  --blue-l : #CAF0F8;
+  --sea    : #F77F00;
+  --sea-l  : #FFF3E0;
+  --bg     : #F0F8FF;
+  --border : #90E0EF;
+  --text   : #03045E;
+  --text-m : #0077B6;
+  --text-l : #48CAE4;
+  --white  : #FFFFFF;
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.6}
@@ -75,7 +82,7 @@ header{background:linear-gradient(135deg,var(--blue-d) 0%,var(--blue) 60%,var(--
 .header-inner{max-width:1100px;margin:0 auto;padding:1rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .logo{display:flex;align-items:center;gap:.6rem}
 .logo-wave{font-size:1.6rem}
-.logo-text h1{font-size:1.1rem;font-weight:700}
+.logo-text h1,.logo-text .site-name{font-size:1.1rem;font-weight:700}
 .logo-text p{font-size:.72rem;opacity:.75;font-weight:300}
 .header-nav{display:flex;gap:.5rem;flex-wrap:wrap}
 .header-nav a{background:rgba(255,255,255,.12);color:#fff;padding:.4rem .9rem;border-radius:20px;font-size:.75rem;font-weight:500;transition:background .2s}
@@ -164,22 +171,42 @@ footer a{color:rgba(255,255,255,.7)}
   .mobile-sticky-ad{display:flex!important}
 }
 .mobile-sticky-ad{display:none;position:fixed;bottom:0;left:0;right:0;height:60px;z-index:100;background:#f0f4f7;border-top:1.5px dashed #b0c4ce;align-items:center;justify-content:center;font-size:.68rem;color:#8aa8b5;font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+
+/* ═══ COOKIE CONSENT BANNER ═══ */
+#cconsent-banner{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(2,30,80,.97);color:#fff;padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.9rem;box-shadow:0 -4px 24px rgba(0,0,0,.3);backdrop-filter:blur(8px);font-family:'Outfit',sans-serif;font-size:.83rem;line-height:1.5;transform:translateY(100%);transition:transform .35s ease}
+#cconsent-banner.visible{transform:translateY(0)}
+#cconsent-banner p{margin:0;flex:1;min-width:200px;color:rgba(255,255,255,.88)}
+#cconsent-banner a{color:#00B4D8;text-decoration:underline}
+.cb-btns{display:flex;gap:.6rem;flex-shrink:0;flex-wrap:wrap}
+.cb-btn{padding:.45rem 1.1rem;border-radius:20px;font-size:.8rem;font-weight:600;cursor:pointer;border:none;font-family:'Outfit',sans-serif;transition:all .15s}
+.cb-accept{background:#0096C7;color:#fff}.cb-accept:hover{background:#0077A8}
+.cb-decline{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.3)}.cb-decline:hover{background:rgba(255,255,255,.1);color:#fff}
+.cb-settings{background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);font-size:.75rem}.cb-settings:hover{background:rgba(255,255,255,.08)}
+@media(max-width:600px){#cconsent-banner{padding:.9rem 1rem}.cb-btns{width:100%;justify-content:flex-end}}
 </style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1465276904717454" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<div class="ad-top">
-  <div class="ad-slot ad-banner">
-    Espace publicitaire 728x90 — Google AdSense / The Moneytizer
+<!-- ═══ BANDEAU CONSENTEMENT COOKIES RGPD ═══ -->
+<div id="cconsent-banner" role="dialog" aria-live="polite" aria-label="Consentement cookies">
+  <p>Ce site utilise des cookies publicitaires (Google AdSense) pour financer son fonctionnement. 
+  Vous pouvez accepter les annonces personnalisées ou refuser (annonces génériques uniquement). 
+  <a href="/politique-de-confidentialite/">En savoir plus</a></p>
+  <div class="cb-btns">
+    <button class="cb-btn cb-decline" id="cb-decline">Refuser</button>
+    <button class="cb-btn cb-accept" id="cb-accept">Accepter</button>
   </div>
 </div>
+
+
 
 <header>
   <div class="header-inner">
     <div class="logo">
       <span class="logo-wave">&#127754;</span>
       <div class="logo-text">
-        <h1>Marées Loire-Atlantique</h1>
+        <span class="site-name">Marées Loire-Atlantique</span>
         <p>Horaires · Coefficients · Hauteurs d'eau</p>
       </div>
     </div>
@@ -188,6 +215,7 @@ footer a{color:rgba(255,255,255,.7)}
       <a href="#today">Aujourd'hui</a>
       <a href="#semaine">7 jours</a>
       <a href="/peche-a-pied/">Pêche à pied</a>
+      <a href="/blog/" style="background:rgba(0,150,199,.18);border-color:rgba(0,150,199,.4)">📖 Blog</a>
     </nav>
   </div>
 </header>
@@ -289,10 +317,6 @@ footer a{color:rgba(255,255,255,.7)}
       </div>
     </div>
 
-    <div class="ad-slot ad-rect">
-      Espace publicitaire - Google AdSense / The Moneytizer
-    </div>
-
     <!-- Info locale ville -->
     <div class="info-card">
       <h3>&#128204; Conseils pour Le Croisic</h3>
@@ -311,30 +335,31 @@ footer a{color:rgba(255,255,255,.7)}
     </div>
 
 
-    <!-- Bloc editorial Le Pouliguen -->
+        <!-- Bloc editorial enrichi -->
     <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.4rem;box-shadow:0 2px 8px rgba(0,0,0,.07)">
-      <h2 style="font-size:1rem;font-weight:800;color:var(--blue-d);margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:2px solid var(--blue-l)">Marées au Pouliguen — port de plaisance et côte rocheuse</h2>
+      <h2 style="font-size:1rem;font-weight:800;color:var(--blue-d);margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:2px solid var(--blue-l)">Marées au Pouliguen — Port de plaisance entre baie et rivière</h2>
 
-      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Le port d'entrée de la baie de La Baule</h3>
-      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">Le Pouliguen se situe à l'<strong>extrémité ouest de la baie de La Baule</strong>, à la limite entre la côte sableuse et la côte rocheuse. Son port de plaisance, l'un des plus fréquentés de Loire-Atlantique, peut accueillir jusqu'à <strong>700 bateaux</strong>. L'accès au port est soumis aux marées : le chenal d'entrée requiert environ 1 m de tirant d'eau minimum, disponible à peu près 2h30 avant et après la pleine mer en morte-eau. En vive-eau, la fenêtre est plus large grâce au <strong>marnage de 5 m</strong>.</p>
+      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Le port jumeau de La Baule</h3>
+      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">Le Pouliguen est la commune jumelle de La Baule, partagée par l'estuaire du <strong>canal du Pouliguen</strong> (ancienne rivière canalisée). Le port de plaisance du Pouliguen compte environ <strong>800 anneaux</strong> et constitue le point de départ de nombreuses sorties en mer vers la baie de La Baule, le Croisic et les côtes vendéennes. Le marnage de vive-eau est d'environ <strong>4,8 m</strong>. La ville, plus animée que Batz-sur-Mer tout en étant moins touristique que La Baule, offre un bel équilibre entre authenticité et services.</p>
 
-      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Falaises et côte rocheuse</h3>
-      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">Au-delà du port, vers Batz-sur-Mer, la côte du Pouliguen devient <strong>rocheuse et escarpée</strong>. Le sentier littoral longe des falaises de granite offrant des vues remarquables sur la baie de La Baule et la presqu'île du Croisic. Les platiers rocheux exposés à marée basse (coefficient ≥ 80) recèlent bigorneaux, patelles, crabes verts et étrilles. La plage de la Govelle, en contrebas des falaises, est accessible par un escalier et protégée des vents d'est.</p>
+      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Pêche à pied côté baie</h3>
+      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">La zone sableuse à l'ouest du Pouliguen, vers <strong>La Baule-les-Pins</strong>, offre de bonnes conditions de récolte de coques et palourdes par coefficient ≥ 72. Les rochers de la <strong>Pointe du Bec</strong>, à la limite ouest du Pouliguen, décèlent par coefficients élevés (≥ 85) des bigorneaux et quelques crabes. Cette zone est le reflet de l'estran entre Le Pouliguen et Le Croisic — moins riche que la Côte Sauvage mais plus accessible aux familles.</p>
 
-      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Huîtres de Pen Bron</h3>
-      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">En face du Pouliguen, de l'autre côté du chenal, se trouve le site ostréicole de <strong>Pen Bron (La Turballe)</strong>. Les huîtres creuses et plates y sont élevées dans des poches immergées et retournées à chaque marée. La récolte et la vente directe aux particuliers sont possibles en saison. Ces tables ostréicoles font partie du réseau de production de la Baie de Bourgneuf, classé zone de production de qualité A par l'Union Européenne.</p>
+      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Accès au port et navigation</h3>
+      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">L'accès au port du Pouliguen se fait par le <strong>chenal de La Baule</strong>, balisé par des cardinales et des bouées latérales. Le chenal présente un tirant d'eau minimum de 1,5 m à basse mer de vive-eau — vérifiez les horaires avant tout mouvement. La capitainerie est joignable sur VHF canal 9. Les visiteurs trouvent facilement une place en escale de mai à septembre moyennant réservation en haute saison.</p>
 
-      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Navigation côtière</h3>
-      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">La sortie du port du Pouliguen vers l'ouest implique de franchir la <strong>Barre du Croisic</strong>, un haut-fond qui peut être dangereux par fort vent et houle de secteur ouest. Par mauvais temps, le port du Pouliguen peut fermer l'entrée aux plaisanciers. Les bateaux en transit vers la Bretagne doivent consulter Météo France Marine et les bulletins côtiers avant d'appareiller.</p>
+      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Le marché du Pouliguen</h3>
+      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">Le marché du Pouliguen (mardi et vendredi matin) est réputé pour ses <strong>poissonniers qui vendent les arrivages du jour</strong> de La Turballe et Le Croisic. C'est l'occasion d'acheter bar, dorade, turbot et sardines à des prix de criée. Les coquillages vendus proviennent des producteurs locaux de la baie de Bourgneuf — palourdes, huîtres creuses et moules de bouchot.</p>
 
+      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Conseils pratiques</h3>
       <ul style="font-size:.82rem;color:var(--text-m);line-height:1.75;padding-left:1.3rem;margin-bottom:.5rem">
-        <li>Capitainerie du Pouliguen : renseignements sur les places de port (04 40 42 31 96)</li>
-        <li>Marché traditionnel le mercredi et samedi matin — fruits de mer et produits locaux</li>
-        <li>Sentier littoral balisé : Le Pouliguen → Batz-sur-Mer (4 km, niveau facile)</li>
-        <li>Urgence en mer : <strong>CROSS Étel — 196</strong></li>
+        <li>Coefficient ≥ 72 : côté La Baule-les-Pins — coques et palourdes</li>
+        <li>Coefficient ≥ 85 : Pointe du Bec — bigorneaux et quelques crabes</li>
+        <li>Port VHF canal 9 — réservation conseillée en juillet-août</li>
+        <li>Marché mardi et vendredi matin : poissons frais à prix de criée</li>
+        <li>Urgence en mer : <strong>CROSS Étel — composez le 196</strong></li>
       </ul>
-    </div>
-
+</div>
     <!-- Liens vers autres ports du 44 -->
     <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.2rem">
       <h3 style="font-size:.88rem;font-weight:700;color:var(--text-m);margin-bottom:.8rem">
@@ -356,24 +381,18 @@ footer a{color:rgba(255,255,255,.7)}
   </div>
 
   <div class="side-col">
-    <div class="ad-slot ad-square">
-      Espace publicitaire<br/>300x250<br/>Google AdSense
-    </div>
     <div class="coeff-card">
       <h3>Echelle des coefficients</h3>
       <div class="coeff-scale">
-        <div class="cs-row"><span class="cs-label">Tres forte</span><div class="cs-bar" style="background:#0F4F6B;width:100%"></div><span class="cs-range">100-120</span></div>
-        <div class="cs-row"><span class="cs-label">Vive-eau</span><div class="cs-bar" style="background:#1A6B8A;width:80%"></div><span class="cs-range">70-99</span></div>
+        <div class="cs-row"><span class="cs-label">Tres forte</span><div class="cs-bar" style="background:#023E8A;width:100%"></div><span class="cs-range">100-120</span></div>
+        <div class="cs-row"><span class="cs-label">Vive-eau</span><div class="cs-bar" style="background:#0096C7;width:80%"></div><span class="cs-range">70-99</span></div>
         <div class="cs-row"><span class="cs-label">Moyenne</span><div class="cs-bar" style="background:#4AA8C4;width:58%"></div><span class="cs-range">45-69</span></div>
-        <div class="cs-row"><span class="cs-label">Morte-eau</span><div class="cs-bar" style="background:#2A9D8F;width:35%"></div><span class="cs-range">20-44</span></div>
+        <div class="cs-row"><span class="cs-label">Morte-eau</span><div class="cs-bar" style="background:#0096C7;width:35%"></div><span class="cs-range">20-44</span></div>
       </div>
     </div>
     <div class="port-info-card">
       <h3>Informations port</h3>
       <div id="portInfoRows"></div>
-    </div>
-    <div class="ad-slot ad-square">
-      Espace publicitaire<br/>300x250<br/>Google AdSense
     </div>
   </div>
 </div>
@@ -815,10 +834,10 @@ function fmtDateLong(d) {
   return d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 }
 function coeffColor(c) {
-  if (c>=100) return '#0F4F6B';
-  if (c>=70)  return '#1A6B8A';
+  if (c>=100) return '#023E8A';
+  if (c>=70)  return '#0096C7';
   if (c>=45)  return '#4AA8C4';
-  return '#2A9D8F';
+  return '#0096C7';
 }
 function coeffLabel(c) {
   if (c>=100) return 'Vive-eau exceptionnelle';
@@ -898,7 +917,7 @@ function renderChart(portId, date) {
   ctx.lineTo(tx(1),ty(minH)); ctx.closePath(); ctx.fillStyle=grad; ctx.fill();
   ctx.beginPath();
   pts.forEach((p,i)=>i===0?ctx.moveTo(tx(p.x),ty(p.h)):ctx.lineTo(tx(p.x),ty(p.h)));
-  ctx.strokeStyle='#1A6B8A'; ctx.lineWidth=2.5; ctx.lineJoin='round'; ctx.stroke();
+  ctx.strokeStyle='#0096C7'; ctx.lineWidth=2.5; ctx.lineJoin='round'; ctx.stroke();
   const now = new Date();
   if (now.toDateString()===date.toDateString()) {
     const frac=(now.getHours()*60+now.getMinutes())/1440;
@@ -1046,6 +1065,71 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 document.getElementById('portSelect').addEventListener('change', loadTides);
 document.getElementById('dateInput').addEventListener('change', loadTides);
+</script>
+
+<script>
+// ═══ COOKIE CONSENT — RGPD / AdSense TCF ═══
+(function(){
+  var CONSENT_KEY = 'mla_cookie_consent';
+  var CONSENT_VERSION = '1';
+
+  function getConsent(){
+    try{ var d=JSON.parse(localStorage.getItem(CONSENT_KEY)||'{}');
+    return d.v===CONSENT_VERSION?d.choice:null; }catch(e){return null;}
+  }
+  function setConsent(choice){
+    try{ localStorage.setItem(CONSENT_KEY, JSON.stringify({choice:choice,v:CONSENT_VERSION,ts:Date.now()})); }catch(e){}
+  }
+
+  function applyConsent(choice){
+    if(choice==='accept'){
+      // Activer AdSense personnalisé
+      if(window.adsbygoogle){
+        window.adsbygoogle.pauseAdRequests = 0;
+      }
+      (window.adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 0;
+    } else {
+      // Annonces non personnalisées uniquement
+      (window.adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 1;
+    }
+  }
+
+  function showBanner(){
+    var b = document.getElementById('cconsent-banner');
+    if(b){ setTimeout(function(){b.classList.add('visible');},400); }
+  }
+  function hideBanner(){
+    var b = document.getElementById('cconsent-banner');
+    if(b){ b.classList.remove('visible'); setTimeout(function(){b.style.display='none';},400); }
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var existing = getConsent();
+    if(existing !== null){
+      applyConsent(existing);
+      return; // Ne pas afficher le banner
+    }
+    // Pas de choix enregistré — afficher
+    showBanner();
+
+    var acceptBtn = document.getElementById('cb-accept');
+    var declineBtn = document.getElementById('cb-decline');
+
+    if(acceptBtn) acceptBtn.addEventListener('click', function(){
+      setConsent('accept'); applyConsent('accept'); hideBanner();
+    });
+    if(declineBtn) declineBtn.addEventListener('click', function(){
+      setConsent('decline'); applyConsent('decline'); hideBanner();
+    });
+  });
+
+  // Lien "Gérer mes cookies" dans le footer
+  window.showCookieConsent = function(){
+    localStorage.removeItem(CONSENT_KEY);
+    var b = document.getElementById('cconsent-banner');
+    if(b){ b.style.display='flex'; setTimeout(function(){b.classList.add('visible');},50); }
+  };
+})();
 </script>
 </body>
 </html>

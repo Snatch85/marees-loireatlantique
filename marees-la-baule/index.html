@@ -17,7 +17,7 @@
 <meta property="og:locale" content="fr_FR"/>
 <meta property="og:site_name" content="Marées Loire-Atlantique"/>
 <link rel="manifest" href="/manifest.json"/>
-<meta name="theme-color" content="#1A6B8A"/>
+<meta name="theme-color" content="#0096C7"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-title" content="Marées 44"/>
 <link rel="apple-touch-icon" href="/icons/icon-192.png"/>
@@ -53,15 +53,22 @@
   ]
 }</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --blue:#4A7C6F;--blue-d:#2D5A4F;--blue-l:#EDF5F0;
-  --sea:#7B9E87;--sea-l:#EEF4EE;
-  --text:#2C2C2C;--text-m:#5C5C52;--text-l:#8A8778;
-  --bg:#F6F3EE;--white:#FFFFFF;
-  --border:#D5CEBE;
+:root {
+  --blue   : #0096C7;
+  --blue-d : #023E8A;
+  --blue-l : #CAF0F8;
+  --sea    : #F77F00;
+  --sea-l  : #FFF3E0;
+  --bg     : #F0F8FF;
+  --border : #90E0EF;
+  --text   : #03045E;
+  --text-m : #0077B6;
+  --text-l : #48CAE4;
+  --white  : #FFFFFF;
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.6}
@@ -75,7 +82,7 @@ header{background:linear-gradient(135deg,var(--blue-d) 0%,var(--blue) 60%,var(--
 .header-inner{max-width:1100px;margin:0 auto;padding:1rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .logo{display:flex;align-items:center;gap:.6rem}
 .logo-wave{font-size:1.6rem}
-.logo-text h1{font-size:1.1rem;font-weight:700}
+.logo-text h1,.logo-text .site-name{font-size:1.1rem;font-weight:700}
 .logo-text p{font-size:.72rem;opacity:.75;font-weight:300}
 .header-nav{display:flex;gap:.5rem;flex-wrap:wrap}
 .header-nav a{background:rgba(255,255,255,.12);color:#fff;padding:.4rem .9rem;border-radius:20px;font-size:.75rem;font-weight:500;transition:background .2s}
@@ -164,22 +171,42 @@ footer a{color:rgba(255,255,255,.7)}
   .mobile-sticky-ad{display:flex!important}
 }
 .mobile-sticky-ad{display:none;position:fixed;bottom:0;left:0;right:0;height:60px;z-index:100;background:#f0f4f7;border-top:1.5px dashed #b0c4ce;align-items:center;justify-content:center;font-size:.68rem;color:#8aa8b5;font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+
+/* ═══ COOKIE CONSENT BANNER ═══ */
+#cconsent-banner{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(2,30,80,.97);color:#fff;padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.9rem;box-shadow:0 -4px 24px rgba(0,0,0,.3);backdrop-filter:blur(8px);font-family:'Outfit',sans-serif;font-size:.83rem;line-height:1.5;transform:translateY(100%);transition:transform .35s ease}
+#cconsent-banner.visible{transform:translateY(0)}
+#cconsent-banner p{margin:0;flex:1;min-width:200px;color:rgba(255,255,255,.88)}
+#cconsent-banner a{color:#00B4D8;text-decoration:underline}
+.cb-btns{display:flex;gap:.6rem;flex-shrink:0;flex-wrap:wrap}
+.cb-btn{padding:.45rem 1.1rem;border-radius:20px;font-size:.8rem;font-weight:600;cursor:pointer;border:none;font-family:'Outfit',sans-serif;transition:all .15s}
+.cb-accept{background:#0096C7;color:#fff}.cb-accept:hover{background:#0077A8}
+.cb-decline{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.3)}.cb-decline:hover{background:rgba(255,255,255,.1);color:#fff}
+.cb-settings{background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);font-size:.75rem}.cb-settings:hover{background:rgba(255,255,255,.08)}
+@media(max-width:600px){#cconsent-banner{padding:.9rem 1rem}.cb-btns{width:100%;justify-content:flex-end}}
 </style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1465276904717454" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<div class="ad-top">
-  <div class="ad-slot ad-banner">
-    Espace publicitaire 728x90 — Google AdSense / The Moneytizer
+<!-- ═══ BANDEAU CONSENTEMENT COOKIES RGPD ═══ -->
+<div id="cconsent-banner" role="dialog" aria-live="polite" aria-label="Consentement cookies">
+  <p>Ce site utilise des cookies publicitaires (Google AdSense) pour financer son fonctionnement. 
+  Vous pouvez accepter les annonces personnalisées ou refuser (annonces génériques uniquement). 
+  <a href="/politique-de-confidentialite/">En savoir plus</a></p>
+  <div class="cb-btns">
+    <button class="cb-btn cb-decline" id="cb-decline">Refuser</button>
+    <button class="cb-btn cb-accept" id="cb-accept">Accepter</button>
   </div>
 </div>
+
+
 
 <header>
   <div class="header-inner">
     <div class="logo">
       <span class="logo-wave">&#127754;</span>
       <div class="logo-text">
-        <h1>Marées Loire-Atlantique</h1>
+        <span class="site-name">Marées Loire-Atlantique</span>
         <p>Horaires · Coefficients · Hauteurs d'eau</p>
       </div>
     </div>
@@ -188,6 +215,7 @@ footer a{color:rgba(255,255,255,.7)}
       <a href="#today">Aujourd'hui</a>
       <a href="#semaine">7 jours</a>
       <a href="/peche-a-pied/">Pêche à pied</a>
+      <a href="/blog/" style="background:rgba(0,150,199,.18);border-color:rgba(0,150,199,.4)">📖 Blog</a>
     </nav>
   </div>
 </header>
@@ -289,10 +317,6 @@ footer a{color:rgba(255,255,255,.7)}
       </div>
     </div>
 
-    <div class="ad-slot ad-rect">
-      Espace publicitaire - Google AdSense / The Moneytizer
-    </div>
-
     <!-- Info locale ville -->
     <div class="info-card">
       <h3>&#128204; Conseils pour La Baule-Escoublac</h3>
@@ -313,28 +337,29 @@ footer a{color:rgba(255,255,255,.7)}
 
     <!-- Bloc editorial La Baule -->
     <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.4rem;box-shadow:0 2px 8px rgba(0,0,0,.07)">
-      <h2 style="font-size:1rem;font-weight:800;color:var(--blue-d);margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:2px solid var(--blue-l)">Marées à La Baule — la plus belle baie d'Europe</h2>
+      <h2 style="font-size:1rem;font-weight:800;color:var(--blue-d);margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:2px solid var(--blue-l)">Marées à La Baule — La grande plage de l'Atlantique</h2>
 
-      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">9 kilomètres de plage de sable fin</h3>
-      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">La baie de La Baule offre l'une des plus longues plages de sable fin d'Europe. À <strong>marée basse (coefficient ≥ 80)</strong>, la mer se retire sur parfois <strong>400 à 600 mètres</strong>, dégageant des kilomètres d'estran idéal pour la marche, la baignade en zone sécurisée et la pêche à pied. Le marnage de vive-eau atteint 5 m, ce qui donne à la plage un aspect radicalement différent selon l'heure de la journée.</p>
+      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">La plus belle baie de l'Atlantique</h3>
+      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">La <strong>Baule-Escoublac</strong> est connue pour ses <strong>8 kilomètres de plage de sable fin</strong> en arc de cercle, classée parmi les plus belles plages d'Europe. La station balnéaire, née à la Belle Époque, alterne villas 1900 et immeubles modernes. Le marnage de vive-eau atteint environ <strong>4,8 m</strong>. À basse mer par fort coefficient, la plage découvre jusqu'à 400 mètres de sable, transformant le paysage de manière spectaculaire.</p>
 
-      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Activités nautiques et conditions de navigation</h3>
-      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">La baie de La Baule est le terrain de jeu idéal pour la <strong>voile légère, le paddle et le kite-surf</strong>. Les conditions sont généralement calmes car la baie est protégée de la houle océanique par la presqu'île du Croisic. Le <strong>port de plaisance de Pornichet</strong> (à l'est de la baie) est le point d'accès nautique principal avec plus de 1 100 anneaux. Les sorties de la baie vers l'ouest demandent vigilance : la Barre du Croisic peut lever par fort jusant conjugué à la houle.</p>
+      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Pêche à pied et activités de plage</h3>
+      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">La plage de La Baule est principalement <strong>sableuse</strong> — idéale pour la récolte de <strong>coques et palourdes</strong> à basse mer. Les meilleurs spots se situent aux deux extrémités de la baie : vers Le Pouliguen côté ouest (zone plus rocheuse) et vers La Baule-les-Pins côté est. Coefficient minimum conseillé : <strong>75</strong>. La zone de Pornichet, en continuité de la plage, offre également de bonnes conditions par coefficients élevés.</p>
 
-      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Pêche à pied en baie de La Baule</h3>
-      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">L'estran sableux de La Baule recèle des <strong>coques et des palourdes</strong> en quantité, particulièrement dans les zones de sable humide à proximité des chenaux. Les amateurs de pêche à pied apprécieront les <strong>coefficients ≥ 90</strong> pour accéder aux zones les plus riches, situées à 400-500 m du bord à basse mer. La réglementation impose une taille minimale (coque 27 mm, palourde 35 mm) et un quota de 5 kg par pêcheur.</p>
+      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Sports nautiques et kite-surf</h3>
+      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">La baie de La Baule est un <strong>spot réputé de kite-surf et de windsurf</strong>, notamment par vent d'ouest à sud-ouest. Plusieurs écoles de voile et de surf y sont installées. Les conditions optimales combinent coefficient faible à moyen (courant limité) et vent de secteur ouest. La plage est également parfaite pour le char à voile et le longe-côte par marée descendante.</p>
 
-      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">La marée et les bains de mer</h3>
-      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">Les postes de secours et zones de baignade surveillée à La Baule sont actifs de mi-juin à mi-septembre. La plage est équipée de <strong>zones délimitées selon la marée</strong> — en pleine mer (PM), la baignade est profonde dès le bord ; en basse mer (BM), il faut marcher plusieurs centaines de mètres. La température de l'eau en été oscille entre 18 et 22°C selon les années.</p>
+      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Le port de La Baule (Pornichet)</h3>
+      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">Le port de plaisance de Pornichet, à l'extrémité est de la baie, compte plus de <strong>1 100 anneaux</strong> — l'un des plus grands ports de plaisance de Loire-Atlantique. Accès depuis le chenal balisé par tribord, accessible à tout état de marée pour les bateaux de tirant d'eau inférieur à 2 m. VHF canal 9 pour les capitaineries de La Baule et Pornichet.</p>
 
+      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Conseils pratiques</h3>
       <ul style="font-size:.82rem;color:var(--text-m);line-height:1.75;padding-left:1.3rem;margin-bottom:.5rem">
-        <li>Baignade surveillée : vérifiez les horaires de plage et les drapeaux avant d'entrer dans l'eau</li>
-        <li>Location de paddles et kayaks de mer disponibles en saison au centre nautique</li>
-        <li>Le marché de La Baule-Escoublac : produits locaux incluant sel de Guérande et huîtres du Croisic</li>
-        <li>Urgence en mer : <strong>CROSS Étel — 196</strong></li>
+        <li>Coefficient ≥ 75 : bonne récolte de coques — zone sableuse aux deux extrémités de la baie</li>
+        <li>Vent d'ouest + coefficient moyen : conditions idéales pour kite et windsurf</li>
+        <li>Baignade : surveillance de juin à septembre, drapeaux à respecter</li>
+        <li>Stationnement : payant en saison estivale sur tout le front de mer</li>
+        <li>Urgence en mer : <strong>CROSS Étel — composez le 196</strong></li>
       </ul>
-    </div>
-
+</div>
     <!-- Liens vers autres ports du 44 -->
     <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.2rem">
       <h3 style="font-size:.88rem;font-weight:700;color:var(--text-m);margin-bottom:.8rem">
@@ -356,24 +381,18 @@ footer a{color:rgba(255,255,255,.7)}
   </div>
 
   <div class="side-col">
-    <div class="ad-slot ad-square">
-      Espace publicitaire<br/>300x250<br/>Google AdSense
-    </div>
     <div class="coeff-card">
       <h3>Echelle des coefficients</h3>
       <div class="coeff-scale">
-        <div class="cs-row"><span class="cs-label">Tres forte</span><div class="cs-bar" style="background:#0F4F6B;width:100%"></div><span class="cs-range">100-120</span></div>
-        <div class="cs-row"><span class="cs-label">Vive-eau</span><div class="cs-bar" style="background:#1A6B8A;width:80%"></div><span class="cs-range">70-99</span></div>
+        <div class="cs-row"><span class="cs-label">Tres forte</span><div class="cs-bar" style="background:#023E8A;width:100%"></div><span class="cs-range">100-120</span></div>
+        <div class="cs-row"><span class="cs-label">Vive-eau</span><div class="cs-bar" style="background:#0096C7;width:80%"></div><span class="cs-range">70-99</span></div>
         <div class="cs-row"><span class="cs-label">Moyenne</span><div class="cs-bar" style="background:#4AA8C4;width:58%"></div><span class="cs-range">45-69</span></div>
-        <div class="cs-row"><span class="cs-label">Morte-eau</span><div class="cs-bar" style="background:#2A9D8F;width:35%"></div><span class="cs-range">20-44</span></div>
+        <div class="cs-row"><span class="cs-label">Morte-eau</span><div class="cs-bar" style="background:#0096C7;width:35%"></div><span class="cs-range">20-44</span></div>
       </div>
     </div>
     <div class="port-info-card">
       <h3>Informations port</h3>
       <div id="portInfoRows"></div>
-    </div>
-    <div class="ad-slot ad-square">
-      Espace publicitaire<br/>300x250<br/>Google AdSense
     </div>
   </div>
 </div>
@@ -815,10 +834,10 @@ function fmtDateLong(d) {
   return d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 }
 function coeffColor(c) {
-  if (c>=100) return '#0F4F6B';
-  if (c>=70)  return '#1A6B8A';
+  if (c>=100) return '#023E8A';
+  if (c>=70)  return '#0096C7';
   if (c>=45)  return '#4AA8C4';
-  return '#2A9D8F';
+  return '#0096C7';
 }
 function coeffLabel(c) {
   if (c>=100) return 'Vive-eau exceptionnelle';
@@ -898,7 +917,7 @@ function renderChart(portId, date) {
   ctx.lineTo(tx(1),ty(minH)); ctx.closePath(); ctx.fillStyle=grad; ctx.fill();
   ctx.beginPath();
   pts.forEach((p,i)=>i===0?ctx.moveTo(tx(p.x),ty(p.h)):ctx.lineTo(tx(p.x),ty(p.h)));
-  ctx.strokeStyle='#1A6B8A'; ctx.lineWidth=2.5; ctx.lineJoin='round'; ctx.stroke();
+  ctx.strokeStyle='#0096C7'; ctx.lineWidth=2.5; ctx.lineJoin='round'; ctx.stroke();
   const now = new Date();
   if (now.toDateString()===date.toDateString()) {
     const frac=(now.getHours()*60+now.getMinutes())/1440;
@@ -1046,6 +1065,71 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 document.getElementById('portSelect').addEventListener('change', loadTides);
 document.getElementById('dateInput').addEventListener('change', loadTides);
+</script>
+
+<script>
+// ═══ COOKIE CONSENT — RGPD / AdSense TCF ═══
+(function(){
+  var CONSENT_KEY = 'mla_cookie_consent';
+  var CONSENT_VERSION = '1';
+
+  function getConsent(){
+    try{ var d=JSON.parse(localStorage.getItem(CONSENT_KEY)||'{}');
+    return d.v===CONSENT_VERSION?d.choice:null; }catch(e){return null;}
+  }
+  function setConsent(choice){
+    try{ localStorage.setItem(CONSENT_KEY, JSON.stringify({choice:choice,v:CONSENT_VERSION,ts:Date.now()})); }catch(e){}
+  }
+
+  function applyConsent(choice){
+    if(choice==='accept'){
+      // Activer AdSense personnalisé
+      if(window.adsbygoogle){
+        window.adsbygoogle.pauseAdRequests = 0;
+      }
+      (window.adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 0;
+    } else {
+      // Annonces non personnalisées uniquement
+      (window.adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 1;
+    }
+  }
+
+  function showBanner(){
+    var b = document.getElementById('cconsent-banner');
+    if(b){ setTimeout(function(){b.classList.add('visible');},400); }
+  }
+  function hideBanner(){
+    var b = document.getElementById('cconsent-banner');
+    if(b){ b.classList.remove('visible'); setTimeout(function(){b.style.display='none';},400); }
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var existing = getConsent();
+    if(existing !== null){
+      applyConsent(existing);
+      return; // Ne pas afficher le banner
+    }
+    // Pas de choix enregistré — afficher
+    showBanner();
+
+    var acceptBtn = document.getElementById('cb-accept');
+    var declineBtn = document.getElementById('cb-decline');
+
+    if(acceptBtn) acceptBtn.addEventListener('click', function(){
+      setConsent('accept'); applyConsent('accept'); hideBanner();
+    });
+    if(declineBtn) declineBtn.addEventListener('click', function(){
+      setConsent('decline'); applyConsent('decline'); hideBanner();
+    });
+  });
+
+  // Lien "Gérer mes cookies" dans le footer
+  window.showCookieConsent = function(){
+    localStorage.removeItem(CONSENT_KEY);
+    var b = document.getElementById('cconsent-banner');
+    if(b){ b.style.display='flex'; setTimeout(function(){b.classList.add('visible');},50); }
+  };
+})();
 </script>
 </body>
 </html>

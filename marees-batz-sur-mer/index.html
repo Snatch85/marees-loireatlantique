@@ -17,7 +17,7 @@
 <meta property="og:locale" content="fr_FR"/>
 <meta property="og:site_name" content="Marées Loire-Atlantique"/>
 <link rel="manifest" href="/manifest.json"/>
-<meta name="theme-color" content="#1A6B8A"/>
+<meta name="theme-color" content="#0096C7"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-title" content="Marées 44"/>
 <link rel="apple-touch-icon" href="/icons/icon-192.png"/>
@@ -53,15 +53,22 @@
   ]
 }</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --blue:#4A7C6F;--blue-d:#2D5A4F;--blue-l:#EDF5F0;
-  --sea:#7B9E87;--sea-l:#EEF4EE;
-  --text:#2C2C2C;--text-m:#5C5C52;--text-l:#8A8778;
-  --bg:#F6F3EE;--white:#FFFFFF;
-  --border:#D5CEBE;
+:root {
+  --blue   : #0096C7;
+  --blue-d : #023E8A;
+  --blue-l : #CAF0F8;
+  --sea    : #F77F00;
+  --sea-l  : #FFF3E0;
+  --bg     : #F0F8FF;
+  --border : #90E0EF;
+  --text   : #03045E;
+  --text-m : #0077B6;
+  --text-l : #48CAE4;
+  --white  : #FFFFFF;
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.6}
@@ -75,7 +82,7 @@ header{background:linear-gradient(135deg,var(--blue-d) 0%,var(--blue) 60%,var(--
 .header-inner{max-width:1100px;margin:0 auto;padding:1rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .logo{display:flex;align-items:center;gap:.6rem}
 .logo-wave{font-size:1.6rem}
-.logo-text h1{font-size:1.1rem;font-weight:700}
+.logo-text h1,.logo-text .site-name{font-size:1.1rem;font-weight:700}
 .logo-text p{font-size:.72rem;opacity:.75;font-weight:300}
 .header-nav{display:flex;gap:.5rem;flex-wrap:wrap}
 .header-nav a{background:rgba(255,255,255,.12);color:#fff;padding:.4rem .9rem;border-radius:20px;font-size:.75rem;font-weight:500;transition:background .2s}
@@ -164,22 +171,42 @@ footer a{color:rgba(255,255,255,.7)}
   .mobile-sticky-ad{display:flex!important}
 }
 .mobile-sticky-ad{display:none;position:fixed;bottom:0;left:0;right:0;height:60px;z-index:100;background:#f0f4f7;border-top:1.5px dashed #b0c4ce;align-items:center;justify-content:center;font-size:.68rem;color:#8aa8b5;font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+
+/* ═══ COOKIE CONSENT BANNER ═══ */
+#cconsent-banner{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(2,30,80,.97);color:#fff;padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.9rem;box-shadow:0 -4px 24px rgba(0,0,0,.3);backdrop-filter:blur(8px);font-family:'Outfit',sans-serif;font-size:.83rem;line-height:1.5;transform:translateY(100%);transition:transform .35s ease}
+#cconsent-banner.visible{transform:translateY(0)}
+#cconsent-banner p{margin:0;flex:1;min-width:200px;color:rgba(255,255,255,.88)}
+#cconsent-banner a{color:#00B4D8;text-decoration:underline}
+.cb-btns{display:flex;gap:.6rem;flex-shrink:0;flex-wrap:wrap}
+.cb-btn{padding:.45rem 1.1rem;border-radius:20px;font-size:.8rem;font-weight:600;cursor:pointer;border:none;font-family:'Outfit',sans-serif;transition:all .15s}
+.cb-accept{background:#0096C7;color:#fff}.cb-accept:hover{background:#0077A8}
+.cb-decline{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.3)}.cb-decline:hover{background:rgba(255,255,255,.1);color:#fff}
+.cb-settings{background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);font-size:.75rem}.cb-settings:hover{background:rgba(255,255,255,.08)}
+@media(max-width:600px){#cconsent-banner{padding:.9rem 1rem}.cb-btns{width:100%;justify-content:flex-end}}
 </style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1465276904717454" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<div class="ad-top">
-  <div class="ad-slot ad-banner">
-    Espace publicitaire 728x90 — Google AdSense / The Moneytizer
+<!-- ═══ BANDEAU CONSENTEMENT COOKIES RGPD ═══ -->
+<div id="cconsent-banner" role="dialog" aria-live="polite" aria-label="Consentement cookies">
+  <p>Ce site utilise des cookies publicitaires (Google AdSense) pour financer son fonctionnement. 
+  Vous pouvez accepter les annonces personnalisées ou refuser (annonces génériques uniquement). 
+  <a href="/politique-de-confidentialite/">En savoir plus</a></p>
+  <div class="cb-btns">
+    <button class="cb-btn cb-decline" id="cb-decline">Refuser</button>
+    <button class="cb-btn cb-accept" id="cb-accept">Accepter</button>
   </div>
 </div>
+
+
 
 <header>
   <div class="header-inner">
     <div class="logo">
       <span class="logo-wave">&#127754;</span>
       <div class="logo-text">
-        <h1>Marées Loire-Atlantique</h1>
+        <span class="site-name">Marées Loire-Atlantique</span>
         <p>Horaires · Coefficients · Hauteurs d'eau</p>
       </div>
     </div>
@@ -188,6 +215,7 @@ footer a{color:rgba(255,255,255,.7)}
       <a href="#today">Aujourd'hui</a>
       <a href="#semaine">7 jours</a>
       <a href="/peche-a-pied/">Pêche à pied</a>
+      <a href="/blog/" style="background:rgba(0,150,199,.18);border-color:rgba(0,150,199,.4)">📖 Blog</a>
     </nav>
   </div>
 </header>
@@ -289,10 +317,6 @@ footer a{color:rgba(255,255,255,.7)}
       </div>
     </div>
 
-    <div class="ad-slot ad-rect">
-      Espace publicitaire - Google AdSense / The Moneytizer
-    </div>
-
     <!-- Info locale ville -->
     <div class="info-card">
       <h3>&#128204; Conseils pour Le Croisic</h3>
@@ -313,28 +337,29 @@ footer a{color:rgba(255,255,255,.7)}
 
     <!-- Bloc editorial Batz-sur-Mer -->
     <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.4rem;box-shadow:0 2px 8px rgba(0,0,0,.07)">
-      <h2 style="font-size:1rem;font-weight:800;color:var(--blue-d);margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:2px solid var(--blue-l)">Marées à Batz-sur-Mer — presqu'île du sel et Côte Sauvage</h2>
+      <h2 style="font-size:1rem;font-weight:800;color:var(--blue-d);margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:2px solid var(--blue-l)">Marées à Batz-sur-Mer — Entre marais salants et Côte Sauvage</h2>
 
-      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Entre Côte Sauvage et marais salants</h3>
-      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">Batz-sur-Mer occupe la partie centrale de la <strong>presqu'île de Guérande</strong>, entre la Côte Sauvage exposée à l'ouest et les marais salants de la baie du Croisic à l'est. Son clocher de granite visible depuis la mer sert de point de repère aux navigateurs depuis des siècles. Le <strong>marnage en vive-eau atteint 5 m</strong>, identique à celui du Croisic voisin, avec lequel Batz-sur-Mer partage les caractéristiques hydrodynamiques.</p>
+      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">La presqu'île guérandaise, entre deux espaces</h3>
+      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">Batz-sur-Mer est une commune unique, coincée entre les <strong>marais salants de Guérande côté nord</strong> et la <strong>Côte Sauvage atlantique côté sud</strong>. Ce contraste exceptionnel — eau douce des marais et vagues de l'Atlantique — à moins de 2 km l'un de l'autre, en fait un des paysages les plus singuliers de Loire-Atlantique. Le marnage de vive-eau est d'environ <strong>4,9 m</strong>.</p>
 
-      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">La Côte Sauvage et ses falaises</h3>
-      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">La <strong>Côte Sauvage de Batz-sur-Mer</strong> est une succession de falaises de gneiss et de petites plages de sable encaissées. La plage de Saint-Michel (la plus connue) est accessible à pied depuis le centre-bourg. À <strong>marée basse (coefficient ≥ 85)</strong>, les platiers exposés permettent la pêche à pied : étrilles, bigorneaux, anémones, patelles et oursins. La baignade en Côte Sauvage est déconseillée — les vagues sont puissantes et les courants de baïne imprévisibles.</p>
+      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">La plage de La Govelle — spot polyvalent par excellence</h3>
+      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">La <strong>plage de La Govelle</strong> est le spot le plus populaire de Batz-sur-Mer. Côté plage, la vague de shore break attire les bodysurfers et skimboarders. Côté estran, la zone sablo-rocheuse à marée basse (coefficient ≥ 72) livre <strong>coques, palourdes et bigorneaux</strong> en abondance. Le terrain est plat et accessible — idéal pour les familles avec enfants ou pour les débutants en pêche à pied. Arrivez 1h avant la basse mer pour avoir le temps de chercher.</p>
 
-      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Les marais salants de Batz</h3>
-      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">Les marais salants de Batz-sur-Mer font partie du <strong>bassin de Guérande</strong>, qui produit chaque année plusieurs milliers de tonnes de sel gris et de fleur de sel. Les paludiers exploitent des œillets alimentés par l'eau de mer filtrée à travers un réseau de canaux. Le niveau d'eau dans les marais est régulé manuellement — il est indépendant de la marée directe mais suit le cycle semi-mensuel. Le <strong>musée des Marais Salants</strong> (entrée payante) présente l'histoire et les techniques ancestrales du paludier.</p>
+      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Les marais salants et les paludiers</h3>
+      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">Les marais salants de Batz-sur-Mer font partie du <strong>bassin de Guérande</strong>, le plus grand marais salant artisanal de France. Les <strong>paludiers</strong> récoltent la fleur de sel et le sel gris de mai à septembre, en fonction des conditions météo et du niveau d'eau dans les œillets (bassins d'évaporation). Le <strong>musée des Marais Salants</strong> à Batz retrace l'histoire de cette activité millénaire. Les marées influencent le niveau des étiers (chenaux) qui alimentent les marais via des écluses.</p>
 
-      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Navigation autour de la presqu'île</h3>
-      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">La côte de Batz-sur-Mer est parsemée d'<strong>écueils et de hauts-fonds</strong> répertoriés sur les cartes marines SHOM. Le passage entre le Croisic et Batz-sur-Mer nécessite de suivre les balisages et d'éviter les rochers de la Banche. Les voiliers en transit utilisent généralement le chenal balisé entre les bouées latérales, navigable 3h de part et d'autre de la pleine mer.</p>
+      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Clocher-phare de Batz</h3>
+      <p style="font-size:.82rem;color:var(--text-m);line-height:1.75;margin-bottom:.7rem">Le clocher de <strong>Saint-Guénolé</strong> de Batz-sur-Mer (56 m) est l'un des rares clochers-phares de France — il servait de repère de navigation aux pêcheurs et marins qui longeaient la côte. Du sommet (182 marches), la vue s'étend sur les marais, la Côte Sauvage, le Croisic et, par temps clair, jusqu'à l'île de Noirmoutier.</p>
 
+      <h3 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:.8rem 0 .4rem">Conseils pratiques</h3>
       <ul style="font-size:.82rem;color:var(--text-m);line-height:1.75;padding-left:1.3rem;margin-bottom:.5rem">
-        <li>Musée des Marais Salants : ouvert d'avril à octobre, idéal pour comprendre le cycle du sel</li>
-        <li>Journées portes ouvertes des salines en saison (renseignements à l'office de tourisme)</li>
-        <li>GR34 traversée de la Côte Sauvage : Batz → Le Croisic (3 km, spectaculaire)</li>
-        <li>Urgence en mer : <strong>CROSS Étel — 196</strong></li>
+        <li>Coefficient ≥ 72 : La Govelle — coques et palourdes, idéal débutants</li>
+        <li>Coefficient ≥ 85 : Côte Sauvage vers Le Croisic — huîtres sauvages</li>
+        <li>Musée des Marais Salants : ouvert d'avril à septembre, visite recommandée</li>
+        <li>Clocher-phare : ouvert en juillet-août, accès payant</li>
+        <li>Urgence en mer : <strong>CROSS Étel — composez le 196</strong></li>
       </ul>
-    </div>
-
+</div>
     <!-- Liens vers autres ports du 44 -->
     <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.2rem">
       <h3 style="font-size:.88rem;font-weight:700;color:var(--text-m);margin-bottom:.8rem">
@@ -356,24 +381,18 @@ footer a{color:rgba(255,255,255,.7)}
   </div>
 
   <div class="side-col">
-    <div class="ad-slot ad-square">
-      Espace publicitaire<br/>300x250<br/>Google AdSense
-    </div>
     <div class="coeff-card">
       <h3>Echelle des coefficients</h3>
       <div class="coeff-scale">
-        <div class="cs-row"><span class="cs-label">Tres forte</span><div class="cs-bar" style="background:#0F4F6B;width:100%"></div><span class="cs-range">100-120</span></div>
-        <div class="cs-row"><span class="cs-label">Vive-eau</span><div class="cs-bar" style="background:#1A6B8A;width:80%"></div><span class="cs-range">70-99</span></div>
+        <div class="cs-row"><span class="cs-label">Tres forte</span><div class="cs-bar" style="background:#023E8A;width:100%"></div><span class="cs-range">100-120</span></div>
+        <div class="cs-row"><span class="cs-label">Vive-eau</span><div class="cs-bar" style="background:#0096C7;width:80%"></div><span class="cs-range">70-99</span></div>
         <div class="cs-row"><span class="cs-label">Moyenne</span><div class="cs-bar" style="background:#4AA8C4;width:58%"></div><span class="cs-range">45-69</span></div>
-        <div class="cs-row"><span class="cs-label">Morte-eau</span><div class="cs-bar" style="background:#2A9D8F;width:35%"></div><span class="cs-range">20-44</span></div>
+        <div class="cs-row"><span class="cs-label">Morte-eau</span><div class="cs-bar" style="background:#0096C7;width:35%"></div><span class="cs-range">20-44</span></div>
       </div>
     </div>
     <div class="port-info-card">
       <h3>Informations port</h3>
       <div id="portInfoRows"></div>
-    </div>
-    <div class="ad-slot ad-square">
-      Espace publicitaire<br/>300x250<br/>Google AdSense
     </div>
   </div>
 </div>
@@ -815,10 +834,10 @@ function fmtDateLong(d) {
   return d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 }
 function coeffColor(c) {
-  if (c>=100) return '#0F4F6B';
-  if (c>=70)  return '#1A6B8A';
+  if (c>=100) return '#023E8A';
+  if (c>=70)  return '#0096C7';
   if (c>=45)  return '#4AA8C4';
-  return '#2A9D8F';
+  return '#0096C7';
 }
 function coeffLabel(c) {
   if (c>=100) return 'Vive-eau exceptionnelle';
@@ -898,7 +917,7 @@ function renderChart(portId, date) {
   ctx.lineTo(tx(1),ty(minH)); ctx.closePath(); ctx.fillStyle=grad; ctx.fill();
   ctx.beginPath();
   pts.forEach((p,i)=>i===0?ctx.moveTo(tx(p.x),ty(p.h)):ctx.lineTo(tx(p.x),ty(p.h)));
-  ctx.strokeStyle='#1A6B8A'; ctx.lineWidth=2.5; ctx.lineJoin='round'; ctx.stroke();
+  ctx.strokeStyle='#0096C7'; ctx.lineWidth=2.5; ctx.lineJoin='round'; ctx.stroke();
   const now = new Date();
   if (now.toDateString()===date.toDateString()) {
     const frac=(now.getHours()*60+now.getMinutes())/1440;
@@ -1046,6 +1065,71 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 document.getElementById('portSelect').addEventListener('change', loadTides);
 document.getElementById('dateInput').addEventListener('change', loadTides);
+</script>
+
+<script>
+// ═══ COOKIE CONSENT — RGPD / AdSense TCF ═══
+(function(){
+  var CONSENT_KEY = 'mla_cookie_consent';
+  var CONSENT_VERSION = '1';
+
+  function getConsent(){
+    try{ var d=JSON.parse(localStorage.getItem(CONSENT_KEY)||'{}');
+    return d.v===CONSENT_VERSION?d.choice:null; }catch(e){return null;}
+  }
+  function setConsent(choice){
+    try{ localStorage.setItem(CONSENT_KEY, JSON.stringify({choice:choice,v:CONSENT_VERSION,ts:Date.now()})); }catch(e){}
+  }
+
+  function applyConsent(choice){
+    if(choice==='accept'){
+      // Activer AdSense personnalisé
+      if(window.adsbygoogle){
+        window.adsbygoogle.pauseAdRequests = 0;
+      }
+      (window.adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 0;
+    } else {
+      // Annonces non personnalisées uniquement
+      (window.adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 1;
+    }
+  }
+
+  function showBanner(){
+    var b = document.getElementById('cconsent-banner');
+    if(b){ setTimeout(function(){b.classList.add('visible');},400); }
+  }
+  function hideBanner(){
+    var b = document.getElementById('cconsent-banner');
+    if(b){ b.classList.remove('visible'); setTimeout(function(){b.style.display='none';},400); }
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var existing = getConsent();
+    if(existing !== null){
+      applyConsent(existing);
+      return; // Ne pas afficher le banner
+    }
+    // Pas de choix enregistré — afficher
+    showBanner();
+
+    var acceptBtn = document.getElementById('cb-accept');
+    var declineBtn = document.getElementById('cb-decline');
+
+    if(acceptBtn) acceptBtn.addEventListener('click', function(){
+      setConsent('accept'); applyConsent('accept'); hideBanner();
+    });
+    if(declineBtn) declineBtn.addEventListener('click', function(){
+      setConsent('decline'); applyConsent('decline'); hideBanner();
+    });
+  });
+
+  // Lien "Gérer mes cookies" dans le footer
+  window.showCookieConsent = function(){
+    localStorage.removeItem(CONSENT_KEY);
+    var b = document.getElementById('cconsent-banner');
+    if(b){ b.style.display='flex'; setTimeout(function(){b.classList.add('visible');},50); }
+  };
+})();
 </script>
 </body>
 </html>
