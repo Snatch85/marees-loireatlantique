@@ -145,6 +145,46 @@ a{color:var(--ocean)}a:hover{color:var(--navy)}strong{font-weight:700;color:var(
   </div>
 
   <div class="card">
+    <h2>🗺️ Les 14 ports que je connais sur le bout des doigts</h2>
+    <p>Ce site couvre 14 stations de Loire-Atlantique. Je ne les ai pas choisies au hasard dans un annuaire — je les connais toutes pour les avoir fréquentées dans des conditions très différentes, par toutes les saisons et tous les coefficients de la table.</p>
+    <h3>Saint-Nazaire</h3>
+    <p>Mon port de référence. J'ai grandi à quelques kilomètres de Villès-Martin. Je connais chaque roche, chaque courant du chenal, la façon dont le vent d'est en hiver fait monter la marée 30 cm au-dessus des prévisions. C'est pour ça que Saint-Nazaire est le port de référence du calculateur — j'en connais chaque nuance.</p>
+    <h3>Le Croisic et la Côte Sauvage</h3>
+    <p>Mon terrain de jeu depuis l'enfance. Les dalles rocheuses entre la Pointe du Croisic et la Pointe du Bec décèlent, à coefficient 85 et au-delà, des colonies d'huîtres sauvages que la plupart des gens ne verront jamais parce qu'ils ne se lèvent pas assez tôt le matin. J'y vais en solo avant 7h, par marées de septembre, pour la lumière rasante sur l'estran et le silence.</p>
+    <h3>La Baule et Le Pouliguen</h3>
+    <p>La grande plage de La Baule, je la connais dans tous ses états — surpeuplée en août, déserte en janvier par coefficient 105, avec ses 400 mètres de sable découverts et personne d'autre que les goélands. Le Pouliguen m'a appris le chenal, le tirant d'eau, l'importance de vérifier les cartes marines avant chaque sortie en plaisance.</p>
+    <h3>Préfailles et la Pointe Saint-Gildas</h3>
+    <p>La Pointe Saint-Gildas par coefficient 110, avec des courants de 4 nœuds dans l'axe de l'estuaire, est l'endroit le plus dangereux et le plus magnifique que je connaisse sur cette côte. Je n'y vais jamais seul et toujours avec un plan B. Les rochers de Préfailles, hors saison, sont une solitude que je chéris.</p>
+    <h3>Paimbœuf et l'estuaire profond</h3>
+    <p>Paimbœuf, c'est la Loire qui se mélange à l'Atlantique. Les marées y sont plus complexes — le débit fluvial, les crues hivernales, les déports de ±80 cm. J'ai appris à ne jamais faire confiance aveuglément aux prévisions harmoniques dans l'estuaire, toujours à croiser avec la météo et le niveau de la Loire à Montjean.</p>
+  </div>
+
+  <div class="card">
+    <h2>📐 Comment fonctionne le calcul</h2>
+    <p>La méthode harmonique consiste à décomposer la marée en une somme de sinusoïdes — appelées <strong>constituantes harmoniques</strong> — chacune liée à un cycle astronomique particulier. Les principales sont :</p>
+    <ul>
+      <li><strong>M2</strong> (12h25) — marée lunaire semi-diurne principale, la plus importante</li>
+      <li><strong>S2</strong> (12h00) — marée solaire semi-diurne</li>
+      <li><strong>N2</strong> (12h39) — ellipticité de l'orbite lunaire</li>
+      <li><strong>K1</strong> (23h56) — déclinaison luni-solaire diurne</li>
+      <li><strong>O1</strong> (25h49) — marée lunaire diurne principale</li>
+    </ul>
+    <p>Pour chaque port, le SHOM publie les <strong>constantes harmoniques</strong> propres à ce lieu (amplitudes et phases). En combinant ces constantes avec les arguments astronomiques calculés pour chaque instant (méthode J2000.0), on obtient la prédiction de hauteur d'eau. C'est exactement ce que fait ce site — pour les 14 ports de Loire-Atlantique et 15 ports français supplémentaires.</p>
+    <div class="highlight">Le calcul est entièrement effectué sur votre appareil (JavaScript local). Il n'y a aucune requête vers un serveur externe pour obtenir les horaires — c'est pour ça que ça fonctionne <strong>hors ligne</strong>.</div>
+  </div>
+
+  <div class="card">
+    <h2>⚠️ Ce que ce site ne peut pas faire</h2>
+    <p>La méthode harmonique prédit la marée <em>astronomique</em> — celle qui résulte uniquement de la gravitation Lune-Soleil. Dans la réalité, la hauteur d'eau effective peut s'écarter des prévisions pour plusieurs raisons :</p>
+    <ul>
+      <li><strong>Vent fort</strong> : un vent d'ouest soutenu peut soulever le niveau de 30 à 60 cm au-dessus des prévisions (surcote). Un vent d'est peut abaisser le niveau de la même façon (décote).</li>
+      <li><strong>Pression atmosphérique</strong> : une basse pression soulève le niveau marin (règle : -1 hPa = +1 cm). Un anticyclone l'abaisse.</li>
+      <li><strong>Débit fluvial</strong> : à Paimbœuf et en remontant la Loire, les crues ajoutent un dénivelé imprévisible aux prévisions harmoniques.</li>
+    </ul>
+    <p>Pour toute navigation professionnelle, pêche professionnelle et décision de sécurité en mer, <strong>consultez impérativement les publications officielles du SHOM</strong> (<a href="https://maree.shom.fr" target="_blank" rel="noopener">maree.shom.fr</a>) avec une connexion active, et croisez avec les bulletins météo de Météo-France.</p>
+  </div>
+
+  <div class="card">
     <h2>✉️ Contact</h2>
     <p>📧 <a href="mailto:contact@marees-loireatlantique.fr">contact@marees-loireatlantique.fr</a></p>
     <p>Je lis chaque message. Corrections, suggestions, retours de sortie — tout m'intéresse. Si vous avez trouvé une erreur dans les données d'un port, écrivez-moi en précisant le port, la date et l'écart constaté. Je vérifierai et corrigerai.</p>
