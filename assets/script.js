@@ -630,8 +630,8 @@ function renderChart(portId, date) {
 
   // Gradient de remplissage
   var grad = ctx.createLinearGradient(0, pad.t, 0, pad.t + cH);
-  grad.addColorStop(0,   'rgba(0,119,182,.28)');
-  grad.addColorStop(0.6, 'rgba(0,180,216,.12)');
+  grad.addColorStop(0,   'rgba(35,86,107,.30)');
+  grad.addColorStop(0.6, 'rgba(35,86,107,.14)');
   grad.addColorStop(1,   'rgba(42,157,143,.03)');
 
   ctx.beginPath();
@@ -648,7 +648,7 @@ function renderChart(portId, date) {
     if (idx === 0) ctx.moveTo(tx(p.x), ty(p.h));
     else ctx.lineTo(tx(p.x), ty(p.h));
   });
-  ctx.strokeStyle = '#0077B6';
+  ctx.strokeStyle = '#23566B';
   ctx.lineWidth = 2.8;
   ctx.lineJoin  = 'round';
   ctx.lineCap   = 'round';
@@ -668,8 +668,8 @@ function renderChart(portId, date) {
     ctx.stroke();
     ctx.setLineDash([]);
     ctx.beginPath(); ctx.arc(nx, ny, 5, 0, Math.PI*2);
-    ctx.fillStyle = '#E67E22'; ctx.fill();
-    ctx.fillStyle = '#E67E22';
+    ctx.fillStyle = '#C4703F'; ctx.fill();
+    ctx.fillStyle = '#C4703F';
     ctx.font = 'bold 10px Inter';
     ctx.textAlign = 'center';
     ctx.fillText(nh.toFixed(2) + 'm', nx, ny - 9);

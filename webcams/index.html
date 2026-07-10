@@ -31,7 +31,7 @@
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 
 <!-- Feuille de style principale -->
@@ -53,7 +53,7 @@
 /* Bandeau info */
 .webcams-notice{
   display:flex;align-items:flex-start;gap:.8rem;
-  background:rgba(0,150,199,.07);border:1px solid rgba(0,150,199,.25);
+  background:rgba(35,86,107,.07);border:1px solid rgba(35,86,107,.25);
   border-radius:var(--r-lg);padding:1rem 1.2rem;margin:0 0 1.5rem;
   font-size:.85rem;color:var(--text-m);line-height:1.6;
 }
@@ -97,7 +97,7 @@
   position:absolute;top:50%;left:50%;z-index:2;
   transform:translate(-50%,-58%);
   width:60px;height:60px;border-radius:50%;
-  background:rgba(0,150,199,.9);
+  background:rgba(35,86,107,.9);
   display:flex;align-items:center;justify-content:center;
   transition:transform .25s,background .2s;
   box-shadow:0 4px 20px rgba(0,0,0,.45);
@@ -105,7 +105,7 @@
 .wcam-play svg{width:24px;height:24px;fill:#fff;margin-left:4px;}
 .webcam-card:hover .wcam-play{
   transform:translate(-50%,-58%) scale(1.15);
-  background:#0096c7;
+  background:#23566B;
 }
 
 /* Badge LIVE */
@@ -132,7 +132,7 @@
   gap:.5rem;
 }
 .wcam-label-spot{
-  background:rgba(0,150,199,.85);backdrop-filter:blur(4px);
+  background:rgba(35,86,107,.85);backdrop-filter:blur(4px);
   padding:.2rem .55rem;border-radius:6px;
   font-size:.7rem;font-weight:700;white-space:nowrap;
 }
@@ -148,8 +148,8 @@
   padding:.25rem .6rem;border-radius:12px;text-transform:uppercase;
   letter-spacing:.05em;
 }
-.webcam-tag.surf{background:rgba(0,150,199,.15);color:var(--blue);}
-.webcam-tag.plage{background:rgba(247,127,0,.15);color:var(--sea);}
+.webcam-tag.surf{background:rgba(35,86,107,.15);color:var(--blue);}
+.webcam-tag.plage{background:rgba(196,112,63,.15);color:var(--sea);}
 .webcam-tag.port{background:rgba(2,62,138,.15);color:var(--blue-d);}
 .webcam-desc{
   font-size:.82rem;color:var(--text-m);line-height:1.6;margin:.6rem 0;
@@ -160,9 +160,9 @@
   font-size:.82rem;font-weight:700;color:#fff;text-decoration:none;
   padding:.5rem .95rem;background:var(--blue);
   border-radius:8px;transition:all .2s;
-  box-shadow:0 2px 8px rgba(0,150,199,.3);
+  box-shadow:0 2px 8px rgba(35,86,107,.3);
 }
-.wcam-btn-live:hover{background:#0080b3;transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,150,199,.4);}
+.wcam-btn-live:hover{background:#0080b3;transform:translateY(-1px);box-shadow:0 4px 12px rgba(35,86,107,.4);}
 .webcam-link{
   display:inline-flex;align-items:center;gap:.3rem;
   font-size:.8rem;font-weight:600;color:var(--blue);text-decoration:none;
@@ -186,10 +186,11 @@
 #cconsent-banner a{color:#00B4D8;text-decoration:underline}
 .cb-btns{display:flex;gap:.6rem;flex-shrink:0;flex-wrap:wrap}
 .cb-btn{padding:.45rem 1.1rem;border-radius:20px;font-size:.8rem;font-weight:600;cursor:pointer;border:none;font-family:'Outfit',sans-serif;transition:all .15s}
-.cb-accept{background:#0096C7;color:#fff}.cb-accept:hover{background:#0077A8}
+.cb-accept{background:#23566B;color:#fff}.cb-accept:hover{background:#0077A8}
 .cb-decline{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.3)}.cb-decline:hover{background:rgba(255,255,255,.1);color:#fff}
 .cb-settings{background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);font-size:.75rem}.cb-settings:hover{background:rgba(255,255,255,.08)}
 @media(max-width:600px){#cconsent-banner{padding:.9rem 1rem}.cb-btns{width:100%;justify-content:flex-end}}
+h1,h2,h3,.site-name,.hero-title{font-family:'Fraunces',Georgia,serif}
 </style>
 </head>
 <body>
@@ -221,12 +222,12 @@
       </div>
     </div>
     <nav class="header-nav" aria-label="Navigation rapide">
-      <a href="/blog/" style="background:rgba(0,150,199,.15)">📖 Blog</a>
+      <a href="/blog/" style="background:rgba(35,86,107,.15)">📖 Blog</a>
       <a href="/">🏠 Accueil</a>
       <a href="/marees-saint-nazaire/">Marées</a>
       <a href="/peche-a-pied/">🦪 Pêche à pied</a>
       <a href="/guides/">📖 Guides</a>
-      <a href="/webcams/" style="background:rgba(247,127,0,.35);border-color:rgba(247,127,0,.6)">📹 Webcams</a>
+      <a href="/webcams/" style="background:rgba(196,112,63,.35);border-color:rgba(196,112,63,.6)">📹 Webcams</a>
     </nav>
   </div>
 

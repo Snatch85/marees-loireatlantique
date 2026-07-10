@@ -1,7 +1,7 @@
 /* ============================================================
    moon-widget.css — Cycles de Lune
    marees-loireatlantique.fr — Thème Océan Atlantique v4
-   Palette : --bg #F0F8FF / --text #03045E / --blue #0096C7
+   Palette : --bg #F7F3EB / --text #03045E / --blue #23566B
    ============================================================ */
 
 /* ─── Section principale ────────────────────────────────── */
@@ -20,7 +20,7 @@
 #moon-widget .mw-title {
   font-size: 1.05rem;
   font-weight: 700;
-  color: #023E8A;
+  color: #16333F;
   margin: 0 0 1.25rem;
   display: flex;
   align-items: center;
@@ -53,7 +53,7 @@
 .mw-phase-name {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #023E8A;
+  color: #16333F;
   margin-bottom: 0.6rem;
 }
 
@@ -68,14 +68,14 @@
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: #0096C7;
+  color: #23566B;
   margin-bottom: 0.15rem;
 }
 
 .mw-stat-value {
   font-size: 1.6rem;
   font-weight: 800;
-  color: #023E8A;
+  color: #16333F;
   line-height: 1;
 }
 
@@ -104,19 +104,19 @@
 
 .mw-tag--neutral {
   background: #EEF6FF;
-  color: #0077B6;
+  color: #23566B;
   border-color: #90E0EF;
 }
 
 /* ─── Prochaines phases ───────────────────────────────────── */
 .mw-next-events {
   font-size: 0.82rem;
-  color: #0077B6;
+  color: #23566B;
   line-height: 2;
 }
 
 .mw-next-events span {
-  color: #023E8A;
+  color: #16333F;
   font-weight: 700;
 }
 
@@ -133,7 +133,7 @@
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: #0096C7;
+  color: #23566B;
   margin-bottom: 0.65rem;
 }
 
@@ -151,14 +151,14 @@
   padding: 6px 8px;
   min-width: 60px;
   border-radius: 12px;
-  border: 1.5px solid #CAF0F8;
-  background: #F0F8FF;
+  border: 1.5px solid #E6EEF0;
+  background: #F7F3EB;
   transition: border-color 0.2s, background 0.2s;
 }
 
 .mw-phase-card--active {
-  border-color: #0096C7;
-  background: #CAF0F8;
+  border-color: #23566B;
+  background: #E6EEF0;
 }
 
 .mw-mini-moon {
@@ -172,39 +172,39 @@
   font-size: 0.6rem;
   font-weight: 700;
   margin-bottom: 1px;
-  color: #0077B6;
+  color: #23566B;
 }
 
 .mw-phase-card--active .mw-phase-label {
-  color: #023E8A;
+  color: #16333F;
 }
 
 .mw-phase-date {
   font-size: 0.6rem;
-  color: #48CAE4;
+  color: #5E8CA0;
 }
 
 .mw-phase-card--active .mw-phase-date {
-  color: #0096C7;
+  color: #23566B;
 }
 
 /* ─── Bloc connexion marées ───────────────────────────────── */
 .mw-tide-block {
   background: #EEF6FF;
-  border: 1px solid #CAF0F8;
+  border: 1px solid #E6EEF0;
   border-radius: 14px;
   padding: 0.9rem 1rem;
 }
 
 #mw-tide-info {
   font-size: 0.84rem;
-  color: #0077B6;
+  color: #23566B;
   line-height: 1.7;
   margin: 0;
 }
 
 #mw-tide-info strong {
-  color: #023E8A;
+  color: #16333F;
   font-weight: 700;
 }
 
