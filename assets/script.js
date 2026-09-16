@@ -32,15 +32,8 @@ function refuseCookies() {
 
 // Charge AdSense après consentement (ou automatiquement si déjà accepté)
 function loadAds() {
-  // Script AdSense déjà en tête via auto-ads, rien à faire ici
-  // Les ins.adsbygoogle seront activées automatiquement
-  if (window.adsbygoogle) {
-    try {
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    } catch(e) {
-      // pas grave si déjà initialisé
-    }
-  }
+  // Les annonces automatiques sont gérées par le script AdSense officiel.
+  // Aucun push manuel n'est nécessaire sans unité publicitaire numérique.
 }
 
 window.addEventListener('load', function() {
@@ -524,19 +517,87 @@ function coeffLabel(c) {
   return 'Morte-eau';
 }
 
+// Données prioritaires : API CC BY basée sur les harmoniques Ifremer/PREVIMER.
+// La clé reste dans une fonction Netlify et n'est jamais envoyée au navigateur.
+const API_MAREE_PORTS = {
+  'SAINT-NAZAIRE': 'saint-nazaire',
+  'LE-CROISIC': 'le-croisic',
+  'LE-POULIGUEN': 'le-pouliguen',
+  'PORNIC': 'pornic',
+  'SAINT-GILDAS': 'pointe-de-saint-gildas',
+  'SAINT-MALO': 'saint-malo',
+  'BREST': 'brest',
+  'LORIENT': 'lorient',
+  'CONCARNEAU': 'concarneau',
+  'QUIBERON': 'quiberon-port-haliguen',
+  'VANNES': 'vannes',
+  'CHERBOURG': 'cherbourg',
+  'LE-HAVRE': 'le-havre',
+  'CAEN': 'ouistreham',
+  'GRANVILLE': 'granville',
+  'CALAIS': 'calais',
+  'DUNKERQUE': 'dunkerque',
+  'LA-ROCHELLE': 'la-rochelle-pallice',
+  'ROYAN': 'royan',
+  'BORDEAUX': 'pauillac',
+  'ARCACHON': 'arcachon-jetee-d-eyrac'
+};
+
+function dateKey(date) {
+  return date.getFullYear() + '-' +
+    String(date.getMonth() + 1).padStart(2, '0') + '-' +
+    String(date.getDate()).padStart(2, '0');
+}
+
+function apiEventsForDate(apiDays, date) {
+  if (!apiDays) return null;
+  var key = dateKey(date);
+  var day = apiDays.find(function(item){ return item.date === key; });
+  if (!day || !Array.isArray(day.extrema)) return null;
+  return day.extrema.map(function(item){
+    return {
+      type: item.type,
+      t: new Date(key + 'T' + item.time + ':00'),
+      h: Number(item.height),
+      coef: item.coef == null ? null : Number(item.coef)
+    };
+  });
+}
+
+async function fetchApiTides(portId, baseDate) {
+  var site = API_MAREE_PORTS[portId];
+  if (!site) return null;
+  var end = new Date(baseDate);
+  end.setDate(end.getDate() + 6);
+  var url = '/.netlify/functions/tides?site=' + encodeURIComponent(site) +
+    '&from=' + dateKey(baseDate) + '&to=' + dateKey(end);
+  var response = await fetch(url, { headers: { Accept: 'application/json' } });
+  if (!response.ok) throw new Error('API marée indisponible (' + response.status + ')');
+  return response.json();
+}
+
+function eventCoefficients(extrema, fallback) {
+  var values = extrema.filter(function(e){ return e.type === 'PM' && e.coef != null; })
+    .map(function(e){ return e.coef; });
+  return values.length ? values : [fallback];
+}
+
 // ── Rendu aujourd'hui ────────────────────────────────────────
 var _lastCoeff = null;
 
-function renderToday(portId, date) {
-  var extrema = findExtrema(portId, date);
-  var coeff   = calcCoeff(portId, date);
+function renderToday(portId, date, apiDays) {
+  var apiExtrema = apiEventsForDate(apiDays, date);
+  var extrema = apiExtrema || findExtrema(portId, date);
+  var fallbackCoeff = calcCoeff(portId, date);
+  var coeffs = eventCoefficients(extrema, fallbackCoeff);
+  var coeff = Math.max.apply(null, coeffs);
   var port    = PORTS[portId];
 
   document.getElementById('todayTitle').textContent = 'Marées du jour — ' + port.name;
   document.getElementById('todayDate').textContent  = fmtDateLong(date) + ' · ' + coeffLabel(coeff);
 
   var badge = document.getElementById('coeffBadge');
-  badge.textContent   = 'Coeff. ' + coeff;
+  badge.textContent   = 'Coeff. ' + coeffs.join(' / ');
   badge.style.background   = coeffColor(coeff) + '44';
   badge.style.borderColor  = coeffColor(coeff) + '99';
 
@@ -572,13 +633,13 @@ function renderToday(portId, date) {
       '<div class="tide-type ' + e.type.toLowerCase() + '">' + (e.type==='PM' ? '▲ Pleine mer' : '▼ Basse mer') + '</div>' +
       '<div class="tide-time">' + fmtTime(e.t) + '</div>' +
       '<div class="tide-height">' + Math.max(0, e.h).toFixed(2) + ' m</div>' +
-      (e.type==='PM' ? '<div class="tide-coeff">Coeff. ' + coeff + '</div>' : '') +
+      (e.type==='PM' ? '<div class="tide-coeff">Coeff. ' + (e.coef == null ? fallbackCoeff : e.coef) + '</div>' : '') +
     '</div>';
   }).join('');
 }
 
 // ── Graphique 24h ────────────────────────────────────────────
-function renderChart(portId, date) {
+function renderChart(portId, date, apiLevels) {
   var canvas = document.getElementById('tideChart');
   var ctx    = canvas.getContext('2d');
   var W = canvas.offsetWidth, H = 190;
@@ -597,8 +658,23 @@ function renderChart(portId, date) {
   start.setHours(0, 0, 0, 0);
 
   var pts = [];
-  for (var m = 0; m <= 1440; m += 5) {
-    pts.push({ x: m/1440, h: tideHeight(portId, new Date(start.getTime() + m*60000)) });
+  if (Array.isArray(apiLevels)) {
+    var wantedDay = dateKey(date);
+    apiLevels.forEach(function(point){
+      var pointDate = new Date(point.time);
+      if (dateKey(pointDate) === wantedDay) {
+        pts.push({
+          x: (pointDate.getHours() * 60 + pointDate.getMinutes()) / 1440,
+          h: Number(point.height),
+          t: pointDate
+        });
+      }
+    });
+  }
+  if (pts.length < 2) {
+    for (var m = 0; m <= 1440; m += 5) {
+      pts.push({ x: m/1440, h: tideHeight(portId, new Date(start.getTime() + m*60000)) });
+    }
   }
 
   var minH = Math.min.apply(null, pts.map(function(p){ return p.h; }));
@@ -658,7 +734,10 @@ function renderChart(portId, date) {
   var now = new Date();
   if (now.toDateString() === date.toDateString()) {
     var frac = (now.getHours()*60 + now.getMinutes()) / 1440;
-    var nh   = tideHeight(portId, now);
+    var nearest = pts.reduce(function(best, point){
+      return Math.abs(point.x - frac) < Math.abs(best.x - frac) ? point : best;
+    }, pts[0]);
+    var nh   = nearest ? nearest.h : tideHeight(portId, now);
     var nx   = tx(frac);
     var ny   = ty(nh);
     ctx.beginPath(); ctx.moveTo(nx, pad.t); ctx.lineTo(nx, pad.t + cH);
@@ -677,20 +756,22 @@ function renderChart(portId, date) {
 }
 
 // ── Tableau 7 jours ──────────────────────────────────────────
-function renderWeek(portId, baseDate) {
+function renderWeek(portId, baseDate, apiDays) {
   var html = '';
   for (var d = 0; d < 7; d++) {
     var date    = new Date(baseDate);
     date.setDate(baseDate.getDate() + d);
-    var extrema = findExtrema(portId, date);
-    var coeff   = calcCoeff(portId, date);
+    var extrema = apiEventsForDate(apiDays, date) || findExtrema(portId, date);
+    var fallbackCoeff = calcCoeff(portId, date);
+    var coeffs = eventCoefficients(extrema, fallbackCoeff);
+    var coeff = Math.max.apply(null, coeffs);
     var isToday = date.toDateString() === new Date().toDateString();
     var col     = coeffColor(coeff);
 
     html += '<div class="week-row' + (isToday ? ' today' : '') + '">' +
       '<div class="week-day">' +
         '<div class="week-day-name">' + date.toLocaleDateString('fr-FR',{weekday:'short'}) + ' ' + date.getDate() + '</div>' +
-        '<div class="week-day-date" style="color:' + col + ';font-weight:700;font-size:.78rem">Coeff. ' + coeff + '</div>' +
+        '<div class="week-day-date" style="color:' + col + ';font-weight:700;font-size:.78rem">Coeff. ' + coeffs.join(' / ') + '</div>' +
       '</div>' +
       '<div class="week-tides-row">' +
         extrema.map(function(e){
@@ -698,7 +779,7 @@ function renderWeek(portId, baseDate) {
             '<span class="wt-type ' + e.type.toLowerCase() + '">' + e.type + '</span>' +
             '<span>' + fmtTime(e.t) + '</span>' +
             '<span class="wt-h">' + Math.max(0, e.h).toFixed(2) + 'm</span>' +
-            (e.type==='PM' ? '<span class="wt-c">' + coeff + '</span>' : '') +
+            (e.type==='PM' ? '<span class="wt-c">' + (e.coef == null ? fallbackCoeff : e.coef) + '</span>' : '') +
           '</div>';
         }).join('') +
       '</div>' +
@@ -708,14 +789,36 @@ function renderWeek(portId, baseDate) {
 }
 
 // ── Chargement principal ─────────────────────────────────────
-function loadTides() {
+var _tideRequestToken = 0;
+var _lastApiLevels = null;
+
+async function loadTides() {
+  var requestToken = ++_tideRequestToken;
   var portId  = document.getElementById('portSelect').value;
   var dateStr = document.getElementById('dateInput').value;
   var date    = dateStr ? new Date(dateStr + 'T12:00:00') : new Date();
   date.setHours(12, 0, 0, 0);
-  renderToday(portId, date);
-  setTimeout(function(){ renderChart(portId, date); }, 50);
-  renderWeek(portId, date);
+  var apiData = null;
+  var source = document.getElementById('tideDataSource');
+  if (source) source.textContent = API_MAREE_PORTS[portId] ? 'Chargement des données de marée…' : 'Estimation harmonique locale — usage indicatif.';
+
+  try {
+    apiData = await fetchApiTides(portId, date);
+  } catch (error) {
+    console.warn(error.message);
+  }
+  if (requestToken !== _tideRequestToken) return;
+
+  _lastApiLevels = apiData && apiData.levels ? apiData.levels : null;
+  renderToday(portId, date, apiData && apiData.days);
+  setTimeout(function(){ renderChart(portId, date, _lastApiLevels); }, 50);
+  renderWeek(portId, date, apiData && apiData.days);
+
+  if (source) {
+    source.innerHTML = apiData ?
+      'Données de marée fournies par <a href="https://api-maree.fr/" target="_blank" rel="noopener">api-maree.fr</a> sous licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr" target="_blank" rel="noopener">CC BY</a>, calculées à partir de composantes harmoniques <a href="https://sextant.ifremer.fr/geonetwork/srv/api/records/1bc4a49d-d4cd-469e-827c-bd3bd0eeabba/formatters/xsl-view" target="_blank" rel="noopener">Ifremer / PREVIMER</a>, elles-mêmes sous licence CC BY. Valeurs indicatives, impropres à la navigation.' :
+      'Estimation harmonique locale — usage indicatif. <a href="https://maree.shom.fr/" target="_blank" rel="noopener">Consulter les horaires officiels du SHOM</a>.';
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -730,7 +833,7 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', function() {
     var pid  = document.getElementById('portSelect').value;
     var dstr = document.getElementById('dateInput').value;
-    renderChart(pid, dstr ? new Date(dstr + 'T12:00:00') : new Date());
+    renderChart(pid, dstr ? new Date(dstr + 'T12:00:00') : new Date(), _lastApiLevels);
   });
 
   // Rafraîchissement auto toutes les 5 min

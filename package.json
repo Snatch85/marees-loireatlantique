@@ -4,6 +4,7 @@
   "description": "Marées Loire-Atlantique - Application de calcul des marées",
   "main": "index.js",
   "scripts": {
+    "test": "node tests/tide-regression.js && node tests/tides-function.js",
     "build:android": "npx cap sync android && npx cap open android",
     "sync": "npx cap sync",
     "open:android": "npx cap open android"

@@ -65,6 +65,77 @@ for = "/"
   [headers.values]
   Cache-Control = "public, max-age=3600, must-revalidate"
 
+# Les dossiers ci-dessous contiennent des copies techniques du site (PWA/Android).
+# Ils ne doivent jamais apparaître comme des pages concurrentes dans l'index Google.
+[[headers]]
+for = "/www/*"
+
+  [headers.values]
+  X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+for = "/android/*"
+
+  [headers.values]
+  X-Robots-Tag = "noindex, nofollow"
+
+# Consolide les anciennes copies publiques vers leur URL canonique à la racine.
+[[redirects]]
+from = "/www/*"
+to = "/:splat"
+status = 301
+force = true
+
+[[redirects]]
+from = "/android/app/src/main/assets/public/*"
+to = "/:splat"
+status = 301
+force = true
+
+# Consolide les anciennes pages de marées plus minces vers les guides-port
+# complets qui figurent déjà dans le sitemap principal.
+[[redirects]]
+from = "/marees-france/*"
+to = "/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/marees/saint-nazaire/*"
+to = "/marees-saint-nazaire/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/marees/pornic/*"
+to = "/marees-pornic/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/marees/le-croisic/*"
+to = "/marees-le-croisic/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/marees/la-turballe/*"
+to = "/marees-la-turballe/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/marees/la-baule/*"
+to = "/marees-la-baule/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/marees/piriac-sur-mer/*"
+to = "/marees-piriac-sur-mer/"
+status = 301
+force = true
+
 [[redirects]]
 from = "/marees-batz-sur-mer"
 to = "/?port=BATZ-SUR-MER"

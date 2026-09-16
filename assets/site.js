@@ -177,31 +177,8 @@
       var wrap = document.createElement('div');
       wrap.className = 'page-wrap';
 
-      // Pub en haut du contenu
-      var adTop = document.createElement('div');
-      adTop.className = 'ad-wrap';
-      adTop.innerHTML =
-        '<span class="ad-label">Publicité</span>' +
-        '<ins class="adsbygoogle" style="display:block" ' +
-        'data-ad-client="ca-pub-1465276904717454" ' +
-        'data-ad-slot="AUTO" data-ad-format="auto" ' +
-        'data-full-width-responsive="true"></ins>';
-
       content.parentNode.insertBefore(wrap, content);
-      wrap.appendChild(adTop);
       wrap.appendChild(content);
-
-      // Pub en bas du contenu
-      var adBot = document.createElement('div');
-      adBot.className = 'ad-wrap';
-      adBot.style.marginTop = '1.5rem';
-      adBot.innerHTML =
-        '<span class="ad-label">Publicité</span>' +
-        '<ins class="adsbygoogle" style="display:block" ' +
-        'data-ad-client="ca-pub-1465276904717454" ' +
-        'data-ad-slot="AUTO" data-ad-format="auto" ' +
-        'data-full-width-responsive="true"></ins>';
-      wrap.appendChild(adBot);
     }
 
     // Injecter footer
