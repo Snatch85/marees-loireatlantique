@@ -1,4 +1,4 @@
-const CACHE = 'marees-v4';
+const CACHE = 'marees-v5';
 const OFFLINE = '/offline.html';
 
 const PRECACHE = [
