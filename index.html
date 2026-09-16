@@ -52,7 +52,7 @@
       "@type": "WebApplication",
       "name": "Marées Loire-Atlantique",
       "url": "https://marees-loireatlantique.fr",
-      "description": "Calculateur harmonique des marées pour les ports de Loire-Atlantique et de France. Coefficients SHOM, hauteurs d'eau, graphique 24h.",
+      "description": "Horaires, coefficients et hauteurs de marée issus de prévisions harmoniques IFREMER / PREVIMER, avec graphique sur 24 heures.",
       "applicationCategory": "WeatherApplication",
       "operatingSystem": "Web, Android, iOS",
       "inLanguage": "fr-FR",
@@ -116,7 +116,7 @@
       "name": "Les données de marées sont-elles fiables pour la navigation ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Nos données sont calculées par méthode harmonique à partir des constantes SHOM et sont fiables pour la planification d'activités côtières. Cependant, pour la navigation professionnelle, la pêche professionnelle et toute décision de sécurité en mer, consultez impérativement les publications officielles du SHOM (maree.shom.fr) avec une connexion active. Des facteurs météorologiques (vent, pression atmosphérique) peuvent faire varier les hauteurs réelles de plus ou moins 50 cm par rapport aux prévisions."
+        "text": "Nos prévisions sont fournies par api-maree.fr à partir des composantes harmoniques IFREMER / PREVIMER. Elles sont adaptées à la préparation d'activités côtières, mais restent indicatives. Pour la navigation professionnelle, la pêche professionnelle et toute décision de sécurité en mer, consultez impérativement les publications officielles du SHOM (maree.shom.fr). Le vent et la pression atmosphérique peuvent modifier les hauteurs réellement observées."
       }
     },
     {
@@ -225,7 +225,7 @@
   <!-- Bande de stats décorative -->
   <div class="header-stats" aria-hidden="true">
     <span>14 ports couverts</span>
-    <span>Calcul SHOM J2000</span>
+    <span>Données IFREMER / PREVIMER</span>
     <span>Mise à jour quotidienne</span>
   </div>
 
@@ -556,7 +556,7 @@
       <h3>ℹ️ À savoir</h3>
       <p>Horaires en <strong>heure locale française</strong> (heure d'été/hiver automatique).</p>
       <p>Le <strong>coefficient</strong> varie de 20 (morte-eau) à 120 (vive-eau exceptionnelle). Coefficients &ge; 95 : grandes marées.</p>
-      <p>Calcul par <strong>méthode harmonique</strong> avec arguments astronomiques complets (Lune &amp; Soleil, J2000.0). Coefficient basé sur Brest (port de référence SHOM).</p>
+      <p>Prévisions issues des <strong>composantes harmoniques IFREMER / PREVIMER</strong>, fournies par api-maree.fr sous licence CC BY.</p>
       <p>Hauteurs en mètres au-dessus du <strong>zéro hydrographique</strong>. Données indicatives — consultez le <a href="https://maree.shom.fr" target="_blank" rel="noopener">SHOM officiel</a> pour la navigation.</p>
       <p><a href="/blog/" style="background:rgba(35,86,107,.18);border-color:rgba(35,86,107,.4)">📖 Blog</a>
       <a href="/reglementation/">📋 Réglementation pêche à pied DDTM 44</a></p>
@@ -583,7 +583,7 @@
           La Loire-Atlantique bénéficie d'un <strong>régime de marée semi-diurne</strong> parmi les plus marqués de France métropolitaine. Deux pleines mers et deux basses mers se succèdent chaque jour, avec un marnage de vive-eau pouvant dépasser <strong>5,3 mètres à Saint-Nazaire</strong> lors des équinoxes. Ce phénomène, gouverné par l'attraction gravitationnelle combinée de la Lune et du Soleil, rythme la vie de toute la côte — de Piriac-sur-Mer au nord jusqu'à la Pointe Saint-Gildas au sud, en passant par les plages de La Baule et les rochers sauvages du Croisic.
         </p>
         <p style="font-family:'Lora',Georgia,serif;font-size:1rem;line-height:1.85;color:#1a2f4a;margin-bottom:1rem">
-          Ce calculateur utilise la <strong>méthode harmonique du SHOM</strong> (Service Hydrographique et Océanographique de la Marine), implémentée localement sur votre appareil. Les constantes harmoniques propres à chaque port — M2, S2, N2, K1, O1 et leurs dérivées — permettent de prédire avec précision les horaires de pleine mer, basse mer, et les hauteurs d'eau correspondantes. Le tout fonctionne <strong>sans connexion internet</strong> une fois chargé.
+          Les horaires, coefficients et hauteurs affichés proviennent de <strong>prévisions harmoniques IFREMER / PREVIMER</strong>, distribuées par api-maree.fr sous licence CC BY. Une estimation locale de secours peut être affichée si le service en ligne est momentanément indisponible ; la source active est toujours indiquée sous le tableau du jour.
         </p>
       </div>
 
@@ -731,8 +731,8 @@
       <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.1rem;display:flex;gap:.8rem;align-items:flex-start">
         <span style="font-size:1.3rem;flex-shrink:0">🔬</span>
         <div>
-          <div style="font-size:.85rem;font-weight:700;color:var(--blue-d);margin-bottom:.25rem">Calcul harmonique SHOM</div>
-          <div style="font-size:.78rem;color:var(--text-m);line-height:1.55">Même méthode que les officiers de marine. Constantes J2000.0 officielles.</div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--blue-d);margin-bottom:.25rem">Source documentée</div>
+          <div style="font-size:.78rem;color:var(--text-m);line-height:1.55">Prévisions harmoniques IFREMER / PREVIMER, attribution et licence affichées.</div>
         </div>
       </div>
       <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.1rem;display:flex;gap:.8rem;align-items:flex-start">
@@ -745,8 +745,8 @@
       <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.1rem;display:flex;gap:.8rem;align-items:flex-start">
         <span style="font-size:1.3rem;flex-shrink:0">📴</span>
         <div>
-          <div style="font-size:.85rem;font-weight:700;color:var(--blue-d);margin-bottom:.25rem">Fonctionne hors ligne</div>
-          <div style="font-size:.78rem;color:var(--text-m);line-height:1.55">PWA installable. Marées disponibles même sans connexion internet.</div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--blue-d);margin-bottom:.25rem">Secours hors ligne</div>
+          <div style="font-size:.78rem;color:var(--text-m);line-height:1.55">Une estimation locale prend le relais si la source en ligne n'est pas accessible.</div>
         </div>
       </div>
       <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.1rem;display:flex;gap:.8rem;align-items:flex-start">
@@ -766,7 +766,7 @@
 ════════════════════════════════════════ -->
 <footer>
   <span class="footer-wave" aria-hidden="true">〰️</span>
-  <p><strong>Marées Loire-Atlantique &amp; France</strong> — Calcul harmonique (méthode SHOM, J2000.0)</p>
+  <p><strong>Marées Loire-Atlantique &amp; France</strong> — Prévisions harmoniques IFREMER / PREVIMER via api-maree.fr</p>
   <p style="margin-top:.3rem;opacity:.75">Saint-Nazaire · Le Croisic · Pornic · La Turballe · Piriac · Saint-Brevin · Paimbœuf · La Baule · Brest · Saint-Malo</p>
   <p style="margin-top:.6rem;font-size:.73rem;opacity:.65">Données à titre indicatif. Consultez le <a href="https://maree.shom.fr" target="_blank" rel="noopener">SHOM officiel</a> pour la navigation.</p>
   <p style="margin-top:.8rem;font-size:.75rem">
