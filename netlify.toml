@@ -136,6 +136,14 @@ to = "/marees-piriac-sur-mer/"
 status = 301
 force = true
 
+# Une ancienne page de blog visait exactement la même recherche que le guide
+# principal. La redirection concentre les liens et le classement sur une URL.
+[[redirects]]
+from = "/blog/calendrier-grandes-marees-2026/*"
+to = "/guides/calendrier-grandes-marees/"
+status = 301
+force = true
+
 [[redirects]]
 from = "/marees-batz-sur-mer"
 to = "/?port=BATZ-SUR-MER"
